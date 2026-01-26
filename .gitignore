@@ -1,0 +1,10 @@
+.next
+node_modules
+.env.local
+.env
+dist
+out
+db/*.sqlite
+db/*.sqlite3
+db/*.db
+

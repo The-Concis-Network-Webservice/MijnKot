@@ -1,0 +1,123 @@
+{
+    "navigation": {
+        "home": "Home",
+        "rent": "Te Huur",
+        "faq": "FAQ",
+        "contact": "Contact",
+        "admin": "Beheer"
+    },
+    "home": {
+        "hero": {
+            "title": "Vind jouw ideale studentenkot",
+            "subtitle": "Ontdek kwalitatieve studentenhuisvesting in Belgische studentensteden. Veilig, comfortabel en op maat van de student.",
+            "cta": "Bekijk Aanbod",
+            "secondary_cta": "Hoe werkt het",
+            "badge": "Studentenhuisvesting België"
+        },
+        "sections": {
+            "latest": "Nieuwste Aanbod",
+            "latest_desc": "Recent toegevoegde kamers beschikbaar voor verhuur.",
+            "locations": "Onze Locaties",
+            "locations_desc": "Vind de locatie die past bij jouw campus en levensstijl."
+        },
+        "rental_options": {
+            "erasmus_title": "Erasmus / Korte Duur",
+            "erasmus_desc": "Flexibele contracten voor internationale studenten. 3 tot 6 maanden.",
+            "academic_title": "Academiejaar",
+            "academic_desc": "Standaard contracten van 10-12 maanden voor de volledige studentervaring.",
+            "prebooking_title": "2026-2027 Voorboeken",
+            "prebooking_desc": "Reserveer je kamer voor het volgende academiejaar op voorhand."
+        }
+    },
+    "overview": {
+        "title": "Alle Beschikbare Kamers",
+        "description": "Blader door ons volledig aanbod aan studentenhuisvesting.",
+        "all_locations": "Alle Locaties",
+        "no_results_title": "Geen kamers gevonden",
+        "no_results_desc": "Probeer je filters aan te passen of kom later terug.",
+        "back_to_all": "← Bekijk alle locaties"
+    },
+    "detail": {
+        "ref_label": "Ref",
+        "about_title": "Over deze plaats",
+        "type_label": "Type",
+        "type_value": "Studentenkamer",
+        "furnished_label": "Gemeubeld",
+        "furnished_yes": "Ja",
+        "furnished_no": "Nee",
+        "per_month": "/ maand",
+        "utilities": "Nutsvoorzieningen",
+        "utilities_value": "€245 / jaar",
+        "deposit": "Waarborg",
+        "deposit_value": "2 maanden",
+        "request_visit": "Bezichtiging Aanvragen",
+        "ask_question": "Vraag Stellen",
+        "documents_title": "Vereiste Documenten",
+        "upload_prompt": "Upload bewijs van inschrijving",
+        "upload_helper": "Sleep & Zet neer of Klik om te bladeren",
+        "upload_button": "Uploaden",
+        "uploading": "Uploaden...",
+        "upload_success": "Upload Voltooid ✓",
+        "privacy_notice": "Privacy: Uw documenten worden veilig opgeslagen en zijn alleen toegankelijk voor geautoriseerd personeel ter verificatie. Gegevens worden automatisch verwijderd na 30 dagen indien geen contract wordt ondertekend.",
+        "contract_title": "Digitaal Contract",
+        "contract_desc": "Door verder te gaan, start je het digitale ondertekeningsproces voor je huurovereenkomst. Deze actie is juridisch bindend.",
+        "sign_contract": "Contract Ondertekenen",
+        "preview_pdf": "Voorbeeld PDF",
+        "contract_signed_title": "Contract Ondertekend",
+        "contract_signed_desc": "Een kopie is naar je e-mail verzonden.",
+        "no_photos": "Nog geen foto's beschikbaar.",
+        "more_photos": "meer foto's"
+    },
+    "faq": {
+        "title": "FAQ",
+        "description": "Vind antwoorden op veelgestelde vragen over onze studentenhuisvesting.",
+        "no_items": "Geen FAQ items gevonden."
+    },
+    "contact": {
+        "title": "Contact",
+        "description": "We helpen je graag bij het vinden van jouw ideale studentenkot.",
+        "email_label": "E-mail",
+        "phone_label": "Telefoon",
+        "office_label": "Kantoor",
+        "form_title": "Stuur ons een bericht",
+        "name_label": "Naam",
+        "name_placeholder": "Jouw naam",
+        "email_placeholder": "jouw@email.com",
+        "subject_label": "Onderwerp",
+        "subject_general": "Algemene Vraag",
+        "subject_viewing": "Bezichtigingsverzoek",
+        "subject_technical": "Technisch Probleem",
+        "message_label": "Bericht",
+        "message_placeholder": "Hoe kunnen we helpen?",
+        "submit_button": "Bericht Versturen"
+    },
+    "footer": {
+        "tagline": "Kwalitatieve studentenhuisvesting in België. Vertrouwd door studenten en gezinnen sinds 2020.",
+        "navigation_title": "Navigatie",
+        "information_title": "Informatie",
+        "contact_title": "Contact",
+        "privacy_policy": "Privacybeleid",
+        "terms_of_service": "Algemene Voorwaarden",
+        "cookie_settings": "Cookie-instellingen",
+        "rights_reserved": "Alle rechten voorbehouden.",
+        "platform_label": "Studentenhuisvestingsplatform"
+    },
+    "common": {
+        "available": "Beschikbaar",
+        "unavailable": "Niet beschikbaar",
+        "coming_soon": "Binnenkort",
+        "rented": "Verhuurd",
+        "price_per_month": "€/maand",
+        "read_more": "Lees meer",
+        "arrow": "→",
+        "no_data": "Momenteel geen gegevens beschikbaar.",
+        "loading": "Laden...",
+        "error": "Er is een fout opgetreden."
+    },
+    "status": {
+        "available": "Beschikbaar",
+        "option": "Optie",
+        "rented": "Verhuurd",
+        "pending": "In afwachting"
+    }
+}

@@ -1,0 +1,123 @@
+{
+    "navigation": {
+        "home": "Home",
+        "rent": "For Rent",
+        "faq": "FAQ",
+        "contact": "Contact",
+        "admin": "Admin"
+    },
+    "home": {
+        "hero": {
+            "title": "Find your perfect student home",
+            "subtitle": "Discover quality student housing in top Belgian university cities. Safe, comfortable, and tailored to your needs.",
+            "cta": "View Properties",
+            "secondary_cta": "How it works",
+            "badge": "Student Housing Belgium"
+        },
+        "sections": {
+            "latest": "Latest Opportunities",
+            "latest_desc": "Recently added rooms available for rent.",
+            "locations": "Our Locations",
+            "locations_desc": "Find the location that matches your campus and lifestyle."
+        },
+        "rental_options": {
+            "erasmus_title": "Erasmus / Short Stay",
+            "erasmus_desc": "Flexible contracts for international students. 3 to 6 months.",
+            "academic_title": "Academic Year",
+            "academic_desc": "Standard 10-12 month contracts for the full student experience.",
+            "prebooking_title": "2026-2027 Pre-booking",
+            "prebooking_desc": "Secure your room for the next academic year early."
+        }
+    },
+    "overview": {
+        "title": "All Available Rooms",
+        "description": "Browse through our complete list of student housing.",
+        "all_locations": "All Locations",
+        "no_results_title": "No rooms found",
+        "no_results_desc": "Try adjusting your filters or check back later.",
+        "back_to_all": "← View all locations"
+    },
+    "detail": {
+        "ref_label": "Ref",
+        "about_title": "About this place",
+        "type_label": "Type",
+        "type_value": "Student Room",
+        "furnished_label": "Furnished",
+        "furnished_yes": "Yes",
+        "furnished_no": "No",
+        "per_month": "/ month",
+        "utilities": "Utilities",
+        "utilities_value": "€245 / year",
+        "deposit": "Deposit",
+        "deposit_value": "2 months",
+        "request_visit": "Request Visit",
+        "ask_question": "Ask Question",
+        "documents_title": "Required Documents",
+        "upload_prompt": "Upload proof of enrollment",
+        "upload_helper": "Drag & Drop or Click to browse",
+        "upload_button": "Upload",
+        "uploading": "Uploading...",
+        "upload_success": "Upload Complete ✓",
+        "privacy_notice": "Privacy: Your documents are stored securely and only accessible by authorized staff for verification. Data is deleted automatically after 30 days if no contract is signed.",
+        "contract_title": "Digital Contract",
+        "contract_desc": "By proceeding, you initiate the digital signing process for your rental agreement. This action is legally binding.",
+        "sign_contract": "Sign Contract",
+        "preview_pdf": "Preview PDF",
+        "contract_signed_title": "Contract Signed",
+        "contract_signed_desc": "A copy has been sent to your email.",
+        "no_photos": "No photos available yet.",
+        "more_photos": "more photos"
+    },
+    "faq": {
+        "title": "FAQ",
+        "description": "Find answers to common questions about our student housing.",
+        "no_items": "No FAQ items found."
+    },
+    "contact": {
+        "title": "Contact",
+        "description": "We are here to help you find your perfect student home.",
+        "email_label": "Email",
+        "phone_label": "Phone",
+        "office_label": "Office",
+        "form_title": "Send us a message",
+        "name_label": "Name",
+        "name_placeholder": "Your name",
+        "email_placeholder": "your@email.com",
+        "subject_label": "Subject",
+        "subject_general": "General Inquiry",
+        "subject_viewing": "Viewing Request",
+        "subject_technical": "Technical Issue",
+        "message_label": "Message",
+        "message_placeholder": "How can we help?",
+        "submit_button": "Send Message"
+    },
+    "footer": {
+        "tagline": "Quality student housing across Belgium. Trusted by students and families since 2020.",
+        "navigation_title": "Navigation",
+        "information_title": "Information",
+        "contact_title": "Contact",
+        "privacy_policy": "Privacy Policy",
+        "terms_of_service": "Terms of Service",
+        "cookie_settings": "Cookie Settings",
+        "rights_reserved": "All rights reserved.",
+        "platform_label": "Student Housing Platform"
+    },
+    "common": {
+        "available": "Available",
+        "unavailable": "Unavailable",
+        "coming_soon": "Coming Soon",
+        "rented": "Rented",
+        "price_per_month": "€/month",
+        "read_more": "Read more",
+        "arrow": "→",
+        "no_data": "No data available at the moment.",
+        "loading": "Loading...",
+        "error": "An error occurred."
+    },
+    "status": {
+        "available": "Available",
+        "option": "Option",
+        "rented": "Rented",
+        "pending": "Pending"
+    }
+}
