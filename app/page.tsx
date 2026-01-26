@@ -6,6 +6,8 @@ import { RentalOptions } from "../components/rental-options";
 import { SectionHeader } from "../components/section-header";
 import { HomeEmptyState } from "../components/home-components";
 
+export const runtime = 'edge';
+
 export default async function HomePage() {
   const [settings, vestigingen, latestKoten] = await Promise.all([
     getSiteSettings(),

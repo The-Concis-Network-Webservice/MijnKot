@@ -1,0 +1,9 @@
+name = "mijnkot"
+compatibility_date = "2024-06-20"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "mijnkot"
+database_id = "786752e3-c3f9-4253-923b-3af0faf4a7bf"

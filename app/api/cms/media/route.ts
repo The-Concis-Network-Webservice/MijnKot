@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+
+export const runtime = 'edge';
+
 import { getUserFromRequest } from "../../../../lib/cms/server";
 import { canEditContent } from "../../../../lib/cms/permissions";
 import { rateLimit } from "../../../../lib/cms/rate-limit";

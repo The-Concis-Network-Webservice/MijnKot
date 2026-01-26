@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+
+export const runtime = 'edge';
+
 import { getSession } from "../../../../lib/auth";
 import { query } from "../../../../lib/db";
 import type { UserRole, Vestiging } from "../../../../types";

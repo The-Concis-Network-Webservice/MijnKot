@@ -1,50 +1,47 @@
-// @ts-ignore
-import Database from "better-sqlite3";
-import path from "path";
-import fs from "fs";
+import { getRequestContext } from "@cloudflare/next-on-pages";
 
-const dbPath =
-  process.env.DB_PATH ?? path.join(process.cwd(), "db", "local.sqlite");
-
-if (!fs.existsSync(path.dirname(dbPath))) {
-  fs.mkdirSync(path.dirname(dbPath), { recursive: true });
-}
-
-const db = new Database(dbPath);
+export const runtime = 'edge';
 
 function normalizeSql(sql: string) {
-  // Replace $1, $2 with ? for better-sqlite3
+  // Replace $1, $2 with ? for D1 compatibility
   let s = sql.replace(/\$\d+/g, "?");
-  // Replace now() with datetime('now') for sqlite compatibility if mistakenly used
+  // Replace now() with datetime('now') for sqlite compatibility
   s = s.replace(/\bnow\(\)/gi, "datetime('now')");
   return s;
+}
+
+function getDB() {
+  try {
+    const ctx = getRequestContext();
+    if (!ctx?.env?.DB) {
+      throw new Error(
+        "D1 Database binding 'DB' not found. Ensure you are running with Cloudflare Pages dev environment."
+      );
+    }
+    return ctx.env.DB;
+  } catch (error) {
+    throw new Error(
+      `Failed to get D1 database context: ${error instanceof Error ? error.message : 'Unknown error'}. Make sure you're running in Edge runtime with 'export const runtime = \"edge\"' in your route.`
+    );
+  }
 }
 
 export async function query<T>(
   text: string,
   params: Array<string | number | boolean | null> = []
 ) {
-  const stmt = db.prepare(normalizeSql(text));
-  if (stmt.reader) {
-    const rows = stmt.all(params);
-    return rows as T[];
-  } else {
-    stmt.run(params);
-    return [] as T[];
-  }
+  const db = getDB();
+  const stmt = db.prepare(normalizeSql(text)).bind(...params);
+  const { results } = await stmt.all();
+  return results as T[];
 }
 
 export async function queryOne<T>(
   text: string,
   params: Array<string | number | boolean | null> = []
 ) {
-  const normalizedSql = normalizeSql(text);
-  const stmt = db.prepare(normalizedSql);
-
-  // In SQLite with better-sqlite3, UPDATE/INSERT/DELETE with RETURNING
-  // are treated as reader statements (stmt.reader = true)
-  // So we can safely use get() for all cases
-  const row = stmt.get(params);
-  return (row ?? null) as T | null;
+  const db = getDB();
+  const stmt = db.prepare(normalizeSql(text)).bind(...params);
+  const result = await stmt.first();
+  return (result ?? null) as T | null;
 }
-

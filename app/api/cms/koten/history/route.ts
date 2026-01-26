@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+
+export const runtime = 'edge';
+
 import { getUserFromRequest } from "../../../../../lib/cms/server";
 import { query } from "../../../../../lib/db";
 

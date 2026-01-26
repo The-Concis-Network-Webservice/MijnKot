@@ -3,6 +3,9 @@ import { KotCard } from "../../../components/kot-card";
 import { query, queryOne } from "../../../lib/db";
 import type { Kot, KotPhoto, Vestiging } from "../../../types";
 
+
+export const runtime = 'edge';
+
 export default async function VestigingDetailPage({
   params
 }: {
@@ -25,11 +28,11 @@ export default async function VestigingDetailPage({
   const photos =
     ids.length > 0
       ? await query<KotPhoto>(
-          `select * from kot_photos where kot_id in (${ids
-            .map((_, i) => `$${i + 1}`)
-            .join(",")})`,
-          ids
-        )
+        `select * from kot_photos where kot_id in (${ids
+          .map((_, i) => `$${i + 1}`)
+          .join(",")})`,
+        ids
+      )
       : [];
   const byKot = new Map<string, KotPhoto[]>();
   photos.forEach((photo) => {

@@ -1,6 +1,7 @@
 import { getFaqItems } from "../../lib/queries";
 import { FaqList } from "../../components/faq-list";
 
+export const runtime = 'edge';
 export const dynamic = 'force-dynamic';
 
 export default async function FaqPage() {

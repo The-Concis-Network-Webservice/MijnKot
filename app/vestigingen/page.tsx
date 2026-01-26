@@ -2,6 +2,9 @@ import { getVestigingen } from "../../lib/queries";
 import { Section } from "../../components/section";
 import { VestigingCard } from "../../components/vestiging-card";
 
+
+export const runtime = 'edge';
+
 export default async function VestigingenPage() {
   const vestigingen = await getVestigingen();
 

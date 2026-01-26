@@ -6,6 +6,7 @@ import { queryOne, query } from "../../../lib/db";
 import type { Kot, KotPhoto, Vestiging } from "../../../types";
 
 // Enable static generation for better performance
+export const runtime = 'edge';
 export const revalidate = 300; // Revalidate every 5 minutes
 
 export default async function KotDetailPage({

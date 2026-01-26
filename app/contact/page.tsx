@@ -1,6 +1,7 @@
 import { getSiteSettings } from "../../lib/queries";
 import { ContactView } from "../../components/contact-view";
 
+export const runtime = 'edge';
 export const dynamic = 'force-dynamic';
 
 export default async function ContactPage() {
