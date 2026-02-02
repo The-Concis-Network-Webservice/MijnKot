@@ -17,17 +17,14 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
 
             <div className="grid gap-6 md:grid-cols-3 mb-16">
                 <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
-                    <div className="w-12 h-12 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center mx-auto mb-4 text-2xl">✉️</div>
                     <h3 className="font-semibold text-text-main mb-2">{t('contact.email_label')}</h3>
                     <p className="text-text-secondary text-sm">{settings?.contact_email || 'info@mijn-kot.be'}</p>
                 </div>
                 <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
-                    <div className="w-12 h-12 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center mx-auto mb-4 text-2xl">📞</div>
                     <h3 className="font-semibold text-text-main mb-2">{t('contact.phone_label')}</h3>
                     <p className="text-text-secondary text-sm">{settings?.contact_phone || '+32 123 45 67 89'}</p>
                 </div>
                 <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
-                    <div className="w-12 h-12 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center mx-auto mb-4 text-2xl">📍</div>
                     <h3 className="font-semibold text-text-main mb-2">{t('contact.office_label')}</h3>
                     <p className="text-text-secondary text-sm">{settings?.contact_address || 'Leuven, Belgium'}</p>
                 </div>

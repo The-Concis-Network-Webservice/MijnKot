@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
 
 import { getUserFromRequest } from "../../../../lib/cms/server";
 import { rateLimit } from "../../../../lib/cms/rate-limit";
@@ -36,13 +38,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Rate limit exceeded" }, { status: 429 });
   }
   const body = await request.json();
-  const { name, address, city, postal_code, description } = body;
+  const { name, address, city, postal_code, description, image_url } = body;
   if (!name || !address || !city || !postal_code || !description) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
   const inserted = await queryOne(
-    "insert into vestigingen (name, address, city, postal_code, description) values ($1, $2, $3, $4, $5) returning *",
-    [name, address, city, postal_code, description]
+    "insert into vestigingen (name, address, city, postal_code, description, image_url) values ($1, $2, $3, $4, $5, $6) returning *",
+    [name, address, city, postal_code, description, image_url ?? null]
   );
   if (!inserted) {
     return NextResponse.json({ error: "Failed to create vestiging." }, { status: 400 });
@@ -54,6 +56,8 @@ export async function POST(request: Request) {
     entityId: (inserted as any).id,
     changes: inserted as unknown as Record<string, unknown>
   });
+  revalidatePath('/');
+  revalidatePath('/vestigingen');
   return NextResponse.json({ data: inserted });
 }
 
@@ -63,13 +67,13 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const body = await request.json();
-  const { id, name, address, city, postal_code, description, archived_at } = body;
+  const { id, name, address, city, postal_code, description, archived_at, image_url } = body;
   if (!id) {
     return NextResponse.json({ error: "Missing id." }, { status: 400 });
   }
   const updated = await queryOne(
-    "update vestigingen set name = $1, address = $2, city = $3, postal_code = $4, description = $5, archived_at = $6 where id = $7 returning *",
-    [name, address, city, postal_code, description, archived_at ?? null, id]
+    "update vestigingen set name = $1, address = $2, city = $3, postal_code = $4, description = $5, image_url = $6, archived_at = $7 where id = $8 returning *",
+    [name, address, city, postal_code, description, image_url ?? null, archived_at ?? null, id]
   );
   if (!updated) {
     return NextResponse.json({ error: "Failed to update vestiging." }, { status: 400 });
@@ -81,6 +85,8 @@ export async function PATCH(request: Request) {
     entityId: (updated as any).id,
     changes: updated as unknown as Record<string, unknown>
   });
+  revalidatePath('/');
+  revalidatePath('/vestigingen');
   return NextResponse.json({ data: updated });
 }
 
@@ -104,6 +110,8 @@ export async function DELETE(request: Request) {
     entityType: "vestigingen",
     entityId: id
   });
+  revalidatePath('/');
+  revalidatePath('/vestigingen');
   return NextResponse.json({ success: true });
 }
 

@@ -8,6 +8,16 @@ const nextConfig = {
         hostname: "**"
       }
     ]
+  },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // Provide fallbacks for Node.js built-in modules in Edge runtime
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        crypto: false,
+      };
+    }
+    return config;
   }
 };
 

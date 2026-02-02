@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+
+export const runtime = 'edge';
+
 import { getUserFromRequest } from "../../../../lib/cms/server";
 import { canEditContent } from "../../../../lib/cms/permissions";
 import { rateLimit } from "../../../../lib/cms/rate-limit";
@@ -53,7 +56,7 @@ export async function POST(request: Request) {
 
     try {
         const body = await request.json();
-        const { text, language = "nl-BE", tone = "professioneel-wervend", maxLength = 900, kotMeta } = body;
+        const { text, language = "nl-BE", tone = "professioneel-wervend", maxLength = 900, kotMeta, forceRefresh = false } = body;
 
         // Validation
         if (!text || text.trim().length < 30) {
@@ -68,7 +71,9 @@ export async function POST(request: Request) {
         // Check cache
         const cacheKey = getCacheKey(sanitizedText, language);
         const cached = cache.get(cacheKey);
-        if (cached && (Date.now() - cached.timestamp) < CACHE_TTL) {
+
+        // Use cache only if forceRefresh is false
+        if (!forceRefresh && cached && (Date.now() - cached.timestamp) < CACHE_TTL) {
             return NextResponse.json({
                 polishedText: cached.text,
                 cached: true,

@@ -53,6 +53,9 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               Users & Roles
             </Link>
           ) : null}
+          <Link className="block hover:text-primary" href="/admin/leads">
+            Leads & Aanmeldingen
+          </Link>
         </nav>
       </aside>
       <div className="flex-1">

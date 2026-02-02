@@ -10,19 +10,16 @@ export function RentalOptions() {
         {
             title: t('home.rental_options.erasmus_title'),
             description: t('home.rental_options.erasmus_desc'),
-            icon: "🌍",
             href: "/vestigingen?type=erasmus",
         },
         {
             title: t('home.rental_options.academic_title'),
             description: t('home.rental_options.academic_desc'),
-            icon: "🎓",
             href: "/vestigingen?type=academic",
         },
         {
             title: t('home.rental_options.prebooking_title'),
             description: t('home.rental_options.prebooking_desc'),
-            icon: "📅",
             href: "/vestigingen?type=next-year",
         },
     ];
@@ -36,9 +33,6 @@ export function RentalOptions() {
                         href={option.href}
                         className="bg-surface-card p-8 rounded-xl shadow-soft border border-border-light hover:shadow-medium hover:border-primary-200 transition-all group"
                     >
-                        <div className="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-6 bg-primary-50 group-hover:bg-primary-100 transition-colors">
-                            {option.icon}
-                        </div>
                         <h3 className="text-lg font-semibold text-text-main mb-3 group-hover:text-primary-600 transition-colors">
                             {option.title}
                         </h3>

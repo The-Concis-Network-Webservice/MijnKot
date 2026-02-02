@@ -17,7 +17,7 @@ export async function getVestigingen() {
 
 export async function getLatestKoten(limit = 6) {
   const koten = await query<Kot>(
-    "select * from koten where availability_status = 'available' and status = 'published' and archived_at is null order by created_at desc limit $1",
+    "select * from koten where availability_status = 'available' and status = 'published' and archived_at is null order by is_highlighted desc, created_at desc limit $1",
     [limit]
   );
   if (koten.length === 0) return [];
@@ -41,7 +41,7 @@ export async function getLatestKoten(limit = 6) {
 
 export async function getAllKoten() {
   const koten = await query<Kot>(
-    "select * from koten where status = 'published' and archived_at is null order by created_at desc"
+    "select * from koten where status = 'published' and archived_at is null order by is_highlighted desc, created_at desc"
   );
   if (koten.length === 0) return [];
   const ids = koten.map((k) => k.id);
@@ -61,5 +61,3 @@ export async function getAllKoten() {
     kot_photos: byKot.get(kot.id) ?? []
   })) as Array<Kot & { kot_photos: KotPhoto[] }>;
 }
-
-

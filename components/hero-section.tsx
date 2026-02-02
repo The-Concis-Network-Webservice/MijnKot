@@ -23,9 +23,18 @@ export function HeroSection({
     return (
         <section className="relative bg-surface-subtle overflow-hidden">
             {/* Subtle background pattern */}
-            <div className="absolute inset-0 opacity-30">
-                <div className="absolute top-20 right-20 w-96 h-96 bg-primary-100 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-20 left-20 w-96 h-96 bg-secondary-200 rounded-full blur-3xl"></div>
+            {/* Video Background */}
+            <div className="absolute inset-0 w-full h-full">
+                <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover"
+                >
+                    <source src="https://videos.pexels.com/video-files/6860803/6860803-hd_1920_1080_25fps.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-white/75 backdrop-blur-[2px]"></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 md:py-32 relative z-10">

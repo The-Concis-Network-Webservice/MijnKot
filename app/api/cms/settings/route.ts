@@ -42,7 +42,7 @@ export async function POST(request: Request) {
   ) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
-  const inserted = await queryOne(
+  const inserted = await queryOne<any>(
     "insert into site_settings (hero_title, hero_subtitle, hero_cta_label, hero_cta_href, contact_email, contact_phone, contact_address) values ($1, $2, $3, $4, $5, $6, $7) returning *",
     [
       hero_title,
@@ -61,7 +61,7 @@ export async function POST(request: Request) {
     actorId: user.id,
     action: "create",
     entityType: "site_settings",
-    entityId: inserted.id,
+    entityId: String(inserted.id),
     changes: inserted
   });
   return NextResponse.json({ data: inserted });
@@ -77,7 +77,7 @@ export async function PATCH(request: Request) {
   if (!id) {
     return NextResponse.json({ error: "Missing id." }, { status: 400 });
   }
-  const updated = await queryOne(
+  const updated = await queryOne<any>(
     "update site_settings set hero_title = $1, hero_subtitle = $2, hero_cta_label = $3, hero_cta_href = $4, contact_email = $5, contact_phone = $6, contact_address = $7 where id = $8 returning *",
     [
       body.hero_title,
@@ -97,7 +97,7 @@ export async function PATCH(request: Request) {
     actorId: user.id,
     action: "update",
     entityType: "site_settings",
-    entityId: id,
+    entityId: String(id),
     changes: updated
   });
   return NextResponse.json({ data: updated });

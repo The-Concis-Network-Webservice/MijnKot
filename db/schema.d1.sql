@@ -16,6 +16,7 @@ create table if not exists vestigingen (
   postal_code text not null,
   description text not null,
   description_en text,
+  image_url text, /* Added logic for photo */
   archived_at text,
   created_at text not null default (datetime('now')),
   updated_at text not null default (datetime('now'))
@@ -36,9 +37,12 @@ create table if not exists koten (
   title_en text,
   description text not null,
   description_en text,
+  description_raw text,
+  description_polished text,
   price real not null,
   availability_status text not null default 'available',
   status text not null check (status in ('draft','scheduled','published','archived')) default 'draft',
+  is_highlighted boolean default false,
   scheduled_publish_at text,
   published_at text,
   archived_at text,
@@ -131,3 +135,11 @@ create index if not exists idx_user_vestigingen_user_id on user_vestigingen(user
 create index if not exists idx_user_vestigingen_vestiging_id on user_vestigingen(vestiging_id);
 create index if not exists idx_availability_history_kot_id on availability_history(kot_id);
 create index if not exists idx_audit_logs_entity on audit_logs(entity_type, entity_id);
+
+create table if not exists leads (
+  id text primary key default (lower(hex(randomblob(16)))),
+  email text not null,
+  name text,
+  source text default 'modal',
+  created_at text not null default (datetime('now'))
+);

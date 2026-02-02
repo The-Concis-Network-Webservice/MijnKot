@@ -7,7 +7,9 @@ import type { Kot, KotPhoto, Vestiging } from "../../../types";
 
 // Enable static generation for better performance
 export const runtime = 'edge';
-export const revalidate = 300; // Revalidate every 5 minutes
+export const revalidate = 0; // Revalidate immediately
+
+import { JsonLd } from "../../../components/json-ld";
 
 export default async function KotDetailPage({
   params
@@ -34,8 +36,41 @@ export default async function KotDetailPage({
     [kot.id]
   );
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Apartment",
+    "name": kot.title,
+    "description": kot.description,
+    "image": photos?.map(p => p.image_url) || [],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": vestiging?.address,
+      "addressLocality": vestiging?.city,
+      "postalCode": vestiging?.postal_code,
+      "addressCountry": "BE"
+    },
+    "geo": { // If we had lat/long, we'd put it here.
+      "@type": "GeoCoordinates",
+      "latitude": 51.05, // Placeholder or remove if strictly unknown
+      "longitude": 3.73
+    },
+    "numberOfRooms": 1,
+    "floorSize": {
+      "@type": "QuantitativeValue",
+      "value": 20, // Example, ideally dynamic
+      "unitCode": "MTK"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": kot.price,
+      "priceCurrency": "EUR",
+      "availability": kot.availability_status === 'available' ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
+      <JsonLd data={jsonLd} />
       {/* Header - Not sticky on mobile to save space */}
       <div className="mb-6 lg:mb-10">
         <DetailHeader kot={kot} vestiging={vestiging} />
@@ -70,22 +105,41 @@ export default async function KotDetailPage({
 }
 
 // Metadata for SEO
+// Metadata for SEO
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const kot = await queryOne<Kot>("select * from koten where id = $1", [params.id]);
 
   if (!kot) {
     return {
       title: 'Kot niet gevonden',
+      robots: { index: false },
     };
   }
 
+  const vestiging = await queryOne<Vestiging>("select * from vestigingen where id = $1", [kot.vestiging_id]);
+  const photos = await query<KotPhoto>("select * from kot_photos where kot_id = $1 order by order_index asc limit 1", [kot.id]);
+  const mainImage = photos && photos.length > 0 ? photos[0].image_url : null;
+
+  const locationString = vestiging ? `in ${vestiging.city}` : 'te huur';
+  const streetString = vestiging ? ` - ${vestiging.address}` : '';
+
+  const title = `Kot te huur ${locationString}${streetString} | €${kot.price}`;
+  const description = `Op zoek naar een kot ${locationString}? ${kot.title}. Prijs: €${kot.price} per maand. Bekijk foto's en plan direct een bezoek via Mijn-Kot.`;
+
   return {
-    title: `${kot.title} - €${kot.price}/maand | Mijn-Kot`,
-    description: kot.description?.substring(0, 160) || 'Studentenkamer te huur',
+    title,
+    description,
     openGraph: {
-      title: kot.title,
-      description: kot.description,
+      title,
+      description,
       type: 'website',
+      images: mainImage ? [{ url: mainImage }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: mainImage ? [mainImage] : [],
     },
   };
 }

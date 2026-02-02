@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Sparkles, Check, X, RefreshCw, Copy, Loader2 } from 'lucide-react';
 
 interface AITextPolisherProps {
     rawText: string;
@@ -30,7 +29,7 @@ export function AITextPolisher({
 
     const canGenerate = rawText.trim().length >= 30;
 
-    const handlePolish = async () => {
+    const handlePolish = async (forceRefresh = false) => {
         if (!canGenerate) {
             setErrorMessage('Tekst moet minimaal 30 karakters bevatten');
             setStatus('error');
@@ -49,7 +48,8 @@ export function AITextPolisher({
                     language,
                     tone: 'professioneel-wervend',
                     maxLength: 900,
-                    kotMeta
+                    kotMeta,
+                    forceRefresh
                 })
             });
 
@@ -75,7 +75,7 @@ export function AITextPolisher({
     };
 
     const handleRegenerate = () => {
-        handlePolish();
+        handlePolish(true);
     };
 
     const handleCopyToClipboard = async () => {
@@ -92,7 +92,7 @@ export function AITextPolisher({
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-purple-600" />
+                    <span className="text-xl">✨</span>
                     <h3 className="font-semibold text-gray-900">AI Tekstverbetering</h3>
                 </div>
 
@@ -100,20 +100,17 @@ export function AITextPolisher({
                 <div className="flex items-center gap-2">
                     {status === 'generating' && (
                         <span className="flex items-center gap-2 text-sm text-blue-600">
-                            <Loader2 className="w-4 h-4 animate-spin" />
                             Genereren...
                         </span>
                     )}
                     {status === 'done' && (
                         <span className="flex items-center gap-2 text-sm text-green-600">
-                            <Check className="w-4 h-4" />
-                            Klaar
+                            ✔ Klaar
                         </span>
                     )}
                     {status === 'error' && (
                         <span className="flex items-center gap-2 text-sm text-red-600">
-                            <X className="w-4 h-4" />
-                            Fout
+                            ❌ Fout
                         </span>
                     )}
                 </div>
@@ -151,19 +148,15 @@ export function AITextPolisher({
 
             {/* Generate Button */}
             <button
-                onClick={handlePolish}
+                onClick={() => handlePolish(false)}
                 disabled={!canGenerate || status === 'generating'}
                 className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
                 {status === 'generating' ? (
-                    <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Tekst verbeteren...
-                    </>
+                    'Tekst verbeteren...'
                 ) : (
                     <>
-                        <Sparkles className="w-4 h-4" />
-                        Verbeter tekst
+                        ✨ Verbeter tekst
                     </>
                 )}
             </button>
@@ -194,7 +187,7 @@ export function AITextPolisher({
                             className="absolute top-2 right-2 p-2 text-gray-500 hover:text-gray-700 hover:bg-white rounded-lg transition-colors"
                             title="Kopieer naar klembord"
                         >
-                            <Copy className="w-4 h-4" />
+                            📋
                         </button>
                     </div>
                     <div className="text-xs text-gray-500">
@@ -207,16 +200,14 @@ export function AITextPolisher({
                             onClick={handleApply}
                             className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
                         >
-                            <Check className="w-4 h-4" />
-                            Toepassen
+                            ✔ Toepassen
                         </button>
                         <button
                             onClick={handleRegenerate}
                             disabled={status === 'generating'}
                             className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 transition-colors"
                         >
-                            <RefreshCw className="w-4 h-4" />
-                            Opnieuw genereren
+                            ↻ Opnieuw genereren
                         </button>
                     </div>
                 </div>

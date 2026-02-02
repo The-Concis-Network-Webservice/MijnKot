@@ -62,10 +62,13 @@ export default function AdminKotDetailPage() {
         id,
         title: kot.title,
         description: kot.description,
+        description_raw: kot.description_raw,
+        description_polished: kot.description_polished,
         price: kot.price,
         availability_status: kot.availability_status,
         status: kot.status,
-        scheduled_publish_at: kot.scheduled_publish_at
+        scheduled_publish_at: kot.scheduled_publish_at,
+        is_highlighted: kot.is_highlighted
       })
     });
     const payload = await res.json();
@@ -78,18 +81,7 @@ export default function AdminKotDetailPage() {
     setLoading(false);
   };
 
-  const deleteKot = async () => {
-    if (!confirm("Archive this kot? It will no longer be public.")) return;
-    await fetch("/api/cms/koten", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ id, action: "archive" })
-    });
-    await loadKot();
-    push("Kot archived.");
-  };
+
 
   return (
     <AdminGuard>
@@ -111,32 +103,97 @@ export default function AdminKotDetailPage() {
                 <button
                   className="text-primary"
                   onClick={async () => {
+                    if (!kot) return;
+                    setLoading(true);
+                    // 1. Save current changes first
                     await fetch("/api/cms/koten", {
                       method: "PATCH",
-                      headers: {
-                        "Content-Type": "application/json"
-                      },
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        id,
+                        title: kot.title,
+                        description: kot.description,
+                        description_raw: kot.description_raw,
+                        description_polished: kot.description_polished,
+                        price: kot.price,
+                        availability_status: kot.availability_status,
+                        status: kot.status, // keeps current status for now (e.g. draft)
+                        scheduled_publish_at: kot.scheduled_publish_at,
+                        is_highlighted: kot.is_highlighted
+                      })
+                    });
+                    // 2. Then publish
+                    await fetch("/api/cms/koten", {
+                      method: "PATCH",
+                      headers: { "Content-Type": "application/json" },
                       body: JSON.stringify({ id, action: "publish" })
                     });
                     await loadKot();
-                    push("Kot published.");
+                    push("Kot published and saved.");
+                    setLoading(false);
                   }}
                 >
                   Publish now
                 </button>
-                <button className="text-red-500" onClick={deleteKot}>
+                <button
+                  className="text-red-500"
+                  onClick={async () => {
+                    if (!kot) return;
+                    if (!confirm("Archive this kot? It will no longer be public.")) return;
+                    setLoading(true);
+                    // 1. Save changes first
+                    await fetch("/api/cms/koten", {
+                      method: "PATCH",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        id,
+                        title: kot.title,
+                        description: kot.description,
+                        description_raw: kot.description_raw,
+                        description_polished: kot.description_polished,
+                        price: kot.price,
+                        availability_status: kot.availability_status,
+                        status: kot.status,
+                        scheduled_publish_at: kot.scheduled_publish_at,
+                        is_highlighted: kot.is_highlighted
+                      })
+                    });
+                    // 2. Archive
+                    await fetch("/api/cms/koten", {
+                      method: "PATCH",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ id, action: "archive" })
+                    });
+                    await loadKot();
+                    push("Kot archived and saved.");
+                    setLoading(false);
+                  }}
+                >
                   Archive kot
                 </button>
               </div>
             </div>
             {kot ? (
               <>
+                <div className="flex items-center gap-2 mb-2">
+                  <label className="flex items-center gap-2 cursor-pointer bg-yellow-50 px-3 py-1 rounded-full border border-yellow-200">
+                    <input
+                      type="checkbox"
+                      checked={!!kot.is_highlighted}
+                      onChange={(e) => setKot({ ...kot, is_highlighted: e.target.checked })}
+                      className="rounded text-yellow-500 focus:ring-yellow-500"
+                    />
+                    <span className="text-sm font-medium text-yellow-800">Highlight (Top of list)</span>
+                  </label>
+                </div>
+
                 <input
                   className="border border-gray-200 rounded-lg px-3 py-2 w-full"
                   value={kot.title}
                   onChange={(event) =>
                     setKot({ ...kot, title: event.target.value })
                   }
+                  placeholder="Title"
                 />
 
                 {/* AI Text Polisher for Description */}
@@ -169,6 +226,7 @@ export default function AdminKotDetailPage() {
                         price: Number(event.target.value)
                       })
                     }
+                    placeholder="Price"
                   />
                   <select
                     className="border border-gray-200 rounded-lg px-3 py-2"
@@ -176,7 +234,7 @@ export default function AdminKotDetailPage() {
                     onChange={(event) =>
                       setKot({
                         ...kot,
-                        availability_status: event.target.value
+                        availability_status: event.target.value as Kot["availability_status"]
                       })
                     }
                   >
@@ -262,4 +320,3 @@ export default function AdminKotDetailPage() {
     </AdminGuard>
   );
 }
-

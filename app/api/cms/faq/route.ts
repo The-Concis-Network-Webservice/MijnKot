@@ -28,7 +28,7 @@ export async function POST(request: Request) {
   if (!question || !answer || !category) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
-  const inserted = await queryOne(
+  const inserted = await queryOne<any>(
     "insert into faq_items (question, answer, category, order_index) values ($1, $2, $3, $4) returning *",
     [question, answer, category, order_index ?? 0]
   );
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     actorId: user.id,
     action: "create",
     entityType: "faq_items",
-    entityId: inserted.id,
+    entityId: String(inserted.id),
     changes: inserted
   });
   return NextResponse.json({ data: inserted });
@@ -55,7 +55,7 @@ export async function PATCH(request: Request) {
   if (!id) {
     return NextResponse.json({ error: "Missing id." }, { status: 400 });
   }
-  const updated = await queryOne(
+  const updated = await queryOne<any>(
     "update faq_items set question = $1, answer = $2, category = $3, order_index = $4 where id = $5 returning *",
     [question, answer, category, order_index ?? 0, id]
   );
@@ -66,7 +66,7 @@ export async function PATCH(request: Request) {
     actorId: user.id,
     action: "update",
     entityType: "faq_items",
-    entityId: id,
+    entityId: String(id),
     changes: updated
   });
   return NextResponse.json({ data: updated });
@@ -93,7 +93,7 @@ export async function DELETE(request: Request) {
     actorId: user.id,
     action: "delete",
     entityType: "faq_items",
-    entityId: id
+    entityId: String(id)
   });
   return NextResponse.json({ success: true });
 }

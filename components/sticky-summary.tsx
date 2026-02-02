@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MapPin, Calendar, Phone, Mail, Check, X } from 'lucide-react';
 import type { Kot, Vestiging } from '../types';
 
 interface StickySummaryProps {
@@ -32,21 +31,20 @@ export function StickySummary({ kot, vestiging }: StickySummaryProps) {
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-medium text-gray-700">Beschikbaarheid</span>
                         <span className={`px-3 py-1.5 rounded-full text-sm font-medium ${kot.availability_status === 'available'
-                                ? 'bg-green-100 text-green-700'
-                                : kot.availability_status === 'reserved'
-                                    ? 'bg-yellow-100 text-yellow-700'
-                                    : 'bg-red-100 text-red-700'
+                            ? 'bg-green-100 text-green-700'
+                            : kot.availability_status === 'reserved'
+                                ? 'bg-yellow-100 text-yellow-700'
+                                : 'bg-red-100 text-red-700'
                             }`}>
-                            {kot.availability_status === 'available' && <><Check className="w-4 h-4 inline mr-1" />Beschikbaar</>}
+                            {kot.availability_status === 'available' && 'Beschikbaar'}
                             {kot.availability_status === 'reserved' && 'Gereserveerd'}
-                            {kot.availability_status === 'rented' && <><X className="w-4 h-4 inline mr-1" />Verhuurd</>}
+                            {kot.availability_status === 'rented' && 'Verhuurd'}
                         </span>
                     </div>
 
                     {/* Location */}
                     {vestiging && (
                         <div className="flex items-start gap-3">
-                            <MapPin className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
                             <div>
                                 <p className="text-sm font-medium text-gray-900">{vestiging.city}</p>
                                 <p className="text-sm text-gray-500">{vestiging.address}</p>
@@ -70,14 +68,12 @@ export function StickySummary({ kot, vestiging }: StickySummaryProps) {
                     {/* CTAs */}
                     <div className="space-y-3 pt-4 border-t border-gray-100">
                         <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-semibold shadow-sm">
-                            <Calendar className="w-5 h-5" />
                             Plan bezoek
                         </button>
                         <button
                             onClick={() => setShowContact(!showContact)}
                             className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-white text-gray-700 border-2 border-gray-200 rounded-xl hover:border-gray-300 transition-colors font-semibold"
                         >
-                            <Phone className="w-5 h-5" />
                             Contact
                         </button>
                     </div>
@@ -86,11 +82,9 @@ export function StickySummary({ kot, vestiging }: StickySummaryProps) {
                     {showContact && (
                         <div className="space-y-2 pt-2 border-t border-gray-100">
                             <a href="tel:+32123456789" className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700">
-                                <Phone className="w-4 h-4" />
                                 +32 123 456 789
                             </a>
                             <a href="mailto:info@example.com" className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700">
-                                <Mail className="w-4 h-4" />
                                 info@example.com
                             </a>
                         </div>
@@ -111,7 +105,6 @@ export function StickySummary({ kot, vestiging }: StickySummaryProps) {
                         <p className="text-xs text-gray-500">/ maand</p>
                     </div>
                     <button className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-semibold shadow-sm">
-                        <Calendar className="w-5 h-5" />
                         Plan bezoek
                     </button>
                 </div>

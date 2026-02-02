@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import type { Kot, KotPhoto } from "../types";
 import { useTranslation } from 'react-i18next';
 import { getLocalizedData } from '../lib/i18n-utils';
@@ -22,32 +23,43 @@ export function KotCard({ kot }: { kot: KotWithPhoto }) {
   // Map status to translation key
   const statusLabel = t(`status.${kot.availability_status}` as any);
 
-  const statusColors = {
+  const statusColors: Record<string, string> = {
     'available': 'bg-state-success/10 text-state-success border-state-success/20',
     'rented': 'bg-state-error/10 text-state-error border-state-error/20',
-    'option': 'bg-state-warning/10 text-state-warning border-state-warning/20',
-    'pending': 'bg-state-info/10 text-state-info border-state-info/20',
-  }[kot.availability_status] || 'bg-surface-subtle text-text-muted border-border-light';
+    'reserved': 'bg-state-warning/10 text-state-warning border-state-warning/20',
+    'hidden': 'bg-surface-subtle text-text-muted border-border-light',
+  };
+
+  const statusClass = statusColors[kot.availability_status] || 'bg-surface-subtle text-text-muted border-border-light';
 
   return (
     <Link
       href={`/koten/${kot.id}`}
-      className="group bg-surface-card border border-border-light rounded-xl overflow-hidden hover:shadow-medium transition-all flex flex-col"
+      className={`group bg-surface-card border rounded-xl overflow-hidden hover:shadow-medium transition-all flex flex-col relative duration-300
+        ${kot.is_highlighted
+          ? 'border-primary-500 shadow-[0_0_30px_rgba(143,168,154,0.6)] ring-2 ring-primary-500/50 z-10 scale-[1.02] -translate-y-1'
+          : 'border-border-light'
+        }`}
     >
-      <div className="relative h-56 bg-surface-subtle">
+      <div className="relative aspect-video w-full bg-surface-subtle">
         {cover ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             alt={title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             src={cover}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-sm text-text-muted">
             {t('common.no_data')}
           </div>
         )}
-        <span className={`absolute top-4 right-4 px-3 py-1.5 rounded-lg text-xs font-medium border ${statusColors}`}>
+        <span className={`absolute top-4 right-4 px-3 py-1.5 rounded-lg text-xs font-bold border shadow-sm bg-white ${kot.availability_status === 'available' ? 'text-state-success border-state-success/20' :
+            kot.availability_status === 'rented' ? 'text-state-error border-state-error/20' :
+              kot.availability_status === 'reserved' ? 'text-state-warning border-state-warning/20' :
+                'text-text-muted border-border-light'
+          }`}>
           {statusLabel}
         </span>
       </div>
@@ -64,9 +76,9 @@ export function KotCard({ kot }: { kot: KotWithPhoto }) {
         <p className="text-sm text-text-secondary line-clamp-2 leading-relaxed mb-4 flex-1">{description}</p>
 
         <div className="pt-4 border-t border-border-light">
-          <span className="text-sm font-medium text-primary-600 group-hover:underline">{t('common.read_more')} {t('common.arrow')}</span>
+          <span className="text-sm font-medium text-primary-600 group-hover:underline">{t('common.read_more')} →</span>
         </div>
       </div>
-    </Link>
+    </Link >
   );
 }

@@ -6,6 +6,7 @@ export type Vestiging = {
   postal_code: string;
   description: string;
   description_en?: string | null;
+  image_url?: string | null;
   archived_at?: string | null;
   created_at: string;
   updated_at: string;
@@ -20,9 +21,13 @@ export type Kot = {
   title_en?: string | null;
   description: string;
   description_en?: string | null;
+  description_raw?: string | null;
+  description_polished?: string | null;
   price: number;
-  availability_status: string;
+  image_url?: string | null;
+  availability_status: "available" | "reserved" | "rented" | "hidden"; // Updated to match union type if rigid or just string
   status: KotStatus;
+  is_highlighted?: boolean | number;
   scheduled_publish_at?: string | null;
   published_at?: string | null;
   archived_at?: string | null;
@@ -89,6 +94,7 @@ export type MediaAsset = {
   height?: number | null;
   created_by?: string | null;
   created_at: string;
+  updated_at?: string;
 };
 
 export type AvailabilityHistory = {
@@ -108,5 +114,5 @@ export type AuditLog = {
   entity_id: string;
   changes?: Record<string, unknown> | null;
   created_at: string;
+  updated_at?: string;
 };
-

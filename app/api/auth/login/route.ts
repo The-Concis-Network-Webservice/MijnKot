@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+
+export const runtime = 'edge';
+
 import { queryOne } from "../../../../lib/db";
 import { createSession, setSessionCookie, verifyPassword } from "../../../../lib/auth";
 import type { UserRole } from "../../../../types";

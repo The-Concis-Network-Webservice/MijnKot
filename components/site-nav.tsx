@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from "./language-switcher";
+import type { Vestiging } from "../types";
 
-export function SiteNav() {
+export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
   const { t } = useTranslation();
 
   return (
@@ -24,15 +25,52 @@ export function SiteNav() {
             <Link className="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors" href="/">
               {t('navigation.home')}
             </Link>
+
             <Link className="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors" href="/faq">
               {t('navigation.faq')}
             </Link>
-            <Link
-              className="px-5 py-2.5 bg-primary-500 text-white rounded-lg font-medium text-sm hover:bg-primary-600 transition-colors shadow-subtle"
-              href="/vestigingen"
-            >
-              {t('navigation.rent')}
-            </Link>
+
+            {/* Te Huur Dropdown */}
+            <div className="relative group">
+              <button className="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors flex items-center gap-1">
+                {t('navigation.rent')}
+                <span className="text-[10px] opacity-70">▼</span>
+              </button>
+              <div className="absolute top-full left-0 w-48 py-2 mt-1 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0">
+                <Link href="/vestigingen?type=academiejaar" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600">
+                  Academiejaar
+                </Link>
+                <Link href="/vestigingen?type=semester" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600">
+                  Semester
+                </Link>
+                <Link href="/vestigingen?type=erasmus" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600">
+                  Erasmus
+                </Link>
+                <hr className="my-1 border-gray-100" />
+                <Link href="/vestigingen" className="block px-4 py-2 text-sm font-medium text-primary-600 hover:bg-gray-50">
+                  Alles bekijken
+                </Link>
+              </div>
+            </div>
+
+            {/* Vestigingen Dropdown */}
+            <div className="relative group">
+              <button className="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors flex items-center gap-1">
+                Vestigingen
+                <span className="text-[10px] opacity-70">▼</span>
+              </button>
+              <div className="absolute top-full left-0 w-56 py-2 mt-1 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0 max-h-[70vh] overflow-y-auto">
+                {vestigingen.map((v) => (
+                  <Link key={v.id} href={`/vestigingen/${v.id}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600 truncate">
+                    {v.name}
+                  </Link>
+                ))}
+                {vestigingen.length === 0 && (
+                  <span className="block px-4 py-2 text-sm text-gray-400 italic">No locations</span>
+                )}
+              </div>
+            </div>
+
             <Link className="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors" href="/contact">
               {t('navigation.contact')}
             </Link>
@@ -46,4 +84,3 @@ export function SiteNav() {
     </nav>
   );
 }
-

@@ -23,15 +23,49 @@ export function DetailHeader({ kot, vestiging }: DetailHeaderProps) {
                 <span className="text-text-muted text-sm">{t('detail.ref_label')}: {kot.id.slice(0, 8)}</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-display font-semibold text-text-main mb-4 leading-tight">{title}</h1>
-            <div className="flex items-center text-text-secondary">
-                <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                {vestiging?.address}, {vestiging?.postal_code} {vestiging?.city}
-            </div>
+            {vestiging?.address}, {vestiging?.postal_code} {vestiging?.city}
         </div>
     );
+}
+
+// Custom formatter to handle newlines and simple bullet points
+function formatDescription(text: string) {
+    if (!text) return null;
+    const lines = text.split('\n');
+    const elements: React.ReactNode[] = [];
+    let listItems: React.ReactNode[] = [];
+    let listCounter = 0;
+
+    const flushList = (index: number) => {
+        if (listItems.length > 0) {
+            elements.push(
+                <ul key={`ul-${index}`} className="list-disc pl-5 mb-4 space-y-1 text-text-secondary">
+                    {listItems}
+                </ul>
+            );
+            listItems = [];
+        }
+    };
+
+    lines.forEach((line, index) => {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
+            listItems.push(<li key={`li-${index}`}>{trimmed.substring(2)}</li>);
+        } else {
+            flushList(index);
+            if (trimmed !== '') {
+                // If it's a normal paragraph
+                elements.push(
+                    <p key={`p-${index}`} className="mb-4 text-text-secondary leading-relaxed">
+                        {line}
+                    </p>
+                );
+            }
+        }
+    });
+    flushList(lines.length);
+
+    return <>{elements}</>;
 }
 
 export function DetailAbout({ kot }: { kot: Kot }) {
@@ -41,8 +75,8 @@ export function DetailAbout({ kot }: { kot: Kot }) {
     return (
         <section>
             <h2 className="text-2xl font-semibold font-display text-text-main mb-6">{t('detail.about_title')}</h2>
-            <div className="prose prose-lg max-w-none">
-                <p className="text-text-secondary leading-relaxed">{description}</p>
+            <div className="prose prose-lg max-w-none text-text-secondary">
+                {formatDescription(description)}
             </div>
         </section>
     );

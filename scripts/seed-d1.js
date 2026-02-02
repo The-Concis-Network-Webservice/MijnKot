@@ -2,7 +2,7 @@
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import bcrypt from "bcryptjs";
+import { hashPassword } from "./hash-password.js";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { execSync } from "child_process";
 
@@ -150,7 +150,7 @@ async function main() {
 
     // Admin
     const adminId = uuidv4();
-    const hash = bcrypt.hashSync(adminPassword, 10);
+    const hash = await hashPassword(adminPassword);
     // Since we cleared users, we just insert.
     addSql(`INSERT INTO users (id, email, full_name, password_hash, role) VALUES ('${adminId}', '${adminEmail}', 'Admin', '${hash}', 'super_admin')`);
     

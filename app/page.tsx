@@ -12,7 +12,7 @@ export default async function HomePage() {
   const [settings, vestigingen, latestKoten] = await Promise.all([
     getSiteSettings(),
     getVestigingen(),
-    getLatestKoten(6)
+    getLatestKoten(3)
   ]);
 
   return (

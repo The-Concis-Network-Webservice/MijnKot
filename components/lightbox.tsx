@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useCallback, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface LightboxProps {
-    images: Array<{ url: string; alt: string }>;
+    images: { url: string; alt: string }[];
     currentIndex: number;
     onClose: () => void;
     onNavigate: (index: number) => void;
@@ -68,18 +68,29 @@ export function Lightbox({ images, currentIndex, onClose, onNavigate }: Lightbox
         };
     }, [handlePrev, handleNext, hasPrev, hasNext]);
 
-    return (
+    const stopPropagation = (e: any) => e.stopPropagation();
+
+    // Create portal only on client
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+        return () => setMounted(false);
+    }, []);
+
+    if (!mounted) return null;
+
+    return createPortal(
         <div
-            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+            className="fixed inset-0 z-[99999] bg-black/95 flex items-center justify-center animate-fade-in"
             onClick={onClose}
         >
             {/* Close button */}
             <button
                 onClick={onClose}
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors backdrop-blur-sm"
+                className="absolute top-4 right-4 z-10 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors backdrop-blur-sm text-sm font-medium"
                 aria-label="Sluiten"
             >
-                <X className="w-6 h-6" />
+                Sluiten
             </button>
 
             {/* Image counter */}
@@ -94,10 +105,10 @@ export function Lightbox({ images, currentIndex, onClose, onNavigate }: Lightbox
                         e.stopPropagation();
                         handlePrev();
                     }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors backdrop-blur-sm"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors backdrop-blur-sm text-3xl"
                     aria-label="Vorige foto"
                 >
-                    <ChevronLeft className="w-8 h-8" />
+                    ❮
                 </button>
             )}
 
@@ -108,17 +119,17 @@ export function Lightbox({ images, currentIndex, onClose, onNavigate }: Lightbox
                         e.stopPropagation();
                         handleNext();
                     }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors backdrop-blur-sm"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors backdrop-blur-sm text-3xl"
                     aria-label="Volgende foto"
                 >
-                    <ChevronRight className="w-8 h-8" />
+                    ❯
                 </button>
             )}
 
             {/* Main image */}
             <div
                 className="relative w-full h-full flex items-center justify-center p-4 md:p-8"
-                onClick={(e) => e.stopPropagation()}
+                onClick={stopPropagation}
             >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -140,8 +151,8 @@ export function Lightbox({ images, currentIndex, onClose, onNavigate }: Lightbox
                                 onNavigate(idx);
                             }}
                             className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${idx === currentIndex
-                                    ? 'border-white scale-110'
-                                    : 'border-white/30 hover:border-white/60 opacity-70 hover:opacity-100'
+                                ? 'border-white scale-110'
+                                : 'border-white/30 hover:border-white/60 opacity-70 hover:opacity-100'
                                 }`}
                         >
                             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -154,6 +165,7 @@ export function Lightbox({ images, currentIndex, onClose, onNavigate }: Lightbox
                     ))}
                 </div>
             )}
-        </div>
+        </div>,
+        document.body
     );
 }

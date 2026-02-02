@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
 
 import { getUserFromRequest } from "../../../../lib/cms/server";
 import { rateLimit } from "../../../../lib/cms/rate-limit";
@@ -37,7 +39,7 @@ export async function GET(request: Request) {
     where += ` and (lower(title) like $${params.length} or lower(description) like $${params.length})`;
   }
   const data = await query(
-    `select * from koten ${where} order by created_at desc`,
+    `select * from koten ${where} order by is_highlighted desc, created_at desc`,
     params
   );
   return NextResponse.json({ data });
@@ -62,7 +64,8 @@ export async function POST(request: Request) {
     price,
     availability_status,
     status,
-    scheduled_publish_at
+    scheduled_publish_at,
+    is_highlighted
   } = body;
   const scheduledAt =
     scheduled_publish_at ? new Date(scheduled_publish_at).toISOString() : null;
@@ -72,8 +75,22 @@ export async function POST(request: Request) {
   if (Number.isNaN(Number(price))) {
     return NextResponse.json({ error: "Invalid price." }, { status: 400 });
   }
+
+  // Validate Max 3 Highlights
+  if (is_highlighted) {
+    const res = await queryOne<{ count: number }>(
+      "select count(*) as count from koten where is_highlighted = 1 and archived_at is null"
+    );
+    if ((res?.count ?? 0) >= 3) {
+      return NextResponse.json(
+        { error: "Maximum 3 highlights allowed. Please unhighlight another kot first." },
+        { status: 400 }
+      );
+    }
+  }
+
   const inserted = await queryOne(
-    "insert into koten (vestiging_id, title, title_en, description, description_en, price, availability_status, status, scheduled_publish_at) values ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning *",
+    "insert into koten (vestiging_id, title, title_en, description, description_en, price, availability_status, status, scheduled_publish_at, is_highlighted) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) returning *",
     [
       vestiging_id,
       title,
@@ -83,7 +100,8 @@ export async function POST(request: Request) {
       price,
       availability_status,
       status ?? "draft",
-      scheduledAt
+      scheduledAt,
+      is_highlighted ?? false
     ]
   );
   if (!inserted) {
@@ -96,6 +114,8 @@ export async function POST(request: Request) {
     entityId: (inserted as any).id,
     changes: inserted as unknown as Record<string, unknown>
   });
+  revalidatePath('/');
+  revalidatePath('/koten');
   return NextResponse.json({ data: inserted });
 }
 
@@ -124,6 +144,9 @@ export async function PATCH(request: Request) {
       entityType: "koten",
       entityId: id
     });
+    revalidatePath('/');
+    revalidatePath(`/koten/${id}`);
+    revalidatePath('/koten');
     return NextResponse.json({ success: true });
   }
   if (action === "publish") {
@@ -137,6 +160,9 @@ export async function PATCH(request: Request) {
       entityType: "koten",
       entityId: id
     });
+    revalidatePath('/');
+    revalidatePath(`/koten/${id}`);
+    revalidatePath('/koten');
     return NextResponse.json({ success: true });
   }
   if (action === "schedule") {
@@ -158,6 +184,9 @@ export async function PATCH(request: Request) {
       entityId: id,
       changes: { scheduled_publish_at }
     });
+    revalidatePath('/');
+    revalidatePath(`/koten/${id}`);
+    revalidatePath('/koten');
     return NextResponse.json({ success: true });
   }
   const {
@@ -170,10 +199,26 @@ export async function PATCH(request: Request) {
     price,
     availability_status,
     status,
-    scheduled_publish_at
+    scheduled_publish_at,
+    is_highlighted
   } = body;
+
+  // Validate Max 3 Highlights
+  if (is_highlighted) {
+    const res = await queryOne<{ count: number }>(
+      "select count(*) as count from koten where is_highlighted = 1 and archived_at is null and id != $1",
+      [id]
+    );
+    if ((res?.count ?? 0) >= 3) {
+      return NextResponse.json(
+        { error: "Maximum 3 highlights allowed. Please unhighlight another kot first." },
+        { status: 400 }
+      );
+    }
+  }
+
   const updated = await queryOne(
-    "update koten set title = $1, title_en = $2, description = $3, description_en = $4, description_raw = $5, description_polished = $6, price = $7, availability_status = $8, status = $9, scheduled_publish_at = $10 where id = $11 returning *",
+    "update koten set title = $1, title_en = $2, description = $3, description_en = $4, description_raw = $5, description_polished = $6, price = $7, availability_status = $8, status = $9, scheduled_publish_at = $10, is_highlighted = $11 where id = $12 returning *",
     [
       title,
       title_en ?? null,
@@ -185,6 +230,7 @@ export async function PATCH(request: Request) {
       availability_status,
       status,
       scheduled_publish_at ? new Date(scheduled_publish_at).toISOString() : null,
+      is_highlighted ?? false,
       id
     ]
   );
@@ -206,6 +252,8 @@ export async function PATCH(request: Request) {
     entityId: id,
     changes: updated as unknown as Record<string, unknown>
   });
+  revalidatePath('/');
+  revalidatePath(`/koten/${id}`);
+  revalidatePath('/koten');
   return NextResponse.json({ data: updated });
 }
-

@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
+
+export const runtime = 'edge';
+
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import crypto from "crypto";
 import { r2Bucket, r2Client, r2PublicBaseUrl } from "../../../../lib/r2";
 import { getUserFromRequest } from "../../../../lib/cms/server";
 import { rateLimit } from "../../../../lib/cms/rate-limit";

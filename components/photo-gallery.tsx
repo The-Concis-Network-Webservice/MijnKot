@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, lazy, Suspense } from 'react';
+import Image from 'next/image';
 import type { KotPhoto } from "../types";
 import { useTranslation } from 'react-i18next';
-import { Images, Maximize2 } from 'lucide-react';
 
 // Lazy load the lightbox component (code splitting)
 const Lightbox = lazy(() => import('./lightbox').then(module => ({ default: module.Lightbox })));
@@ -41,24 +41,19 @@ export function PhotoGallery({ photos }: { photos: KotPhoto[] }) {
           className="relative w-full rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all border border-gray-200"
           style={{ aspectRatio: '16/9' }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={mainPhoto.image_url}
             alt="Hoofdfoto van de kamer"
-            className="w-full h-full object-cover"
-            loading="eager"
-            fetchPriority="high"
-            // Responsive image hints for better performance
+            className="object-cover"
+            priority // Eager load LCP
+            fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-            // Reserve space to prevent layout shift
-            width={1200}
-            height={675}
           />
 
           {/* Hover Overlay */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-            <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 p-3 rounded-full">
-              <Maximize2 className="w-6 h-6 text-gray-800" />
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 px-4 py-2 rounded-full font-medium shadow-sm">
+              Bekijk foto's
             </div>
           </div>
         </button>
@@ -69,7 +64,6 @@ export function PhotoGallery({ photos }: { photos: KotPhoto[] }) {
             onClick={() => setLightboxIndex(0)}
             className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg hover:bg-white transition-colors border border-gray-200"
           >
-            <Images className="w-5 h-5 text-gray-700" />
             <span className="font-medium text-gray-900">
               {remainingCount === 1
                 ? `+1 foto`
