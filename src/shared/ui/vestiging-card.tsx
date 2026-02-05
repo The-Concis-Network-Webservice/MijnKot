@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { Vestiging } from "@/types";
 import { useTranslation } from 'react-i18next';
-import { getLocalizedData } from "@/shared/lib/i18n-utils';
+import { getLocalizedData } from "@/shared/lib/i18n-utils";
 
 export function VestigingCard({ vestiging }: { vestiging: Vestiging }) {
   const { i18n } = useTranslation();

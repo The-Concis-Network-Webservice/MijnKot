@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { Kot, Vestiging } from "@/types';
+import type { Kot, Vestiging } from "@/types";
 
 interface StickySummaryProps {
     kot: Kot;

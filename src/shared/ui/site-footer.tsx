@@ -1,7 +1,9 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { useTranslation } from 'react-i18next';
+import logoFooter from "@/assets/logo/mijnkot-logo_horizontal-beige.png";
 
 export function SiteFooter() {
   const { t } = useTranslation();
@@ -13,10 +15,11 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
-                <span className="text-base font-semibold font-display text-white">MK</span>
-              </div>
-              <span className="font-display font-semibold text-lg tracking-wide">MIJN-KOT</span>
+              <Image
+                src={logoFooter}
+                alt="Mijn-Kot Logo"
+                className="h-8 w-auto object-contain"
+              />
             </div>
             <p className="text-primary-200 text-sm leading-relaxed">
               {t('footer.tagline')}
