@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
-import { SiteSettings } from "@/types';
-import { getLocalizedData } from "@/shared/lib/i18n-utils';
+import { SiteSettings } from "@/types";
+import { getLocalizedData } from "@/shared/lib/i18n-utils";
 
 type HeroSectionProps = {
     settings: SiteSettings | null;

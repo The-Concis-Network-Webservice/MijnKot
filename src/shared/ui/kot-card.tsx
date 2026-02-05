@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Kot, KotPhoto } from "@/types";
 import { useTranslation } from 'react-i18next';
-import { getLocalizedData } from "@/shared/lib/i18n-utils';
+import { getLocalizedData } from "@/shared/lib/i18n-utils";
 
 type KotWithPhoto = Kot & { kot_photos?: KotPhoto[] };
 
@@ -56,9 +56,9 @@ export function KotCard({ kot }: { kot: KotWithPhoto }) {
           </div>
         )}
         <span className={`absolute top-4 right-4 px-3 py-1.5 rounded-lg text-xs font-bold border shadow-sm bg-white ${kot.availability_status === 'available' ? 'text-state-success border-state-success/20' :
-            kot.availability_status === 'rented' ? 'text-state-error border-state-error/20' :
-              kot.availability_status === 'reserved' ? 'text-state-warning border-state-warning/20' :
-                'text-text-muted border-border-light'
+          kot.availability_status === 'rented' ? 'text-state-error border-state-error/20' :
+            kot.availability_status === 'reserved' ? 'text-state-warning border-state-warning/20' :
+              'text-text-muted border-border-light'
           }`}>
           {statusLabel}
         </span>

@@ -45,42 +45,12 @@ export default async function RootLayout({
 }) {
   const vestigingen = await getVestigingen();
 
-  let customLogo: string | undefined;
-  try {
-    const fs = await import('node:fs/promises');
-    const path = await import('node:path');
-
-    // Check common image extensions
-    const extensions = ['png', 'jpg', 'jpeg', 'svg'];
-    const assetsDir = path.join(process.cwd(), 'src', 'assets');
-
-    for (const ext of extensions) {
-      const fileName = `logo.${ext}`;
-      const filePath = path.join(assetsDir, fileName);
-
-      try {
-        const stats = await fs.stat(filePath);
-        if (stats.isFile()) {
-          const fileBuffer = await fs.readFile(filePath);
-          const base64 = fileBuffer.toString('base64');
-          const mimeType = ext === 'svg' ? 'image/svg+xml' : `image/${ext}`;
-          customLogo = `data:${mimeType};base64,${base64}`;
-          break;
-        }
-      } catch (e) {
-        // File does not exist, continue
-      }
-    }
-  } catch (error) {
-    console.error('Falied to load logo:', error);
-  }
-
   return (
     <html lang="nl" className={`${outfit.variable} ${interBody.variable}`}>
       <body>
         <I18nProvider>
           <div className="min-h-screen flex flex-col bg-surface-main">
-            <SiteNav vestigingen={vestigingen} customLogo={customLogo} />
+            <SiteNav vestigingen={vestigingen} />
             <main className="flex-1 pt-20">{children}</main>
             <SiteFooter />
             <LeadCaptureModal />

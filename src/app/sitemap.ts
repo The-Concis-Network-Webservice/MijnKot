@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
-import { query } from "@/shared/lib/db';
-import { Kot } from "@/types';
+import { query } from "@/shared/lib/db";
+import { Kot } from "@/types";
 
 export const runtime = 'edge';
 

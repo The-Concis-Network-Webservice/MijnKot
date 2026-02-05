@@ -8,7 +8,7 @@ type DetailHeaderProps = {
     vestiging: Vestiging | null;
 };
 
-import { getLocalizedData } from "@/shared/lib/i18n-utils';
+import { getLocalizedData } from "@/shared/lib/i18n-utils";
 
 export function DetailHeader({ kot, vestiging }: DetailHeaderProps) {
     const { t, i18n } = useTranslation();

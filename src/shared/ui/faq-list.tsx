@@ -3,7 +3,7 @@
 import { useTranslation } from 'react-i18next';
 import { SectionHeader } from "./section-header";
 import type { FaqItem } from "@/types";
-import { getLocalizedData } from "@/shared/lib/i18n-utils';
+import { getLocalizedData } from "@/shared/lib/i18n-utils";
 
 export function FaqList({ items }: { items: FaqItem[] }) {
     const { t, i18n } = useTranslation();

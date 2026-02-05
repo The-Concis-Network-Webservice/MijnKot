@@ -1,11 +1,13 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from "./language-switcher";
 import type { Vestiging } from "@/types";
+import logoImage from "@/assets/logo/mijnkot-logo_horizontal-green.png";
 
-export function SiteNav({ vestigingen = [], customLogo }: { vestigingen?: Vestiging[], customLogo?: string }) {
+export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
   const { t } = useTranslation();
 
   return (
@@ -13,16 +15,12 @@ export function SiteNav({ vestigingen = [], customLogo }: { vestigingen?: Vestig
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link className="flex items-center gap-3 group" href="/">
-            {customLogo ? (
-              <img src={customLogo} alt="Mijn-Kot Logo" className="h-10 w-auto object-contain" />
-            ) : (
-              <div className="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center text-white shadow-subtle">
-                <span className="text-lg font-semibold font-display">MK</span>
-              </div>
-            )}
-            <span className="font-display font-semibold text-xl tracking-tight text-text-main">
-              MIJN-KOT
-            </span>
+            <Image
+              src={logoImage}
+              alt="Mijn-Kot Logo"
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">

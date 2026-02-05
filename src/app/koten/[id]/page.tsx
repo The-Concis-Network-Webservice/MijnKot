@@ -1,15 +1,15 @@
 import { notFound } from "next/navigation";
-import { PhotoGallery } from "../../../components/photo-gallery";
-import { StickySummary } from "../../../components/sticky-summary";
-import { DetailHeader, DetailAbout, DetailAttributes } from "../../../components/detail-components";
-import { queryOne, query } from "../../../lib/db";
-import type { Kot, KotPhoto, Vestiging } from "../../../types";
+import { PhotoGallery } from "@/shared/ui/photo-gallery";
+import { StickySummary } from "@/shared/ui/sticky-summary";
+import { DetailHeader, DetailAbout, DetailAttributes } from "@/shared/ui/detail-components";
+import { queryOne, query } from "@/shared/lib/db";
+import type { Kot, KotPhoto, Vestiging } from "@/types";
 
 // Enable static generation for better performance
 export const runtime = 'edge';
 export const revalidate = 0; // Revalidate immediately
 
-import { JsonLd } from "../../../components/json-ld";
+import { JsonLd } from "@/shared/ui/json-ld";
 
 export default async function KotDetailPage({
   params
