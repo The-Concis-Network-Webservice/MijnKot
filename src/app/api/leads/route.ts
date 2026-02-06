@@ -21,7 +21,15 @@ export async function POST(req: NextRequest) {
         // Send email (fire and forget to avoid blocking, or await if critical)
         // Since it's edge, await is safer to ensure completion before shutdown
         if (process.env.RESEND) {
-            await sendWelcomeEmail(email, name);
+            console.log(`Sending welcome email to lead: ${email}`);
+            const emailResult = await sendWelcomeEmail(email, name);
+            if (!emailResult.success) {
+                console.error('Failed to send welcome email:', emailResult.error);
+            } else {
+                console.log('Welcome email sent successfully');
+            }
+        } else {
+            console.warn('RESEND API key missing, skipping welcome email for lead');
         }
 
         return NextResponse.json({ success: true });
