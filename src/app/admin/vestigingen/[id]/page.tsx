@@ -7,9 +7,9 @@ import { AdminGuard } from "../../_components/admin-guard";
 import { AdminShell } from "../../_components/admin-shell";
 import { PageHeader } from "../../_components/page-header";
 import { useToast } from "../../_components/toast";
-import { canEditContent } from "../../../../lib/cms/permissions";
+import { canEditContent } from "@/shared/lib/cms/permissions";
 import { useAdmin } from "../../AdminProvider";
-import type { Kot, Vestiging } from "../../../../types";
+import type { Kot, Vestiging } from "@/types";
 
 export default function AdminVestigingDetailPage() {
   const { id } = useParams<{ id: string }>();

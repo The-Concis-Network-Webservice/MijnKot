@@ -7,8 +7,8 @@ import { AdminShell } from "../../_components/admin-shell";
 import { PhotoManager } from "../../_components/photo-manager";
 import { PageHeader } from "../../_components/page-header";
 import { useToast } from "../../_components/toast";
-import { AITextPolisher } from "../../../../components/ai-text-polisher";
-import type { AvailabilityHistory, Kot, KotPhoto, Vestiging } from "../../../../types";
+import { AITextPolisher } from "@/shared/ui/ai-text-polisher";
+import type { AvailabilityHistory, Kot, KotPhoto, Vestiging } from "@/types";
 
 type KotWithPhotos = Kot & { kot_photos?: KotPhoto[]; vestigingen?: Vestiging };
 
