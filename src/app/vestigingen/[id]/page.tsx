@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
-import { KotCard } from "../../../components/kot-card";
-import { query, queryOne } from "../../../lib/db";
-import type { Kot, KotPhoto, Vestiging } from "../../../types";
+import { KotCard } from "@/shared/ui/kot-card";
+import { query, queryOne } from "@/shared/lib/db";
+import type { Kot, KotPhoto, Vestiging } from "@/types";
 
 
 export const runtime = 'edge';
