@@ -5,6 +5,13 @@ export default {
     extend: {
       colors: {
         // Primary: Warm Sage (main accent)
+
+        // Mijn Kot color palette:
+        // #e7e0d5 → Beige
+        // #ca4b1c → Orange
+        // #4d5935 → Primary Green
+        // #434341 → Gray
+
         primary: {
           50: '#f4f7f5',
           100: '#e8eeeb',
