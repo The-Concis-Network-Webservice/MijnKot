@@ -32,18 +32,18 @@ export function HeroSection({
                     playsInline
                     className="w-full h-full object-cover"
                 >
-                    <source src="https://videos.pexels.com/video-files/6860803/6860803-hd_1920_1080_25fps.mp4" type="video/mp4" />
+                    <source src="/videos/mijnkot-hero-video.mp4" type="video/mp4" />
                 </video>
-                <div className="absolute inset-0 bg-white/75 backdrop-blur-[2px]"></div>
+                <div className="absolute inset-0 bg-primary-950/75 backdrop-blur-[6px]"></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 md:py-32 relative z-10">
                 <div className="max-w-3xl">
-                    <span className="inline-flex items-center rounded-lg bg-primary-50 text-primary-700 text-xs font-medium px-4 py-2 mb-8 border border-primary-100">
+                    <span className="inline-flex items-center rounded-lg bg-accent-500 text-secondary-500 text-xs font-medium px-4 py-2 mb-8">
                         {t('home.hero.badge')}
                     </span>
 
-                    <h1 className="font-display text-5xl md:text-6xl font-semibold text-text-main mb-6 tracking-tight leading-tight">
+                    <h1 className="font-display text-5xl md:text-6xl font-semibold text-secondary-500 mb-6 tracking-tight leading-tight">
                         {title}
                     </h1>
 
@@ -61,7 +61,7 @@ export function HeroSection({
 
                         <Link
                             href="/faq"
-                            className="inline-flex items-center justify-center px-8 py-4 bg-surface-card border border-border-DEFAULT text-text-main rounded-lg font-medium text-base hover:bg-surface-subtle transition-colors"
+                            className="inline-flex items-center justify-center px-8 py-4 bg-secondary-500 border border-border-DEFAULT text-primary-500 rounded-lg font-medium text-base hover:bg-surface-subtle transition-colors"
                         >
                             {t('home.hero.secondary_cta')}
                         </Link>
