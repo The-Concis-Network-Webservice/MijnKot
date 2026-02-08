@@ -31,12 +31,13 @@ export function RentalOptions() {
                     <Link
                         key={option.title}
                         href={option.href}
-                        className="bg-surface-card p-8 rounded-xl shadow-soft border border-border-light hover:shadow-medium hover:border-primary-200 transition-all group"
+                        className="bg-surface-card p-8 rounded-xl shadow-soft border border-border-light hover:shadow-medium hover:border-accent-200 transition-all group"
                     >
-                        <h3 className="text-lg font-semibold text-text-main mb-3 group-hover:text-primary-600 transition-colors">
+
+                        <h3 className="text-lg font-semibold text-primary-900 mb-3 group-hover:text-primary-600 transition-colors">
                             {option.title}
                         </h3>
-                        <p className="text-text-secondary text-sm leading-relaxed">
+                        <p className="text-primary-700 text-sm leading-relaxed">
                             {option.description}
                         </p>
                     </Link>

@@ -18,34 +18,34 @@ export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
             <Image
               src={logoImage}
               alt="Mijn-Kot Logo"
-              className="h-10 w-auto object-contain"
+              className="h-8 w-auto object-contain"
               priority
             />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            <Link className="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors" href="/">
+            <Link className="text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors" href="/">
               {t('navigation.home')}
             </Link>
 
-            <Link className="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors" href="/faq">
+            <Link className="text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors" href="/faq">
               {t('navigation.faq')}
             </Link>
 
             {/* Te Huur Dropdown */}
             <div className="relative group">
-              <button className="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors flex items-center gap-1">
+              <button className="text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors flex items-center gap-1">
                 {t('navigation.rent')}
                 <span className="text-[10px] opacity-70">▼</span>
               </button>
               <div className="absolute top-full left-0 w-48 py-2 mt-1 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0">
-                <Link href="/vestigingen?type=academiejaar" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600">
+                <Link href="/vestigingen?type=academiejaar" className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600">
                   Academiejaar
                 </Link>
-                <Link href="/vestigingen?type=semester" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600">
+                <Link href="/vestigingen?type=semester" className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600">
                   Semester
                 </Link>
-                <Link href="/vestigingen?type=erasmus" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600">
+                <Link href="/vestigingen?type=erasmus" className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600">
                   Erasmus
                 </Link>
                 <hr className="my-1 border-gray-100" />
@@ -57,13 +57,13 @@ export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
 
             {/* Vestigingen Dropdown */}
             <div className="relative group">
-              <button className="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors flex items-center gap-1">
+              <button className="text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors flex items-center gap-1">
                 Vestigingen
                 <span className="text-[10px] opacity-70">▼</span>
               </button>
               <div className="absolute top-full left-0 w-56 py-2 mt-1 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0 max-h-[70vh] overflow-y-auto">
                 {vestigingen.map((v) => (
-                  <Link key={v.id} href={`/vestigingen/${v.id}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600 truncate">
+                  <Link key={v.id} href={`/vestigingen/${v.id}`} className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600 truncate">
                     {v.name}
                   </Link>
                 ))}
@@ -73,7 +73,7 @@ export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
               </div>
             </div>
 
-            <Link className="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors" href="/contact">
+            <Link className="text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors" href="/contact">
               {t('navigation.contact')}
             </Link>
 

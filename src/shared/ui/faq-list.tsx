@@ -41,7 +41,7 @@ export function FaqList({ items }: { items: FaqItem[] }) {
                                             {question}
                                             <span className="text-primary-500 transform group-open:rotate-180 transition-transform text-sm">▼</span>
                                         </summary>
-                                        <div className="px-5 pb-5 text-text-secondary leading-relaxed border-t border-border-light pt-4">
+                                        <div className="px-5 pb-5 text-secondary-700 leading-relaxed border-t border-border-light pt-4">
                                             {answer}
                                         </div>
                                     </details>

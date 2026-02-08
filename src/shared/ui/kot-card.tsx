@@ -37,7 +37,7 @@ export function KotCard({ kot }: { kot: KotWithPhoto }) {
       href={`/koten/${kot.id}`}
       className={`group bg-surface-card border rounded-xl overflow-hidden hover:shadow-medium transition-all flex flex-col relative duration-300
         ${kot.is_highlighted
-          ? 'border-primary-500 shadow-[0_0_30px_rgba(143,168,154,0.6)] ring-2 ring-primary-500/50 z-10 scale-[1.02] -translate-y-1'
+          ? 'border-accent-500 shadow-[0_0_30px_rgba(143,168,154,0.6)] ring-2 ring-accent-500/50 z-10 scale-[1.02] -translate-y-1'
           : 'border-border-light'
         }`}
     >
@@ -73,7 +73,7 @@ export function KotCard({ kot }: { kot: KotWithPhoto }) {
             <span className="text-xs text-text-muted font-normal ml-1">{t('detail.per_month')}</span>
           </span>
         </div>
-        <p className="text-sm text-text-secondary line-clamp-2 leading-relaxed mb-4 flex-1">{description}</p>
+        <p className="text-sm text-secondary-700 line-clamp-2 leading-relaxed mb-4 flex-1">{description}</p>
 
         <div className="pt-4 border-t border-border-light">
           <span className="text-sm font-medium text-primary-600 group-hover:underline">{t('common.read_more')} →</span>
