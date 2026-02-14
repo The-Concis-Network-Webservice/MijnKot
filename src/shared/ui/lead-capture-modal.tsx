@@ -73,10 +73,10 @@ export function LeadCaptureModal() {
                     {step === 'form' ? (
                         <>
                             <div className="text-center mb-8">
-                                <h2 className="text-2xl font-display font-semibold text-text-main mb-2">
+                                <h2 className="text-2xl font-display font-semibold text-main mb-2">
                                     Als eerste op de hoogte?
                                 </h2>
-                                <p className="text-text-secondary leading-relaxed">
+                                <p className="text-secondary-700 leading-relaxed">
                                     Meld je aan voor onze lijst en ontvang direct een mailtje zodra er nieuwe koten vrijkomen.
                                 </p>
                             </div>

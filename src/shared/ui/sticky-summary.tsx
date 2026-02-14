@@ -67,7 +67,7 @@ export function StickySummary({ kot, vestiging }: StickySummaryProps) {
 
                     {/* CTAs */}
                     <div className="space-y-3 pt-4 border-t border-gray-100">
-                        <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-semibold shadow-sm">
+                        <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-accent-500 text-white rounded-xl hover:bg-accent-700 transition-colors font-semibold shadow-sm">
                             Plan bezoek
                         </button>
                         <button
