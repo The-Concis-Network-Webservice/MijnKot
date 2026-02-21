@@ -4,7 +4,12 @@
         "rent": "For Rent",
         "faq": "FAQ",
         "contact": "Contact",
-        "admin": "Admin"
+        "admin": "Admin",
+        "locations": "Locations",
+        "rent_academic": "Academic Year",
+        "rent_semester": "Semester",
+        "rent_erasmus": "Erasmus",
+        "rent_view_all": "View all"
     },
     "home": {
         "hero": {
@@ -36,6 +41,10 @@
         "no_results_title": "No rooms found",
         "no_results_desc": "Try adjusting your filters or check back later.",
         "back_to_all": "← View all locations"
+    },
+    "vestigingen": {
+        "title": "Locations",
+        "description": "Explore all our locations and the koten they offer."
     },
     "detail": {
         "ref_label": "Ref",

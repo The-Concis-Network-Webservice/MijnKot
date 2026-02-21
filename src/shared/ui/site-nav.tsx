@@ -40,17 +40,17 @@ export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
               </button>
               <div className="absolute top-full left-0 w-48 py-2 mt-1 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0">
                 <Link href="/vestigingen?type=academiejaar" className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600">
-                  Academiejaar
+                  {t('navigation.rent_academic')}
                 </Link>
                 <Link href="/vestigingen?type=semester" className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600">
-                  Semester
+                  {t('navigation.rent_semester')}
                 </Link>
                 <Link href="/vestigingen?type=erasmus" className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600">
-                  Erasmus
+                  {t('navigation.rent_erasmus')}
                 </Link>
                 <hr className="my-1 border-gray-100" />
                 <Link href="/vestigingen" className="block px-4 py-2 text-sm font-medium text-primary-600 hover:bg-gray-50">
-                  Alles bekijken
+                  {t('navigation.rent_view_all')}
                 </Link>
               </div>
             </div>
@@ -58,7 +58,7 @@ export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
             {/* Vestigingen Dropdown */}
             <div className="relative group">
               <button className="text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors flex items-center gap-1">
-                Vestigingen
+                {t('navigation.locations')}
                 <span className="text-[10px] opacity-70">▼</span>
               </button>
               <div className="absolute top-full left-0 w-56 py-2 mt-1 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0 max-h-[70vh] overflow-y-auto">
@@ -72,6 +72,7 @@ export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
                 )}
               </div>
             </div>
+
 
             <Link className="text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors" href="/contact">
               {t('navigation.contact')}
