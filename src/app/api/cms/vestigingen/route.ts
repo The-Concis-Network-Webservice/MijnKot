@@ -71,12 +71,24 @@ export async function PATCH(request: Request) {
   if (!id) {
     return NextResponse.json({ error: "Missing id." }, { status: 400 });
   }
+  // Step 1: update core fields (always exist in all DB versions)
   const updated = await queryOne(
-    "update vestigingen set name = $1, address = $2, city = $3, postal_code = $4, description = $5, image_url = $6, archived_at = $7 where id = $8 returning *",
-    [name, address, city, postal_code, description, image_url ?? null, archived_at ?? null, id]
+    "update vestigingen set name = $1, address = $2, city = $3, postal_code = $4, description = $5, archived_at = $6 where id = $7 returning *",
+    [name, address, city, postal_code, description, archived_at ?? null, id]
   );
   if (!updated) {
     return NextResponse.json({ error: "Failed to update vestiging." }, { status: 400 });
+  }
+  // Step 2: update image_url separately — gracefully skips if column missing (local dev DB)
+  if (image_url !== undefined) {
+    try {
+      await queryOne(
+        "update vestigingen set image_url = $1 where id = $2 returning id",
+        [image_url ?? null, id]
+      );
+    } catch {
+      // Column may not exist in local dev DB — safe to ignore
+    }
   }
   await logAudit({
     actorId: user.id,

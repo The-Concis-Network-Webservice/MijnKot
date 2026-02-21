@@ -4,7 +4,12 @@
         "rent": "Te Huur",
         "faq": "FAQ",
         "contact": "Contact",
-        "admin": "Beheer"
+        "admin": "Beheer",
+        "locations": "Vestigingen",
+        "rent_academic": "Academiejaar",
+        "rent_semester": "Semester",
+        "rent_erasmus": "Erasmus",
+        "rent_view_all": "Alles bekijken"
     },
     "home": {
         "hero": {
@@ -36,6 +41,10 @@
         "no_results_title": "Geen kamers gevonden",
         "no_results_desc": "Probeer je filters aan te passen of kom later terug.",
         "back_to_all": "← Bekijk alle locaties"
+    },
+    "vestigingen": {
+        "title": "Vestigingen",
+        "description": "Ontdek al onze locaties en het kotaanbod."
     },
     "detail": {
         "ref_label": "Ref",

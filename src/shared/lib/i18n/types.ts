@@ -5,6 +5,11 @@ export type Dictionary = {
         faq: string;
         contact: string;
         admin: string;
+        locations: string;
+        rent_academic: string;
+        rent_semester: string;
+        rent_erasmus: string;
+        rent_view_all: string;
     };
     home: {
         hero: {
@@ -36,6 +41,10 @@ export type Dictionary = {
         no_results_title: string;
         no_results_desc: string;
         back_to_all: string;
+    };
+    vestigingen: {
+        title: string;
+        description: string;
     };
     detail: {
         ref_label: string;
