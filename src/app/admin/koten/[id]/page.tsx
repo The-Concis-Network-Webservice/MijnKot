@@ -315,6 +315,47 @@ export default function AdminKotDetailPage() {
               ) : null}
             </div>
           </section>
+
+          <section className="bg-white border border-gray-200 rounded-2xl p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-semibold text-lg">Contracts</h2>
+              <button
+                onClick={async () => {
+                  if (!kot) return;
+                  if (!confirm("Genereer nieuw contract voor dit kot?")) return;
+
+                  try {
+                    const res = await fetch('/api/admin/contracts/generate', {
+                      method: 'POST',
+                      body: JSON.stringify({
+                        kot_id: id,
+                        kot_data: {
+                          price: kot.price,
+                          address: kot.vestigingen?.address
+                        }
+                      })
+                    });
+
+                    const data = await res.json();
+                    if (res.ok) {
+                      prompt("Contract Link Aangemaakt! Stuur deze naar de huurder:", `${window.location.origin}/sign/${data.token}`);
+                    } else {
+                      alert(data.error || 'Fout bij aanmaken contract');
+                    }
+                  } catch (e) {
+                    console.error(e);
+                    alert('Fout bij aanmaken contract');
+                  }
+                }}
+                className="bg-blue-600 text-white text-sm px-3 py-2 rounded hover:bg-blue-700"
+              >
+                Maak contract
+              </button>
+            </div>
+            <p className="text-sm text-text-muted">
+              Genereer en beheer huurcontracten voor dit kot.
+            </p>
+          </section>
         </div>
       </AdminShell>
     </AdminGuard>

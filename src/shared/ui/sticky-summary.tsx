@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/navigation';
 import type { Kot, Vestiging } from "@/types";
 
 interface StickySummaryProps {
@@ -11,7 +12,39 @@ interface StickySummaryProps {
 
 export function StickySummary({ kot, vestiging }: StickySummaryProps) {
     const { t } = useTranslation();
+    const router = useRouter();
     const [showContact, setShowContact] = useState(false);
+    const [generatingContract, setGeneratingContract] = useState(false);
+
+    const handleRentKot = async () => {
+        setGeneratingContract(true);
+        try {
+            const res = await fetch('/api/admin/contracts/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    kot_id: kot.id,
+                    kot_data: {
+                        price: kot.price,
+                        address: vestiging?.address
+                    }
+                })
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                // Redirect to signing page
+                router.push(`/sign/${data.token}`);
+            } else {
+                alert(data.error || 'Fout bij aanmaken contract');
+            }
+        } catch (e) {
+            console.error(e);
+            alert('Fout bij aanmaken contract');
+        } finally {
+            setGeneratingContract(false);
+        }
+    };
 
     return (
         <>
@@ -69,6 +102,13 @@ export function StickySummary({ kot, vestiging }: StickySummaryProps) {
                     <div className="space-y-3 pt-4 border-t border-gray-100">
                         <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-accent-500 text-white rounded-xl hover:bg-accent-700 transition-colors font-semibold shadow-sm">
                             Plan bezoek
+                        </button>
+                        <button
+                            onClick={handleRentKot}
+                            disabled={generatingContract || kot.availability_status !== 'available'}
+                            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors font-semibold shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            {generatingContract ? 'Laden...' : 'Huur dit Kot'}
                         </button>
                         <button
                             onClick={() => setShowContact(!showContact)}

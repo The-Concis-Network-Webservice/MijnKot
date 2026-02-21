@@ -143,3 +143,47 @@ create table if not exists leads (
   source text default 'modal',
   created_at text not null default (datetime('now'))
 );
+
+create table if not exists contract_templates (
+  id text primary key default (lower(hex(randomblob(16)))),
+  name text not null,
+  content text not null,
+  is_default boolean default false,
+  created_at text not null default (datetime('now')),
+  updated_at text not null default (datetime('now'))
+);
+
+create table if not exists contracts (
+  id text primary key default (lower(hex(randomblob(16)))),
+  kot_id text not null references koten(id) on delete restrict,
+  template_id text references contract_templates(id),
+  status text not null check (status in ('draft','pending_signature','signed','voided')) default 'draft',
+  tenant_first_name text,
+  tenant_last_name text,
+  tenant_email text,
+  contract_html text not null,
+  token text unique not null,
+  signature_data text,
+  signed_pdf_url text,
+  signed_at text,
+  signer_ip text,
+  created_at text not null default (datetime('now')),
+  updated_at text not null default (datetime('now'))
+);
+
+create trigger if not exists set_contract_templates_updated_at
+before update on contract_templates
+for each row
+begin
+  update contract_templates set updated_at = datetime('now') where id = old.id;
+end;
+
+create trigger if not exists set_contracts_updated_at
+before update on contracts
+for each row
+begin
+  update contracts set updated_at = datetime('now') where id = old.id;
+end;
+
+create index if not exists idx_contracts_kot_id on contracts(kot_id);
+create index if not exists idx_contracts_token on contracts(token);
