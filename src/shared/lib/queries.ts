@@ -1,8 +1,39 @@
 import { query, queryOne } from "./db";
 import type { Kot, KotPhoto, SiteSettings, Vestiging, FaqItem } from "@/types";
+import { siteConfig } from "./config";
 
-export async function getSiteSettings() {
-  return queryOne<SiteSettings>("select * from site_settings limit 1");
+export async function getSiteSettings(): Promise<SiteSettings> {
+  const settings = await queryOne<SiteSettings>("select * from site_settings limit 1");
+  
+  const defaults: SiteSettings = {
+    id: "",
+    hero_title: "Vind jouw perfecte studentenkot",
+    hero_subtitle: "Kwalitatieve kamers en studio's in de beste studentensteden van België.",
+    hero_cta_label: "Bekijk aanbod",
+    hero_cta_href: "/vestigingen",
+    contact_email: siteConfig.company.contact.email,
+    contact_phone: siteConfig.company.contact.phone,
+    contact_address: `${siteConfig.company.address.street}, ${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`,
+    company_name: siteConfig.company.name,
+    company_legal_name: siteConfig.company.legalName
+  };
+
+  if (!settings) return defaults;
+
+  return {
+    ...defaults,
+    ...settings,
+    // Ensure nested fields or specific fields don't stay empty if they exist in DB but are blank
+    hero_title: settings.hero_title || defaults.hero_title,
+    hero_subtitle: settings.hero_subtitle || defaults.hero_subtitle,
+    hero_cta_label: settings.hero_cta_label || defaults.hero_cta_label,
+    hero_cta_href: settings.hero_cta_href || defaults.hero_cta_href,
+    contact_email: settings.contact_email || defaults.contact_email,
+    contact_phone: settings.contact_phone ?? defaults.contact_phone,
+    contact_address: settings.contact_address || defaults.contact_address,
+    company_name: settings.company_name || defaults.company_name,
+    company_legal_name: settings.company_legal_name || defaults.company_legal_name
+  };
 }
 
 export async function getFaqItems() {

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { SectionHeader } from "./section-header";
 import type { SiteSettings } from "@/types";
+import { siteConfig } from "@/shared/lib/config";
 
 export function ContactView({ settings }: { settings: SiteSettings | null }) {
     const { t } = useTranslation();
@@ -60,18 +61,24 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
             />
 
             <div className="grid gap-6 md:grid-cols-3 mb-16">
-                <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
-                    <h3 className="font-semibold text-text-main mb-2">{t('contact.email_label')}</h3>
-                    <p className="text-text-secondary text-sm">{settings?.contact_email || 'info@mijn-kot.be'}</p>
-                </div>
-                <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
-                    <h3 className="font-semibold text-text-main mb-2">{t('contact.phone_label')}</h3>
-                    <p className="text-text-secondary text-sm">{settings?.contact_phone || '+32 123 45 67 89'}</p>
-                </div>
-                <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
-                    <h3 className="font-semibold text-text-main mb-2">{t('contact.office_label')}</h3>
-                    <p className="text-text-secondary text-sm">{settings?.contact_address || 'Leuven, Belgium'}</p>
-                </div>
+                {settings?.contact_email && (
+                    <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
+                        <h3 className="font-semibold text-text-main mb-2">{t('contact.email_label')}</h3>
+                        <p className="text-text-main text-sm">{settings.contact_email}</p>
+                    </div>
+                )}
+                {settings?.contact_phone && (
+                    <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
+                        <h3 className="font-semibold text-text-main mb-2">{t('contact.phone_label')}</h3>
+                        <p className="text-text-main text-sm">{settings.contact_phone}</p>
+                    </div>
+                )}
+                {settings?.contact_address && (
+                    <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
+                        <h3 className="font-semibold text-text-main mb-2">{t('contact.office_label')}</h3>
+                        <p className="text-text-main text-sm">{settings.contact_address}</p>
+                    </div>
+                )}
             </div>
 
             <div className="bg-surface-card rounded-2xl p-8 md:p-12 border border-border-light shadow-soft">
@@ -99,7 +106,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 rounded-lg border border-border-DEFAULT focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-surface-card"
+                                    className="w-full px-4 py-3 rounded-lg border border-border-light focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-surface-card text-text-main"
                                     placeholder={t('contact.name_placeholder')}
                                 />
                             </div>
@@ -111,7 +118,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 rounded-lg border border-border-DEFAULT focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-surface-card"
+                                    className="w-full px-4 py-3 rounded-lg border border-border-light focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-surface-card text-text-main"
                                     placeholder={t('contact.email_placeholder')}
                                 />
                             </div>
@@ -122,7 +129,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                                 name="subject"
                                 value={formData.subject}
                                 onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-lg border border-border-DEFAULT focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-surface-card"
+                                className="w-full px-4 py-3 rounded-lg border border-border-light focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-surface-card text-text-main"
                             >
                                 <option value="">{t('contact.subject_general')}</option>
                                 <option value="viewing">{t('contact.subject_viewing')}</option>
@@ -137,7 +144,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                                 onChange={handleChange}
                                 required
                                 rows={4}
-                                className="w-full px-4 py-3 rounded-lg border border-border-DEFAULT focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-surface-card resize-none"
+                                className="w-full px-4 py-3 rounded-lg border border-border-light focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-surface-card resize-none text-text-main"
                                 placeholder={t('contact.message_placeholder')}
                             ></textarea>
                         </div>

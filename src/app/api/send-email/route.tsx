@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { generateContactEmailHtml } from '@/shared/emails/contact-template';
+import { siteConfig } from '@/shared/lib/config';
 
 export const runtime = 'edge';
 
@@ -32,7 +33,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
         }
 
-        const toEmail = process.env.CONTACT_EMAIL || 'info@mijn-kot.be';
+        const toEmail = process.env.CONTACT_EMAIL || siteConfig.company.contact.email;
         console.log(`Sending email to: ${toEmail}`);
 
         const res = await fetch('https://api.resend.com/emails', {
@@ -42,9 +43,9 @@ export async function POST(request: Request) {
                 'Authorization': `Bearer ${process.env.RESEND}`,
             },
             body: JSON.stringify({
-                from: 'Mijn-Kot Contact <onboarding@resend.dev>',
+                from: `${siteConfig.company.name} Contact <onboarding@resend.dev>`,
                 to: [toEmail],
-                subject: subject ? `Nieuw bericht: ${subject}` : `Nieuw bericht van ${name} - Mijn-Kot`,
+                subject: subject ? `Nieuw bericht: ${subject}` : `Nieuw bericht van ${name} - ${siteConfig.company.name}`,
                 html: html,
                 reply_to: email,
             }),

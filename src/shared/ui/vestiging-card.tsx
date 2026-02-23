@@ -19,10 +19,10 @@ export function VestigingCard({ vestiging }: { vestiging: Vestiging }) {
   return (
     <Link
       href={`/vestigingen/${vestiging.id}`}
-      className="block bg-white border border-border-light rounded-2xl overflow-hidden hover:shadow-medium transition-shadow duration-300 group isolate"
+      className="block bg-surface-card border border-border-light rounded-2xl overflow-hidden hover:shadow-medium transition-shadow duration-300 group isolate"
     >
       {/* Image — fixed height, overflow-hidden contains the scale effect */}
-      <div className="relative h-48 w-full bg-gray-100 overflow-hidden">
+      <div className="relative h-48 w-full bg-surface-subtle overflow-hidden">
         {vestiging.image_url ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img

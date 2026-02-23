@@ -1,3 +1,5 @@
+import { siteConfig } from '../lib/config';
+
 interface ContactEmailProps {
     name: string;
     email: string;
@@ -44,7 +46,7 @@ export function generateContactEmailHtml({
     <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;" />
     
     <p style="font-size: 12px; color: #888; text-align: center;">
-      Dit bericht is verzonden via het contactformulier op Mijn-Kot.be.
+      Dit bericht is verzonden via het contactformulier op ${siteConfig.company.url.replace('https://', '')}.
     </p>
 </body>
 </html>

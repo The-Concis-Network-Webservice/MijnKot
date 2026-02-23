@@ -10,6 +10,7 @@ export const runtime = 'edge';
 export const revalidate = 0; // Revalidate immediately
 
 import { JsonLd } from "@/shared/ui/json-ld";
+import { siteConfig } from "@/shared/lib/config";
 
 export default async function KotDetailPage({
   params
@@ -124,7 +125,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   const streetString = vestiging ? ` - ${vestiging.address}` : '';
 
   const title = `Kot te huur ${locationString}${streetString} | €${kot.price}`;
-  const description = `Op zoek naar een kot ${locationString}? ${kot.title}. Prijs: €${kot.price} per maand. Bekijk foto's en plan direct een bezoek via Mijn-Kot.`;
+  const description = `Op zoek naar een kot ${locationString}? ${kot.title}. Prijs: €${kot.price} per maand. Bekijk foto's en plan direct een bezoek via ${siteConfig.company.name}.`;
 
   return {
     title,

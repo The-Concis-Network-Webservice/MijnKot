@@ -6,6 +6,7 @@ import { AdminShell } from "../_components/admin-shell";
 import { PageHeader } from "../_components/page-header";
 import { useToast } from "../_components/toast";
 import type { SiteSettings } from "@/types";
+import { siteConfig } from "@/shared/lib/config";
 
 const emptySettings: SiteSettings = {
   id: "",
@@ -13,9 +14,11 @@ const emptySettings: SiteSettings = {
   hero_subtitle: "",
   hero_cta_label: "",
   hero_cta_href: "",
-  contact_email: "",
-  contact_phone: "",
-  contact_address: ""
+  contact_email: siteConfig.company.contact.email,
+  contact_phone: siteConfig.company.contact.phone,
+  contact_address: `${siteConfig.company.address.street}, ${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`,
+  company_name: siteConfig.company.name,
+  company_legal_name: siteConfig.company.legalName
 };
 
 export default function AdminSettingsPage() {
@@ -46,7 +49,9 @@ export default function AdminSettingsPage() {
       hero_cta_href: settings.hero_cta_href,
       contact_email: settings.contact_email,
       contact_phone: settings.contact_phone,
-      contact_address: settings.contact_address
+      contact_address: settings.contact_address,
+      company_name: settings.company_name,
+      company_legal_name: settings.company_legal_name
     };
     const res = await fetch("/api/cms/settings", {
       method: settings.id ? "PATCH" : "POST",
@@ -164,6 +169,37 @@ export default function AdminSettingsPage() {
                   })
                 }
               />
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+              <div className="space-y-2">
+                <label className="text-sm font-semibold">Company Name</label>
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                  value={settings.company_name}
+                  onChange={(event) =>
+                    setSettings({
+                      ...settings,
+                      company_name: event.target.value
+                    })
+                  }
+                  placeholder={siteConfig.company.name}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-semibold">Legal Company Name</label>
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                  value={settings.company_legal_name}
+                  onChange={(event) =>
+                    setSettings({
+                      ...settings,
+                      company_legal_name: event.target.value
+                    })
+                  }
+                  placeholder={siteConfig.company.legalName}
+                />
+              </div>
             </div>
             {error ? <p className="text-sm text-red-500">{error}</p> : null}
             <button

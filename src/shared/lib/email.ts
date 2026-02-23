@@ -1,3 +1,5 @@
+import { siteConfig } from './config';
+
 export async function sendWelcomeEmail(email: string, name?: string) {
     const apiKey = process.env.RESEND;
 
@@ -14,17 +16,17 @@ export async function sendWelcomeEmail(email: string, name?: string) {
                 'Authorization': `Bearer ${apiKey}`,
             },
             body: JSON.stringify({
-                from: 'Mijn-Kot <onboarding@resend.dev>', // Update this if you have a verified domain
+                from: `${siteConfig.company.name} <onboarding@resend.dev>`, // Update this if you have a verified domain
                 to: [email],
-                subject: 'Welkom bij Mijn-Kot! 🏠',
+                subject: `Welkom bij ${siteConfig.company.name}! 🏠`,
                 html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h1>Welkom ${name ? name : ''}!</h1>
-            <p>Bedankt voor je interesse in Mijn-Kot.</p>
+            <p>Bedankt voor je interesse in ${siteConfig.company.name}.</p>
             <p>We hebben je aanmelding goed ontvangen. Je bent nu als eerste op de hoogte van nieuwe koten.</p>
             <br/>
             <p>Met vriendelijke groeten,</p>
-            <p>Het Mijn-Kot Team</p>
+            <p>Het ${siteConfig.company.name} Team</p>
           </div>
         `,
             }),

@@ -2,12 +2,19 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import type { SiteSettings, Vestiging } from "@/types";
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from "./language-switcher";
-import type { Vestiging } from "@/types";
+import { siteConfig } from "@/shared/lib/config";
 import logoImage from "@/assets/logo/mijnkot-logo_horizontal-green.png";
 
-export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
+export function SiteNav({ 
+  vestigingen = [], 
+  settings 
+}: { 
+  vestigingen?: Vestiging[], 
+  settings?: SiteSettings 
+}) {
   const { t } = useTranslation();
 
   return (
@@ -17,7 +24,7 @@ export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
           <Link className="flex items-center gap-3 group" href="/">
             <Image
               src={logoImage}
-              alt="Mijn-Kot Logo"
+              alt={`${settings?.company_name || siteConfig.company.name} Logo`}
               className="h-8 w-auto object-contain"
               priority
             />
@@ -38,18 +45,18 @@ export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
                 {t('navigation.rent')}
                 <span className="text-[10px] opacity-70">▼</span>
               </button>
-              <div className="absolute top-full left-0 w-48 py-2 mt-1 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0">
-                <Link href="/vestigingen?type=academiejaar" className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600">
+              <div className="absolute top-full left-0 w-48 py-2 mt-1 bg-surface-card border border-border-light rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0">
+                <Link href="/vestigingen?type=academiejaar" className="block px-4 py-2 text-sm text-primary-500 hover:bg-surface-subtle hover:text-primary-600">
                   {t('navigation.rent_academic')}
                 </Link>
-                <Link href="/vestigingen?type=semester" className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600">
+                <Link href="/vestigingen?type=semester" className="block px-4 py-2 text-sm text-primary-500 hover:bg-surface-subtle hover:text-primary-600">
                   {t('navigation.rent_semester')}
                 </Link>
-                <Link href="/vestigingen?type=erasmus" className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600">
+                <Link href="/vestigingen?type=erasmus" className="block px-4 py-2 text-sm text-primary-500 hover:bg-surface-subtle hover:text-primary-600">
                   {t('navigation.rent_erasmus')}
                 </Link>
-                <hr className="my-1 border-gray-100" />
-                <Link href="/vestigingen" className="block px-4 py-2 text-sm font-medium text-primary-600 hover:bg-gray-50">
+                <hr className="my-1 border-border-light" />
+                <Link href="/vestigingen" className="block px-4 py-2 text-sm font-medium text-primary-600 hover:bg-surface-subtle">
                   {t('navigation.rent_view_all')}
                 </Link>
               </div>
@@ -61,14 +68,14 @@ export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
                 {t('navigation.locations')}
                 <span className="text-[10px] opacity-70">▼</span>
               </Link>
-              <div className="absolute top-full left-0 w-56 py-2 mt-1 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0 max-h-[70vh] overflow-y-auto">
+              <div className="absolute top-full left-0 w-56 py-2 mt-1 bg-surface-card border border-border-light rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0 max-h-[70vh] overflow-y-auto">
                 {vestigingen.map((v) => (
-                  <Link key={v.id} href={`/vestigingen/${v.id}`} className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600 truncate">
+                  <Link key={v.id} href={`/vestigingen/${v.id}`} className="block px-4 py-2 text-sm text-primary-500 hover:bg-surface-subtle hover:text-primary-600 truncate">
                     {v.name}
                   </Link>
                 ))}
                 {vestigingen.length === 0 && (
-                  <span className="block px-4 py-2 text-sm text-gray-400 italic">No locations</span>
+                  <span className="block px-4 py-2 text-sm text-text-muted italic">No locations</span>
                 )}
               </div>
             </div>

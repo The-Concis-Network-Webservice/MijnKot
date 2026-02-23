@@ -55,6 +55,8 @@ export type SiteSettings = {
   contact_email: string;
   contact_phone: string;
   contact_address: string;
+  company_name: string;
+  company_legal_name: string;
 };
 
 export type FaqItem = {
