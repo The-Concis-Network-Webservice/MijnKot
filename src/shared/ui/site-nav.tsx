@@ -57,10 +57,10 @@ export function SiteNav({ vestigingen = [] }: { vestigingen?: Vestiging[] }) {
 
             {/* Vestigingen Dropdown */}
             <div className="relative group">
-              <button className="text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors flex items-center gap-1">
+              <Link href="/vestigingen" className="text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors flex items-center gap-1">
                 {t('navigation.locations')}
                 <span className="text-[10px] opacity-70">▼</span>
-              </button>
+              </Link>
               <div className="absolute top-full left-0 w-56 py-2 mt-1 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0 max-h-[70vh] overflow-y-auto">
                 {vestigingen.map((v) => (
                   <Link key={v.id} href={`/vestigingen/${v.id}`} className="block px-4 py-2 text-sm text-primary-500 hover:bg-gray-50 hover:text-primary-600 truncate">

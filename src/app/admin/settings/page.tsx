@@ -167,7 +167,7 @@ export default function AdminSettingsPage() {
             </div>
             {error ? <p className="text-sm text-red-500">{error}</p> : null}
             <button
-              className="bg-primary text-white px-4 py-2 rounded-lg font-semibold"
+              className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-8 py-3 rounded-lg font-semibold shadow-md active:scale-95 mt-4"
               disabled={loading}
               onClick={saveSettings}
             >

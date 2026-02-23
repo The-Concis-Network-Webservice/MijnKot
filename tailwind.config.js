@@ -13,6 +13,7 @@ export default {
         // #434341 → Gray = Text
 
         primary: {
+          DEFAULT: '#4d5935',
           // New custom palette for mijn kot branding:
           50: '#dcf8a5',
           100: '#c8e490',
@@ -41,6 +42,7 @@ export default {
 
         // Secondary: Pale Sage (subtle UI)
         secondary: {
+          DEFAULT: '#e7e0d5',
           // New custom palette for mijn kot branding:
           50: '#fdfcfb',
           100:' #faf9f7',
@@ -68,6 +70,7 @@ export default {
         },
 
         accent: {
+          DEFAULT: '#ca4b1c',
           // New custom palette for mijn kot branding:
           50: '#feedeb',
           100: '#fddbd6',

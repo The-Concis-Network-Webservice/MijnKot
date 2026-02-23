@@ -21,50 +21,48 @@ export default function AdminMediaPage() {
   };
 
   const uploadAsset = async (file: File) => {
-    const res = await fetch("/api/r2/presign", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        filename: file.name,
-        contentType: file.type
-      })
-    });
-    if (!res.ok) {
-      push("Failed to get upload URL.", "error");
-      return;
+    try {
+      const res = await fetch("/api/r2/upload", {
+        method: "POST",
+        headers: { 
+          "Content-Type": file.type || "application/octet-stream",
+          "X-File-Name": encodeURIComponent(file.name),
+          "X-Mime-Type": file.type || "application/octet-stream"
+        },
+        body: file
+      });
+      
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || "Failed to upload.");
+      }
+      
+      const { publicUrl, key, file_name, mime_type, size_bytes } = await res.json();
+
+      const mediaRes = await fetch("/api/cms/media", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          r2_key: key,
+          public_url: publicUrl,
+          file_name,
+          mime_type,
+          size_bytes
+        })
+      });
+      
+      const payload = await mediaRes.json();
+      if (!mediaRes.ok) {
+        throw new Error(payload.error || "Failed to register media.");
+      }
+      
+      push("Media uploaded.");
+      await loadAssets();
+    } catch (err: any) {
+      push(err.message || "Upload failed.", "error");
     }
-    const { uploadUrl, publicUrl, key } = await res.json();
-    const uploadRes = await fetch(uploadUrl, {
-      method: "PUT",
-      headers: { "Content-Type": file.type },
-      body: file
-    });
-    if (!uploadRes.ok) {
-      push("Upload failed.", "error");
-      return;
-    }
-    const mediaRes = await fetch("/api/cms/media", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        r2_key: key,
-        public_url: publicUrl,
-        file_name: file.name,
-        mime_type: file.type,
-        size_bytes: file.size
-      })
-    });
-    const payload = await mediaRes.json();
-    if (!mediaRes.ok) {
-      push(payload.error ?? "Failed to register media.", "error");
-      return;
-    }
-    push("Media uploaded.");
-    await loadAssets();
   };
 
   useEffect(() => {

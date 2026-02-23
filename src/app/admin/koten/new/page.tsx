@@ -84,7 +84,7 @@ export default function AdminKotCreatePage() {
             onSubmit={createKot}
           >
             <select
-              className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+              className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white"
               value={form.vestiging_id}
               onChange={(event) =>
                 setForm({ ...form, vestiging_id: event.target.value })
@@ -99,7 +99,7 @@ export default function AdminKotCreatePage() {
               ))}
             </select>
             <input
-              className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+              className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main"
               placeholder="Title"
               value={form.title}
               onChange={(event) =>
@@ -108,7 +108,7 @@ export default function AdminKotCreatePage() {
               required
             />
             <textarea
-              className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+              className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main min-h-[150px]"
               placeholder="Description"
               rows={4}
               value={form.description}
@@ -119,7 +119,7 @@ export default function AdminKotCreatePage() {
             />
             <div className="grid md:grid-cols-2 gap-4">
               <input
-                className="border border-gray-200 rounded-lg px-3 py-2"
+                className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
                 type="number"
                 placeholder="Price"
                 value={form.price}
@@ -129,7 +129,7 @@ export default function AdminKotCreatePage() {
                 required
               />
               <select
-                className="border border-gray-200 rounded-lg px-3 py-2"
+                className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white w-full"
                 value={form.availability_status}
                 onChange={(event) =>
                   setForm({
@@ -146,7 +146,7 @@ export default function AdminKotCreatePage() {
             </div>
             <div className="grid md:grid-cols-2 gap-4">
               <select
-                className="border border-gray-200 rounded-lg px-3 py-2"
+                className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white w-full"
                 value={form.status}
                 onChange={(event) =>
                   setForm({ ...form, status: event.target.value })
@@ -158,7 +158,7 @@ export default function AdminKotCreatePage() {
                 <option value="archived">archived</option>
               </select>
               <input
-                className="border border-gray-200 rounded-lg px-3 py-2"
+                className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
                 type="datetime-local"
                 value={form.scheduled_publish_at}
                 onChange={(event) =>
@@ -171,7 +171,7 @@ export default function AdminKotCreatePage() {
             </div>
             {error ? <p className="text-sm text-red-500">{error}</p> : null}
             <button
-              className="bg-primary text-white px-4 py-2 rounded-lg font-semibold"
+              className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-6 py-2.5 rounded-lg font-medium shadow-sm w-full md:w-auto"
               disabled={loading}
               type="submit"
             >

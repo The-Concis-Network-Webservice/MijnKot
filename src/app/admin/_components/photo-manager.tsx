@@ -33,68 +33,67 @@ export function PhotoManager({ kotId, photos, onChange }: Props) {
   const uploadPhoto = async (file: File) => {
     setUploading(true);
     setError(null);
-    const res = await fetch("/api/r2/presign", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        filename: file.name,
-        contentType: file.type,
-        kotId
-      })
-    });
-    if (!res.ok) {
-      setError("Failed to get upload URL.");
+    try {
+      // 1. Upload directly via binding API using raw binary buffer
+      const res = await fetch("/api/r2/upload", {
+        method: "POST",
+        headers: { 
+          "Content-Type": file.type || "application/octet-stream",
+          "X-File-Name": encodeURIComponent(file.name),
+          "X-Mime-Type": file.type || "application/octet-stream"
+        },
+        body: file // Send file directly as binary stream
+      });
+      
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || "Failed to upload image.");
+      }
+      
+      const { publicUrl, key, file_name, mime_type, size_bytes } = await res.json();
+
+      // 2. Register in media library
+      const mediaRes = await fetch("/api/cms/media", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          r2_key: key,
+          public_url: publicUrl,
+          file_name,
+          mime_type,
+          size_bytes
+        })
+      });
+      
+      const mediaPayload = await mediaRes.json();
+      if (!mediaRes.ok) {
+        throw new Error(mediaPayload.error || "Failed to register media.");
+      }
+
+      // 3. Link to Kot
+      await fetch("/api/cms/kot-photos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          kot_id: kotId,
+          image_url: publicUrl,
+          order_index: ordered.length,
+          media_asset_id: mediaPayload.data.id
+        })
+      });
+
+      await onChange();
+      await loadLibrary();
+      push("Photo added.");
+    } catch (err: any) {
+      setError(err.message || "Upload failed.");
+    } finally {
       setUploading(false);
-      return;
     }
-    const { uploadUrl, publicUrl, key } = await res.json();
-    const uploadRes = await fetch(uploadUrl, {
-      method: "PUT",
-      headers: { "Content-Type": file.type },
-      body: file
-    });
-    if (!uploadRes.ok) {
-      setError("Upload failed.");
-      setUploading(false);
-      return;
-    }
-    const mediaRes = await fetch("/api/cms/media", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        r2_key: key,
-        public_url: publicUrl,
-        file_name: file.name,
-        mime_type: file.type,
-        size_bytes: file.size
-      })
-    });
-    const mediaPayload = await mediaRes.json();
-    if (!mediaRes.ok) {
-      setError(mediaPayload.error ?? "Failed to register media.");
-      setUploading(false);
-      return;
-    }
-    await fetch("/api/cms/kot-photos", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        kot_id: kotId,
-        image_url: publicUrl,
-        order_index: ordered.length,
-        media_asset_id: mediaPayload.data.id
-      })
-    });
-    await onChange();
-    await loadLibrary();
-    push("Photo added.");
-    setUploading(false);
   };
 
   const movePhoto = async (photoId: string, direction: "up" | "down") => {

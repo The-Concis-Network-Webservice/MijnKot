@@ -39,7 +39,7 @@ function formatDescription(text: string) {
     const flushList = (index: number) => {
         if (listItems.length > 0) {
             elements.push(
-                <ul key={`ul-${index}`} className="list-disc pl-5 mb-4 space-y-1 text-text-secondary">
+                <ul key={`ul-${index}`} className="list-disc pl-5 mb-4 space-y-1 text-text-main">
                     {listItems}
                 </ul>
             );
@@ -56,7 +56,7 @@ function formatDescription(text: string) {
             if (trimmed !== '') {
                 // If it's a normal paragraph
                 elements.push(
-                    <p key={`p-${index}`} className="mb-4 text-text-secondary leading-relaxed">
+                    <p key={`p-${index}`} className="mb-4 text-text-main leading-relaxed">
                         {line}
                     </p>
                 );
@@ -75,7 +75,7 @@ export function DetailAbout({ kot }: { kot: Kot }) {
     return (
         <section>
             <h2 className="text-2xl font-semibold font-display text-text-main mb-6">{t('detail.about_title')}</h2>
-            <div className="prose prose-lg max-w-none text-text-secondary">
+            <div className="prose prose-lg max-w-none text-text-main">
                 {formatDescription(description)}
             </div>
         </section>

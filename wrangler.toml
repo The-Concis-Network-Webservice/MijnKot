@@ -7,3 +7,7 @@ pages_build_output_dir = ".vercel/output/static"
 binding = "DB"
 database_name = "mijnkot"
 database_id = "786752e3-c3f9-4253-923b-3af0faf4a7bf"
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "mijnkot-media"
