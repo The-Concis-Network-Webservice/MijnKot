@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { RichTextEditor } from '../../app/admin/_components/rich-text-editor';
 
 interface AITextPolisherProps {
     rawText: string;
@@ -129,15 +130,14 @@ export function AITextPolisher({
 
             {/* Raw Text Input */}
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                     Ruwe beschrijving (origineel)
                 </label>
-                <textarea
+                <RichTextEditor
                     value={rawText}
-                    onChange={(e) => onTextChange(e.target.value, localPolished)}
-                    rows={6}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    onChange={(val) => onTextChange(val, localPolished)}
                     placeholder="Typ hier je beschrijving..."
+                    minHeight="200px"
                 />
                 <div className="flex items-center justify-between mt-1">
                     <span className="text-xs text-gray-500">
@@ -175,16 +175,15 @@ export function AITextPolisher({
                         Verbeterde beschrijving
                     </label>
                     <div className="relative">
-                        <textarea
+                        <RichTextEditor
                             value={localPolished}
-                            onChange={(e) => setLocalPolished(e.target.value)}
-                            rows={8}
-                            className="w-full px-3 py-2 border border-purple-300 rounded-lg bg-purple-50/50 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            onChange={(val) => setLocalPolished(val)}
                             placeholder="Gegenereerde tekst verschijnt hier..."
+                            minHeight="250px"
                         />
                         <button
                             onClick={handleCopyToClipboard}
-                            className="absolute top-2 right-2 p-2 text-gray-500 hover:text-gray-700 hover:bg-white rounded-lg transition-colors"
+                            className="absolute top-2 right-14 p-2 text-gray-500 hover:text-gray-700 hover:bg-white rounded-lg transition-colors z-20"
                             title="Kopieer naar klembord"
                         >
                             📋

@@ -8,6 +8,7 @@ export const runtime = 'edge';
 
 export default async function VestigingenPage() {
   const vestigingen = await getVestigingen();
+  console.log("DEBUG: Fetched Vestigingen:", vestigingen.map(v => v.name));
 
   return (
     <Section>

@@ -37,28 +37,36 @@ export async function POST(request: Request) {
   if (!limit.allowed) {
     return NextResponse.json({ error: "Rate limit exceeded" }, { status: 429 });
   }
-  const body = await request.json();
-  const { name, address, city, postal_code, description, image_url } = body;
-  if (!name || !address || !city || !postal_code || !description) {
-    return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
+  try {
+    const body = await request.json();
+    const { name, address, city, postal_code, description, image_url } = body;
+    if (!name || !address || !city || !postal_code || !description) {
+      return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
+    }
+    const inserted = await queryOne(
+      "insert into vestigingen (name, address, city, postal_code, description, image_url) values ($1, $2, $3, $4, $5, $6) returning *",
+      [name, address, city, postal_code, description, image_url ?? null]
+    );
+    if (!inserted) {
+      return NextResponse.json({ error: "Failed to create vestiging." }, { status: 400 });
+    }
+    await logAudit({
+      actorId: user.id,
+      action: "create",
+      entityType: "vestigingen",
+      entityId: (inserted as any).id,
+      changes: inserted as unknown as Record<string, unknown>
+    });
+    revalidatePath('/');
+    revalidatePath('/vestigingen');
+    return NextResponse.json({ data: inserted });
+  } catch (error: any) {
+    console.error("POST vestigingen error:", error);
+    return NextResponse.json(
+      { error: `Server error: ${error.message}. Check if you are on the correct port (3000) for D1 access.` },
+      { status: 500 }
+    );
   }
-  const inserted = await queryOne(
-    "insert into vestigingen (name, address, city, postal_code, description, image_url) values ($1, $2, $3, $4, $5, $6) returning *",
-    [name, address, city, postal_code, description, image_url ?? null]
-  );
-  if (!inserted) {
-    return NextResponse.json({ error: "Failed to create vestiging." }, { status: 400 });
-  }
-  await logAudit({
-    actorId: user.id,
-    action: "create",
-    entityType: "vestigingen",
-    entityId: (inserted as any).id,
-    changes: inserted as unknown as Record<string, unknown>
-  });
-  revalidatePath('/');
-  revalidatePath('/vestigingen');
-  return NextResponse.json({ data: inserted });
 }
 
 export async function PATCH(request: Request) {
@@ -79,15 +87,16 @@ export async function PATCH(request: Request) {
   if (!updated) {
     return NextResponse.json({ error: "Failed to update vestiging." }, { status: 400 });
   }
-  // Step 2: update image_url separately — gracefully skips if column missing (local dev DB)
+  // Step 2: update image_url
   if (image_url !== undefined) {
     try {
       await queryOne(
         "update vestigingen set image_url = $1 where id = $2 returning id",
         [image_url ?? null, id]
       );
-    } catch {
-      // Column may not exist in local dev DB — safe to ignore
+    } catch (e: any) {
+      console.warn("Could not update image_url column. Checking if it exists...", e.message);
+      // We still return 200 if other fields updated, but log it
     }
   }
   await logAudit({
@@ -107,24 +116,40 @@ export async function DELETE(request: Request) {
   if (!user || !canManageVestigingen(role)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const body = await request.json();
-  const { id } = body;
-  if (!id) {
-    return NextResponse.json({ error: "Missing id." }, { status: 400 });
+  try {
+    const body = await request.json();
+    const { id } = body;
+    console.log("DELETE vestiging attempt for ID:", id);
+    if (!id) {
+      return NextResponse.json({ error: "Missing id." }, { status: 400 });
+    }
+    
+    // Attempt deletion with returning to confirm success
+    const deleted = await queryOne("delete from vestigingen where id = $1 returning id", [id]);
+    console.log("DELETE result:", deleted);
+    
+    if (!deleted) {
+      // If returning didn't work, maybe it was already deleted or doesn't exist
+      return NextResponse.json({ error: "Vestiging not found or already deleted." }, { status: 404 });
+    }
+    
+    await logAudit({
+      actorId: user.id,
+      action: "delete",
+      entityType: "vestigingen",
+      entityId: id
+    });
+    
+    revalidatePath('/');
+    revalidatePath('/vestigingen');
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    console.error("DELETE vestigingen route crash:", error);
+    return NextResponse.json(
+      { error: `Server error: ${error.message}. Stack: ${error.stack}` },
+      { status: 500 }
+    );
   }
-  const deleted = await queryOne("delete from vestigingen where id = $1 returning id", [id]);
-  if (!deleted) {
-    return NextResponse.json({ error: "Failed to delete vestiging." }, { status: 400 });
-  }
-  await logAudit({
-    actorId: user.id,
-    action: "delete",
-    entityType: "vestigingen",
-    entityId: id
-  });
-  revalidatePath('/');
-  revalidatePath('/vestigingen');
-  return NextResponse.json({ success: true });
 }
 
 

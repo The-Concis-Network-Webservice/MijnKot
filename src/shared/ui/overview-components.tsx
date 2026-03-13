@@ -44,10 +44,10 @@ export function LocationFilter({ vestigingen, currentVestiging }: LocationFilter
     const { t } = useTranslation();
 
     return (
-        <div className="flex flex-wrap gap-3 mb-12">
+        <div className="flex flex-wrap gap-3">
             <a
                 href="/koten"
-                className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${!currentVestiging ? 'bg-primary-500 text-white shadow-soft' : 'bg-surface-card border border-border-DEFAULT text-text-secondary hover:border-primary-300'}`}
+                className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${!currentVestiging ? 'bg-primary-600 text-white shadow-soft' : 'bg-white border border-border-light text-primary-800 hover:border-primary-400 hover:bg-surface-subtle'}`}
             >
                 {t('overview.all_locations')}
             </a>
@@ -55,7 +55,7 @@ export function LocationFilter({ vestigingen, currentVestiging }: LocationFilter
                 <a
                     key={v.id}
                     href={`/koten?vestiging=${v.id}`}
-                    className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${currentVestiging === v.id ? 'bg-primary-500 text-white shadow-soft' : 'bg-surface-card border border-border-DEFAULT text-text-secondary hover:border-primary-300'}`}
+                    className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${currentVestiging === v.id ? 'bg-primary-600 text-white shadow-soft' : 'bg-white border border-border-light text-primary-800 hover:border-primary-400 hover:bg-surface-subtle'}`}
                 >
                     {v.name}
                 </a>

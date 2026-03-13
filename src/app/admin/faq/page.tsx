@@ -5,6 +5,7 @@ import { AdminGuard } from "../_components/admin-guard";
 import { AdminShell } from "../_components/admin-shell";
 import { PageHeader } from "../_components/page-header";
 import { useToast } from "../_components/toast";
+import { RichTextEditor } from "../_components/rich-text-editor";
 import type { FaqItem } from "@/types";
 
 const emptyForm = {
@@ -95,16 +96,15 @@ export default function AdminFaqPage() {
                 }
                 required
               />
-              <textarea
-                className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                placeholder="Answer"
-                value={form.answer}
-                onChange={(event) =>
-                  setForm({ ...form, answer: event.target.value })
-                }
-                rows={4}
-                required
-              />
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-text-muted">Answer</label>
+                <RichTextEditor
+                  placeholder="Answer"
+                  value={form.answer}
+                  onChange={(value) => setForm({ ...form, answer: value })}
+                  minHeight="200px"
+                />
+              </div>
               <div className="grid md:grid-cols-2 gap-4">
                 <input
                   className="border border-gray-200 rounded-lg px-3 py-2"

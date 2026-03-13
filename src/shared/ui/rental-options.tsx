@@ -10,17 +10,17 @@ export function RentalOptions() {
         {
             title: t('home.rental_options.erasmus_title'),
             description: t('home.rental_options.erasmus_desc'),
-            href: "/vestigingen?type=erasmus",
+            href: "/koten?type=erasmus",
         },
         {
             title: t('home.rental_options.academic_title'),
             description: t('home.rental_options.academic_desc'),
-            href: "/vestigingen?type=academic",
+            href: "/koten?type=academiejaar",
         },
         {
             title: t('home.rental_options.prebooking_title'),
             description: t('home.rental_options.prebooking_desc'),
-            href: "/vestigingen?type=next-year",
+            href: "/koten",
         },
     ];
 

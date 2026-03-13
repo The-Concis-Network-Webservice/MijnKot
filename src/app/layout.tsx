@@ -4,8 +4,11 @@ import { Inter, Outfit } from "next/font/google"; // Switch to Outfit for displa
 import { SiteFooter } from "@/shared/ui/site-footer";
 import { SiteNav } from "@/shared/ui/site-nav";
 import { I18nProvider } from "@/shared/ui/providers/i18n-provider";
-import { getVestigingen } from "@/shared/lib/queries";
+import { getVestigingen, getSiteSettings } from "@/shared/lib/queries";
 import { LeadCaptureModal } from "@/shared/ui/lead-capture-modal";
+import { NoticeBanner } from "@/shared/ui/notice-banner";
+
+import { siteConfig } from "@/shared/lib/config";
 
 export const runtime = 'edge'; const outfit = Outfit({
   subsets: ["latin"],
@@ -20,17 +23,17 @@ const interBody = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mijn-kot.be'), // Replace with actual domain
+  metadataBase: new URL(siteConfig.company.url),
   title: {
-    template: '%s | Mijn-Kot Studentenhuisvesting',
-    default: 'Mijn-Kot | Premium Studentenkoten in België',
+    template: `%s | ${siteConfig.company.name} Studentenhuisvesting`,
+    default: `${siteConfig.company.name} | Premium Studentenkoten in België`,
   },
-  description: 'Op zoek naar een studentenkot? Mijn-Kot biedt hoogwaardige studentenkamers en studio\'s in Gent, Antwerpen en Leuven. Direct contact met eigenaar.',
+  description: `Op zoek naar een studentenkot? ${siteConfig.company.name} biedt hoogwaardige studentenkamers en studio's in Gent, Antwerpen en Leuven. Direct contact met eigenaar.`,
   keywords: ['studentenkot', 'kot huren', 'studentenkamer', 'studio huren', 'Gent', 'Antwerpen', 'Leuven', 'studentenhuisvesting'],
   openGraph: {
     type: 'website',
     locale: 'nl_BE',
-    siteName: 'Mijn-Kot',
+    siteName: siteConfig.company.name,
   },
   robots: {
     index: true,
@@ -47,16 +50,28 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const vestigingen = await getVestigingen();
+  const settings = await getSiteSettings();
 
   return (
     <html lang="nl" className={`${outfit.variable} ${interBody.variable}`}>
       <body>
         <I18nProvider>
           <div className="min-h-screen flex flex-col bg-surface-main">
-            <SiteNav vestigingen={vestigingen} />
-            <main className="flex-1 pt-20">{children}</main>
-            <SiteFooter />
-            <LeadCaptureModal />
+            <header className="sticky top-0 z-[100] w-full">
+              <NoticeBanner 
+                active={settings.notice_active} 
+                text={settings.notice_text} 
+              />
+              <SiteNav 
+                vestigingen={vestigingen} 
+                settings={settings} 
+              />
+            </header>
+            <main className="flex-1">
+              {children}
+            </main>
+            <SiteFooter settings={settings} />
+            <LeadCaptureModal settings={settings} />
           </div>
         </I18nProvider>
       </body>

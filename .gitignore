@@ -1,10 +1,12 @@
+.dev.vars
+.wrangler
 .next
 node_modules
-.env.local
-.env
 dist
 out
-db/*.sqlite
-db/*.sqlite3
-db/*.db
+*.sqlite
+*.sqlite3
+*.db
+.env*
+! .env.example
 

@@ -101,7 +101,7 @@
         "submit_button": "Send Message"
     },
     "footer": {
-        "tagline": "Quality student housing across Belgium. Trusted by students and families since 2020.",
+        "tagline": "Quality student housing in Leuven. Trusted by students and families since 1991.",
         "navigation_title": "Navigation",
         "information_title": "Information",
         "contact_title": "Contact",
@@ -109,7 +109,7 @@
         "terms_of_service": "Terms of Service",
         "cookie_settings": "Cookie Settings",
         "rights_reserved": "All rights reserved.",
-        "platform_label": "Student Housing Platform"
+        "platform_label": ""
     },
     "common": {
         "available": "Available",

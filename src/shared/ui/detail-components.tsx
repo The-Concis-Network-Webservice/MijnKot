@@ -9,6 +9,7 @@ type DetailHeaderProps = {
 };
 
 import { getLocalizedData } from "@/shared/lib/i18n-utils";
+import ReactMarkdown from "react-markdown";
 
 export function DetailHeader({ kot, vestiging }: DetailHeaderProps) {
     const { t, i18n } = useTranslation();
@@ -22,51 +23,12 @@ export function DetailHeader({ kot, vestiging }: DetailHeaderProps) {
                 </span>
                 <span className="text-text-muted text-sm">{t('detail.ref_label')}: {kot.id.slice(0, 8)}</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-display font-semibold text-primary-500 mb-4 leading-tight">{title}</h1>
+            <h1 className="text-4xl md:text-5xl font-display font-semibold text-text-main mb-4 leading-tight">{title}</h1>
             {vestiging?.address}, {vestiging?.postal_code} {vestiging?.city}
         </div>
     );
 }
 
-// Custom formatter to handle newlines and simple bullet points
-function formatDescription(text: string) {
-    if (!text) return null;
-    const lines = text.split('\n');
-    const elements: React.ReactNode[] = [];
-    let listItems: React.ReactNode[] = [];
-    let listCounter = 0;
-
-    const flushList = (index: number) => {
-        if (listItems.length > 0) {
-            elements.push(
-                <ul key={`ul-${index}`} className="list-disc pl-5 mb-4 space-y-1 text-secondary-700">
-                    {listItems}
-                </ul>
-            );
-            listItems = [];
-        }
-    };
-
-    lines.forEach((line, index) => {
-        const trimmed = line.trim();
-        if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
-            listItems.push(<li key={`li-${index}`}>{trimmed.substring(2)}</li>);
-        } else {
-            flushList(index);
-            if (trimmed !== '') {
-                // If it's a normal paragraph
-                elements.push(
-                    <p key={`p-${index}`} className="mb-4 text-secondary-700 leading-relaxed">
-                        {line}
-                    </p>
-                );
-            }
-        }
-    });
-    flushList(lines.length);
-
-    return <>{elements}</>;
-}
 
 export function DetailAbout({ kot }: { kot: Kot }) {
     const { t, i18n } = useTranslation();
@@ -75,8 +37,8 @@ export function DetailAbout({ kot }: { kot: Kot }) {
     return (
         <section>
             <h2 className="text-2xl font-semibold font-display text-text-main mb-6">{t('detail.about_title')}</h2>
-            <div className="prose prose-lg max-w-none text-secondary-700">
-                {formatDescription(description)}
+            <div className="prose prose-lg max-w-none text-text-main prose-headings:text-text-main prose-p:text-text-main prose-strong:text-text-main prose-ul:list-disc prose-ol:list-decimal">
+                <ReactMarkdown>{description}</ReactMarkdown>
             </div>
         </section>
     );
@@ -87,13 +49,13 @@ export function DetailAttributes() {
 
     return (
         <section className="grid grid-cols-2 gap-4">
-            <div className="p-5 bg-surface-subtle rounded-xl border border-light">
-                <p className="text-sm text-muted mb-1">{t('detail.type_label')}</p>
-                <p className="font-medium text-main">{t('detail.type_value')}</p>
+            <div className="p-5 bg-surface-subtle rounded-xl border border-border-light">
+                <p className="text-sm text-text-muted mb-1">{t('detail.type_label')}</p>
+                <p className="font-medium text-text-main">{t('detail.type_value')}</p>
             </div>
-            <div className="p-5 bg-surface-subtle rounded-xl border border-light">
-                <p className="text-sm text-muted mb-1">{t('detail.furnished_label')}</p>
-                <p className="font-medium text-main">{t('detail.furnished_yes')}</p>
+            <div className="p-5 bg-surface-subtle rounded-xl border border-border-light">
+                <p className="text-sm text-text-muted mb-1">{t('detail.furnished_label')}</p>
+                <p className="font-medium text-text-main">{t('detail.furnished_yes')}</p>
             </div>
         </section>
     );
@@ -109,18 +71,18 @@ export function PricingCard({ price }: PricingCardProps) {
     return (
         <div className="bg-surface-card border border-border-light rounded-2xl p-8 shadow-soft sticky top-24">
             <div className="flex items-end gap-2 mb-6">
-                <span className="text-4xl font-semibold text-main">€{price}</span>
-                <span className="text-muted mb-1">{t('detail.per_month')}</span>
+                <span className="text-4xl font-semibold text-text-main">€{price}</span>
+                <span className="text-text-muted mb-1">{t('detail.per_month')}</span>
             </div>
 
-            <div className="space-y-3 mb-8 text-sm text-secondary-700 pb-6 border-b border-border-light">
+            <div className="space-y-3 mb-8 text-sm text-text-secondary pb-6 border-b border-border-light">
                 <div className="flex justify-between">
                     <span>{t('detail.utilities')}</span>
-                    <span className="font-medium text-main">{t('detail.utilities_value')}</span>
+                    <span className="font-medium text-text-main">{t('detail.utilities_value')}</span>
                 </div>
                 <div className="flex justify-between">
                     <span>{t('detail.deposit')}</span>
-                    <span className="font-medium text-main">{t('detail.deposit_value')}</span>
+                    <span className="font-medium text-text-main">{t('detail.deposit_value')}</span>
                 </div>
             </div>
 

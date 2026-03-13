@@ -17,7 +17,7 @@ export function SectionHeader({ title, description, centered }: SectionHeaderPro
                 {t(title as any)}
             </h2>
             {description && (
-                <p className="text-secondary-700 text-lg leading-relaxed">
+                <p className="text-primary-800 text-lg leading-relaxed opacity-90">
                     {t(description as any)}
                 </p>
             )}

@@ -18,8 +18,16 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const id = url.searchParams.get("id");
   if (id) {
-    const item = await query("select * from koten where id = $1", [id]);
-    return NextResponse.json({ data: item });
+    const item = await queryOne<any>("select * from koten where id = $1", [id]);
+    if (item) {
+      const rentTypes = await query<any>(
+        "select rt.* from rent_types rt join kot_rent_types krt on rt.id = krt.rent_type_id where krt.kot_id = $1",
+        [id]
+      );
+      item.rent_types = rentTypes;
+      item.rent_type_ids = rentTypes.map((rt: any) => rt.id);
+    }
+    return NextResponse.json({ data: item ? [item] : [] });
   }
   const vestigingId = url.searchParams.get("vestiging_id");
   const status = url.searchParams.get("status");
@@ -107,6 +115,17 @@ export async function POST(request: Request) {
   if (!inserted) {
     return NextResponse.json({ error: "Failed to create kot." }, { status: 400 });
   }
+
+  // Handle rent types
+  if (body.rent_type_ids && Array.isArray(body.rent_type_ids)) {
+    for (const rtId of body.rent_type_ids) {
+      await query("insert into kot_rent_types (kot_id, rent_type_id) values ($1, $2)", [
+        (inserted as any).id,
+        rtId
+      ]);
+    }
+  }
+
   await logAudit({
     actorId: user.id,
     action: "create",
@@ -237,6 +256,18 @@ export async function PATCH(request: Request) {
   if (!updated) {
     return NextResponse.json({ error: "Failed to update kot." }, { status: 400 });
   }
+
+  // Handle rent types update
+  if (body.rent_type_ids !== undefined && Array.isArray(body.rent_type_ids)) {
+    await query("delete from kot_rent_types where kot_id = $1", [id]);
+    for (const rtId of body.rent_type_ids) {
+      await query("insert into kot_rent_types (kot_id, rent_type_id) values ($1, $2)", [
+        id,
+        rtId
+      ]);
+    }
+  }
+
   if (current && current.availability_status !== availability_status) {
     await logAvailabilityChange({
       kotId: id,
