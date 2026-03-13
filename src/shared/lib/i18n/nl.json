@@ -101,7 +101,7 @@
         "submit_button": "Bericht Versturen"
     },
     "footer": {
-        "tagline": "Kwalitatieve studentenhuisvesting in België. Vertrouwd door studenten en gezinnen sinds 2020.",
+        "tagline": "Kwalitatieve studentenhuisvesting in leuven. Vertrouwd door studenten en gezinnen sinds 1991.",
         "navigation_title": "Navigatie",
         "information_title": "Informatie",
         "contact_title": "Contact",
@@ -109,7 +109,7 @@
         "terms_of_service": "Algemene Voorwaarden",
         "cookie_settings": "Cookie-instellingen",
         "rights_reserved": "Alle rechten voorbehouden.",
-        "platform_label": "Studentenhuisvestingsplatform"
+        "platform_label": ""
     },
     "common": {
         "available": "Beschikbaar",

@@ -8,10 +8,15 @@ export async function logAudit(params: {
   changes?: Record<string, unknown> | object | null;
 }) {
   const { actorId, action, entityType, entityId, changes } = params;
-  await query(
-    "insert into audit_logs (actor_id, action, entity_type, entity_id, changes) values ($1, $2, $3, $4, $5)",
-    [actorId, action, entityType, entityId, changes ? JSON.stringify(changes) : null]
-  );
+  try {
+    await query(
+      "insert into audit_logs (actor_id, action, entity_type, entity_id, changes) values ($1, $2, $3, $4, $5)",
+      [actorId, action, entityType, entityId, changes ? JSON.stringify(changes) : null]
+    );
+  } catch (error) {
+    console.error("Failed to log audit:", error);
+    // Continue execution — auditing shouldn't block the main action if DB state is messy
+  }
 }
 
 export async function logAvailabilityChange(params: {

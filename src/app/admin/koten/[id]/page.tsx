@@ -8,7 +8,7 @@ import { PhotoManager } from "../../_components/photo-manager";
 import { PageHeader } from "../../_components/page-header";
 import { useToast } from "../../_components/toast";
 import { AITextPolisher } from "@/shared/ui/ai-text-polisher";
-import type { AvailabilityHistory, Kot, KotPhoto, Vestiging } from "@/types";
+import type { AvailabilityHistory, Kot, KotPhoto, Vestiging, RentType } from "@/types";
 
 type KotWithPhotos = Kot & { kot_photos?: KotPhoto[]; vestigingen?: Vestiging };
 
@@ -16,6 +16,7 @@ export default function AdminKotDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [kot, setKot] = useState<KotWithPhotos | null>(null);
   const [history, setHistory] = useState<AvailabilityHistory[]>([]);
+  const [rentTypes, setRentTypes] = useState<RentType[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { push } = useToast();
@@ -43,6 +44,10 @@ export default function AdminKotDetailPage() {
     const historyRes = await fetch(`/api/cms/koten/history?id=${id}`);
     const historyPayload = await historyRes.json();
     setHistory(historyPayload.data ?? []);
+
+    const rentTypesRes = await fetch("/api/cms/rent-types");
+    const rentTypesPayload = await rentTypesRes.json();
+    setRentTypes(rentTypesPayload.data ?? []);
   };
 
   useEffect(() => {
@@ -68,7 +73,8 @@ export default function AdminKotDetailPage() {
         availability_status: kot.availability_status,
         status: kot.status,
         scheduled_publish_at: kot.scheduled_publish_at,
-        is_highlighted: kot.is_highlighted
+        is_highlighted: kot.is_highlighted,
+        rent_type_ids: kot.rent_type_ids
       })
     });
     const payload = await res.json();
@@ -119,7 +125,8 @@ export default function AdminKotDetailPage() {
                         availability_status: kot.availability_status,
                         status: kot.status, // keeps current status for now (e.g. draft)
                         scheduled_publish_at: kot.scheduled_publish_at,
-                        is_highlighted: kot.is_highlighted
+                        is_highlighted: kot.is_highlighted,
+                        rent_type_ids: kot.rent_type_ids
                       })
                     });
                     // 2. Then publish
@@ -155,7 +162,8 @@ export default function AdminKotDetailPage() {
                         availability_status: kot.availability_status,
                         status: kot.status,
                         scheduled_publish_at: kot.scheduled_publish_at,
-                        is_highlighted: kot.is_highlighted
+                        is_highlighted: kot.is_highlighted,
+                        rent_type_ids: kot.rent_type_ids
                       })
                     });
                     // 2. Archive
@@ -188,7 +196,7 @@ export default function AdminKotDetailPage() {
                 </div>
 
                 <input
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                  className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main"
                   value={kot.title}
                   onChange={(event) =>
                     setKot({ ...kot, title: event.target.value })
@@ -215,9 +223,34 @@ export default function AdminKotDetailPage() {
                   }}
                 />
 
+                <div className="space-y-3">
+                  <label className="text-sm font-semibold block italic text-text-muted">Categorieën (Te Huur filters)</label>
+                  <div className="flex flex-wrap gap-4">
+                    {rentTypes.map((rt) => (
+                      <label key={rt.id} className="flex items-center gap-2 cursor-pointer bg-surface-subtle px-3 py-1.5 rounded-lg border border-border-light hover:border-primary-300 transition-colors">
+                        <input
+                          type="checkbox"
+                          checked={kot.rent_type_ids?.includes(rt.id) ?? false}
+                          onChange={(e) => {
+                            const ids = kot.rent_type_ids || [];
+                            if (e.target.checked) {
+                              setKot({ ...kot, rent_type_ids: [...ids, rt.id] });
+                            } else {
+                              setKot({ ...kot, rent_type_ids: ids.filter(id => id !== rt.id) });
+                            }
+                          }}
+                          className="rounded text-primary-500 focus:ring-primary-500"
+                        />
+                        <span className="text-sm font-medium">{rt.name}</span>
+                      </label>
+                    ))}
+                    {rentTypes.length === 0 && <p className="text-sm text-text-muted italic">No categories defined. Add them in settings.</p>}
+                  </div>
+                </div>
+
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
-                    className="border border-gray-200 rounded-lg px-3 py-2"
+                    className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
                     type="number"
                     value={kot.price}
                     onChange={(event) =>
@@ -229,7 +262,7 @@ export default function AdminKotDetailPage() {
                     placeholder="Price"
                   />
                   <select
-                    className="border border-gray-200 rounded-lg px-3 py-2"
+                    className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white w-full"
                     value={kot.availability_status}
                     onChange={(event) =>
                       setKot({
@@ -246,7 +279,7 @@ export default function AdminKotDetailPage() {
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <select
-                    className="border border-gray-200 rounded-lg px-3 py-2"
+                    className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white w-full"
                     value={kot.status}
                     onChange={(event) =>
                       setKot({
@@ -261,7 +294,7 @@ export default function AdminKotDetailPage() {
                     <option value="archived">archived</option>
                   </select>
                   <input
-                    className="border border-gray-200 rounded-lg px-3 py-2"
+                    className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
                     type="datetime-local"
                     value={formatDatetimeLocal(kot.scheduled_publish_at)}
                     onChange={(event) =>
@@ -274,7 +307,7 @@ export default function AdminKotDetailPage() {
                 </div>
                 {error ? <p className="text-sm text-red-500">{error}</p> : null}
                 <button
-                  className="bg-primary text-white px-4 py-2 rounded-lg font-semibold"
+                  className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-6 py-2.5 rounded-lg font-medium shadow-sm w-full md:w-auto"
                   onClick={updateKot}
                   disabled={loading}
                 >

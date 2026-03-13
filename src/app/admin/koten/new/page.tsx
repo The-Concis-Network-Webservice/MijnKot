@@ -7,7 +7,8 @@ import { AdminShell } from "../../_components/admin-shell";
 import { PageHeader } from "../../_components/page-header";
 import { useToast } from "../../_components/toast";
 import { useAdmin } from "../../AdminProvider";
-import type { Vestiging } from "@/types";
+import { RichTextEditor } from "../../_components/rich-text-editor";
+import type { Vestiging, RentType } from "@/types";
 
 export default function AdminKotCreatePage() {
   const router = useRouter();
@@ -20,8 +21,10 @@ export default function AdminKotCreatePage() {
     price: "",
     availability_status: "available",
     status: "draft",
-    scheduled_publish_at: ""
+    scheduled_publish_at: "",
+    rent_type_ids: [] as string[]
   });
+  const [rentTypes, setRentTypes] = useState<RentType[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { push } = useToast();
@@ -30,6 +33,10 @@ export default function AdminKotCreatePage() {
     fetch("/api/cms/vestigingen")
       .then((res) => res.json())
       .then((payload) => setVestigingen(payload.data ?? []));
+
+    fetch("/api/cms/rent-types")
+      .then((res) => res.json())
+      .then((payload) => setRentTypes(payload.data ?? []));
   }, []);
 
   useEffect(() => {
@@ -54,7 +61,8 @@ export default function AdminKotCreatePage() {
         price: Number(form.price),
         availability_status: form.availability_status,
         status: form.status,
-        scheduled_publish_at: form.scheduled_publish_at || null
+        scheduled_publish_at: form.scheduled_publish_at || null,
+        rent_type_ids: form.rent_type_ids
       })
     });
     const payload = await res.json();
@@ -84,7 +92,7 @@ export default function AdminKotCreatePage() {
             onSubmit={createKot}
           >
             <select
-              className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+              className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white"
               value={form.vestiging_id}
               onChange={(event) =>
                 setForm({ ...form, vestiging_id: event.target.value })
@@ -99,7 +107,7 @@ export default function AdminKotCreatePage() {
               ))}
             </select>
             <input
-              className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+              className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main"
               placeholder="Title"
               value={form.title}
               onChange={(event) =>
@@ -107,19 +115,43 @@ export default function AdminKotCreatePage() {
               }
               required
             />
-            <textarea
-              className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-              placeholder="Description"
-              rows={4}
-              value={form.description}
-              onChange={(event) =>
-                setForm({ ...form, description: event.target.value })
-              }
-              required
-            />
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-text-muted ml-1">Description</label>
+              <RichTextEditor
+                placeholder="Description"
+                value={form.description}
+                onChange={(value) => setForm({ ...form, description: value })}
+                minHeight="250px"
+              />
+            </div>
+
+            <div className="space-y-3">
+              <label className="text-sm font-semibold block italic text-text-muted">Categorieën (Te Huur filters)</label>
+              <div className="flex flex-wrap gap-4">
+                {rentTypes.map((rt) => (
+                  <label key={rt.id} className="flex items-center gap-2 cursor-pointer bg-surface-subtle px-3 py-1.5 rounded-lg border border-border-light hover:border-primary-300 transition-colors">
+                    <input
+                      type="checkbox"
+                      checked={form.rent_type_ids.includes(rt.id)}
+                      onChange={(e) => {
+                        const ids = form.rent_type_ids;
+                        if (e.target.checked) {
+                          setForm({ ...form, rent_type_ids: [...ids, rt.id] });
+                        } else {
+                          setForm({ ...form, rent_type_ids: ids.filter(id => id !== rt.id) });
+                        }
+                      }}
+                      className="rounded text-primary-500 focus:ring-primary-500"
+                    />
+                    <span className="text-sm font-medium">{rt.name}</span>
+                  </label>
+                ))}
+                {rentTypes.length === 0 && <p className="text-sm text-text-muted italic">No categories defined. Add them in settings.</p>}
+              </div>
+            </div>
             <div className="grid md:grid-cols-2 gap-4">
               <input
-                className="border border-gray-200 rounded-lg px-3 py-2"
+                className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
                 type="number"
                 placeholder="Price"
                 value={form.price}
@@ -129,7 +161,7 @@ export default function AdminKotCreatePage() {
                 required
               />
               <select
-                className="border border-gray-200 rounded-lg px-3 py-2"
+                className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white w-full"
                 value={form.availability_status}
                 onChange={(event) =>
                   setForm({
@@ -146,7 +178,7 @@ export default function AdminKotCreatePage() {
             </div>
             <div className="grid md:grid-cols-2 gap-4">
               <select
-                className="border border-gray-200 rounded-lg px-3 py-2"
+                className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white w-full"
                 value={form.status}
                 onChange={(event) =>
                   setForm({ ...form, status: event.target.value })
@@ -158,9 +190,9 @@ export default function AdminKotCreatePage() {
                 <option value="archived">archived</option>
               </select>
               <input
-                className="border border-gray-200 rounded-lg px-3 py-2"
-                type="datetime-local"
-                value={form.scheduled_publish_at}
+                className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
+                type="date"
+                value={form.scheduled_publish_at ? form.scheduled_publish_at.split('T')[0] : ''}
                 onChange={(event) =>
                   setForm({
                     ...form,
@@ -171,7 +203,7 @@ export default function AdminKotCreatePage() {
             </div>
             {error ? <p className="text-sm text-red-500">{error}</p> : null}
             <button
-              className="bg-primary text-white px-4 py-2 rounded-lg font-semibold"
+              className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-6 py-2.5 rounded-lg font-medium shadow-sm w-full md:w-auto"
               disabled={loading}
               type="submit"
             >

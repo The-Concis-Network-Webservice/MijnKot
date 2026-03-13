@@ -16,7 +16,7 @@ export function PhotoGallery({ photos }: { photos: KotPhoto[] }) {
 
   if (ordered.length === 0) {
     return (
-      <div className="bg-gray-50 rounded-xl h-96 flex items-center justify-center text-gray-400 border border-gray-200">
+      <div className="bg-surface-subtle rounded-xl h-96 flex items-center justify-center text-text-muted border border-border-light">
         <div className="text-center">
           <p className="text-lg">{t('detail.no_photos') || 'Geen foto\'s beschikbaar'}</p>
         </div>
@@ -38,7 +38,7 @@ export function PhotoGallery({ photos }: { photos: KotPhoto[] }) {
         {/* Main Photo with Optimization */}
         <button
           onClick={() => setLightboxIndex(0)}
-          className="relative w-full rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all border border-gray-200"
+          className="relative w-full rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all border border-border-light"
           style={{ aspectRatio: '16/9' }}
         >
           <Image
@@ -62,9 +62,9 @@ export function PhotoGallery({ photos }: { photos: KotPhoto[] }) {
         {remainingCount > 0 && (
           <button
             onClick={() => setLightboxIndex(0)}
-            className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg hover:bg-white transition-colors border border-gray-200"
+            className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg hover:bg-white transition-colors border border-border-light"
           >
-            <span className="font-medium text-gray-900">
+            <span className="font-medium text-text-main">
               {remainingCount === 1
                 ? `+1 foto`
                 : `+${remainingCount} foto's`}

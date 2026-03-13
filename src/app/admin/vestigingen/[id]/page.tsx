@@ -10,12 +10,14 @@ import { useToast } from "../../_components/toast";
 import { canEditContent } from "@/shared/lib/cms/permissions";
 import { useAdmin } from "../../AdminProvider";
 import type { Kot, Vestiging } from "@/types";
+import { RichTextEditor } from "../../_components/rich-text-editor";
 
 export default function AdminVestigingDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [vestiging, setVestiging] = useState<Vestiging | null>(null);
   const [koten, setKoten] = useState<Kot[]>([]);
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { push } = useToast();
   const { role } = useAdmin();
@@ -68,6 +70,50 @@ export default function AdminVestigingDetailPage() {
       push("Vestiging updated.");
     }
     setLoading(false);
+  };
+
+  const handleFileUpload = async (file: File) => {
+    setUploading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/r2/upload", {
+        method: "POST",
+        headers: { 
+          "Content-Type": file.type || "application/octet-stream",
+          "X-File-Name": encodeURIComponent(file.name),
+          "X-Mime-Type": file.type || "application/octet-stream"
+        },
+        body: file
+      });
+      
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || "Failed to upload image.");
+      }
+      
+      const { publicUrl, key, file_name, mime_type, size_bytes } = await res.json();
+
+      await fetch("/api/cms/media", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          r2_key: key,
+          public_url: publicUrl,
+          file_name,
+          mime_type,
+          size_bytes
+        })
+      });
+
+      if (vestiging) {
+        setVestiging({ ...vestiging, image_url: publicUrl });
+      }
+      push("Image uploaded successfully.");
+    } catch (err: any) {
+      setError(err.message || "Upload failed.");
+    } finally {
+      setUploading(false);
+    }
   };
 
   const createKot = async (event: React.FormEvent) => {
@@ -160,28 +206,56 @@ export default function AdminVestigingDetailPage() {
                     }
                   />
                 </div>
-                <textarea
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  rows={4}
-                  value={vestiging.description}
-                  onChange={(event) =>
-                    setVestiging({
-                      ...vestiging,
-                      description: event.target.value
-                    })
-                  }
-                />
-                <input
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  value={vestiging.image_url ?? ""}
-                  onChange={(event) =>
-                    setVestiging({
-                      ...vestiging,
-                      image_url: event.target.value
-                    })
-                  }
-                  placeholder="Image URL (e.g. https://...)"
-                />
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Description (Markdown)</label>
+                  <RichTextEditor
+                    value={vestiging.description}
+                    onChange={(val) =>
+                      setVestiging({
+                        ...vestiging,
+                        description: val
+                      })
+                    }
+                    placeholder="Describe this location..."
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Image</label>
+                  <div className="flex gap-4 items-center">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      id="vestiging-image-upload"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) handleFileUpload(file);
+                      }}
+                    />
+                    <label 
+                      htmlFor="vestiging-image-upload"
+                      className="cursor-pointer bg-gray-50 border border-gray-200 px-4 py-2 rounded-lg text-sm hover:bg-gray-100 transition-colors inline-block"
+                    >
+                      {uploading ? "Uploading..." : "Upload Image"}
+                    </label>
+                    <input
+                      className="border border-gray-200 rounded-lg px-3 py-2 flex-1 text-sm"
+                      value={vestiging.image_url ?? ""}
+                      onChange={(event) =>
+                        setVestiging({
+                          ...vestiging,
+                          image_url: event.target.value
+                        })
+                      }
+                      placeholder="Or paste URL..."
+                    />
+                  </div>
+                  {vestiging.image_url && (
+                    <div className="mt-2 w-full max-w-2xl aspect-video rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                      <img src={vestiging.image_url} className="w-full h-full object-cover" alt="Preview" />
+                    </div>
+                  )}
+                </div>
                 {error ? <p className="text-sm text-red-500">{error}</p> : null}
                 <button
                   className="bg-primary text-white px-4 py-2 rounded-lg font-semibold"
@@ -209,16 +283,16 @@ export default function AdminVestigingDetailPage() {
                   }
                   required
                 />
-                <textarea
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  placeholder="Description"
-                  rows={4}
-                  value={kotForm.description}
-                  onChange={(event) =>
-                    setKotForm({ ...kotForm, description: event.target.value })
-                  }
-                  required
-                />
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Description (Markdown)</label>
+                  <RichTextEditor
+                    value={kotForm.description}
+                    onChange={(val) =>
+                      setKotForm({ ...kotForm, description: val })
+                    }
+                    placeholder="Describe this room..."
+                  />
+                </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
@@ -261,8 +335,8 @@ export default function AdminVestigingDetailPage() {
                   </select>
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
-                    type="datetime-local"
-                    value={kotForm.scheduled_publish_at}
+                    type="date"
+                    value={kotForm.scheduled_publish_at ? kotForm.scheduled_publish_at.split('T')[0] : ''}
                     onChange={(event) =>
                       setKotForm({
                         ...kotForm,

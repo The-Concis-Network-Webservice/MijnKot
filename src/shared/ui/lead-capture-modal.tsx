@@ -2,9 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { siteConfig } from '@/shared/lib/config';
+import type { SiteSettings } from '@/types';
+import { usePathname } from 'next/navigation';
 
-export function LeadCaptureModal() {
+export function LeadCaptureModal({ 
+    settings 
+}: { 
+    settings?: SiteSettings 
+}) {
     const { t } = useTranslation();
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [step, setStep] = useState<'form' | 'success'>('form');
     const [email, setEmail] = useState('');
@@ -14,14 +22,17 @@ export function LeadCaptureModal() {
     useEffect(() => {
         // Check if user has already seen the modal or submitted
         const hasSeen = localStorage.getItem('has_seen_lead_modal');
-        if (!hasSeen) {
+        const isPopupActive = settings?.popup_active ?? false;
+        const isAdmin = pathname?.startsWith('/admin');
+
+        if (!hasSeen && isPopupActive && !isAdmin) {
             // Show after 3 seconds
             const timer = setTimeout(() => {
                 setIsOpen(true);
             }, 3000);
             return () => clearTimeout(timer);
         }
-    }, []);
+    }, [settings?.popup_active, pathname]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -73,11 +84,11 @@ export function LeadCaptureModal() {
                     {step === 'form' ? (
                         <>
                             <div className="text-center mb-8">
-                                <h2 className="text-2xl font-display font-semibold text-main mb-2">
-                                    Als eerste op de hoogte?
+                                <h2 className="text-2xl font-display font-semibold text-text-main mb-2">
+                                    {settings?.popup_title || "Als eerste op de hoogte?"}
                                 </h2>
-                                <p className="text-secondary-700 leading-relaxed">
-                                    Meld je aan voor onze lijst en ontvang direct een mailtje zodra er nieuwe koten vrijkomen.
+                                <p className="text-text-secondary leading-relaxed">
+                                    {settings?.popup_text || "Meld je aan voor onze lijst en ontvang direct een mailtje zodra er nieuwe koten vrijkomen."}
                                 </p>
                             </div>
 
