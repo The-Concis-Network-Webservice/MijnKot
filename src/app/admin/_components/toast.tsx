@@ -26,18 +26,18 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   return (
     <ToastContext.Provider value={value}>
       {children}
-      <div className="fixed top-6 right-6 space-y-3 z-50 pointer-events-none">
+      <div className="fixed bottom-6 right-6 space-y-3 z-50 pointer-events-none">
         {toasts.map((toast) => (
           <div
             key={toast.id}
             className={`pointer-events-auto min-w-[320px] max-w-md group flex items-start gap-4 p-4 rounded-xl shadow-2xl border backdrop-blur-md animate-in fade-in slide-in-from-right-4 duration-300 ${
               toast.type === "success" 
-                ? "bg-white/95 border-emerald-100 text-primary-900" 
+                ? "bg-white/95 border-primary-100 text-primary-900" 
                 : "bg-white/95 border-red-100 text-red-900"
             }`}
           >
             <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
-              toast.type === "success" ? "bg-emerald-50 text-emerald-600" : "bg-red-50 text-red-600"
+              toast.type === "success" ? "bg-primary-50 text-primary-600" : "bg-red-50 text-red-600"
             }`}>
               {toast.type === "success" ? (
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

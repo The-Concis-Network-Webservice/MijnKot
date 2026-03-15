@@ -92,25 +92,55 @@ export async function DELETE(request: Request) {
   if (!user || !canEditContent(role)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const body = await request.json();
-  const { id } = body;
-  if (!id) {
-    return NextResponse.json({ error: "Missing id." }, { status: 400 });
+
+  try {
+    const body = await request.json();
+    const { id, category } = body;
+    
+    if (category) {
+      console.log("FAQ Category DELETE request:", category);
+      await query(
+        "delete from faq_items where category = $1",
+        [category]
+      );
+      
+      await logAudit({
+        actorId: user.id,
+        action: "delete_category",
+        entityType: "faq_items",
+        entityId: category,
+        changes: { category }
+      });
+      
+      return NextResponse.json({ success: true, deletedCategory: category });
+    }
+
+    if (!id) {
+      return NextResponse.json({ error: "Missing id or category." }, { status: 400 });
+    }
+
+    console.log("FAQ DELETE request:", id);
+    const deleted = await queryOne<{id: string}>(
+      "delete from faq_items where id = $1 returning id",
+      [id]
+    );
+
+    if (!deleted) {
+      return NextResponse.json({ error: "Failed to delete FAQ (not found)." }, { status: 400 });
+    }
+
+    await logAudit({
+      actorId: user.id,
+      action: "delete",
+      entityType: "faq_items",
+      entityId: String(id)
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("FAQ Delete crash:", err);
+    return NextResponse.json({ error: "Database error during FAQ deletion." }, { status: 500 });
   }
-  const deleted = await queryOne(
-    "delete from faq_items where id = $1 returning id",
-    [id]
-  );
-  if (!deleted) {
-    return NextResponse.json({ error: "Failed to delete FAQ." }, { status: 400 });
-  }
-  await logAudit({
-    actorId: user.id,
-    action: "delete",
-    entityType: "faq_items",
-    entityId: String(id)
-  });
-  return NextResponse.json({ success: true });
 }
 
 
