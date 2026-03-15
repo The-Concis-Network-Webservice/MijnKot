@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { AdminGuard } from "../_components/admin-guard";
 import { AdminShell } from "../_components/admin-shell";
 import { PageHeader } from "../_components/page-header";
@@ -37,8 +38,15 @@ export default function AdminFaqPage() {
     event.preventDefault();
     setLoading(true);
     setError(null);
+    const method = editingId ? "PATCH" : "POST";
+    console.log(`Submitting FAQ with method ${method}:`, {
+      id: editingId,
+      question: form.question,
+      category: form.category
+    });
+
     const res = await fetch("/api/cms/faq", {
-      method: editingId ? "PATCH" : "POST",
+      method,
       headers: {
         "Content-Type": "application/json"
       },
@@ -52,7 +60,7 @@ export default function AdminFaqPage() {
     });
     const payload = await res.json();
     if (!res.ok) {
-      setError(payload.error ?? "Failed to add FAQ.");
+      setError(payload.error ?? (editingId ? "Failed to update FAQ." : "Failed to add FAQ."));
     } else {
       setForm(emptyForm);
       setEditingId(null);
@@ -164,9 +172,11 @@ export default function AdminFaqPage() {
                   className="border border-gray-100 rounded-xl p-4 flex items-start justify-between gap-4"
                 >
                   <div>
-                    <p className="font-semibold">{item.question}</p>
-                    <p className="text-sm text-text-muted">{item.answer}</p>
-                    <span className="text-xs text-text-muted">
+                    <p className="font-semibold mb-1">{item.question}</p>
+                    <div className="text-sm text-text-muted prose prose-sm max-w-none">
+                      <ReactMarkdown>{item.answer}</ReactMarkdown>
+                    </div>
+                    <span className="text-xs font-medium px-2 py-0.5 bg-gray-100 rounded text-text-muted mt-2 inline-block">
                       {item.category}
                     </span>
                   </div>
