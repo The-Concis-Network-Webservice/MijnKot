@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { SectionHeader } from "./section-header";
 import type { FaqItem } from "@/types";
 import { getLocalizedData } from "@/shared/lib/i18n-utils";
+import ReactMarkdown from 'react-markdown';
 
 export function FaqList({ items }: { items: FaqItem[] }) {
     const { t, i18n } = useTranslation();
@@ -41,8 +42,8 @@ export function FaqList({ items }: { items: FaqItem[] }) {
                                             {question}
                                             <span className="text-primary-500 transform group-open:rotate-180 transition-transform text-sm">▼</span>
                                         </summary>
-                                        <div className="px-5 pb-5 text-secondary-700 leading-relaxed border-t border-border-light pt-4">
-                                            {answer}
+                                        <div className="px-5 pb-5 text-secondary-700 leading-relaxed border-t border-border-light pt-4 prose prose-sm max-w-none prose-p:my-2 first:prose-p:mt-0 last:prose-p:mb-0">
+                                            <ReactMarkdown>{answer}</ReactMarkdown>
                                         </div>
                                     </details>
                                 );

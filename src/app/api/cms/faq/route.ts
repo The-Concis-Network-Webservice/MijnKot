@@ -50,26 +50,41 @@ export async function PATCH(request: Request) {
   if (!user || !canEditContent(role)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const body = await request.json();
-  const { id, question, answer, category, order_index } = body;
-  if (!id) {
-    return NextResponse.json({ error: "Missing id." }, { status: 400 });
+
+  try {
+    const body = await request.json();
+    const { id, question, answer, category, order_index } = body;
+    
+    console.log("FAQ PATCH request:", { id, question, category, order_index });
+
+    if (!id) {
+      return NextResponse.json({ error: "Missing id." }, { status: 400 });
+    }
+
+    const updated = await queryOne<any>(
+      "update faq_items set question = $1, answer = $2, category = $3, order_index = $4 where id = $5 returning *",
+      [question, answer, category, order_index ?? 0, id]
+    );
+    
+    if (!updated) {
+       console.error("FAQ Update failed: No row updated for ID", id);
+       return NextResponse.json({ error: "Failed to update FAQ (no row matches ID)." }, { status: 400 });
+    }
+
+    console.log("FAQ Updated successfully:", updated.id);
+    
+    await logAudit({
+      actorId: user.id,
+      action: "update",
+      entityType: "faq_items",
+      entityId: String(id),
+      changes: updated
+    });
+    return NextResponse.json({ data: updated });
+  } catch (err) {
+    console.error("FAQ Update crash:", err);
+    return NextResponse.json({ error: "Database error during FAQ update." }, { status: 500 });
   }
-  const updated = await queryOne<any>(
-    "update faq_items set question = $1, answer = $2, category = $3, order_index = $4 where id = $5 returning *",
-    [question, answer, category, order_index ?? 0, id]
-  );
-  if (!updated) {
-    return NextResponse.json({ error: "Failed to update FAQ." }, { status: 400 });
-  }
-  await logAudit({
-    actorId: user.id,
-    action: "update",
-    entityType: "faq_items",
-    entityId: String(id),
-    changes: updated
-  });
-  return NextResponse.json({ data: updated });
 }
 
 export async function DELETE(request: Request) {
