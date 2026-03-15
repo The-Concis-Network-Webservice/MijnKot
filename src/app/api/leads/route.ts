@@ -6,26 +6,33 @@ export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
     try {
-        const { email, name } = await req.json();
+        const { email, name, phone } = await req.json();
 
         if (!email || !email.includes('@')) {
             return NextResponse.json({ error: "Invalid email" }, { status: 400 });
         }
 
+        if (phone && phone.trim().length > 0) {
+            const phoneRegex = /^[\d\s\-\+\(\)]{7,20}$/;
+            if (!phoneRegex.test(phone)) {
+                return NextResponse.json({ error: "Invalid phone number" }, { status: 400 });
+            }
+        }
+
         // Check for existing lead
         const existingLead = await queryOne(
-            "select id, name from leads where email = $1",
+            "select id, name, phone from leads where email = $1",
             [email]
         );
 
         if (existingLead) {
-            console.log(`Lead already exists for email: ${email}. Updating name if provided.`);
+            console.log(`Lead already exists for email: ${email}. Updating name/phone if provided.`);
             
-            // Only update name if a new one is provided
-            if (name) {
+            // Update name and/or phone if provided
+            if (name || phone) {
                 await queryOne(
-                    "update leads set name = $1 where email = $2",
-                    [name, email]
+                    "update leads set name = coalesce($1, name), phone = coalesce($2, phone) where email = $3",
+                    [name || null, phone || null, email]
                 );
             }
             
@@ -34,8 +41,8 @@ export async function POST(req: NextRequest) {
 
         // Insert new lead
         await queryOne(
-            "insert into leads (email, name) values ($1, $2) returning id",
-            [email, name || null]
+            "insert into leads (email, name, phone) values ($1, $2, $3) returning id",
+            [email, name || null, phone || null]
         );
 
         // Send welcome email only for first-time signups

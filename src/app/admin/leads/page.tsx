@@ -8,6 +8,7 @@ type Lead = {
     id: string;
     email: string;
     name: string | null;
+    phone: string | null;
     source: string;
     created_at: string;
 };
@@ -53,6 +54,7 @@ export default function LeadsPage() {
                                         <tr>
                                             <th className="px-6 py-4 font-medium text-gray-500">Email</th>
                                             <th className="px-6 py-4 font-medium text-gray-500">Naam</th>
+                                            <th className="px-6 py-4 font-medium text-gray-500">Telefoon</th>
                                             <th className="px-6 py-4 font-medium text-gray-500">Bron</th>
                                             <th className="px-6 py-4 font-medium text-gray-500">Datum</th>
                                         </tr>
@@ -62,6 +64,7 @@ export default function LeadsPage() {
                                             <tr key={lead.id} className="hover:bg-gray-50/50 transition-colors">
                                                 <td className="px-6 py-4 font-medium text-text-main">{lead.email}</td>
                                                 <td className="px-6 py-4 text-gray-600">{lead.name || '-'}</td>
+                                                <td className="px-6 py-4 text-gray-600">{lead.phone || '-'}</td>
                                                 <td className="px-6 py-4 text-gray-500">
                                                     <span className="inline-flex items-center px-2 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-medium">
                                                         {lead.source}
