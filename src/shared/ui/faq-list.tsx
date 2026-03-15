@@ -10,7 +10,7 @@ export function FaqList({ items }: { items: FaqItem[] }) {
     const { t, i18n } = useTranslation();
 
     const grouped = items.reduce<Record<string, typeof items>>((acc, item) => {
-        const key = item.category || "General";
+        const key = getLocalizedData(item, 'category', i18n.language) || "General";
         acc[key] = acc[key] ?? [];
         acc[key].push(item);
         return acc;

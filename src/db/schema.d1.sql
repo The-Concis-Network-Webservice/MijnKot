@@ -92,6 +92,7 @@ create table if not exists faq_items (
   answer text not null,
   answer_en text,
   category text not null,
+  category_en text,
   order_index integer not null default 0
 );
 

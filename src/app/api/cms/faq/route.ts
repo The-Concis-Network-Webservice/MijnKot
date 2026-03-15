@@ -24,13 +24,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const body = await request.json();
-  const { question, answer, category, order_index } = body;
+  const { question, question_en, answer, answer_en, category, category_en, order_index } = body;
   if (!question || !answer || !category) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
   const inserted = await queryOne<any>(
-    "insert into faq_items (question, answer, category, order_index) values ($1, $2, $3, $4) returning *",
-    [question, answer, category, order_index ?? 0]
+    "insert into faq_items (question, question_en, answer, answer_en, category, category_en, order_index) values ($1, $2, $3, $4, $5, $6, $7) returning *",
+    [question, question_en, answer, answer_en, category, category_en, order_index ?? 0]
   );
   if (!inserted) {
     return NextResponse.json({ error: "Failed to create FAQ." }, { status: 400 });
@@ -53,17 +53,17 @@ export async function PATCH(request: Request) {
 
   try {
     const body = await request.json();
-    const { id, question, answer, category, order_index } = body;
+    const { id, question, question_en, answer, answer_en, category, category_en, order_index } = body;
     
-    console.log("FAQ PATCH request:", { id, question, category, order_index });
+    console.log("FAQ PATCH request:", { id, question, category, category_en, order_index });
 
     if (!id) {
       return NextResponse.json({ error: "Missing id." }, { status: 400 });
     }
 
     const updated = await queryOne<any>(
-      "update faq_items set question = $1, answer = $2, category = $3, order_index = $4 where id = $5 returning *",
-      [question, answer, category, order_index ?? 0, id]
+      "update faq_items set question = $1, question_en = $2, answer = $3, answer_en = $4, category = $5, category_en = $6, order_index = $7 where id = $8 returning *",
+      [question, question_en, answer, answer_en, category, category_en, order_index ?? 0, id]
     );
     
     if (!updated) {

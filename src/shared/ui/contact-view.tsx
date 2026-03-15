@@ -108,7 +108,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="p-3 rounded-full bg-secondary-400/30 hover:bg-primary-500 hover:text-white text-text-main transition-all transform hover:scale-110"
-                            title={t('contact.social_facebook')}
+                            title={t('contact.social_facebook' as any)}
                         >
                             <Facebook className="w-6 h-6" />
                         </a>
@@ -117,7 +117,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="p-3 rounded-full bg-secondary-400/30 hover:bg-primary-500 hover:text-white text-text-main transition-all transform hover:scale-110"
-                            title={t('contact.social_instagram')}
+                            title={t('contact.social_instagram' as any)}
                         >
                             <Instagram className="w-6 h-6" />
                         </a>
