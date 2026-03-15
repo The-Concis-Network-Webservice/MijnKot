@@ -83,6 +83,7 @@ export type FaqItem = {
   answer: string;
   answer_en?: string | null;
   category: string;
+  category_en?: string | null;
   order_index: number;
 };
 

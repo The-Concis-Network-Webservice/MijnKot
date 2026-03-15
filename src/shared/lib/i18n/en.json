@@ -98,7 +98,9 @@
         "subject_technical": "Technical Issue",
         "message_label": "Message",
         "message_placeholder": "How can we help?",
-        "submit_button": "Send Message"
+        "submit_button": "Send Message",
+        "social_facebook": "Visit us on Facebook",
+        "social_instagram": "Follow us on Instagram"
     },
     "footer": {
         "tagline": "Quality student housing in Leuven. Trusted by students and families since 1991.",
