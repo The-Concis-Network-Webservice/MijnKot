@@ -88,6 +88,9 @@ export type Dictionary = {
         email_label: string;
         phone_label: string;
         office_label: string;
+        social_facebook: string;
+        social_instagram: string;
+        socials_label: string;
         form_title: string;
         name_label: string;
         name_placeholder: string;

@@ -88,6 +88,9 @@
         "email_label": "Email",
         "phone_label": "Phone",
         "office_label": "Office",
+        "social_facebook": "Visit us on Facebook",
+        "social_instagram": "Follow us on Instagram",
+        "socials_label": "Socials",
         "form_title": "Send us a message",
         "name_label": "Name",
         "name_placeholder": "Your name",
@@ -98,9 +101,7 @@
         "subject_technical": "Technical Issue",
         "message_label": "Message",
         "message_placeholder": "How can we help?",
-        "submit_button": "Send Message",
-        "social_facebook": "Visit us on Facebook",
-        "social_instagram": "Follow us on Instagram"
+        "submit_button": "Send Message"
     },
     "footer": {
         "tagline": "Quality student housing in Leuven. Trusted by students and families since 1991.",
