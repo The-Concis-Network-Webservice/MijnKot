@@ -18,7 +18,10 @@ export function LeadCaptureModal({
     const [step, setStep] = useState<'form' | 'success'>('form');
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [consent, setConsent] = useState(false);
 
     useEffect(() => {
         // Check if user has already seen the modal or submitted
@@ -37,13 +40,29 @@ export function LeadCaptureModal({
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError(null);
+
+        // Optional phone validation: only check if not empty
+        if (phone && phone.trim().length > 0) {
+            const phoneRegex = /^[\d\s\-\+\(\)]{7,20}$/;
+            if (!phoneRegex.test(phone)) {
+                setError('Voer een geldig telefoonnummer in.');
+                return;
+            }
+        }
+
+        if (!consent) {
+            setError('Je moet akkoord gaan met de voorwaarden.');
+            return;
+        }
+
         setLoading(true);
 
         try {
             const res = await fetch('/api/leads', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, name }),
+                body: JSON.stringify({ email, name, phone }),
             });
 
             if (res.ok) {
@@ -105,6 +124,21 @@ export function LeadCaptureModal({
                                 </div>
                                 <div>
                                     <input
+                                        type="tel"
+                                        placeholder="Telefoonnummer (optioneel)"
+                                        value={phone}
+                                        onChange={(e) => {
+                                            setPhone(e.target.value);
+                                            if (error) setError(null);
+                                        }}
+                                        className={`w-full px-4 py-3 rounded-xl border ${error ? 'border-red-500' : 'border-border-light'} focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-secondary-50/50 text-text-main placeholder:text-neutral-400`}
+                                    />
+                                    {error && (
+                                        <p className="mt-1 text-xs text-red-500 ml-1">{error}</p>
+                                    )}
+                                </div>
+                                <div>
+                                    <input
                                         type="email"
                                         required
                                         placeholder="Jouw emailadres"
@@ -112,6 +146,22 @@ export function LeadCaptureModal({
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="w-full px-4 py-3 rounded-xl border border-border-light focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-secondary-50/50 text-text-main placeholder:text-neutral-400"
                                     />
+                                </div>
+
+                                <div className="flex items-start gap-3 px-1">
+                                    <input
+                                        type="checkbox"
+                                        id="gdpr-consent"
+                                        checked={consent}
+                                        onChange={(e) => {
+                                            setConsent(e.target.checked);
+                                            if (error) setError(null);
+                                        }}
+                                        className="mt-1 w-4 h-4 rounded border-border-light text-primary-600 focus:ring-primary-100 transition"
+                                    />
+                                    <label htmlFor="gdpr-consent" className="text-xs text-neutral-500 leading-tight">
+                                        Ik ga akkoord met de verwerking van mijn gegevens en wil graag updates ontvangen. Bekijk onze <a href="/privacy" className="text-primary-600 hover:underline">privacyverklaring</a> voor meer info.
+                                    </label>
                                 </div>
 
                                 <button
