@@ -72,7 +72,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
 
             <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 mb-16">
                 {(settings?.contact_email || siteConfig.company.contact.email) && (
-                    <div className="bg-surface-card border border-border-light rounded-xl p-6 text-center hover:shadow-soft transition-all h-full flex flex-col justify-center items-center group">
+                    <div className="bg-surface-card border border-border-light rounded-xl p-4 sm:p-6 text-center hover:shadow-soft transition-all h-full flex flex-col justify-center items-center group overflow-hidden">
                         <a 
                             href={`mailto:${settings?.contact_email || siteConfig.company.contact.email}`}
                             className="p-3 rounded-full bg-secondary-400/30 group-hover:bg-secondary-500/50 transition-colors mb-3"
@@ -80,13 +80,13 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                             <Mail className="w-6 h-6 text-text-main group-hover:text-primary-500 transition-colors" />
                         </a>
                         <h3 className="font-semibold text-text-main mb-1">{t('contact.email_label')}</h3>
-                        <p className="text-text-main text-xs break-all opacity-80">
+                        <p className="text-text-main text-xs whitespace-nowrap truncate w-full opacity-80" title={settings?.contact_email || siteConfig.company.contact.email}>
                             {settings?.contact_email || siteConfig.company.contact.email}
                         </p>
                     </div>
                 )}
                 {(settings?.contact_address || siteConfig.company.address.street) && (
-                    <div className="bg-surface-card border border-border-light rounded-xl p-6 text-center hover:shadow-soft transition-all h-full flex flex-col justify-center items-center group">
+                    <div className="bg-surface-card border border-border-light rounded-xl p-4 sm:p-6 text-center hover:shadow-soft transition-all h-full flex flex-col justify-center items-center group overflow-hidden">
                         <a 
                             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(settings?.contact_address || `${siteConfig.company.address.street}, ${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`)}`}
                             target="_blank"
@@ -96,8 +96,8 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                             <MapPin className="w-6 h-6 text-text-main group-hover:text-primary-500 transition-colors" />
                         </a>
                         <h3 className="font-semibold text-text-main mb-1">{t('contact.office_label')}</h3>
-                        <p className="text-text-main text-xs whitespace-pre-line opacity-80">
-                            {settings?.contact_address || `${siteConfig.company.address.street}\n${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`}
+                        <p className="text-text-main text-xs opacity-80 whitespace-nowrap truncate w-full" title={settings?.contact_address || `${siteConfig.company.address.street}, ${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`}>
+                            {settings?.contact_address || `${siteConfig.company.address.street}, ${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`}
                         </p>
                     </div>
                 )}
@@ -122,7 +122,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                             <Instagram className="w-6 h-6" />
                         </a>
                     </div>
-                    <h3 className="font-semibold text-text-main">{(t as any)('contact.socials_label')}</h3>
+                    <h3 className="font-semibold text-text-main">{t('contact.socials_label')}</h3>
                 </div>
             </div>
 
