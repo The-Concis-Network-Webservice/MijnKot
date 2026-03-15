@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Facebook, Instagram, Mail, MapPin, CheckCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { siteConfig } from '@/shared/lib/config';
 import type { SiteSettings } from '@/types';
@@ -75,7 +76,7 @@ export function LeadCaptureModal({
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-scale-in">
                 <button
                     onClick={handleClose}
-                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors px-2 py-1 text-sm font-medium"
+                    className="absolute top-4 right-4 text-text-muted hover:text-text-main transition-colors px-2 py-1 text-sm font-medium bg-secondary-100 rounded-lg"
                 >
                     Sluiten
                 </button>
@@ -87,7 +88,7 @@ export function LeadCaptureModal({
                                 <h2 className="text-2xl font-display font-semibold text-text-main mb-2">
                                     {settings?.popup_title || "Als eerste op de hoogte?"}
                                 </h2>
-                                <p className="text-text-secondary leading-relaxed">
+                                <p className="text-neutral-600 leading-relaxed">
                                     {settings?.popup_text || "Meld je aan voor onze lijst en ontvang direct een mailtje zodra er nieuwe koten vrijkomen."}
                                 </p>
                             </div>
@@ -99,7 +100,7 @@ export function LeadCaptureModal({
                                         placeholder="Jouw naam (optioneel)"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
-                                        className="w-full px-4 py-3 rounded-xl border border-border-DEFAULT focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-surface-subtle"
+                                        className="w-full px-4 py-3 rounded-xl border border-border-light focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-secondary-50/50 text-text-main placeholder:text-neutral-400"
                                     />
                                 </div>
                                 <div>
@@ -109,7 +110,7 @@ export function LeadCaptureModal({
                                         placeholder="Jouw emailadres"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full px-4 py-3 rounded-xl border border-border-DEFAULT focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-surface-subtle"
+                                        className="w-full px-4 py-3 rounded-xl border border-border-light focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-secondary-50/50 text-text-main placeholder:text-neutral-400"
                                     />
                                 </div>
 
@@ -127,9 +128,22 @@ export function LeadCaptureModal({
                             </form>
                         </>
                     ) : (
-                        <div className="text-center py-8">
-                            <h3 className="text-xl font-semibold text-text-main mb-2">Aangemeld!</h3>
-                            <p className="text-text-secondary">Check je mailbox, we hebben je alvast een welkom gestuurd.</p>
+                        <div className="text-center py-10 animate-fade-in">
+                            <div className="flex justify-center mb-4">
+                                <div className="p-3 rounded-full bg-green-50">
+                                    <CheckCircle className="w-12 h-12 text-green-500" />
+                                </div>
+                            </div>
+                            <h3 className="text-2xl font-display font-semibold text-text-main mb-3">Aangemeld!</h3>
+                            <p className="text-neutral-600 mb-6 max-w-[280px] mx-auto">
+                                Check je mailbox, we hebben je alvast een welkom gestuurd.
+                            </p>
+                            <button
+                                onClick={handleClose}
+                                className="text-sm font-medium text-text-muted hover:text-text-main transition-colors"
+                            >
+                                Sluiten
+                            </button>
                         </div>
                     )}
                 </div>
