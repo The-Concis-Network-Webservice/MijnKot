@@ -45,3 +45,12 @@ export async function queryOne<T>(
   const result = await stmt.first();
   return (result ?? null) as T | null;
 }
+
+export async function execute(
+  text: string,
+  params: Array<string | number | boolean | null> = []
+) {
+  const db = getDB();
+  const stmt = db.prepare(normalizeSql(text)).bind(...params);
+  return await stmt.run();
+}
