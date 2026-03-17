@@ -21,14 +21,19 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Email and password required." }, { status: 400 });
   }
   const user = await queryOne<UserRow>(
-    "select id, email, password_hash, role from users where email = $1",
+    "select id, email, password_hash, role from users where lower(email) = lower($1)",
     [email]
   );
+
+  console.log(`[LOGIN_DEBUG] User found for ${email}:`, !!user);
+  
   if (!user) {
     return NextResponse.json({ error: "Invalid credentials." }, { status: 401 });
   }
   
+  console.log(`[LOGIN_DEBUG] Stored hash prefix: ${user.password_hash.substring(0, 20)}...`);
   const valid = await verifyPassword(password, user.password_hash);
+  console.log(`[LOGIN_DEBUG] Password valid: ${valid}`);
   
   if (!valid) {
     return NextResponse.json({ error: "Invalid credentials." }, { status: 401 });

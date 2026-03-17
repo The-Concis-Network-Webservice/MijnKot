@@ -3,7 +3,8 @@ import { execSync } from 'child_process';
 const emails = [
   'dominique.noblet@telenet.be',
   'stephane.maniet@gmail.com',
-  'theconcisnetwork@gmail.com'
+  'theconcisnetwork@gmail.com',
+  'plaatsbeschrijvingvanmijnkot@gmail.com'
 ];
 
 // Re-generating hash in Node to be sure
