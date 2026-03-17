@@ -32,8 +32,8 @@ function loadEnv() {
 }
 loadEnv();
 
-const adminEmail = process.env.ADMIN_EMAIL ?? "admin@example.com";
-const adminPassword = process.env.ADMIN_PASSWORD ?? "admin123";
+const adminEmail = process.env.ADMIN_EMAIL;
+const adminPassword = process.env.ADMIN_PASSWORD;
 
 const accountId = process.env.R2_ACCOUNT_ID ?? "";
 const accessKeyId = process.env.R2_ACCESS_KEY_ID ?? "";
@@ -148,11 +148,37 @@ async function main() {
         addSql(`DELETE FROM ${t}`); 
     }
 
-    // Admin
-    const adminId = uuidv4();
-    const hash = await hashPassword(adminPassword);
-    // Since we cleared users, we just insert.
-    addSql(`INSERT INTO users (id, email, full_name, password_hash, role) VALUES ('${adminId}', '${adminEmail}', 'Admin', '${hash}', 'super_admin')`);
+    // Admins
+    const adminAccounts = [
+      { email: 'dominique.noblet@telenet.be', name: 'Dominique Noblet' },
+      { email: 'stephane.maniet@gmail.com', name: 'Stephane Maniet' },
+      { email: 'theconcisnetwork@gmail.com', name: 'The Concis Network' }
+    ];
+    
+    // Using the verified clean hash for 'MijnKot2026!'
+    const cleanHash = '100000:GRymaBy+Tvrs2d2c3q/VCw==:4QH2TX9MKZZEoZLUs1FNtjpPRzGG3MyO2GlUwl04rO3Y=';
+    
+    for (const acc of adminAccounts) {
+      addSql(`INSERT INTO users (id, email, full_name, password_hash, role) VALUES ('${uuidv4()}', '${acc.email}', '${acc.name}', '${cleanHash}', 'super_admin')`);
+    }
+    
+    // We'll use the first one as the 'primary' admin for linking vestigingen
+    const adminId = (await new Promise(resolve => {
+        // This is a bit tricky because we're just generating SQL strings.
+        // We'll just use a fixed UUID for the first one for simplicity in linking.
+        resolve('admin-1-uuid');
+    }));
+    // Re-inserting the first one with fixed ID for linking
+    sqlCommands.pop(); // Remove the last one
+    sqlCommands.pop(); // Remove second
+    sqlCommands.pop(); // Remove first
+    
+    const firstAdminId = uuidv4();
+    addSql(`INSERT INTO users (id, email, full_name, password_hash, role) VALUES ('${firstAdminId}', '${adminAccounts[0].email}', '${adminAccounts[0].name}', '${cleanHash}', 'super_admin')`);
+    addSql(`INSERT INTO users (id, email, full_name, password_hash, role) VALUES ('${uuidv4()}', '${adminAccounts[1].email}', '${adminAccounts[1].name}', '${cleanHash}', 'super_admin')`);
+    addSql(`INSERT INTO users (id, email, full_name, password_hash, role) VALUES ('${uuidv4()}', '${adminAccounts[2].email}', '${adminAccounts[2].name}', '${cleanHash}', 'super_admin')`);
+    
+    const mainAdminId = firstAdminId;
     
     // Site Settings
     const settingsId = uuidv4();
@@ -212,7 +238,7 @@ async function main() {
         addSql(`INSERT INTO vestigingen (id, name, address, city, postal_code, description, description_en) VALUES ('${vid}', ${escapeSql(v.name)}, ${escapeSql(v.address)}, ${escapeSql(v.city)}, ${escapeSql(v.postal_code)}, ${escapeSql(v.description)}, ${escapeSql(v.description_en)})`);
         // Link to admin
         const uvId = uuidv4();
-        addSql(`INSERT INTO user_vestigingen (id, user_id, vestiging_id) VALUES ('${uvId}', '${adminId}', '${vid}')`);
+        addSql(`INSERT INTO user_vestigingen (id, user_id, vestiging_id) VALUES ('${uvId}', '${mainAdminId}', '${vid}')`);
     }
 
     // Koten

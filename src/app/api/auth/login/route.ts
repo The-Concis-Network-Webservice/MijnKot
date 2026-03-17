@@ -14,7 +14,9 @@ type UserRow = {
 };
 
 export async function POST(request: Request) {
-  const { email, password } = await request.json();
+  const { email: rawEmail, password } = await request.json();
+  const email = rawEmail?.trim();
+  
   if (!email || !password) {
     return NextResponse.json({ error: "Email and password required." }, { status: 400 });
   }
@@ -25,10 +27,14 @@ export async function POST(request: Request) {
   if (!user) {
     return NextResponse.json({ error: "Invalid credentials." }, { status: 401 });
   }
+  
   const valid = await verifyPassword(password, user.password_hash);
+  
   if (!valid) {
     return NextResponse.json({ error: "Invalid credentials." }, { status: 401 });
   }
+  
+  console.log(`[LOGIN_DEBUG] Login successful for: ${email}`);
   const token = await createSession({
     id: user.id,
     email: user.email,

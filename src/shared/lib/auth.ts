@@ -68,7 +68,7 @@ export async function verifyPassword(
   storedHash: string
 ): Promise<boolean> {
   try {
-    const parts = storedHash.split(":");
+    const parts = storedHash.trim().split(":");
 
     // Check if it's our new format (iterations:salt:hash)
     if (parts.length === 3) {
@@ -88,7 +88,6 @@ export async function verifyPassword(
     }
 
     // Fallback: if it's an old bcrypt hash, we can't verify it in Edge Runtime
-    // You'll need to migrate existing passwords or use a different approach
     console.warn("Legacy bcrypt hash detected - cannot verify in Edge Runtime");
     return false;
   } catch (error) {
