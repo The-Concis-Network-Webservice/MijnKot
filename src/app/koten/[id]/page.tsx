@@ -37,36 +37,42 @@ export default async function KotDetailPage({
     [kot.id]
   );
 
+  const kotUrl = `${siteConfig.company.url}/koten/${kot.id}`;
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Apartment",
-    "name": kot.title,
-    "description": kot.description,
-    "image": photos?.map(p => p.image_url) || [],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": vestiging?.address,
-      "addressLocality": vestiging?.city,
-      "postalCode": vestiging?.postal_code,
-      "addressCountry": "BE"
-    },
-    "geo": { // If we had lat/long, we'd put it here.
-      "@type": "GeoCoordinates",
-      "latitude": 51.05, // Placeholder or remove if strictly unknown
-      "longitude": 3.73
-    },
-    "numberOfRooms": 1,
-    "floorSize": {
-      "@type": "QuantitativeValue",
-      "value": 20, // Example, ideally dynamic
-      "unitCode": "MTK"
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": kot.price,
-      "priceCurrency": "EUR",
-      "availability": kot.availability_status === 'available' ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
-    }
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "name": kot.title,
+        "description": kot.description,
+        "url": kotUrl,
+        "image": photos?.map(p => p.image_url) || [],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": vestiging?.address,
+          "addressLocality": vestiging?.city,
+          "postalCode": vestiging?.postal_code,
+          "addressCountry": "BE"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": kot.price,
+          "priceCurrency": "EUR",
+          "availability": kot.availability_status === 'available'
+            ? "https://schema.org/InStock"
+            : "https://schema.org/OutOfStock"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.company.url },
+          { "@type": "ListItem", "position": 2, "name": "Koten", "item": `${siteConfig.company.url}/koten` },
+          { "@type": "ListItem", "position": 3, "name": kot.title, "item": kotUrl },
+        ]
+      }
+    ]
   };
 
   return (

@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
+import { siteConfig } from "@/shared/lib/config";
 import { getLatestKoten, getSiteSettings, getVestigingen } from "@/shared/lib/queries";
+
+export const metadata: Metadata = {
+  title: `${siteConfig.company.name} | Studentenkoten in Leuven`,
+  description: `Op zoek naar een studentenkot in Leuven? Mijn-Kot biedt kwalitatieve kamers en studio's in het centrum en Heverlee. Eerlijke prijs, direct contact met eigenaar. Bekijk ons aanbod.`,
+  alternates: { canonical: siteConfig.company.url },
+  openGraph: {
+    title: `${siteConfig.company.name} | Studentenkoten in Leuven`,
+    description: `Kwalitatieve studentenkoten en studio's in Leuven. Eerlijke prijs, direct contact met eigenaar.`,
+    type: 'website',
+    url: siteConfig.company.url,
+  },
+};
 import { KotCard } from "@/shared/ui/kot-card";
 import { VestigingCard } from "@/shared/ui/vestiging-card";
 import { HeroSection } from "@/shared/ui/hero-section";

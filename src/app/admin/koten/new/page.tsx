@@ -5,10 +5,11 @@ import { useRouter } from "next/navigation";
 import { AdminGuard } from "../../_components/admin-guard";
 import { AdminShell } from "../../_components/admin-shell";
 import { PageHeader } from "../../_components/page-header";
+import { PhotoManager } from "../../_components/photo-manager";
 import { useToast } from "../../_components/toast";
 import { useAdmin } from "../../AdminProvider";
 import { RichTextEditor } from "../../_components/rich-text-editor";
-import type { Vestiging, RentType } from "@/types";
+import type { Vestiging, RentType, KotPhoto } from "@/types";
 
 export default function AdminKotCreatePage() {
   const router = useRouter();
@@ -27,6 +28,8 @@ export default function AdminKotCreatePage() {
   const [rentTypes, setRentTypes] = useState<RentType[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [createdKotId, setCreatedKotId] = useState<string | null>(null);
+  const [photos, setPhotos] = useState<KotPhoto[]>([]);
   const { push } = useToast();
 
   useEffect(() => {
@@ -69,10 +72,16 @@ export default function AdminKotCreatePage() {
     if (!res.ok) {
       setError(payload.error ?? "Failed to create kot.");
     } else if (payload.data?.id) {
-      push("Kot created.");
-      router.push(`/admin/koten/${payload.data.id}`);
+      push("Kot created. Add photos below.");
+      setCreatedKotId(payload.data.id);
     }
     setLoading(false);
+  };
+
+  const loadPhotos = async (kotId: string) => {
+    const res = await fetch(`/api/cms/kot-photos?kot_id=${kotId}`);
+    const payload = await res.json();
+    setPhotos(payload.data ?? []);
   };
 
   return (
@@ -204,12 +213,31 @@ export default function AdminKotCreatePage() {
             {error ? <p className="text-sm text-red-500">{error}</p> : null}
             <button
               className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-6 py-2.5 rounded-lg font-medium shadow-sm w-full md:w-auto"
-              disabled={loading}
+              disabled={loading || !!createdKotId}
               type="submit"
             >
               {loading ? "Creating..." : "Create kot"}
             </button>
           </form>
+
+          {createdKotId && (
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="font-semibold text-lg">Photos</h2>
+                <button
+                  className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-4 py-2 rounded-lg text-sm font-medium"
+                  onClick={() => router.push(`/admin/koten/${createdKotId}`)}
+                >
+                  Done — go to kot
+                </button>
+              </div>
+              <PhotoManager
+                kotId={createdKotId}
+                photos={photos}
+                onChange={() => loadPhotos(createdKotId)}
+              />
+            </div>
+          )}
         </div>
       </AdminShell>
     </AdminGuard>
