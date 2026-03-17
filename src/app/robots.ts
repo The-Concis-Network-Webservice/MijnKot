@@ -1,12 +1,13 @@
 import { MetadataRoute } from 'next';
+import { siteConfig } from "@/shared/lib/config";
 
 export default function robots(): MetadataRoute.Robots {
     return {
         rules: {
             userAgent: '*',
             allow: '/',
-            disallow: '/admin/',
+            disallow: ['/admin/', '/sign/'],
         },
-        sitemap: 'https://mijn-kot.be/sitemap.xml', // Replace with real domain
+        sitemap: `${siteConfig.company.url}/sitemap.xml`,
     };
 }
