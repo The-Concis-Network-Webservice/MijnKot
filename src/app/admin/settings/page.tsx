@@ -60,37 +60,45 @@ export default function AdminSettingsPage() {
   const saveSettings = async () => {
     setLoading(true);
     setError(null);
-    const payload = {
-      hero_title: settings.hero_title,
-      hero_subtitle: settings.hero_subtitle,
-      hero_cta_label: settings.hero_cta_label,
-      hero_cta_href: settings.hero_cta_href,
-      contact_email: settings.contact_email,
-      contact_phone: settings.contact_phone,
-      contact_address: settings.contact_address,
-      company_name: settings.company_name,
-      company_legal_name: settings.company_legal_name,
-      notice_active: settings.notice_active,
-      notice_text: settings.notice_text,
-      popup_active: settings.popup_active,
-      popup_title: settings.popup_title,
-      popup_text: settings.popup_text
-    };
-    const res = await fetch("/api/cms/settings", {
-      method: settings.id ? "PATCH" : "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(settings.id ? { id: settings.id, ...payload } : payload)
-    });
-    const response = await res.json();
-    if (!res.ok) {
-      setError(response.error ?? "Failed to save settings.");
-    } else {
-      await loadSettings();
-      push("Settings updated.");
+    try {
+      const payload = {
+        hero_title: settings.hero_title,
+        hero_subtitle: settings.hero_subtitle,
+        hero_cta_label: settings.hero_cta_label,
+        hero_cta_href: settings.hero_cta_href,
+        contact_email: settings.contact_email,
+        contact_phone: settings.contact_phone,
+        contact_address: settings.contact_address,
+        company_name: settings.company_name,
+        company_legal_name: settings.company_legal_name,
+        notice_active: settings.notice_active,
+        notice_text: settings.notice_text,
+        popup_active: settings.popup_active,
+        popup_title: settings.popup_title,
+        popup_text: settings.popup_text
+      };
+      const res = await fetch("/api/cms/settings", {
+        method: settings.id ? "PATCH" : "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(settings.id ? { id: settings.id, ...payload } : payload)
+      });
+      
+      const response = await res.json().catch(() => ({ error: "Failed to parse server response" }));
+      
+      if (!res.ok) {
+        setError(response.error ?? "Failed to save settings.");
+      } else {
+        await loadSettings();
+        push("Settings updated.");
+      }
+    } catch (err: any) {
+      console.error("Save error:", err);
+      setError("A network error occurred. Please try again.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const addRentType = async () => {

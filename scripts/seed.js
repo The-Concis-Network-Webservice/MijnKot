@@ -33,8 +33,8 @@ loadEnv();
 
 const dbPath =
   process.env.DB_PATH ?? path.join(__dirname, "..", "db", "local.sqlite");
-const adminEmail = process.env.ADMIN_EMAIL ?? "admin@example.com";
-const adminPassword = process.env.ADMIN_PASSWORD ?? "admin123";
+const adminEmail = process.env.ADMIN_EMAIL;
+const adminPassword = process.env.ADMIN_PASSWORD;
 
 const accountId = process.env.R2_ACCOUNT_ID ?? "";
 const accessKeyId = process.env.R2_ACCESS_KEY_ID ?? "";
