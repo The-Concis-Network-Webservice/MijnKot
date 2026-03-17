@@ -9,6 +9,7 @@ import { PageHeader } from "../_components/page-header";
 import { useToast } from "../_components/toast";
 import { canManageVestigingen } from "@/shared/lib/cms/permissions";
 import { useAdmin } from "../AdminProvider";
+import { RichTextEditor } from "../_components/rich-text-editor";
 import type { Vestiging } from "@/types";
 
 const emptyForm = {
@@ -241,17 +242,19 @@ export default function AdminVestigingenPage() {
                       </div>
                     )}
                   </div>
+<<<<<<< HEAD
+=======
                 </div>
-                <textarea
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  placeholder="Description"
-                  value={form.description}
-                  onChange={(event) =>
-                    setForm({ ...form, description: event.target.value })
-                  }
-                  required
-                  rows={4}
-                />
+                <div className="space-y-1">
+                  <label className="text-sm font-medium text-text-muted">Description</label>
+                  <RichTextEditor
+                    placeholder="Description"
+                    value={form.description}
+                    onChange={(value) => setForm({ ...form, description: value })}
+                    minHeight="200px"
+                  />
+>>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
+                </div>
                 {error ? <p className="text-sm text-red-500">{error}</p> : null}
                 <button
                   className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-6 py-2 rounded-lg font-semibold shadow-soft active:scale-95"

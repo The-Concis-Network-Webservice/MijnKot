@@ -10,6 +10,7 @@ import { useToast } from "../../_components/toast";
 import { canEditContent } from "@/shared/lib/cms/permissions";
 import { useAdmin } from "../../AdminProvider";
 import type { Kot, Vestiging } from "@/types";
+import { RichTextEditor } from "../../_components/rich-text-editor";
 
 export default function AdminVestigingDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -205,6 +206,7 @@ export default function AdminVestigingDetailPage() {
                     }
                   />
                 </div>
+<<<<<<< HEAD
                 <textarea
                   className="border border-gray-200 rounded-lg px-3 py-2 w-full"
                   rows={4}
@@ -216,6 +218,21 @@ export default function AdminVestigingDetailPage() {
                     })
                   }
                 />
+=======
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Description (Markdown)</label>
+                  <RichTextEditor
+                    value={vestiging.description}
+                    onChange={(val) =>
+                      setVestiging({
+                        ...vestiging,
+                        description: val
+                      })
+                    }
+                    placeholder="Describe this location..."
+                  />
+                </div>
+>>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">Image</label>
                   <div className="flex gap-4 items-center">
@@ -248,7 +265,11 @@ export default function AdminVestigingDetailPage() {
                     />
                   </div>
                   {vestiging.image_url && (
+<<<<<<< HEAD
                     <div className="mt-2 w-full max-w-sm h-48 rounded-lg overflow-hidden border border-gray-100">
+=======
+                    <div className="mt-2 w-full max-w-2xl aspect-video rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+>>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
                       <img src={vestiging.image_url} className="w-full h-full object-cover" alt="Preview" />
                     </div>
                   )}
@@ -280,16 +301,16 @@ export default function AdminVestigingDetailPage() {
                   }
                   required
                 />
-                <textarea
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  placeholder="Description"
-                  rows={4}
-                  value={kotForm.description}
-                  onChange={(event) =>
-                    setKotForm({ ...kotForm, description: event.target.value })
-                  }
-                  required
-                />
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Description (Markdown)</label>
+                  <RichTextEditor
+                    value={kotForm.description}
+                    onChange={(val) =>
+                      setKotForm({ ...kotForm, description: val })
+                    }
+                    placeholder="Describe this room..."
+                  />
+                </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
@@ -332,8 +353,8 @@ export default function AdminVestigingDetailPage() {
                   </select>
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
-                    type="datetime-local"
-                    value={kotForm.scheduled_publish_at}
+                    type="date"
+                    value={kotForm.scheduled_publish_at ? kotForm.scheduled_publish_at.split('T')[0] : ''}
                     onChange={(event) =>
                       setKotForm({
                         ...kotForm,

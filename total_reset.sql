@@ -24,7 +24,10 @@ CREATE TABLE users (
   role text not null check (role in ('super_admin','admin','editor','viewer')) default 'viewer',
   created_at text not null default (datetime('now'))
 );
+<<<<<<< HEAD
 INSERT INTO "users" VALUES('c4fbeb8a-6a2a-4f9c-b329-9acb39a42eff','admin@example.com','Admin','100000:wif2z/0o4DEyxrgluAo5aQ==:xHP+XPdyKQ0rDtzd+t36HHeO55k5rlqk3FozVxXVMoc=','super_admin','2026-02-23 09:38:37');
+=======
+>>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
 CREATE TABLE vestigingen (
   id text primary key default (lower(hex(randomblob(16)))),
   name text not null,

@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import { AdminGuard } from "../../_components/admin-guard";
 import { AdminShell } from "../../_components/admin-shell";
 import { PageHeader } from "../../_components/page-header";
+import { PhotoManager } from "../../_components/photo-manager";
 import { useToast } from "../../_components/toast";
 import { useAdmin } from "../../AdminProvider";
-import type { Vestiging } from "@/types";
+import { RichTextEditor } from "../../_components/rich-text-editor";
+import type { Vestiging, RentType, KotPhoto } from "@/types";
 
 export default function AdminKotCreatePage() {
   const router = useRouter();
@@ -20,16 +22,24 @@ export default function AdminKotCreatePage() {
     price: "",
     availability_status: "available",
     status: "draft",
-    scheduled_publish_at: ""
+    scheduled_publish_at: "",
+    rent_type_ids: [] as string[]
   });
+  const [rentTypes, setRentTypes] = useState<RentType[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [createdKotId, setCreatedKotId] = useState<string | null>(null);
+  const [photos, setPhotos] = useState<KotPhoto[]>([]);
   const { push } = useToast();
 
   useEffect(() => {
     fetch("/api/cms/vestigingen")
       .then((res) => res.json())
       .then((payload) => setVestigingen(payload.data ?? []));
+
+    fetch("/api/cms/rent-types")
+      .then((res) => res.json())
+      .then((payload) => setRentTypes(payload.data ?? []));
   }, []);
 
   useEffect(() => {
@@ -54,17 +64,24 @@ export default function AdminKotCreatePage() {
         price: Number(form.price),
         availability_status: form.availability_status,
         status: form.status,
-        scheduled_publish_at: form.scheduled_publish_at || null
+        scheduled_publish_at: form.scheduled_publish_at || null,
+        rent_type_ids: form.rent_type_ids
       })
     });
     const payload = await res.json();
     if (!res.ok) {
       setError(payload.error ?? "Failed to create kot.");
     } else if (payload.data?.id) {
-      push("Kot created.");
-      router.push(`/admin/koten/${payload.data.id}`);
+      push("Kot created. Add photos below.");
+      setCreatedKotId(payload.data.id);
     }
     setLoading(false);
+  };
+
+  const loadPhotos = async (kotId: string) => {
+    const res = await fetch(`/api/cms/kot-photos?kot_id=${kotId}`);
+    const payload = await res.json();
+    setPhotos(payload.data ?? []);
   };
 
   return (
@@ -107,6 +124,7 @@ export default function AdminKotCreatePage() {
               }
               required
             />
+<<<<<<< HEAD
             <textarea
               className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main min-h-[150px]"
               placeholder="Description"
@@ -117,6 +135,42 @@ export default function AdminKotCreatePage() {
               }
               required
             />
+=======
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-text-muted ml-1">Description</label>
+              <RichTextEditor
+                placeholder="Description"
+                value={form.description}
+                onChange={(value) => setForm({ ...form, description: value })}
+                minHeight="250px"
+              />
+            </div>
+
+            <div className="space-y-3">
+              <label className="text-sm font-semibold block italic text-text-muted">Categorieën (Te Huur filters)</label>
+              <div className="flex flex-wrap gap-4">
+                {rentTypes.map((rt) => (
+                  <label key={rt.id} className="flex items-center gap-2 cursor-pointer bg-surface-subtle px-3 py-1.5 rounded-lg border border-border-light hover:border-primary-300 transition-colors">
+                    <input
+                      type="checkbox"
+                      checked={form.rent_type_ids.includes(rt.id)}
+                      onChange={(e) => {
+                        const ids = form.rent_type_ids;
+                        if (e.target.checked) {
+                          setForm({ ...form, rent_type_ids: [...ids, rt.id] });
+                        } else {
+                          setForm({ ...form, rent_type_ids: ids.filter(id => id !== rt.id) });
+                        }
+                      }}
+                      className="rounded text-primary-500 focus:ring-primary-500"
+                    />
+                    <span className="text-sm font-medium">{rt.name}</span>
+                  </label>
+                ))}
+                {rentTypes.length === 0 && <p className="text-sm text-text-muted italic">No categories defined. Add them in settings.</p>}
+              </div>
+            </div>
+>>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
             <div className="grid md:grid-cols-2 gap-4">
               <input
                 className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
@@ -159,8 +213,13 @@ export default function AdminKotCreatePage() {
               </select>
               <input
                 className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
+<<<<<<< HEAD
                 type="datetime-local"
                 value={form.scheduled_publish_at}
+=======
+                type="date"
+                value={form.scheduled_publish_at ? form.scheduled_publish_at.split('T')[0] : ''}
+>>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
                 onChange={(event) =>
                   setForm({
                     ...form,
@@ -172,12 +231,35 @@ export default function AdminKotCreatePage() {
             {error ? <p className="text-sm text-red-500">{error}</p> : null}
             <button
               className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-6 py-2.5 rounded-lg font-medium shadow-sm w-full md:w-auto"
+<<<<<<< HEAD
               disabled={loading}
+=======
+              disabled={loading || !!createdKotId}
+>>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
               type="submit"
             >
               {loading ? "Creating..." : "Create kot"}
             </button>
           </form>
+
+          {createdKotId && (
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="font-semibold text-lg">Photos</h2>
+                <button
+                  className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-4 py-2 rounded-lg text-sm font-medium"
+                  onClick={() => router.push(`/admin/koten/${createdKotId}`)}
+                >
+                  Done — go to kot
+                </button>
+              </div>
+              <PhotoManager
+                kotId={createdKotId}
+                photos={photos}
+                onChange={() => loadPhotos(createdKotId)}
+              />
+            </div>
+          )}
         </div>
       </AdminShell>
     </AdminGuard>

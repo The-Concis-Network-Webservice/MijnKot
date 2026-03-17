@@ -14,6 +14,16 @@ export type Vestiging = {
 
 export type KotStatus = "draft" | "scheduled" | "published" | "archived";
 
+export type RentType = {
+  id: string;
+  name: string;
+  name_en?: string | null;
+  slug: string;
+  order_index: number;
+  created_at: string;
+  updated_at: string;
+};
+
 export type Kot = {
   id: string;
   vestiging_id: string;
@@ -25,7 +35,7 @@ export type Kot = {
   description_polished?: string | null;
   price: number;
   image_url?: string | null;
-  availability_status: "available" | "reserved" | "rented" | "hidden"; // Updated to match union type if rigid or just string
+  availability_status: "available" | "reserved" | "rented" | "hidden";
   status: KotStatus;
   is_highlighted?: boolean | number;
   scheduled_publish_at?: string | null;
@@ -33,6 +43,8 @@ export type Kot = {
   archived_at?: string | null;
   created_at: string;
   updated_at: string;
+  rent_types?: RentType[];
+  rent_type_ids?: string[];
 };
 
 export type KotPhoto = {
@@ -57,6 +69,14 @@ export type SiteSettings = {
   contact_address: string;
   company_name: string;
   company_legal_name: string;
+<<<<<<< HEAD
+=======
+  notice_active?: boolean;
+  notice_text?: string;
+  popup_active?: boolean;
+  popup_title?: string;
+  popup_text?: string;
+>>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
 };
 
 export type FaqItem = {
@@ -66,6 +86,7 @@ export type FaqItem = {
   answer: string;
   answer_en?: string | null;
   category: string;
+  category_en?: string | null;
   order_index: number;
 };
 

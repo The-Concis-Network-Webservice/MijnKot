@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import { generateContactEmailHtml } from '@/shared/emails/contact-template';
 import { siteConfig } from '@/shared/lib/config';
+<<<<<<< HEAD
+=======
+import { getSiteSettings } from '@/shared/lib/queries';
+>>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
 
 export const runtime = 'edge';
 
@@ -33,7 +37,12 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
         }
 
+<<<<<<< HEAD
         const toEmail = process.env.CONTACT_EMAIL || siteConfig.company.contact.email;
+=======
+        const settings = await getSiteSettings();
+        const toEmail = settings.contact_email || process.env.CONTACT_EMAIL || siteConfig.company.contact.email;
+>>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
         console.log(`Sending email to: ${toEmail}`);
 
         const res = await fetch('https://api.resend.com/emails', {
