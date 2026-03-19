@@ -8,7 +8,7 @@ import { PhotoManager } from "../../_components/photo-manager";
 import { PageHeader } from "../../_components/page-header";
 import { useToast } from "../../_components/toast";
 import { AITextPolisher } from "@/shared/ui/ai-text-polisher";
-import type { AvailabilityHistory, Kot, KotPhoto, Vestiging } from "@/types";
+import type { AvailabilityHistory, Kot, KotPhoto, RentType, Vestiging } from "@/types";
 
 type KotWithPhotos = Kot & { kot_photos?: KotPhoto[]; vestigingen?: Vestiging };
 
@@ -16,6 +16,8 @@ export default function AdminKotDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [kot, setKot] = useState<KotWithPhotos | null>(null);
   const [history, setHistory] = useState<AvailabilityHistory[]>([]);
+  const [allRentTypes, setAllRentTypes] = useState<RentType[]>([]);
+  const [kotRentTypeIds, setKotRentTypeIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { push } = useToast();
@@ -45,8 +47,33 @@ export default function AdminKotDetailPage() {
     setHistory(historyPayload.data ?? []);
   };
 
+  const loadRentTypes = async () => {
+    const [allRes, kotRes] = await Promise.all([
+      fetch("/api/cms/rent-types"),
+      fetch(`/api/cms/koten/rent-types?kot_id=${id}`)
+    ]);
+    const allPayload = await allRes.json();
+    const kotPayload = await kotRes.json();
+    setAllRentTypes(allPayload.data ?? []);
+    setKotRentTypeIds(kotPayload.data ?? []);
+  };
+
+  const toggleRentType = async (rentTypeId: string, checked: boolean) => {
+    const res = await fetch("/api/cms/koten/rent-types", {
+      method: checked ? "POST" : "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ kot_id: id, rent_type_id: rentTypeId })
+    });
+    if (res.ok) {
+      setKotRentTypeIds(prev => checked ? [...prev, rentTypeId] : prev.filter(x => x !== rentTypeId));
+    } else {
+      push("Failed to update rent type.", "error");
+    }
+  };
+
   useEffect(() => {
     loadKot();
+    loadRentTypes();
   }, [id]);
 
   const updateKot = async () => {
@@ -283,6 +310,27 @@ export default function AdminKotDetailPage() {
               </>
             ) : (
               <p className="text-sm text-text-muted">Loading kot...</p>
+            )}
+          </section>
+
+          <section className="bg-white border border-gray-200 rounded-2xl p-6">
+            <h2 className="font-semibold text-lg mb-4">Huurtype</h2>
+            {allRentTypes.length === 0 ? (
+              <p className="text-sm text-text-muted">Geen huurtypen gevonden. Voeg ze toe via Settings → Categories.</p>
+            ) : (
+              <div className="flex flex-wrap gap-3">
+                {allRentTypes.map(rt => (
+                  <label key={rt.id} className="flex items-center gap-2 cursor-pointer px-4 py-2 rounded-lg border border-border-DEFAULT hover:border-primary-300 transition-colors">
+                    <input
+                      type="checkbox"
+                      checked={kotRentTypeIds.includes(rt.id)}
+                      onChange={e => toggleRentType(rt.id, e.target.checked)}
+                      className="rounded text-primary-500 focus:ring-primary-500"
+                    />
+                    <span className="text-sm font-medium">{rt.name}</span>
+                  </label>
+                ))}
+              </div>
             )}
           </section>
 

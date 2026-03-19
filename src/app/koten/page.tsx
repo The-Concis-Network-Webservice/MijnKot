@@ -1,6 +1,6 @@
-import { getAllKoten, getVestigingen } from "@/shared/lib/queries";
+import { getAllKoten, getVestigingen, getRentTypes } from "@/shared/lib/queries";
 import { KotCard } from "@/shared/ui/kot-card";
-import { OverviewHeader, OverviewEmptyState, LocationFilter } from "@/shared/ui/overview-components";
+import { OverviewHeader, OverviewEmptyState, LocationFilter, RentTypeFilter } from "@/shared/ui/overview-components";
 
 export const runtime = 'edge';
 export const dynamic = 'force-dynamic';
@@ -10,9 +10,10 @@ export default async function KotenPage({
 }: {
     searchParams: { vestiging?: string; type?: string };
 }) {
-    const [allKoten, vestigingen] = await Promise.all([
-        getAllKoten(),
+    const [allKoten, vestigingen, rentTypes] = await Promise.all([
+        getAllKoten(searchParams.type),
         getVestigingen(),
+        getRentTypes(),
     ]);
 
     let filteredKoten = allKoten;
@@ -25,10 +26,18 @@ export default async function KotenPage({
         <div>
             <OverviewHeader
                 filterButtons={
-                    <LocationFilter
-                        vestigingen={vestigingen}
-                        currentVestiging={searchParams.vestiging}
-                    />
+                    <>
+                        <LocationFilter
+                            vestigingen={vestigingen}
+                            currentVestiging={searchParams.vestiging}
+                            currentType={searchParams.type}
+                        />
+                        <RentTypeFilter
+                            rentTypes={rentTypes}
+                            currentType={searchParams.type}
+                            currentVestiging={searchParams.vestiging}
+                        />
+                    </>
                 }
             />
 

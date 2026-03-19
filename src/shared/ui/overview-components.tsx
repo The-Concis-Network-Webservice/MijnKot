@@ -3,12 +3,15 @@
 import { useTranslation } from 'react-i18next';
 import { SectionHeader } from "./section-header";
 
+const activeBtn = 'bg-primary-600 text-white shadow-sm';
+const inactiveBtn = 'bg-white border border-border-light text-text-secondary hover:border-primary-400 hover:text-primary-600 hover:bg-white';
+const btn = `px-5 py-2 rounded-xl text-sm font-medium transition-all duration-150`;
+
 type OverviewHeaderProps = {
     filterButtons: React.ReactNode;
 };
 
 export function OverviewHeader({ filterButtons }: OverviewHeaderProps) {
-    const { t } = useTranslation();
 
     return (
         <div className="bg-surface-subtle py-16">
@@ -35,27 +38,59 @@ export function OverviewEmptyState() {
     );
 }
 
-type LocationFilterProps = {
-    vestigingen: Array<{ id: string; name: string }>;
+type RentTypeFilterProps = {
+    rentTypes: Array<{ id: string; name: string; slug: string }>;
+    currentType?: string;
     currentVestiging?: string;
 };
 
-export function LocationFilter({ vestigingen, currentVestiging }: LocationFilterProps) {
+export function RentTypeFilter({ rentTypes, currentType, currentVestiging }: RentTypeFilterProps) {
+    if (rentTypes.length === 0) return null;
+    const vestigingParam = currentVestiging ? `&vestiging=${currentVestiging}` : '';
+    return (
+        <div className="flex flex-wrap items-center gap-2 mt-3">
+            <a
+                href={`/koten${currentVestiging ? `?vestiging=${currentVestiging}` : ''}`}
+                className={`${btn} ${!currentType ? activeBtn : inactiveBtn}`}
+            >
+                Alle
+            </a>
+            {rentTypes.map(rt => (
+                <a
+                    key={rt.id}
+                    href={`/koten?type=${rt.slug}${vestigingParam}`}
+                    className={`${btn} ${currentType === rt.slug ? activeBtn : inactiveBtn}`}
+                >
+                    {rt.name}
+                </a>
+            ))}
+        </div>
+    );
+}
+
+type LocationFilterProps = {
+    vestigingen: Array<{ id: string; name: string }>;
+    currentVestiging?: string;
+    currentType?: string;
+};
+
+export function LocationFilter({ vestigingen, currentVestiging, currentType }: LocationFilterProps) {
     const { t } = useTranslation();
+    const typeParam = currentType ? `?type=${currentType}` : '';
 
     return (
-        <div className="flex flex-wrap gap-3 mb-12">
+        <div className="flex flex-wrap items-center gap-2 mb-2">
             <a
-                href="/koten"
-                className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${!currentVestiging ? 'bg-primary-500 text-white shadow-soft' : 'bg-surface-card border border-border-DEFAULT text-text-secondary hover:border-primary-300'}`}
+                href={`/koten${typeParam}`}
+                className={`${btn} ${!currentVestiging ? activeBtn : inactiveBtn}`}
             >
                 {t('overview.all_locations')}
             </a>
             {vestigingen.map(v => (
                 <a
                     key={v.id}
-                    href={`/koten?vestiging=${v.id}`}
-                    className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${currentVestiging === v.id ? 'bg-primary-500 text-white shadow-soft' : 'bg-surface-card border border-border-DEFAULT text-text-secondary hover:border-primary-300'}`}
+                    href={`/koten?vestiging=${v.id}${currentType ? `&type=${currentType}` : ''}`}
+                    className={`${btn} ${currentVestiging === v.id ? activeBtn : inactiveBtn}`}
                 >
                     {v.name}
                 </a>

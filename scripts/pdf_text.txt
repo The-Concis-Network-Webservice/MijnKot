@@ -1,0 +1,8213 @@
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIVO -1
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_01
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+-2,18
+H o.b. 208cm
+H 222cm 
+afkasting in gyproc (balk?)
+Naamsestraat
+116
+ 
+16 
+933
+316
+344
+427
+632
+bestaande
+	rioleringsaansluiting
+opp = 28,6m²
+GEMEENSCHAPPELIJKE RUIMTE
+opp = 27,46m²
+KELDER
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+RWA
+RWA
+RWA
+RWA
+RWA
+RWA
+RWA
+aanzuigleiding regenwater
+aanzuigleiding regenwater
+RWA
+aanzuigleiding regenwater
+aanzuigleiding regenwater
+infiltratievoorziening
+4,67m²
+1170 liter
+regenwaterput 5000l
+regenwaterput 5000l
+bestaande
+	rioleringsaansluiting
+bestaande
+	rioleringsaansluiting
+bestaande afvoer
+lijngoot
+lijngoot
+27,81 m²
+Dit plan is een bijlage bij het advies van de dienst wonen dat
+werd uitgebracht in functie van de woonkwaliteit binnen deze
+aanvraag tot omgevingsvergunning.
+Het betreft dus geen vergund plan.
+Elektronisch ondertekend document, blz. 1 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 1 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIVO -1 - brandweer
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_01
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+-2,18
+H o.b. 208cm
+H 222cm 
+afkasting in gyproc (balk?)
+75
+80
+Naamsestraat
+EI30 Z
+116
+ 
+16 
+933
+316
+344
+427
+632
+bestaande
+	rioleringsaansluiting
+opp = 28,6m²
+GEMEENSCHAPPELIJKE RUIMTE
+opp = 27,46m²
+KELDER
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+Elektronisch ondertekend document, blz. 2 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 2 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+ACHTERGEVEL - GEVEL 4
+nieuwe toestand
+BA_NAAMSE 29-31_G_N_03
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+29A/0101
+29A/0208
+BW 104
+	Ro 121
+buur
+31/0107
+31/0106
+19
+269
+7
+26
+272
+33
+222	
+keuken
+31/0003
+16
+262
+19
+325
+20
+329
+0,37
+3,42
+6,30
+-2,18
+7,44
+11,13
+10,93
+11,52
+13,96 	13,96
+12,89
+11,05 11,23
+13,05
+8,11
+3,49
+6,93
+0,00
+10,08
+7,28
+9,37
+2,69
+7,31
+0,00
+9,45
+178
+145
+242
+90
+117
+90
+177
+210
+HANDELSPAND
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur	-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-bestaande houten vloerstructuur
+11
+11
+11
+11
+11
+11
+11
+11
+11 	11
+13
+2
+2
+6
+6
+6
+16
+16
+21
+21
+9
+9
+9
+9
+9
+9
+9
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 4
+3,25 m
+3,29 m
+2,62 m
+2,84 m
+1,80 m
+1,80 m
+1,36 m
+1,35 m
+1,80 m
+0,67 m
+2,22 m
+2,68 m
+2,72 m
+2,22 m
+Dit plan is een bijlage bij het advies van de dienst wonen dat
+werd uitgebracht in functie van de woonkwaliteit binnen deze
+aanvraag tot omgevingsvergunning.
+Het betreft dus geen vergund plan.
+Elektronisch ondertekend document, blz. 3 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 3 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+LANGSSNEDE - GEVEL 1
+nieuwe toestand
+BA_NAAMSE 29-31_S_N_01
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+12,89
+11,05
+13,05
+8,05
+2,69
+0,00
+13,96
+11,24
+-0,54
+-0,11
+10,11
+3,83
+3,00
+6,22
+8,47
+12,96
+11,89
+11,68
+10,40
+8,48
+0,46
+3,67
+7,19
+10,16
+0,37
+3,72
+29A/0105
+29A/0202
+29A/0302
+29A/0104
+29A/0201
+29A/0301
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+50
+24
+regenwaterput 5000l 	regenwaterput 5000l
+9
+16
+11	11 	11
+11 	11 	11	11
+12
+2
+3	3
+3
+12
+12
+21
+21
+6
+6 	6
+6 	6
+7 	7
+19
+1
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 1
+2,43 m
+1,02 m1,81 m
+1,10 m
+2,74 m
+3,31 m
+Dit plan is een bijlage bij het advies van de dienst wonen dat
+werd uitgebracht in functie van de woonkwaliteit binnen deze
+aanvraag tot omgevingsvergunning.
+Het betreft dus geen vergund plan.
+Elektronisch ondertekend document, blz. 4 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 4 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIVO +1
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_03
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+Hogeschoolp
+gemeentew
+Naamsestraat
+H 258
++25
+DOUCHE
+DOUCHE 
+WC
+171 	92
+397
+67 
+73 
+67
+207
+H 278
+H 354
+Hob = 323
+H 240
+8 	64 	56 	73 
+195
+H ob = 312
+H op = 334
+26 	73 	24 
+271
+BW 41cm
+	Ro 188
+BW 41cm
+	Ro 188
+Hob 247
+	Hop 265
+(-28 cm)
+	ten opzichte traphal
+deur te laag (169cm)
+BW 60.5cm
+	Ro 183 cm
+(+2.77)
+vermoed. afvoer
+BW = 75cm
+Ro = 242
+opp = 17,99m²
+opp = 12.3m² 	opp = 12.32m²
+opp = 20.02m²
+opp 20.73m²
+opp 13.26m²
+opp 13.33m²
+opp 26.54m²
+opp 19.62m²
+opp 13m²
+opp 17.06m²
+opp. 14.61m²
+opp. 10.93 m²
+opp 15.2m²
+29A/0101
+29A/0102
+29A/0103
+29A/0104
+29A/0105
+29A/0106
+29A/0107
+31/0102
+31/0103
+31/0104
+31/0106
+31/0108
+31/0109
+31/0101
+opp 12m²
+31/0105
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER	STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+K 25
+31/0107
+langssnede
+dwarssnede
+2,46
+3,67
+3,79
+3,92
+3,47
+1,67
+3,71
+3,71
+3,73
+3,42
+3,14
+3,42
+3,83
+3,79
+10 opt H 17,19cm
+	+ 7,5 cm chappe
+H 386
+75
+78
+H balk 25 cm
+groendak 23,45m²
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+ontharden binnenplein 20m²
+groendak 11,42m²
+groendak 11,78m²
+1093
+35 
+271
+ 
+26 
+187
+ 
+19 
+421
+ 
+15 
+363
+19 
+159
+ 
+33 
+519
+ 
+55 
+191
+ 
+20 
+404
+1333
+1427
+429 
+19 
+276 
+20 
+268
+31 
+230 
+20 
+294 
+9 
+296 
+46
+84 	113 114 113 96 113 
+209 
+113 	85
+116 110 
+223 
+110 
+172 
+111 83
+1070
+894
+857
+112
+1308
+26 
+312
+ 
+32 
+310
+ 
+9 
+301
+ 
+9 
+275
+ 
+19
+82 
+11 
+212
+ 
+20 
+455
+ 
+45
+197
+ 
+134
+ 
+211
+ 
+125
+ 
+94 
+126
+ 
+13
+115
+ 
+126
+ 
+101
+ 
+126
+ 
+123
+ 
+126
+ 
+118
+ 
+126
+ 
+111
+ 
+126
+ 
+104
+ 
+127
+1432
+161 	100 	94 	82
+	437
+56 	133 
+541
+	730
+304
+ 
+17 
+435
+ 
+61 
+205
+ 
+14 
+406
+942
+ 
+16 
+93 
+11 
+119
+ 
+11 67 
+19 
+527
+409 26 409
+335
+ 
+31 
+414
+645
+107 108 	81 	92 	24
+	413
+414 
+19 
+429
+5 
+178
+ 
+193
+376
+82 	122 	52
+256
+242
+684
+274
+263
+531
+965
+390
+407
+965
+ 
+204
+294
+28
+298
+32
+412
+32
+380
+305
+222
+10
+80
+15
+80
+328
+80
+15
+80
+160
+80
+15
+80
+142
+300
+268
+300
+208
+Elektronisch ondertekend document, blz. 5 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 5 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIV Zolder
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_05
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+DOUCHE
+Hogeschoolp
+gemeentew
+K 21
+(trap +296)
+NAAMSESTRAAT 29
+deur 177
+Hob 387
+BW 36
+	Ro 96
+BW 84
+	Ro 48
+BW 81
+	Ro 118
+BUUR
+BW 110
+	Ro 77
+VELUX 130x95
+BW 96
+VELUX 130x95
+BW 96
+VELUX 130x95
+BW 96
+langssnede
+dwarssnede
+9.42
+9.70
+VELUX 130x95
+BW 96
+opp. 12.09m²
+opp. 14.61m²
+opp. 14,79m²
+opp. 12.15m²
+31/0301
+31/0302
+31/0303
+29A/0301
+29A/0302
+29A/0303
+29A/0304 opp. 12.91m²
+opp. 12.65m²
+opp. 12.18m²
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+hellend dak 76,85m²
+naar hemelwaterput
+284 
+19 	112 	19 
+425
+554
+383
+	419
+519
+427
+486
+350
+670
+360
+VELUX
+VELUX
+VELUX
+VELUX
+VELUX
+rookluik
+78x98
+rookluik
+	78x98
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+DOUCHE
+9,79 m²
+9,77 m²
+14,93 m²
+14,75 m²
+12,1 m²
+6,67 m²
+6,02 m²
+6,68 m²
+1,32 m²
+11,94 m²
+12,91 m²
+Dit plan is een bijlage bij het advies van de dienst wonen dat
+werd uitgebracht in functie van de woonkwaliteit binnen deze
+aanvraag tot omgevingsvergunning.
+Het betreft dus geen vergund plan.
+Elektronisch ondertekend document, blz. 6 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 6 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+INPLANTINGSPLAN
+nieuwe toestand
+BA_Heistraat 107.vwx	VO_NAAMSE 29-31_I_N_01
+0
+1:200
+1 	10x
+1/1
+NAAMSESTRAAT 29
+26/01/2024
+Hogeschoolplein,
+	gemeenteweg
+Standonckstraat, gemeenteweg
+Naamsestraat, gemeenteweg kasseien
+alle nutsvoorzieningen aanwezig
+ongewijzigde afwatering
+dakopp. 312,02m²
+Leuven afd. 2 sectie
+B nr. 954Y en 960B
+nrs. 29/31
+Leuven afd. 2 sectie
+B nr. 952C
+nrs. 2D/2E
+Leuven afd. 2 sectie
+B nr. 954X
+nrs. 2/2A
+Leuven afd. 2 sectie
+B nr. 959T
+nrs. 4/4A
+Leuven afd. 2 sectie
+B nr. 959S
+nr. 6
+Leuven afd. 2 sectie
+B nr. 959N
+nr. 7
+Leuven afd. 2 sectie
+B nr. 958E
+nr. 6
+Leuven afd. 2 sectie
+B nr. 961E
+nrs. 33
+Leuven afd. 2 sectie
+B nr. 962K
+nrs. 35/35A
+binnenplein kasseien
+87,88m² 
+terreinsnede
+groendak 23,45m²
+groendak
+11,42m²
+groendak
+11,78m²
+plat dak
+11,24m²
+plat dak
+15,94m²
+plat dak
+14,66m²
+hellend dak
+76,85m²
+naar
+hemelwaterput
+plat dak 88,49m²
+naar
+hemelwaterput
+totale groenzone
+47,8m²
+waterdoorlatende
+verharding 9,84m²
+1031
+904
+1311
+857
+109
+1415
+1339
+1092
+272
+ 
+333
+ 
+909
+ 
+340
+566
+266
+122
+524
+ 
+742
+730
+240
+ 
+873
+753 	247 	440 	452
+1363
+894
+467
+277 	164
+365
+278
+180
+ 
+417
+ 
+240
+124 	459
+1494
+1186
+707 	360
+413 	259
+Elektronisch ondertekend document, blz. 7 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 7 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+ZIJGEVEL - GEVEL 3
+bestaande toestand
+BA_NAAMSE 29-31_G_B_02
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+129
+309
+22
+247
+55
+240
+31/0105
+kantoor
+binnenkoer
+31/0102
+31/0202
+KNIKLIJN
+handelspand
+31/0302
+102
+-0,26 	-0,15 	-0,25
+3,79
+6,47
+9,42
+13,96
+0,18	0,17
+3,14
+5,82
+9,37
+7,27
+10,22	10,25
+-0,38
+387
+24
+271
+20
+248
+44
+360
+tegelwerk
+chappe
+	lewisplaat
+houtenstructuur
+0,32
+10,08
+7,27
+0,37
+4,09
+9,45
+3,42
+0,46
+8,48
+11,90
+12,96
+0,29
+10,93 11,13
+9,57
+25
+234
+35
+261
+tegelwerk
+chappe
+	lewisplaat
+houtenstructuur
+tegelwerk
+chappe
+	lewisplaat
+houtenstructuur
+2
+4
+16
+6
+11 	11 	11 	11 	11 	11
+12	11	11	11	11 	12
+11
+11
+11
+7 	7
+21
+11 	11
+14 	14 	14
+21 	21
+21
+16
+9
+9
+1
+9
+9
+4
+Hogeschoolplein,
+gemeenteweg
+Naamsestraat	
+afbraak niv +1
+	90,22m²
+gevel 3
+Elektronisch ondertekend document, blz. 8 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 8 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+VOORGEVEL - GEVEL 5
+nieuwe toestand - ongewijzigd
+BA_NAAMSE 29-31_G_N_04
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+0.00
+179
+101
+242
+161
+272
+222
+71
+220
+114
+250
+116
+146
+179
+101
+242
+126
+383
+13,96
+	13,96
+12,89
+11,23
+-0.59
+-0,25
+-0,54
+10,22
+11,91
+13,30
+1 	1 	1
+2
+10 	10
+10
+10 	10	10
+10
+12
+11 	11 	11 	11
+11 	11
+11
+11
+11	11
+11	11	11	11
+11
+15
+15
+9
+9
+9
+20
+6 	6 	6 	6
+6 	6 	6 	6
+6 	6 	6
+6	6	6
+6 	6	8
+8
+8
+8
+8
+8 	8 	8
+6
+6
+6
+6 	6
+14
+9
+22	22	22
+22 	22 	22
+1
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 5
+Elektronisch ondertekend document, blz. 9 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 9 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN GELIJKVLOERS
+bestaande toestand
+NAAMSESTRAAT 29
+BA_NAAMSE 29-31_P_B_02
+0
+1:100
+2 	5
+26/01/2024
+Naamsestraat
+0,46
+0,29
+0,38
+gang
+GEMEENSCHAPPELIJKE KEUKEN
+H 338
+WC
+KANTOOR
+	opp. 9.62m2
+KELDER
+BW ong. 310cm
+douche
+117
+252
+380
+216
+H 270
+H ob 286
+	H op 297
+173
+douche
+INTERNET
+H 326
+H 240cm
+BW 93.5cm
+	Ro 97.4cm
+H muur trap kelder
+	163cm
+HANDELSPAND
+HANDELSPAND
+H deur 225	
+INGANG
+KAMERS 1-21
+INGANG
+KAMERS 22-26
+INGANG
+KAMERS 1-12
+INGANG
+KAMERS 26-31
+INGANG
+	KELDER
+WC
+WC
+	DOUCHE
+H 307
+opp 19.87 m²
+opp = 15.19m² 	opp = 11.23m²
+opp 9.68m²
+opp 13.99m²
+opp 10.05m²
+NAAMSESTRAAT 31
+NAAMSESTRAAT 31
+NAAMSESTRAAT 31
+NAAMSESTRAAT 29A
+29A/0002	29A/0001
+31/0002
+31/0003
+31/0004
+31/0005
+BW 104.5cm
+	Ro 149cm
+	BW -
+Ro 270cm
+BW 55cm
+	Ro 221cm
+H ob 277 (balk 16cm)
+	H op 304 (kepers 11cm)
+Ingang kelder
+	handelspand
+H deur 284
+INGANG
+KEUKEN / BERGING
+NAAMSESTRAAT 31
+INGANG
+KAMERS 40-45
+NAAMSESTRAAT 31
+INGANG
+	kantoor
+STUDENTENKAMER
+STUDENTENKAMER 	STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+31/0006
+109m²
+35.34m²
+0,59
+-0,25
+berging
+berging
+314 	15 	273
+99 	9 	389 	7 	242 	15 	298
+428 	24 	289
+1029
+296
+ 
+193
+ 
+118
+455 	15 	284 	15 	322
+1092
+14
+608
+9
+182
+9
+397
+31
+1249
+333
+272
+1249
+605
+35 
+271
+ 
+26 
+187
+ 
+19 
+421
+ 
+15 
+300
+19 
+216
+ 
+40 
+519
+ 
+55 
+191
+ 
+20 
+404
+1333
+1427
+717 
+30 
+265
+31 
+849 
+46
+64 180 64 	120 	64 180 
+105 
+262
+120 119 	41 	128 	40 153 
+97 
+154 73
+1070
+894
+566
+266
+83
+357
+245
+311
+581
+109
+1293
+26 
+312
+ 
+32 
+115
+ 
+13 
+479
+ 
+9 
+287
+ 
+16
+779
+ 
+45
+567 	14 	184 	16 	238
+48 
+126
+ 
+31 
+126
+ 
+62 
+93 
+56 
+125
+ 
+94 
+126
+ 
+184
+ 
+140
+ 
+186
+526
+ 
+110
+ 
+28 45
+642
+	128
+ 
+101
+ 
+47 
+121
+ 
+126
+ 
+126
+ 
+118
+ 
+126
+ 
+111
+ 
+126
+ 
+113
+ 
+118
+119 	92 	121 	122 	67 	115 	36
+1363
+183 	91 	81 	82
+	451
+155 	91 	165
+13 	74 
+503
+590
+69 
+114
+ 
+656
+295
+ 
+45 
+180
+ 
+19 
+217
+33 
+90 
+96 
+406
+63 
+171
+ 
+18 
+426
+480
+ 
+9 
+319
+ 
+16 
+847
+100 	17 	113 	17 	163 	25 410
+390
+156	
+141
+1186
+282
+ 
+15 
+122
+ 
+10 
+727
+0,25
+langssnede
+-0,12	
+-0,15
+0,90
+-0,03
+0,00	
+0,37
+0,32
+0,14
+-0,26
+0,18
+0,37
+0,21
+0,17
+-0,33
+1 opt x 16,5 cm
+0,63
+18 fietsen
+container	
+container
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+afbraak op niv +0
+39,98m²
+ontharding
+9,92m²
+ontharding
+10,41m²
+Elektronisch ondertekend document, blz. 10 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 10 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+ACHTERGEVEL - GEVEL 4
+bestaande toestand
+BA_NAAMSE 29-31_G_B_03
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+29A/0101
+29A/0208
+BW 104
+	Ro 121
+31/0107
+31/0106
+19
+269
+7
+26
+272
+33
+222
+31/0003
+16
+262
+19
+325
+20
+329
+0,37
+3,42
+6,30
+-2,18
+7,44
+11,13
+10,93
+11,52
+13,96 	13,96
+12,89
+11,05 11,23
+13,05
+8,05
+3,49
+6,93
+0,00
+10,08
+7,28
+9,37
+2,69
+7,31
+0,00
+9,45
+0,22
+HANDELSPAND
+11
+11
+11
+11
+11
+11
+11
+11
+11 	11
+13
+2
+2
+6
+6
+6
+16
+16
+21
+21
+9
+9
+9
+9
+9
+9
+9
+Hogeschoolplein,
+gemeenteweg
+Naamsestraat	
+afbraak niv +1
+	90,22m²
+gevel 4
+Elektronisch ondertekend document, blz. 11 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 11 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIVO +1 - brandweer
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_03
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+Hogeschoolp
+gemeentew
+Naamsestraat
+H 258
++25
+DOUCHE
+DOUCHE 
+WC
+171 	92
+397
+67 
+73 
+67
+207
+H 278
+H 354
+Hob = 323
+H 240
+8 	64 	56 	73 
+195
+H ob = 312
+H op = 334
+26 	73 	24 
+271
+BW 41cm
+	Ro 188
+BW 41cm
+	Ro 188
+Hob 247
+	Hop 265
+(-28 cm)
+	ten opzichte traphal
+deur te laag (169cm)
+BW 60.5cm
+	Ro 183 cm
+(+2.77)
+vermoed. afvoer
+BW = 75cm
+Ro = 242
+opp = 17,99m²
+opp = 12.3m² 	opp = 12.32m²
+opp = 20.02m²
+opp 20.73m²
+opp 13.26m²
+opp 13.33m²
+opp 26.54m²
+opp 19.62m²
+opp 13m²
+opp 17.06m²
+opp. 14.61m²
+opp. 10.93 m²
+opp 15.2m²
+29A/0101
+29A/0102
+29A/0103
+29A/0104
+29A/0105
+29A/0106
+29A/0107
+31/0102
+31/0103
+31/0104
+31/0106
+31/0108
+31/0109
+31/0101
+opp 12m²
+31/0105
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER	STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+K 25
+31/0107
+langssnede
+dwarssnede
+2,46
+3,67
+3,79
+3,92
+3,47
+1,67
+3,71
+3,71
+3,73
+3,42
+3,14
+3,42
+3,83
+3,79
+10 opt H 17,19cm
+	+ 7,5 cm chappe
+H 386
+75
+78
+H balk 25 cm
+groendak 23,45m²
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+ontharden binnenplein 20m²
+groendak 11,42m²
+groendak 11,78m²
+R
+R
+R
+R
+EI30Z
+EI30
+EI30
+EI30Z
+EI30 Z
+EI30Z
+EI30
+EI30
+EI30
+EI30
+EI30
+optrede 17,5
+aantrede 23,9
+optrede 19,8
+aantrede 19
+73
+89,5 	85,5
+89
+	optrede 19
+aantrede 20,9
+EI30
+EI30
+EI60
+EI30
+optrede 17,5
+aantrede 19,2
+13
+14
+15 
+16	
+17	
+18	
+19	
+20	
+21
+22
+23
+24
+25
+26
+27
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+EI30Z EI30
+EI30
+R
+R
+R
+EI60
+EI60
+EI60
+70 
+70 
+70
+1093
+35 
+271
+ 
+26 
+187
+ 
+19 
+421
+ 
+15 
+363
+19 
+159
+ 
+33 
+519
+ 
+55 
+191
+ 
+20 
+404
+1333
+1427
+429 
+19 
+276 
+20 
+268
+31 
+230 
+20 
+294 
+9 
+296 
+46
+84 	113 114 113 96 113 
+209 
+113 	85
+116 110 
+223 
+110 
+172 
+111 83
+1070
+894
+857
+112
+1308
+26 
+312
+ 
+32 
+310
+ 
+9 
+301
+ 
+9 
+275
+ 
+19
+82 
+11 
+212
+ 
+20 
+455
+ 
+45
+197
+ 
+134
+ 
+211
+ 
+125
+ 
+94 
+126
+ 
+13
+115
+ 
+126
+ 
+101
+ 
+126
+ 
+123
+ 
+126
+ 
+118
+ 
+126
+ 
+111
+ 
+126
+ 
+104
+ 
+127
+1432
+161 	100 	94 	82
+	437
+56 	133 
+541
+	730
+304
+ 
+17 
+435
+ 
+61 
+205
+ 
+14 
+406
+942
+ 
+16 
+93 
+11 
+119
+ 
+11 67 
+19 
+527
+409 26 409
+335
+ 
+31 
+414
+645
+107 108 	81 	92 	24
+	413
+414 
+19 
+429
+5 
+178
+ 
+193
+376
+82 	122 	52
+256
+242
+684
+274
+263
+531
+965
+390
+407
+965
+ 
+204
+294
+28
+298
+32
+412
+32
+380
+305
+222
+10
+80
+15
+80
+328
+80
+15
+80
+160
+80
+15
+80
+142
+300
+268
+300
+208
+Elektronisch ondertekend document, blz. 12 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 12 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+TERREINSNEDE
+bestaande toestand
+BA_Heistraat 107.vwx	VO_NAAMSE 29-31_T_B_01
+0
+1:200
+1 	10x
+NAAMSESTRAAT 29
+26/01/2024
+1/1
+-0,38
+10,93 	11,13
+10,08 9,45 	9,57
+11,90
+12,96
+8,48
+6,22
+7,27
+-0,26
+13,96
+0,17	0,29
+-0,48
+nr. 33
+nr. 27
+af te breken
+Elektronisch ondertekend document, blz. 13 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 13 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GEVEL ACHTERBOUW - GEVEL 2
+nieuwe toestand
+BA_NAAMSE 29-31_G_N_01
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+29A/0101
+29A/0208
+29/0002	keuken
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+BW 104
+	Ro 121
+31/0107
+31/0106
+keuken
+19
+269
+7
+26
+272
+33
+222
+31/0003
+16
+262
+19
+325
+20
+329
+0,37
+3,42
+6,30
+-2,18
+9,27
+10,08
+7,44
+8,48
+13,05
+3,72
+0,37
+6,93
+3,49
+0,00
+12,96
+3,62
+9,19	9,24
+13
+1
+24 	24 	24
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 2
+2,69 m
+2,72 m
+2,89 m
+3,29 m
+3,25 m
+2,61 m
+Dit plan is een bijlage bij het advies van de dienst wonen dat
+werd uitgebracht in functie van de woonkwaliteit binnen deze
+aanvraag tot omgevingsvergunning.
+Het betreft dus geen vergund plan.
+Elektronisch ondertekend document, blz. 14 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 14 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+ACHTERGEVEL - GEVEL 4
+nieuwe toestand
+BA_NAAMSE 29-31_G_N_03
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+29A/0101
+29A/0208
+BW 104
+	Ro 121
+buur
+31/0107
+31/0106
+19
+269
+7
+26
+272
+33
+222	
+keuken
+31/0003
+16
+262
+19
+325
+20
+329
+0,37
+3,42
+6,30
+-2,18
+7,44
+11,13
+10,93
+11,52
+13,96 	13,96
+12,89
+11,05 11,23
+13,05
+8,11
+3,49
+6,93
+0,00
+10,08
+7,28
+9,37
+2,69
+7,31
+0,00
+9,45
+178
+145
+242
+90
+117
+90
+177
+210
+HANDELSPAND
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur	-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-bestaande houten vloerstructuur
+11
+11
+11
+11
+11
+11
+11
+11
+11 	11
+13
+2
+2
+6
+6
+6
+16
+16
+21
+21
+9
+9
+9
+9
+9
+9
+9
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 4
+Elektronisch ondertekend document, blz. 15 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 15 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+VOORGEVEL - GEVEL 5 - brandweer
+nieuwe toestand - ongewijzigd
+BA_NAAMSE 29-31_G_N_04
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+0.00
+179
+101
+242
+161
+272
+222
+71
+220
+114
+250
+116
+146
+179
+101
+242
+126
+383
+13,96
+	13,96
+12,89
+11,23
+-0.59
+-0,25
+-0,54
+10,22
+11,91
+13,30
+1 	1 	1
+2
+10 	10
+10
+10 	10	10
+10
+12
+11 	11 	11 	11
+11 	11
+11
+11
+11	11
+11	11	11	11
+11
+15
+15
+9
+9
+9
+20
+6 	6 	6 	6
+6 	6 	6 	6
+6 	6 	6
+6	6	6
+6 	6	8
+8
+8
+8
+8
+8 	8 	8
+6
+6
+6
+6 	6
+14
+9
+22	22	22
+22 	22 	22
+1
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 5
+Elektronisch ondertekend document, blz. 16 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 16 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIVO +2
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_04
+NAAMSESTRAAT 29
+26/01/2024
+0
+1:100
+1 	5
+4/5
+Hogeschoolp
+gemeentew
+Naamsestraat
+H 258	
+WC
+267
+162
+609
+222
+ 
+74 
+38 
+74 
+201
+317
+48 
+71 
+68
+204 	19
+Hob 326
+NAAMSESTRAAT 31B
+NAAMSESTRAAT 31C
+NAAMSESTRAAT 29
+VELUX nog te meten
+16optr.x18.5cm
+Hob 326
+Hob 194
+Hob 194
+Hob 194
+mezzanine
+velux
+afvoer
+	bestaande kitchenette
+(+6,50)
+bestaande
+	kitchenette
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+H 275
+VELUX
+VELUX
+VELUX
+VELUX
+VELUX 130 x H 93
+VELUX
+opp. 15.05m²
+opp. 11.79 + 4.72m²
+opp. 16.5 + 5.15m²
+opp 20.52m² 	opp 12.67m²
+opp 13,43m²
+opp 15,1m²
+opp 13.03m²
+opp 12.34m²
+opp 20.27m²
+opp 12.49m²
+opp 10.16m²
+opp 12.08m²
+opp. 13.07 + 6.81m²
+29A/0205
+29A/0201
+29A/0202
+29A/0203
+	29A/0204
+29A/0206
+29A/0207
+29A/0208
+31/0201
+31/0202
+31/0104
+31/0206
+31/0205
+opp 15.51m²
+31/0107
+31/0105
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER 	STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+31/0203
+STUDENTENKAMER
+STUDENTENKAMER
+dwarssnede
+doeco SUBAR1534VI
+5,70
+6,88
+7.19
+6.47
+6.30
+5.82
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+groendak 23,45m²
+naar hemelwaterput
+groendak 11,42m²
+naar hemelwaterput
+groendak 11,78m²
+naar hemelwaterput
+plat dak 11,24m²
+naar hemelwaterput
+plat dak 15,94m²
+naar hemelwaterput
+plat dak 14,66m²
+naar hemelwaterput
+35 
+485
+ 
+19 
+421
+ 
+15 
+363
+19 
+159
+ 
+33 
+519
+ 
+55 
+191
+ 
+20 
+404
+1274
+1508
+429 
+19 
+276 
+20 
+268
+31 
+222 
+9 
+310 
+9 
+296 
+46
+89 132 90 132 74 132 
+163 
+129 99
+116 110 
+166 
+129 
+121 
+129 
+154
+1070
+894
+888
+109
+1293
+26 
+312
+ 
+32 
+315
+ 
+9 
+281
+ 
+9 
+288
+ 
+20
+127
+ 
+138
+ 
+310
+ 
+136
+ 
+321
+ 
+132
+ 
+268
+1432
+343 128 269
+	739
+149
+ 
+25 
+425
+206
+ 
+11 
+73 
+19 
+527
+335
+ 
+31 
+491
+645
+107 108 	81 	92 	24
+	413
+274 
+15 
+245 
+7 	77 	7 
+244
+5 
+178
+ 
+193
+376
+82 	122 	52
+256
+242
+684
+274
+263
+410
+ 
+11 
+110
+409
+628
+150 	9 	469
+317
+428
+119 	19 	94 	10 
+707
+DOUCHE
+WC
+WC
+Elektronisch ondertekend document, blz. 17 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 17 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN GELIJKVLOERS
+nieuwe toestand
+NAAMSESTRAAT 29
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_02
+0
+1:100
+1 	5
+26/01/2024
+Naamsestraat
+H 249
+H 386
+WC
+	DOUCHE
+H 284
+H ob 277 (balk 16cm)
+	H op 304 (kepers 11cm)
+NAAMSESTRAAT 29-31
+Ingang kelder
+	handelspand
+(+1.67)
+(0.00)
+H 338
+WC
+KELDER
+H 258
+0,14	
+0,17
+1,19	
+BW ong. 310cm
+douche
+117
+H 280
+0,29
+173
+H 326
+INTERNET
+	verplaatsen
+H 240cm
+BW 93.5cm
+	Ro 97.4cm
+0,18
+HANDELSPAND
+HANDELSPAND
+H deur 225
+traphal 1
+traphal 3
+traphal 4
+traphal 2
+INGANG
+	KELDER
+WC
+	DOUCHE
+H 307
+opp 19.87 m²
+opp = 27,96m²
+NAAMSESTRAAT 31
+NAAMSESTRAAT 31
+NAAMSESTRAAT 31
+NAAMSESTRAAT 29
+31/0002
+BW 55cm
+	Ro 221cm
+NAAMSESTRAAT 29-31
+Ingang kelder
+	handelspand
+H deur 284
+STUDENTENKAMER
+GEMEENSCHAPPELIJKE RUIMTE
+opp = 14.79m²
+GEMEENSCHAPPELIJKE KEUKEN
+doorgang - kasseien
+opp = 38,05m²
+bestaande verharding
+binnenkoer - kasseien
+opp 20.17m²
+31/0003
+STUDENTENKAMER
+opp 10.05m²
+31/0005
+STUDENTENKAMER
+afvalcontainers
+TOEGANG
+KEUKEN
+dwarssnede
+nieuwe deur
+-0,12	
+-0,15
+0,90
+-0,03
+0,00	
+0,37
+0,32
+0,14
+-0,26
+0,18
+0,37
+0,21
+0,17
+-0,33
+op niv -1 afkasting in gyproc (balk?)
+bestaande
+verharding
+4,43m²
+32m²
+33,45m²
+37,09m²
+container	
+container	
+container	
+container
+totale groenzone
+47,8m²
+waterdoorlatende
+verharding
+9,84m²
+bestaand stallingsysteem voor 24 fietsen
+bestaand stallingsysteem voor 16 fietsen
+nieuw stallingsysteem voor 7 fietsen
+1249
+333
+272
+341
+913
+601
+35 
+271
+ 
+26 
+187
+ 
+19 
+421
+ 
+15 
+300
+19 
+216
+ 
+40 
+519
+ 
+55 
+191
+ 
+20 
+404
+1333
+1427
+717 
+30 
+265
+31 
+849 
+46
+64 180 64 	120 	64 180 
+105 
+262
+120 119 	41 	128 	40 153 
+97 
+154 73
+1070
+894
+566
+266
+83
+357
+245
+311
+581
+109
+1293
+26 
+312
+ 
+32 
+115
+ 
+13 
+479
+ 
+9 
+287
+ 
+16
+779
+ 
+45
+226
+ 
+48 
+126
+ 
+31 
+126
+ 
+62 
+93 
+56 
+125
+ 
+94 
+126
+ 
+184
+ 
+140
+ 
+186
+526
+ 
+110
+ 
+28 45
+128
+ 
+101
+ 
+47 
+121
+ 
+126
+ 
+126
+ 
+118
+ 
+126
+ 
+111
+ 
+126
+ 
+113
+ 
+118
+1363
+183 	91 	81 	82	
+451
+69 
+114
+ 
+656
+515
+ 
+10 
+110
+ 
+10 
+111
+33 
+90 
+96 
+406
+63 
+171
+ 
+18 
+426
+480
+ 
+9 
+319
+ 
+16 
+847
+230 	17 	163 	25 410
+390
+156	
+141
+13 	74 
+504
+237
+293
+29
+1013
+898 	14 	128
+281
+49
+130
+9
+273
+32
+243
+9
+129
+60 	80 	80 	180 	10
+410
+	58
+180
+374
+180
+114
+906
+108 	115 	36
+259
+1169
+1092
+590
+260
+375
+318
+128 	10 	90
+groenzone wadi
+9,92m²
+31/0006
+STUDIO
+31/0008
+STUDIO
+31/0007
+STUDIO
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+WC
+douche
+Elektronisch ondertekend document, blz. 18 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 18 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIV ZOLDER
+bestaande toestand
+NAAMSESTRAAT 29
+BA_NAAMSE 29-31_P_B_05
+0
+1:100
+2 	5
+26/01/2024
+5/6
+Hogeschoolp
+gemeentew
+Hogeschoolp
+gemeentew
+Naamsestraat
+ANDER EIGENDOM
+MEZZANINE ?
+NAAMSESTRAAT 29
+Hob 389
+BW 36
+	Ro 96
+BW 84
+	Ro 48
+BW 81
+	Ro 118
+BUUR
+VELUX
+	NG TE METEN
+BW 110
+	Ro 77
+BW 110
+	Ro 77
+9,42
+10,16
+Hob 343
+Hob 228
+BW 81
+	Ro 118
+BUUR
+opp. 11,23m²
+opp. 15.50m²
+opp. 14,79m²
+opp. 12.15m²
+31/0301
+31/0302
+31/0303
+29A/0301
+29A/0302
+29A/0303
+29A/0304 opp. 12.91m²
+opp. 12.65m²
+opp. 12.18m²
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+VELUX 130x95
+BW 96
+VELUX 130x95
+BW 96
+VELUX 130x95
+BW 96
+langssnede
+dwarssnede
+284 
+19 	112 	19 
+425
+554
+383
+	394
+519
+427
+486
+350
+670
+385
+1m80
+1m80
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+VELUX
+VELUX
+VELUX
+VELUX
+VELUX
+afbraak niv +1
+90,22m²
+263
+Elektronisch ondertekend document, blz. 19 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 19 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+ACHTERGEVEL - GEVEL 4 - brandweer
+nieuwe toestand
+BA_NAAMSE 29-31_G_N_03
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+29A/0101
+29A/0208
+BW 104
+	Ro 121
+buur
+31/0107
+31/0106
+19
+269
+7
+26
+272
+33
+222	
+keuken
+31/0003
+16
+262
+19
+325
+20
+329
+0,37
+3,42
+6,30
+-2,18
+7,44
+11,13
+10,93
+11,52
+13,96 	13,96
+12,89
+11,05 11,23
+13,05
+8,11
+3,49
+6,93
+0,00
+10,08
+7,28
+9,37
+2,69
+7,31
+0,00
+9,45
+178
+145
+242
+90
+117
+90
+177
+210
+HANDELSPAND
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur	-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-bestaande houten vloerstructuur
+11
+11
+11
+11
+11
+11
+11
+11
+11 	11
+13
+2
+2
+6
+6
+6
+16
+16
+21
+21
+9
+9
+9
+9
+9
+9
+9
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 4
+Elektronisch ondertekend document, blz. 20 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 20 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN GELIJKVLOERS - brandweer
+nieuwe toestand
+NAAMSESTRAAT 29
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_02
+0
+1:100
+1 	5
+26/01/2024
+Naamsestraat
+H 249
+H 386
+WC
+	DOUCHE
+H 284
+H ob 277 (balk 16cm)
+	H op 304 (kepers 11cm)
+NAAMSESTRAAT 29-31
+Ingang kelder
+	handelspand
+(+1.67)
+(0.00)
+H 338
+WC
+KELDER
+H 258
+0,14	
+0,17
+1,19	
+BW ong. 310cm
+douche
+117
+H 280
+0,29
+173
+H 326
+INTERNET
+	verplaatsen
+H 240cm
+BW 93.5cm
+	Ro 97.4cm
+0,18
+HANDELSPAND
+HANDELSPAND
+H deur 225
+traphal 1
+traphal 3
+traphal 4
+traphal 2
+INGANG
+	KELDER
+WC
+	DOUCHE
+H 307
+opp 19.87 m²
+opp = 27,96m²
+NAAMSESTRAAT 31
+NAAMSESTRAAT 31
+NAAMSESTRAAT 31
+NAAMSESTRAAT 29
+31/0002
+BW 55cm
+	Ro 221cm
+NAAMSESTRAAT 29-31
+Ingang kelder
+	handelspand
+H deur 284
+STUDENTENKAMER
+GEMEENSCHAPPELIJKE RUIMTE
+opp = 14.79m²
+GEMEENSCHAPPELIJKE KEUKEN
+doorgang - kasseien
+opp = 38,05m²
+bestaande verharding
+binnenkoer - kasseien
+opp 20.17m²
+31/0003
+STUDENTENKAMER
+opp 10.05m²
+31/0005
+STUDENTENKAMER
+afvalcontainers
+TOEGANG
+KEUKEN
+dwarssnede
+nieuwe deur
+-0,12	
+-0,15
+0,90
+-0,03
+0,00	
+0,37
+0,32
+0,14
+-0,26
+0,18
+0,37
+0,21
+0,17
+-0,33
+op niv -1 afkasting in gyproc (balk?)
+bestaande
+verharding
+4,43m²
+32m²
+33,45m²
+37,09m²
+container	
+container	
+container	
+container
+totale groenzone
+47,8m²
+waterdoorlatende
+verharding
+9,84m²
+bestaand stallingsysteem voor 24 fietsen
+bestaand stallingsysteem voor 16 fietsen
+nieuw stallingsysteem voor 7 fietsen
+1249
+333
+272
+341
+913
+601
+35 
+271
+ 
+26 
+187
+ 
+19 
+421
+ 
+15 
+300
+19 
+216
+ 
+40 
+519
+ 
+55 
+191
+ 
+20 
+404
+1333
+1427
+717 
+30 
+265
+31 
+849 
+46
+64 180 64 	120 	64 180 
+105 
+262
+120 119 	41 	128 	40 153 
+97 
+154 73
+1070
+894
+566
+266
+83
+357
+245
+311
+581
+109
+1293
+26 
+312
+ 
+32 
+115
+ 
+13 
+479
+ 
+9 
+287
+ 
+16
+779
+ 
+45
+226
+ 
+48 
+126
+ 
+31 
+126
+ 
+62 
+93 
+56 
+125
+ 
+94 
+126
+ 
+184
+ 
+140
+ 
+186
+526
+ 
+110
+ 
+28 45
+128
+ 
+101
+ 
+47 
+121
+ 
+126
+ 
+126
+ 
+118
+ 
+126
+ 
+111
+ 
+126
+ 
+113
+ 
+118
+1363
+183 	91 	81 	82	
+451
+69 
+114
+ 
+656
+515
+ 
+10 
+110
+ 
+10 
+111
+33 
+90 
+96 
+406
+63 
+171
+ 
+18 
+426
+480
+ 
+9 
+319
+ 
+16 
+847
+230 	17 	163 	25 410
+390
+156	
+141
+13 	74 
+504
+237
+293
+29
+1013
+898 	14 	128
+281
+49
+130
+9
+273
+32
+243
+9
+129
+60 	80 	80 	180 	10
+410
+	58
+180
+374
+180
+114
+906
+108 	115 	36
+259
+1169
+1092
+590
+260
+375
+318
+128 	10 	90
+groenzone wadi
+9,92m²
+31/0006
+STUDIO
+31/0008
+STUDIO
+31/0007
+STUDIO
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+WC
+6 kamers
+R
+EI30
+optrede 17,8
+aantrede 19
+EI30
+EI30
+R
+R
+EI30 Z
+11 kamers
+3 kamers
+19 kamers
+EI30 Z
+R
+EI60
+EI60
+EI60
+EI30
+81
+	optrede 18,6
+aantrede 20
+optrede 19
+aantrede 24,8
+76
+EI30
+EI30Z
+optrede 15
+optrede 17,5
+aantrede 19,2	
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+R
+R
+R
+optrede 20,2
+aantrede 22,3
+2 brandmeldcentrales
+EI30
+R
+optrede 17
+aantrede 22,6
+84
+80
+67
+81
+	106
+78
+109
+R
+R
+R
+EI30Z
+EI60
+EI60
+EI60
+douche
+Elektronisch ondertekend document, blz. 21 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 21 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIV 1
+bestaande toestand
+NAAMSESTRAAT 29
+BA_NAAMSE 29-31_P_B_03
+0
+1:100
+2 	5
+26/01/2024
+Naamsestraat
+H 258
++25
+DOUCHE
+DOUCHE 
+WC
+H ob 269
+	H op 278
+H o.b. 333cm
+	o. kepers 344cm
+	o.p. 354 cm
+H ob = 285
+	H ok = 320
+	H op = 333
+H 240
+H ob = 312
+H op = 334
+BW 41cm
+	Ro 188 
+BW 41cm
+	Ro 188
+Hob 247
+	Hop 265
+(-28 cm)
+	ten opzichte traphal
+BW 60.5cm
+Ro 183 cm
+vermoed. afvoer
+(eerste optr. 12cm
+	+11 opt x 19,17cm)
+BW = 75cm
+Ro = 242cm
+H ob boven deur 207cm
+	vanaf vloer kamer gemeten
+H ob 226 (balk 25x25)
+1ste h 13.5cm
+	+14 optr x 19
+	+8cm chappe op verdiep 2
+H 386
+10 opt H 17,19cm
+	+ 7,5 cm chappe
+BW 50cm
+Ro 239 cm
+BW = 54cm
+Ro = 240 cm
+BW 66cm
+Ro 187 cm
+opp = 17.35m²
+opp = 12.3m² 	opp = 11.9m²
+opp = 20.02m²
+opp 20.73m²
+opp 13.26m²
+opp 13.33m²
+opp 26.54m²
+opp 19.62m²
+opp 13m²
+opp 17.06m²
+opp. 14.61m²
+opp. 10.93 m²
+opp 15.2m²
+29A/0101
+29A/0102
+29A/0103
+29A/0104
+29A/0105
+29A/0106
+29A/0107
+31/0102
+31/0103
+31/0104
+31/0106
+31/0108
+31/0109
+31/0101
+opp 12m²
++mezzanine
+31/0105
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER	STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+K 25
+31/0107
+langssnede
+dwarssnede
+2,46
+3,67
+3,79
+3,92
+3,47
+1,67
+3,71
+3,71
+3,77
+3,42
+3,14
+3,42
+3,83
+3,79
+BW = 67cm
+Ro = 133cm
+BW = 67cm
+Ro = 133cm
+Technische ruimte
+Dakkoepel
+Dakkoepel
+WC 	DOUCHE
+DOUCHE
+H balk 30 cm
+H balk 30 cm
+H balk 30 cm
+H balk 25 cm
+3,42
+3,52
+3,52
+3,42
+BW = 67cm
+Ro = 133cm
+BW = 67cm
+Ro = 133cm
+Dakkoepel
+417 	15 	214 	14 	125 	9 	279
+1093
+35 
+271
+ 
+26 
+187
+ 
+19 
+421
+ 
+15 
+363
+19 
+159
+ 
+33 
+519
+ 
+55 
+191
+ 
+20 
+404
+1333
+1427
+429 
+19 
+276 
+20 
+268
+31 
+241 
+9 
+294 
+9 
+296 
+46
+84 	113 114 113 96 113 
+209 
+113 	85
+131 110 
+207 
+110 
+172 
+111 83
+1070
+894
+857
+112
+1308
+26 
+312
+ 
+32 
+310
+ 
+9 
+301
+ 
+9 
+275
+ 
+19
+82 
+11 
+212
+ 
+20 
+455
+ 
+45
+197
+ 
+134
+ 
+211
+ 
+125
+ 
+94 
+126
+ 
+13
+672
+46 
+126
+ 
+101
+ 
+126
+ 
+123
+ 
+126
+ 
+118
+ 
+126
+ 
+111
+ 
+126
+ 
+104
+ 
+127
+102 	120 	141 	185 	23 	92 	9
+1363
+161 	100 	94 	82
+	437
+56 	133 
+541
+	730
+304
+ 
+17 
+435
+ 
+61 
+205
+ 
+14 
+406
+942
+ 
+16 
+93 
+11 
+119
+ 
+11 67 
+19 
+527
+409 26 409
+335
+ 
+31 
+414
+645
+107 108 	81 	92 	24
+	413
+421 
+19 
+429
+5 
+178
+ 
+193
+376
+82 	122 	52
+256
+242
+684
+274
+263
+531
+1249
+390
+407
+1186
+367
+ 
+9 
+258
+ 
+9 
+512
+499
+9
+547
+8
+143
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+afbraak op niv +1
+90,22m²
+Elektronisch ondertekend document, blz. 22 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 22 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIVO +1
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_03
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+Hogeschoolp
+gemeentew
+Naamsestraat
+H 258
++25
+DOUCHE
+DOUCHE 
+WC
+171 	92
+397
+67 
+73 
+67
+207
+H 278
+H 354
+Hob = 323
+H 240
+8 	64 	56 	73 
+195
+H ob = 312
+H op = 334
+26 	73 	24 
+271
+BW 41cm
+	Ro 188
+BW 41cm
+	Ro 188
+Hob 247
+	Hop 265
+(-28 cm)
+	ten opzichte traphal
+deur te laag (169cm)
+BW 60.5cm
+	Ro 183 cm
+(+2.77)
+vermoed. afvoer
+BW = 75cm
+Ro = 242
+opp = 17,99m²
+opp = 12.3m² 	opp = 12.32m²
+opp = 20.02m²
+opp 20.73m²
+opp 13.26m²
+opp 13.33m²
+opp 26.54m²
+opp 19.62m²
+opp 13m²
+opp 17.06m²
+opp. 14.61m²
+opp. 10.93 m²
+opp 15.2m²
+29A/0101
+29A/0102
+29A/0103
+29A/0104
+29A/0105
+29A/0106
+29A/0107
+31/0102
+31/0103
+31/0104
+31/0106
+31/0108
+31/0109
+31/0101
+opp 12m²
+31/0105
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER	STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+K 25
+31/0107
+langssnede
+dwarssnede
+2,46
+3,67
+3,79
+3,92
+3,47
+1,67
+3,71
+3,71
+3,73
+3,42
+3,14
+3,42
+3,83
+3,79
+10 opt H 17,19cm
+	+ 7,5 cm chappe
+H 386
+75
+78
+H balk 25 cm
+groendak 23,45m²
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+ontharden binnenplein 20m²
+groendak 11,42m²
+groendak 11,78m²
+1093
+35 
+271
+ 
+26 
+187
+ 
+19 
+421
+ 
+15 
+363
+19 
+159
+ 
+33 
+519
+ 
+55 
+191
+ 
+20 
+404
+1333
+1427
+429 
+19 
+276 
+20 
+268
+31 
+230 
+20 
+294 
+9 
+296 
+46
+84 	113 114 113 96 113 
+209 
+113 	85
+116 110 
+223 
+110 
+172 
+111 83
+1070
+894
+857
+112
+1308
+26 
+312
+ 
+32 
+310
+ 
+9 
+301
+ 
+9 
+275
+ 
+19
+82 
+11 
+212
+ 
+20 
+455
+ 
+45
+197
+ 
+134
+ 
+211
+ 
+125
+ 
+94 
+126
+ 
+13
+115
+ 
+126
+ 
+101
+ 
+126
+ 
+123
+ 
+126
+ 
+118
+ 
+126
+ 
+111
+ 
+126
+ 
+104
+ 
+127
+1432
+161 	100 	94 	82
+	437
+56 	133 
+541
+	730
+304
+ 
+17 
+435
+ 
+61 
+205
+ 
+14 
+406
+942
+ 
+16 
+93 
+11 
+119
+ 
+11 67 
+19 
+527
+409 26 409
+335
+ 
+31 
+414
+645
+107 108 	81 	92 	24
+	413
+414 
+19 
+429
+5 
+178
+ 
+193
+376
+82 	122 	52
+256
+242
+684
+274
+263
+531
+965
+390
+407
+965
+ 
+204
+294
+28
+298
+32
+412
+32
+380
+305
+222
+10
+80
+15
+80
+328
+80
+15
+80
+160
+80
+15
+80
+142
+300
+268
+300
+208
+10,93 m²
+14,62 m²
+16,16 m²
+19,83 m²
+13,63 m²
+13,69 m²
+17,99 m²
+13,12 m²
+12,42 m²
+12,27 m²
+8,04 m²
+6,69 m²
+19,75 m²
+25,68 m²
+6,93 m²
+5,47 m²
+11,18 m²
+20,18 m²
+10,88 m²
+Dit plan is een bijlage bij het advies van de dienst wonen dat
+werd uitgebracht in functie van de woonkwaliteit binnen deze
+aanvraag tot omgevingsvergunning.
+Het betreft dus geen vergund plan.
+Elektronisch ondertekend document, blz. 23 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 23 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+ZIJGEVEL - GEVEL 3 - brandweer
+nieuwe toestand
+BA_NAAMSE 29-31_G_N_02
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+0,32
+10,08
+7,27
+0,37
+4,09
+9,45
+8,48
+11,90
+12,96
+10,93 11,13
+9,57
+186
+101
+216
+129
+31/0105
+binnenkoer
+31/0102
+31/0202
+tegelwerk
+chappe
+	lewisplaat
+houtenstructuur
+KNIKLIJN
+handelspand
+31/0302
+102
+-0,26 	-0,15 	-0,25
+3,79
+6,47
+9,42
+13,96
+0,18	0,17
+3,14
+5,82
+9,37
+7,27
+10,22	10,25
+-0,38
+387
+24
+271
+20
+248
+44
+360	
+keuken
+170
+107
+183
+180
+183
+309
+22
+247
+55
+240
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-dakpannen
+	-onderdak
+	-houten dakstructuur opgevuld met isolatie
+	-gyproc
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-gyproc
+11
+2
+4
+16
+6
+11 	11 	11 	11 	11 	11
+12	11	11	11	11 	12
+11
+11
+11
+7 	7
+21
+11 	11
+14 	14 	14
+21 	21
+21
+16
+9
+9
+1
+9
+9
+4
+13 24 	24	24	24	24	24
+24 	24
+13
+17
+17
+20 	20
+20	20
+8 	8
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 3
+Elektronisch ondertekend document, blz. 24 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 24 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIVO +2 - brandweer
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_04
+NAAMSESTRAAT 29
+26/01/2024
+0
+1:100
+1 	5
+4/5
+Hogeschoolp
+gemeentew
+Naamsestraat
+H 258	
+WC
+267
+162
+609
+222
+ 
+74 
+38 
+74 
+201
+317
+48 
+71 
+68
+204 	19
+Hob 326
+NAAMSESTRAAT 31B
+NAAMSESTRAAT 31C
+NAAMSESTRAAT 29
+VELUX nog te meten
+16optr.x18.5cm
+Hob 326
+Hob 194
+Hob 194
+Hob 194
+mezzanine
+velux
+afvoer
+	bestaande kitchenette
+(+6,50)
+bestaande
+	kitchenette
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+H 275
+VELUX
+VELUX
+VELUX
+VELUX
+VELUX 130 x H 93
+VELUX
+opp. 15.05m²
+opp. 11.79 + 4.72m²
+opp. 16.5 + 5.15m²
+opp 20.52m² 	opp 12.67m²
+opp 13,43m²
+opp 15,1m²
+opp 13.03m²
+opp 12.34m²
+opp 20.27m²
+opp 12.49m²
+opp 10.16m²
+opp 12.08m²
+opp. 13.07 + 6.81m²
+29A/0205
+29A/0201
+29A/0202
+29A/0203
+	29A/0204
+29A/0206
+29A/0207
+29A/0208
+31/0201
+31/0202
+31/0104
+31/0206
+31/0205
+opp 15.51m²
+31/0107
+31/0105
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER 	STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+31/0203
+STUDENTENKAMER
+STUDENTENKAMER
+dwarssnede
+doeco SUBAR1534VI
+5,70
+6,88
+R
+R
+R
+EI30Z
+EI30
+EI30
+EI30
+EI30 Z
+EI30
+EI30
+R
+EI30
+EI60
+EI60
+	EI30
+27
+28
+29
+30
+26	
+25	
+24
+31	
+32	
+33	
+34	
+35	
+36
+37	
+38	
+39	
+40	
+41	
+42	
+43
+44
+45
+optrede 17,5
+aantrede 19,2
+	optrede 18,5
+aantrede 18,6
+R
+R
+R
+R
+R
+R
+R
+R
+R 	R
+R
+R
+R
+79
+78
+106
+EI30 EI30
+EI30
+EI30
+7.19
+6.47
+6.30
+5.82
+optrede 19
+aantrede 20,9
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+groendak 23,45m²
+naar hemelwaterput
+groendak 11,42m²
+naar hemelwaterput
+groendak 11,78m²
+naar hemelwaterput
+plat dak 11,24m²
+naar hemelwaterput
+plat dak 15,94m²
+naar hemelwaterput
+plat dak 14,66m²
+naar hemelwaterput
+35 
+485
+ 
+19 
+421
+ 
+15 
+363
+19 
+159
+ 
+33 
+519
+ 
+55 
+191
+ 
+20 
+404
+1274
+1508
+429 
+19 
+276 
+20 
+268
+31 
+222 
+9 
+310 
+9 
+296 
+46
+89 132 90 132 74 132 
+163 
+129 99
+116 110 
+166 
+129 
+121 
+129 
+154
+1070
+894
+888
+109
+1293
+26 
+312
+ 
+32 
+315
+ 
+9 
+281
+ 
+9 
+288
+ 
+20
+127
+ 
+138
+ 
+310
+ 
+136
+ 
+321
+ 
+132
+ 
+268
+1432
+343 128 269
+	739
+149
+ 
+25 
+425
+206
+ 
+11 
+73 
+19 
+527
+335
+ 
+31 
+491
+645
+107 108 	81 	92 	24
+	413
+274 
+15 
+245 
+7 	77 	7 
+244
+5 
+178
+ 
+193
+376
+82 	122 	52
+256
+242
+684
+274
+263
+410
+ 
+11 
+110
+409
+628
+150 	9 	469
+317
+428
+119 	19 	94 	10 
+707
+DOUCHE
+WC
+WC
+Elektronisch ondertekend document, blz. 25 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 25 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GEVEL 6
+nieuwe toestand
+BA_NAAMSE 29-31_G_B_05
+NAAMSESTRAAT 29
+0
+1:50
+1 	2.5
+26/01/2024
+37
+234
+35
+262
+-vloerbekleding
+-chape
+-vloerisolatie
+-bestaande betonplaat
+9,22
+10,18
+12,96
+6,32
+8,07
+0,46
+10,40
+3,72
+0,37
+13
+1
+24 	24
+17
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 6
+Elektronisch ondertekend document, blz. 26 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 26 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+INPLANTINGSPLAN - brandweer
+nieuwe toestand
+BA_Heistraat 107.vwx	VO_NAAMSE 29-31_I_N_01
+0
+1:200
+1 	10x
+1/1
+NAAMSESTRAAT 29
+26/01/2024
+Hogeschoolplein,
+	gemeenteweg
+Standonckstraat, gemeenteweg
+Naamsestraat, gemeenteweg kasseien
+alle nutsvoorzieningen aanwezig
+ongewijzigde afwatering
+dakopp. 312,02m²
+Leuven afd. 2 sectie
+B nr. 954Y en 960B
+nrs. 29/31
+Leuven afd. 2 sectie
+B nr. 952C
+nrs. 2D/2E
+Leuven afd. 2 sectie
+B nr. 954X
+nrs. 2/2A
+Leuven afd. 2 sectie
+B nr. 959T
+nrs. 4/4A
+Leuven afd. 2 sectie
+B nr. 959S
+nr. 6
+Leuven afd. 2 sectie
+B nr. 959N
+nr. 7
+Leuven afd. 2 sectie
+B nr. 958E
+nr. 6
+Leuven afd. 2 sectie
+B nr. 961E
+nrs. 33
+Leuven afd. 2 sectie
+B nr. 962K
+nrs. 35/35A
+binnenplein kasseien
+87,88m² 
+terreinsnede
+groendak 23,45m²
+groendak
+11,42m²
+groendak
+11,78m²
+plat dak
+11,24m²
+plat dak
+15,94m²
+plat dak
+14,66m²
+hellend dak
+76,85m²
+naar
+hemelwaterput
+plat dak 88,49m²
+naar
+hemelwaterput
+totale groenzone
+47,8m²
+waterdoorlatende
+verharding 9,84m²
+1031
+904
+1311
+857
+109
+1415
+1339
+1092
+272
+ 
+333
+ 
+909
+ 
+340
+566
+266
+122
+524
+ 
+742
+730
+240
+ 
+873
+753 	247 	440 	452
+1363
+894
+467
+277 	164
+365
+278
+180
+ 
+417
+ 
+240
+124 	459
+1494
+1186
+707 	360
+413 	259
+645
+Elektronisch ondertekend document, blz. 27 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 27 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIVO -1
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_01
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+-2,18
+H o.b. 208cm
+H 222cm 
+afkasting in gyproc (balk?)
+Naamsestraat
+116
+ 
+16 
+933
+316
+344
+427
+632
+bestaande
+	rioleringsaansluiting
+opp = 28,6m²
+GEMEENSCHAPPELIJKE RUIMTE
+opp = 27,46m²
+KELDER
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+RWA
+RWA
+RWA
+RWA
+RWA
+RWA
+RWA
+aanzuigleiding regenwater
+aanzuigleiding regenwater
+RWA
+aanzuigleiding regenwater
+aanzuigleiding regenwater
+infiltratievoorziening
+4,67m²
+1170 liter
+regenwaterput 5000l
+regenwaterput 5000l
+bestaande
+	rioleringsaansluiting
+bestaande
+	rioleringsaansluiting
+bestaande afvoer
+lijngoot
+lijngoot
+Elektronisch ondertekend document, blz. 28 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 28 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+VOORGEVEL - GEVEL 5
+bestaande toestand
+BA_NAAMSE 29-31_G_B_04
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+0.00
+179
+101
+242
+161
+272
+222
+71
+220
+114
+250
+116
+146
+179
+101
+242
+126
+383
+13,96
+	13,96
+12,89
+11,23
+-0.59
+-0,25
+-0,54
+10,22
+11,91
+13,30
+1 	1 	1
+2
+10 	10
+10
+10 	10	10
+10
+12
+11 	11 	11 	11
+11 	11
+11
+11
+11	11
+11	11	11	11
+11
+15
+15
+9
+9
+9
+20
+6 	6 	6 	6
+6 	6 	6 	6
+6 	6 	6
+6	6	6
+6 	6	8
+8
+8
+8
+8
+8 	8 	8
+6
+6
+6
+6 	6
+14
+9
+22	22	22
+22 	22 	22
+1
+Hogeschoolplein,
+gemeenteweg
+Naamsestraat	
+afbraak niv +1
+	90,22m²
+gevel 5
+Elektronisch ondertekend document, blz. 29 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 29 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GEVEL ACHTERBOUW - GEVEL 2
+bestaande toestand
+BA_NAAMSE 29-31_G_B_01
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+29A/0101
+29A/0208
+29/0002	29/0001
+BW 104
+	Ro 121
+31/0107
+31/0106
+19
+269
+7
+26
+272
+33
+222
+31/0003
+16
+267
+19
+322
+20
+327
+0,37
+3,42
+6,30
+-2,18
+9,27
+10,08
+7,44
+8,48
+6,93
+12,96
+3,62
+9,19	9,24
+11
+2
+11
+11 	11 	11
+1
+Hogeschoolplein,
+gemeenteweg
+Naamsestraat	
+afbraak niv +1
+	90,22m²
+gevel 2
+Elektronisch ondertekend document, blz. 30 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 30 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIV Zolder - brandweer
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_05
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+DOUCHE
+Hogeschoolp
+gemeentew
+K 21
+(trap +296)
+NAAMSESTRAAT 29
+deur 177
+Hob 387
+BW 36
+	Ro 96
+BW 84
+	Ro 48
+BW 81
+	Ro 118
+BUUR
+BW 110
+	Ro 77
+VELUX 130x95
+BW 96
+VELUX 130x95
+BW 96
+VELUX 130x95
+BW 96
+langssnede
+dwarssnede
+9.42
+9.70
+VELUX 130x95
+BW 96
+opp. 12.09m²
+opp. 14.61m²
+opp. 14,79m²
+opp. 12.15m²
+31/0301
+31/0302
+31/0303
+29A/0301
+29A/0302
+29A/0303
+29A/0304 opp. 12.91m²
+opp. 12.65m²
+opp. 12.18m²
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+hellend dak 76,85m²
+naar hemelwaterput
+284 
+19 	112 	19 
+425
+554
+383
+	419
+519
+427
+486
+350
+670
+360
+opening raam <1m²
+R
+EI30
+EI30 	EI30
+EI30
+EI30
+R
+EI60
+47
+48
+49
+50
+51
+EI30
+R
+R
+R
+R
+R
+R
+EI30
+R
+VELUX
+VELUX
+VELUX
+VELUX
+VELUX
+rookluik
+78x98
+rookluik
+	78x98
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+DOUCHE
+Elektronisch ondertekend document, blz. 31 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 31 of 54 --
+
+Erasme Ruelensvest 83/002
+	3001 Heverlee
+	T: +32 16 23 45 48
+GRONDPLAN NIVO -1	
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_01
+0
+1:100
+1 5
+NAAMSESTRAAT 29
+26/01/2024
+-2,18
+H o.b. 208cm
+	H 222cm 
+afkasting in gyproc (balk?)
+Naamsestraat
+116 
+16 
+933
+316
+344
+427
+632
+bestaande
+	rioleringsaansluiting
+opp = 28,6m²	
+GEMEENSCHAPPELIJKE RUIMTE
+opp = 27,46m²	
+KELDER
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+RWA
+RWA
+RWA
+RWA
+RWA
+RWA
+RWA
+aanzuigleiding regenwater
+aanzuigleiding regenwater
+RWA
+aanzuigleiding regenwater
+aanzuigleiding regenwater
+infiltratievoorziening
+	4,67m²
+	1170 liter
+regenwaterput 5000l
+regenwaterput 5000l
+bestaande
+	rioleringsaansluiting
+bestaande
+	rioleringsaansluiting
+bestaande afvoer
+lijngoot
+lijngoot
+2024130246
+Elektronisch ondertekend document, blz. 32 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 32 of 54 --
+
+Erasme Ruelensvest 83/002
+	3001 Heverlee
+	T: +32 16 23 45 48
+GRONDPLAN GELIJKVLOERS	
+nieuwe toestand
+NAAMSESTRAAT 29
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_02
+0
+1:100
+1 5
+26/01/2024
+Naamsestraat
+H 249
+H 386
+WC
+	DOUCHE
+H 284
+H ob 277 (balk 16cm)	
+H op 304 (kepers 11cm)
+NAAMSESTRAAT 29-31
+Ingang kelder
+	handelspand
+(+1.67)
+	(0.00)
+H 338
+WC
+KELDER
+H 258
+0,14	
+0,17
+1,19	
+BW ong. 310cm
+douche
+117
+H 280
+0,29
+173
+H 326
+INTERNET
+	verplaatsen	
+H 240cm
+BW 93.5cm
+	Ro 97.4cm
+0,18
+HANDELSPAND
+HANDELSPAND
+H deur 225	
+traphal 1
+	traphal 3
+traphal 4
+traphal 2
+INGANG
+	KELDER
+WC
+	DOUCHE
+H 307
+opp 19.87 m²
+opp = 27,96m²
+NAAMSESTRAAT 31
+NAAMSESTRAAT 31
+NAAMSESTRAAT 31
+NAAMSESTRAAT 29
+31/0002
+BW 55cm
+Ro 221cm
+NAAMSESTRAAT 29-31
+Ingang kelder
+	handelspand
+H deur 284
+STUDENTENKAMER
+GEMEENSCHAPPELIJKE RUIMTE
+opp = 14.79m²
+GEMEENSCHAPPELIJKE KEUKEN
+doorgang - kasseien
+	opp = 38,05m²
+bestaande verharding
+	binnenkoer - kasseien
+opp 20.17m²
+	31/0003
+STUDENTENKAMER
+opp 10.05m²
+	31/0005
+STUDENTENKAMER
+afvalcontainers
+TOEGANG
+	KEUKEN
+dwarssnede
+nieuwe deur
+-0,12	
+-0,15
+0,90
+-0,03
+0,00	
+0,37
+0,32
+0,14
+-0,26
+0,18
+0,37
+0,21
+0,17
+-0,33
+op niv -1 afkasting in gyproc (balk?)
+bestaande
+	verharding
+	4,43m²
+32m²
+33,45m²
+37,09m²
+container	
+container	
+container	
+container
+totale groenzone
+	47,8m²
+waterdoorlatende
+	verharding
+	9,84m²
+bestaand stallingsysteem voor 24 fietsen
+bestaand stallingsysteem voor 16 fietsen
+nieuw stallingsysteem voor 7 fietsen
+1249
+333
+272
+341
+913
+601
+35 
+271 
+26 
+187 
+19 
+421 
+15 
+300
+19 
+216 
+40 
+519 
+55 
+191 
+20 
+404
+1333
+1427
+717 
+30 265	
+31 
+849 
+46
+64 180 64 120 64 180 105 262
+120 119 41 128 40 153 97 154 73
+1070
+894
+566
+266
+83
+357
+245
+311
+581
+109
+1293
+26 
+312 
+32 
+115 
+13 
+479 
+9 
+287 
+16
+779 
+45
+226 
+48 
+126 
+31 
+126 
+62 
+93 
+56 
+125 
+94 
+126 
+184 
+140 
+186
+526 
+110 
+28 45
+128 
+101 
+47 
+121 
+126 
+126 
+118 
+126 
+111 
+126 
+113 
+118
+1363
+183 91 81 82	
+451
+69 
+114 
+656
+515 
+10 
+110 
+10 
+111
+33 
+90 
+96 
+406
+63 
+171 
+18 
+426
+480 
+9 
+319 
+16 
+847
+230 17 163 25 410
+390
+156	
+141
+13 74 504
+237
+293
+29
+1013
+898 14 128
+281
+49
+130
+9
+273
+32
+243
+9
+129
+60 80 80 180 10	
+410	
+58
+180
+374
+180
+114
+906
+108 115 36	
+259
+1169
+1092
+590
+260
+375
+318
+128 10 90
+groenzone wadi
+	9,92m²
+31/0006
+STUDIO
+31/0008
+STUDIO
+31/0007
+STUDIO
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+1
+114
+WC
+douche
+2024130246
+31
+29
+open doorgang
+29C
+29D
+29E
+29F
+29G
+29G/0001
+29G/0002
+29H
+29I/0001
+29I
+Elektronisch ondertekend document, blz. 33 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 33 of 54 --
+
+Erasme Ruelensvest 83/002
+	3001 Heverlee
+	T: +32 16 23 45 48
+GRONDPLAN NIVO +1	
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_03
+0
+1:100
+1 5
+NAAMSESTRAAT 29
+26/01/2024
+Hogeschoolp
+	gemeentew
+Naamsestraat
+H 258
++25
+DOUCHE
+DOUCHE 
+WC
+171 92
+397
+67 
+73 
+67
+207
+H 278
+H 354
+Hob = 323
+H 240
+8 64 56 73 195
+H ob = 312
+	H op = 334
+26 73 24 271
+BW 41cm	
+Ro 188
+BW 41cm	
+Ro 188
+Hob 247
+Hop 265
+(-28 cm)
+ten opzichte traphal
+deur te laag (169cm)
+BW 60.5cm	
+Ro 183 cm
+(+2.77)
+vermoed. afvoer
+BW = 75cm
+	Ro = 242
+opp = 17,99m²
+opp = 12.3m² opp = 12.32m²
+opp = 20.02m²
+opp 20.73m²
+opp 13.26m²
+opp 13.33m²
+opp 26.54m²
+opp 19.62m²
+opp 13m²
+opp 17.06m²
+opp. 14.61m²
+opp. 10.93 m²
+opp 15.2m²
+29A/0101
+29A/0102
+29A/0103
+29A/0104
+29A/0105
+29A/0106
+29A/0107
+31/0102
+31/0103
+31/0104
+31/0106
+31/0108
+31/0109
+31/0101
+opp 12m²
+	31/0105
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER	STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+K 25
+31/0107
+langssnede
+dwarssnede
+2,46
+3,67
+3,79
+3,92
+3,47
+1,67
+3,71
+3,71
+3,73
+3,42
+3,14
+3,42
+3,83
+3,79
+10 opt H 17,19cm
+	+ 7,5 cm chappe
+H 386
+75
+78
+H balk 25 cm
+groendak 23,45m²
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+ontharden binnenplein 20m²
+groendak 11,42m²
+groendak 11,78m²
+1093
+35 
+271 
+26 
+187 
+19 
+421 
+15 
+363
+19 
+159 
+33 
+519 
+55 
+191 
+20 
+404
+1333
+1427
+429 
+19 276 20 268	
+31 230 20 294 9 296 
+46
+84 113 114 113 96 113 209 113 85	
+116 110 223 110 172 111 83
+1070
+894
+857
+112
+1308
+26 
+312 
+32 
+310 
+9 
+301 
+9 
+275 
+19
+82 11 
+212 
+20 
+455 
+45
+197 
+134 
+211 
+125 
+94 
+126 
+13
+115 
+126 
+101 
+126 
+123 
+126 
+118 
+126 
+111 
+126 
+104 
+127
+1432
+161 100 94 82	
+437
+56 133 541	
+730
+304 
+17 
+435 
+61 
+205 
+14 
+406
+942 
+16 
+93 11 
+119 
+11 67 19 
+527
+409 26 409
+335 
+31 
+414
+645
+107 108 81 92 24	
+413
+414 
+19 
+429
+5 
+178 
+193
+376
+82 122 52	
+256
+242
+684
+274
+263
+531
+965
+390
+407
+965 
+204
+294
+28
+298
+32
+412
+32
+380
+305
+222
+10
+80
+15
+80
+328
+80
+15
+80
+160
+80
+15
+80
+142
+300
+268
+300
+208
+2024130246
+deel van 29D
+deel van 29E
+deel van 29F
+29G/0102
+29G/0101
+29H/0101
+29H/0102
+29H/0103
+29I/0101	29I/0102
+29I/0103
+29I/0104
+29C/0101
+29C/0102
+29C/0103
+29C/0104
+29C/0105
+29C/0106
+29C/0107
+Elektronisch ondertekend document, blz. 34 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 34 of 54 --
+
+Erasme Ruelensvest 83/002
+	3001 Heverlee
+	T: +32 16 23 45 48
+GRONDPLAN NIVO +2	
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_04
+NAAMSESTRAAT 29
+26/01/2024
+0
+1:100
+1 5
+4/5
+Hogeschoolp
+	gemeentewe
+Naamsestraat
+H 258	
+WC
+267
+162
+609
+222 
+74 
+38 
+74 
+201
+317
+48 
+71 
+68
+204 19
+Hob 326
+NAAMSESTRAAT 31B
+NAAMSESTRAAT 31C
+NAAMSESTRAAT 29
+VELUX nog te meten
+16optr.x18.5cm
+Hob 326
+Hob 194
+Hob 194
+Hob 194
+mezzanine
+velux
+afvoer
+bestaande kitchenette
+(+6,50)
+bestaande
+kitchenette
+WD 
+WD 
+WD 
+WD 
+WD 
+WD 
+WD
+H 275
+VELUX
+VELUX
+VELUX
+VELUX
+VELUX 130 x H 93
+VELUX
+opp. 15.05m²
+opp. 11.79 + 4.72m²
+opp. 16.5 + 5.15m²
+opp 20.52m² opp 12.67m²
+opp 13,43m²
+opp 15,1m²
+opp 13.03m²
+opp 12.34m²
+opp 20.27m²
+opp 12.49m²
+opp 10.16m²
+opp 12.08m²
+opp. 13.07 + 6.81m²
+29A/0205
+29A/0201
+29A/0202
+29A/0203	
+29A/0204
+29A/0206
+29A/0207
+29A/0208
+31/0201
+31/0202
+31/0104
+31/0206
+31/0205
+opp 15.51m²
+	31/0107
+31/0105
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+31/0203
+STUDENTENKAMER
+STUDENTENKAMER
+dwarssnede
+doeco SUBAR1534VIddoooeco SUBAR1534VVVVI
+5,70
+6,88
+7.19
+6.47
+6.30
+5.82
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+groendak 23,45m²
+	naar hemelwaterput
+groendak 11,42m²
+	naar hemelwaterput
+groendak 11,78m²
+	naar hemelwaterput
+plat dak 11,24m²
+	naar hemelwaterput
+plat dak 15,94m²
+	naar hemelwaterput
+plat dak 14,66m²
+	naar hemelwaterput
+35 
+485 
+19 
+421 
+15 
+363
+19 
+159 
+33 
+519 
+55 
+191 
+20 
+404
+1274
+1508
+429 
+19 276 20 268
+31 222 9 
+310 
+9 296 
+46
+89 132 90 132 74 132 163 129 99	
+116 110 166 129 121 129 154
+1070
+894
+888
+109
+1293
+26 
+312 
+32 
+315 
+9 
+281 
+9 
+288 
+20
+127 
+138 
+310 
+136 
+321 
+132 
+268
+1432
+343 128 269	
+739
+149 
+25 
+425
+206 
+11 73 19 
+527
+335 
+31 
+491
+645
+107 108 81 92 24	
+413
+274 15 245 7 77 7 244
+5 
+178 
+193
+376
+82 122 52	
+256
+242
+684
+274
+263
+410 
+11 
+110
+409
+628
+150 9 469
+317
+428
+119 19 94 10 
+707
+DOUCHE
+WC
+WC
+2024130246
+29G/0201
+29G/0202
+deel van
+29H/0103
+deel van
+29H/0101 deel van
+29I/0104
+29I/0201
+29I/0202
+29I/0203
+29C/0201
+29C/0202
+29C/0203
+29C/0204
+29C/0205
+29C/0206
+29C/0207	29C/0208
+Elektronisch ondertekend document, blz. 35 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 35 of 54 --
+
+Erasme Ruelensvest 83/002
+	3001 Heverlee
+	T: +32 16 23 45 48
+GRONDPLAN NIV Zolder	
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_05
+0
+1:100
+1 5
+NAAMSESTRAAT 29
+26/01/2024
+DOUCHE
+Hogeschoolp
+	gemeentewe
+K 21
+(trap +296)
+NAAMSESTRAAT 29
+deur 177
+Hob 387
+BW 36
+Ro 96
+BW 84
+Ro 48
+BW 81
+Ro 118
+BUUR
+BW 110
+Ro 77
+VELUX 130x95
+	BW 96
+VELUX 130x95
+	BW 96
+VELUX 130x95
+	BW 96
+langssnede
+dwarssnede
+9.42
+9.70
+VELUX 130x95
+	BW 96
+opp. 12.09m²
+opp. 14.61m²
+opp. 14,79m²
+opp. 12.15m²
+31/0301
+31/0302
+31/0303
+29A/0301
+29A/0302
+29A/0303
+29A/0304 opp. 12.91m²
+opp. 12.65m²
+opp. 12.18m²
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+hellend dak 76,85m²
+	naar hemelwaterput
+284 19 112 19 
+425
+554	
+383	
+419
+519
+427
+486
+350
+670
+360
+VELUX
+VELUX
+VELUX
+VELUX
+VELUX
+rookluik
+	78x98
+rookluik
+	78x98
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+DOUCHE
+2024130246
+29I/0301
+29I/0302
+29I/0303
+deel van 0201
+deel van
+0202
+deel van
+0203
+deel van
+0204
+29C/0301
+29C/0302
+29C/0303
+29C/0304
+Elektronisch ondertekend document, blz. 36 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 36 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GEVEL ACHTERBOUW - GEVEL 2
+nieuwe toestand
+BA_NAAMSE 29-31_G_N_01
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+29A/0101
+29A/0208
+29/0002	keuken
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+BW 104
+	Ro 121
+31/0107
+31/0106
+keuken
+19
+269
+7
+26
+272
+33
+222
+31/0003
+16
+262
+19
+325
+20
+329
+0,37
+3,42
+6,30
+-2,18
+9,27
+10,08
+7,44
+8,48
+13,05
+3,72
+0,37
+6,93
+3,49
+0,00
+12,96
+3,62
+9,19	9,24
+13
+1
+24 	24 	24
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 2
+Elektronisch ondertekend document, blz. 37 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 37 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+LANGSSNEDE - GEVEL 1
+bestaande toestand
+BA_NAAMSE 29-31_S_B_01
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+0.00
+242
+84
+266
+242
+89
+266
+243
+23
+274
+21
+331
+98
+285
+234
+35
+262
+12,89
+11,05
+13,05
+8,05
+2,69
+0,00
+13,96
+11,24
+-0,11
+10,11
+3,83
+3,00
+6,02
+3,42
+8,47
+12,96
+11,89
+11,68
+10,40
+8,48
+0,46
+3,67
+7,19
+10,16
+9
+16
+11	11 	11
+11 	11 	11	11
+12
+2
+3	3	12
+12
+21
+21
+6
+6 	6
+6 	6
+7 	7
+19
+3
+Hogeschoolplein,
+gemeenteweg
+Naamsestraat	
+afbraak niv +1
+	90,22m²	
+gevel 1
+Elektronisch ondertekend document, blz. 38 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 38 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+ZIJGEVEL - GEVEL 3
+nieuwe toestand
+BA_NAAMSE 29-31_G_N_02
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+0,32
+10,08
+7,27
+0,37
+4,09
+9,45
+8,48
+11,90
+12,96
+10,93 11,13
+9,57
+186
+101
+216
+129
+31/0105
+binnenkoer
+31/0102
+31/0202
+tegelwerk
+chappe
+	lewisplaat
+houtenstructuur
+KNIKLIJN
+handelspand
+31/0302
+102
+-0,26 	-0,15 	-0,25
+3,79
+6,47
+9,42
+13,96
+0,18	0,17
+3,14
+5,82
+9,37
+7,27
+10,22	10,25
+-0,38
+387
+24
+271
+20
+248
+44
+360	
+keuken
+170
+107
+183
+180
+183
+309
+22
+247
+55
+240
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-dakpannen
+	-onderdak
+	-houten dakstructuur opgevuld met isolatie
+	-gyproc
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-gyproc
+11
+2
+4
+16
+6
+11 	11 	11 	11 	11 	11
+12	11	11	11	11 	12
+11
+11
+11
+7 	7
+21
+11 	11
+14 	14 	14
+21 	21
+21
+16
+9
+9
+1
+9
+9
+4
+13 24 	24	24	24	24	24
+24 	24
+13
+17
+17
+20 	20
+20	20
+8 	8
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 3
+3 844,56 mm1,80 m1,12 m1,80 m
+1,14 m
+2,71 m
+2,48 m
+1,29 m1,79 m
+0,84 m
+2,47 m
+2,40 m
+2,54 m
+3,38 m
+Dit plan is een bijlage bij het advies van de dienst wonen dat
+werd uitgebracht in functie van de woonkwaliteit binnen deze
+aanvraag tot omgevingsvergunning.
+Het betreft dus geen vergund plan.
+Elektronisch ondertekend document, blz. 39 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 39 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GEVEL 6
+nieuwe toestand
+BA_NAAMSE 29-31_G_B_05
+NAAMSESTRAAT 29
+0
+1:50
+1 	2.5
+26/01/2024
+37
+234
+35
+262
+-vloerbekleding
+-chape
+-vloerisolatie
+-bestaande betonplaat
+9,22
+10,18
+12,96
+6,32
+8,07
+0,46
+10,40
+3,72
+0,37
+13
+1
+24 	24
+17
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 6
+2,34 m
+2,62 m
+Dit plan is een bijlage bij het advies van de dienst wonen dat
+werd uitgebracht in functie van de woonkwaliteit binnen deze
+aanvraag tot omgevingsvergunning.
+Het betreft dus geen vergund plan.
+Elektronisch ondertekend document, blz. 40 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 40 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GEVEL ACHTERBOUW - GEVEL 2 - brandweer
+nieuwe toestand
+BA_NAAMSE 29-31_G_N_01
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+29A/0101
+29A/0208
+29/0002	keuken
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+BW 104
+	Ro 121
+31/0107
+31/0106
+keuken
+19
+269
+7
+26
+272
+33
+222
+31/0003
+16
+262
+19
+325
+20
+329
+0,37
+3,42
+6,30
+-2,18
+9,27
+10,08
+7,44
+8,48
+13,05
+3,72
+0,37
+6,93
+3,49
+0,00
+12,96
+3,62
+9,19	9,24
+13
+1
+24 	24 	24
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 2
+Elektronisch ondertekend document, blz. 41 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 41 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+LANGSSNEDE - GEVEL 1 - brandweer
+nieuwe toestand
+BA_NAAMSE 29-31_S_N_01
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+12,89
+11,05
+13,05
+8,05
+2,69
+0,00
+13,96
+11,24
+-0,54
+-0,11
+10,11
+3,83
+3,00
+6,22
+8,47
+12,96
+11,89
+11,68
+10,40
+8,48
+0,46
+3,67
+7,19
+10,16
+0,37
+3,72
+29A/0105
+29A/0202
+29A/0302
+29A/0104
+29A/0201
+29A/0301
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+50
+24
+regenwaterput 5000l 	regenwaterput 5000l
+9
+16
+11	11 	11
+11 	11 	11	11
+12
+2
+3	3
+3
+12
+12
+21
+21
+6
+6 	6
+6 	6
+7 	7
+19
+1
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 1
+Elektronisch ondertekend document, blz. 42 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 42 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+INPLANTINGSPLAN
+bestaande toestand
+NAAMSESTRAAT 29
+BA_Heistraat 107.vwx	VO_NAAMSE 29-31_I_B_01
+0
+1:200
+1 	10x
+1/1
+26/01/2024
+Dakkoepel
+Dakkoepel
+Hogeschoolplein,
+	gemeenteweg
+Standonckstraat, gemeenteweg
+Naamsestraat, gemeenteweg kasseien
+alle nutsvoorzieningen aanwezig
+Leuven afd. 2 sectie
+B nr. 952C
+nrs. 2D/2E
+Leuven afd. 2 sectie
+B nr. 954X
+nrs. 2/2A
+Leuven afd. 2 sectie
+B nr. 959T
+nrs. 4/4A
+Leuven afd. 2 sectie
+B nr. 959S
+nr. 6
+Leuven afd. 2 sectie
+B nr. 959N
+nr. 7
+Leuven afd. 2 sectie
+B nr. 958E
+nr. 6
+Leuven afd. 2 sectie
+B nr. 961E
+nrs. 33
+Leuven afd. 2 sectie
+B nr. 962K
+nrs. 35/35A
+terreinsnede
+1
+5
+4
+7
+8
+9
+2
+3
+volledig af
+te breken
+40m² niv +1 af te
+breken
+50,22m²
+1031
+904
+1310
+857
+112
+1423
+2518
+1092
+274
+ 
+331
+ 
+929
+ 
+320
+566
+266
+121
+524
+ 
+742
+1169
+ 
+1509
+679 	421
+730
+873	
+753 	247 	440 	452
+1432
+889
+458
+277 	164
+365
+278
+180
+ 
+417
+ 
+240
+212
+441 	306 	349
+1251
+binnenplein kasseien
+107,27m²
+dakoppervlakte
+naar riolering
+518,73m²
+Leuven afd. 2 sectie
+B nr. 954Y en 960B
+nrs. 29/31
+Elektronisch ondertekend document, blz. 43 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 43 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+LANGSSNEDE - GEVEL 1
+nieuwe toestand
+BA_NAAMSE 29-31_S_N_01
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+12,89
+11,05
+13,05
+8,05
+2,69
+0,00
+13,96
+11,24
+-0,54
+-0,11
+10,11
+3,83
+3,00
+6,22
+8,47
+12,96
+11,89
+11,68
+10,40
+8,48
+0,46
+3,67
+7,19
+10,16
+0,37
+3,72
+29A/0105
+29A/0202
+29A/0302
+29A/0104
+29A/0201
+29A/0301
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+50
+24
+regenwaterput 5000l 	regenwaterput 5000l
+9
+16
+11	11 	11
+11 	11 	11	11
+12
+2
+3	3
+3
+12
+12
+21
+21
+6
+6 	6
+6 	6
+7 	7
+19
+1
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 1
+Elektronisch ondertekend document, blz. 44 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 44 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIV Zolder
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_05
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+DOUCHE
+Hogeschoolp
+gemeentew
+K 21
+(trap +296)
+NAAMSESTRAAT 29
+deur 177
+Hob 387
+BW 36
+	Ro 96
+BW 84
+	Ro 48
+BW 81
+	Ro 118
+BUUR
+BW 110
+	Ro 77
+VELUX 130x95
+BW 96
+VELUX 130x95
+BW 96
+VELUX 130x95
+BW 96
+langssnede
+dwarssnede
+9.42
+9.70
+VELUX 130x95
+BW 96
+opp. 12.09m²
+opp. 14.61m²
+opp. 14,79m²
+opp. 12.15m²
+31/0301
+31/0302
+31/0303
+29A/0301
+29A/0302
+29A/0303
+29A/0304 opp. 12.91m²
+opp. 12.65m²
+opp. 12.18m²
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+hellend dak 76,85m²
+naar hemelwaterput
+284 
+19 	112 	19 
+425
+554
+383
+	419
+519
+427
+486
+350
+670
+360
+VELUX
+VELUX
+VELUX
+VELUX
+VELUX
+rookluik
+78x98
+rookluik
+	78x98
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+DOUCHE
+Elektronisch ondertekend document, blz. 45 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 45 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIV 2
+bestaande toestand
+NAAMSESTRAAT 29
+BA_NAAMSE 29-31_P_B_04
+0
+1:100
+2 	5
+26/01/2024
+H ob 401
+	H op 412
+DOUCHE
+WC
+WC
+503,5
+Hob 326
+VELUX
+VELUX nog te meten
+16optr.x18.5cm
+Hob 194
+Hob 194
+Hob 194
+mezzanine
+BW 60.5cm
+Ro 183 cm (gem.
+op NIV1)
+velux
+afvoer
+	bestaande kitchenette
+bestaande
+	kitchenette
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+H 275
+te bevestigen
+H nok 326
+1ste opt = 21 cm
+	+14 opt x 18cm
+	+ 1 opt x 20cm
+Honok 273
+BW 104cm
+Ro 121 cm
+Hob 194
+opp. 15.05m²
+opp. 11.79 + 4.72m²
+opp. 16.5 + 5.15m²
+opp 20.52m² 	opp 12.67m²
+opp 11.88m²
+opp 15,1m²
+opp 13.03m²
+opp 12.34m²
+opp 20.27m²
+opp 12.49m²
+opp 10.16m²
+opp 12.08m²
+opp. 13.07 + 6.81m²
+29A/0205
+29A/0201
+29A/0202
+29A/0203
+	29A/0204
+29A/0206
+29A/0207
+29A/0208
+31/0201
+31/0202
+31/0203
+31/0204
+31/0206
+31/0205
+opp 15.51m²
+31/0107
+31/0105
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER 	STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+langssnede
+dwarssnede
+VELUX
+VELUX
+VELUX
+VELUX
+VELUX 130 x H 93
+VELUX
+Dakkoepel
+Dakkoepel
+5,70
+6,88
+afbraak niv +1
+90,22m²
+Naamsestraat
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+35 
+485
+ 
+19 
+421
+ 
+15 
+363
+19 
+159
+ 
+33 
+519
+ 
+55 
+191
+ 
+20 
+404
+1352
+1427
+429 
+19 
+276 
+20 
+268
+31 
+222 
+9 
+310 
+9 
+296 
+46
+1070
+894
+857
+104
+1308
+26 
+312
+ 
+32 
+315
+ 
+9 
+281
+ 
+9 
+288
+ 
+20
+127
+ 
+138
+ 
+310
+ 
+136
+ 
+321
+ 
+132
+ 
+268
+1432
+333 128 269	
+730
+149
+ 
+25 
+425
+207
+ 
+10 
+72 
+19 
+527
+335
+ 
+31 
+491
+645
+107 108 	81 	92 	24	
+413
+274 
+15 
+245 
+7 	77 	7 
+244
+5 
+178
+ 
+193
+376
+82 	122 	52
+256
+250
+684
+274
+263
+531
+409
+119 	19 
+811
+628
+150 	9 	469
+317
+428
+84 	113 114 113 96 113 
+209 
+113 	85
+131 110 
+207 
+110 
+172 
+111 83
+314
+WC
+Elektronisch ondertekend document, blz. 46 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 46 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIVO +2
+nieuwe toestand
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_04
+NAAMSESTRAAT 29
+26/01/2024
+0
+1:100
+1 	5
+4/5
+Hogeschoolp
+gemeentew
+Naamsestraat
+H 258	
+WC
+267
+162
+609
+222
+ 
+74 
+38 
+74 
+201
+317
+48 
+71 
+68
+204 	19
+Hob 326
+NAAMSESTRAAT 31B
+NAAMSESTRAAT 31C
+NAAMSESTRAAT 29
+VELUX nog te meten
+16optr.x18.5cm
+Hob 326
+Hob 194
+Hob 194
+Hob 194
+mezzanine
+velux
+afvoer
+	bestaande kitchenette
+(+6,50)
+bestaande
+	kitchenette
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+ 
+WD
+H 275
+VELUX
+VELUX
+VELUX
+VELUX
+VELUX 130 x H 93
+VELUX
+opp. 15.05m²
+opp. 11.79 + 4.72m²
+opp. 16.5 + 5.15m²
+opp 20.52m² 	opp 12.67m²
+opp 13,43m²
+opp 15,1m²
+opp 13.03m²
+opp 12.34m²
+opp 20.27m²
+opp 12.49m²
+opp 10.16m²
+opp 12.08m²
+opp. 13.07 + 6.81m²
+29A/0205
+29A/0201
+29A/0202
+29A/0203
+	29A/0204
+29A/0206
+29A/0207
+29A/0208
+31/0201
+31/0202
+31/0104
+31/0206
+31/0205
+opp 15.51m²
+31/0107
+31/0105
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER 	STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+STUDENTENKAMER
+31/0203
+STUDENTENKAMER
+STUDENTENKAMER
+dwarssnede
+doeco SUBAR1534VI
+5,70
+6,88
+7.19
+6.47
+6.30
+5.82
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+groendak 23,45m²
+naar hemelwaterput
+groendak 11,42m²
+naar hemelwaterput
+groendak 11,78m²
+naar hemelwaterput
+plat dak 11,24m²
+naar hemelwaterput
+plat dak 15,94m²
+naar hemelwaterput
+plat dak 14,66m²
+naar hemelwaterput
+35 
+485
+ 
+19 
+421
+ 
+15 
+363
+19 
+159
+ 
+33 
+519
+ 
+55 
+191
+ 
+20 
+404
+1274
+1508
+429 
+19 
+276 
+20 
+268
+31 
+222 
+9 
+310 
+9 
+296 
+46
+89 132 90 132 74 132 
+163 
+129 99
+116 110 
+166 
+129 
+121 
+129 
+154
+1070
+894
+888
+109
+1293
+26 
+312
+ 
+32 
+315
+ 
+9 
+281
+ 
+9 
+288
+ 
+20
+127
+ 
+138
+ 
+310
+ 
+136
+ 
+321
+ 
+132
+ 
+268
+1432
+343 128 269
+	739
+149
+ 
+25 
+425
+206
+ 
+11 
+73 
+19 
+527
+335
+ 
+31 
+491
+645
+107 108 	81 	92 	24
+	413
+274 
+15 
+245 
+7 	77 	7 
+244
+5 
+178
+ 
+193
+376
+82 	122 	52
+256
+242
+684
+274
+263
+410
+ 
+11 
+110
+409
+628
+150 	9 	469
+317
+428
+119 	19 	94 	10 
+707
+DOUCHE
+WC
+WC
+12,3 m²
+13,03 m²
+11,86 m²
+11,73 m²
+14,39 m²
+18,33 m²
+0,81 m0,81 m
+6,36 m²
+10,54 m²
+14,87 m²
+1,92 m²
+12,67 m²	20,06 m²
+16,44 m²
+12,07 m²
+11,54 m²
+15,11 m²
+12,84 m²
+Dit plan is een bijlage bij het advies van de dienst wonen dat
+werd uitgebracht in functie van de woonkwaliteit binnen deze
+aanvraag tot omgevingsvergunning.
+Het betreft dus geen vergund plan.
+Elektronisch ondertekend document, blz. 47 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 47 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+DWARSSNEDE - brandweer
+nieuwe toestand
+BA_NAAMSE 29-31_G_B_05
+NAAMSESTRAAT 29
+0
+1:50
+1 	2.5
+26/01/2024
+37
+234
+35
+262
+-vloerbekleding
+-chape
+-vloerisolatie
+-bestaande betonplaat
+9,22
+10,18
+12,96
+6,32
+8,07
+0,46
+10,40
+3,72
+0,37
+13
+1
+24 	24
+17
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 6
+Elektronisch ondertekend document, blz. 48 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 48 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+ZIJGEVEL - GEVEL 3
+nieuwe toestand
+BA_NAAMSE 29-31_G_N_02
+0
+1:100
+1 	5
+NAAMSESTRAAT 29
+26/01/2024
+0,32
+10,08
+7,27
+0,37
+4,09
+9,45
+8,48
+11,90
+12,96
+10,93 11,13
+9,57
+186
+101
+216
+129
+31/0105
+binnenkoer
+31/0102
+31/0202
+tegelwerk
+chappe
+	lewisplaat
+houtenstructuur
+KNIKLIJN
+handelspand
+31/0302
+102
+-0,26 	-0,15 	-0,25
+3,79
+6,47
+9,42
+13,96
+0,18	0,17
+3,14
+5,82
+9,37
+7,27
+10,22	10,25
+-0,38
+387
+24
+271
+20
+248
+44
+360	
+keuken
+170
+107
+183
+180
+183
+309
+22
+247
+55
+240
+-dakpannen
+-onderdak
+-houten dakstructuur opgevuld met isolatie
+-gyproc
+-dakpannen
+	-onderdak
+	-houten dakstructuur opgevuld met isolatie
+	-gyproc
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-bestaande vloerplaat
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-vloerbekleding
+-chape
+-lewisplaten
+-bestaande houten vloerstructuur
+-gyproc
+11
+2
+4
+16
+6
+11 	11 	11 	11 	11 	11
+12	11	11	11	11 	12
+11
+11
+11
+7 	7
+21
+11 	11
+14 	14 	14
+21 	21
+21
+16
+9
+9
+1
+9
+9
+4
+13 24 	24	24	24	24	24
+24 	24
+13
+17
+17
+20 	20
+20	20
+8 	8
+Hogeschoolplein,
+gemeenteweg
+gevel 3
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+rookluik
+78x98
+rookluik
+78x98
+gevel 3
+Elektronisch ondertekend document, blz. 49 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 49 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+09/06/2022
+LEGENDE
+bestaande en nieuwe toestand
+NAAMSESTRAAT 29
+0
+1:50
+1 	2.5
+BA_NAAMSE 29-31_L_01
+AANDUIDINGEN PLANNEN EN SNEDES
+afbraak
+bestaand metselwerk
+snelbouwmetselwerk
+gevelmetselwerk
+(voorzet)wand gipskarton met minerale wol
+isolatie PIR of PUR
+isolatie minerale wol (MW)
+chape
+bestaand beton
+BRANDWEER
+brandcentrale
+compartimenteringwand - REI 60 of REI 30
+brandweerstandsklasse, minuten	REI 30
+nooduitgang
+brandblusser
+brandmelder
+brandhaspel
+optische rookmelder	R
+GEVELMATERIALEN
+1 	gevelmetselwerk, rood
+2 	gevelmetselwerk, wit gekaleid
+3 	gevelmetselwerk, wit gepleisterd
+4 	gevelmetselwerk, beige gepleisterd
+5 	gevelmetselwerk, grijs gepleisterd
+6 	natuursteen, wit
+7 	plint, grijs
+8 	blauwe steen
+9 	dakpannen, grijs
+10 	buitenschrijnwerk hout, wit
+11 	buitenschrijnwerk pvc, wit
+12 	buitenschrijnwerk hout, grijs
+13 	gevelbekleding hout
+14 	vezelcementplaten, grijs
+15 	dakrand pvc, wit
+16 	dakrand pvc, grijs
+17 	dakrand alu, grijs
+18 	deksteen, beton
+19 	RWA pijp pvc
+20 	RWA pijp zink
+21 	vluchtladder
+22 	borstwering, grijs
+23 	beton
+24 	ramen pvc, grijs
+Elektronisch ondertekend document, blz. 50 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 50 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+TERREINSNEDE
+nieuwe toestand
+NAAMSESTRAAT 29
+BA_Heistraat 107.vwx	VO_NAAMSE 29-31_T_N_01
+0
+1:200
+1 	10x
+26/01/2024
+1/1
+-0,38
+10,93 	11,13
+10,08 9,45 	9,57
+11,90
+12,96
+8,48
+7,27
+-0,26
+13,96
+0,17	0,29
+-0,48
+6,32
+3,72
+nr. 33
+nr. 27
+Elektronisch ondertekend document, blz. 51 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 51 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN NIVO -1
+bestaande toestand
+BA_NAAMSE 29-31_P_B_01
+NAAMSESTRAAT 29
+0
+1:100
+2 	5
+26/01/2024
+1/5
+BESTAANDE TRAP
+-2,18
+-2,18
+afkasting in gyproc (balk?)
+H o.b. 208cm
+H 222cm
+H o.b. 208cm
+H 222cm
+Naamsestraat
+116
+ 
+16 
+497
+ 
+15 
+422
+316
+344
+427
+632
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+Elektronisch ondertekend document, blz. 52 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 52 of 54 --
+
+Erasme Ruelensvest 83/002
+3001 Heverlee
+T: +32 16 23 45 48
+GRONDPLAN GELIJKVLOERS
+nieuwe toestand
+NAAMSESTRAAT 29
+BA_Heistraat 107.vwx	BA_NAAMSE 29-31_P_N_02
+0
+1:100
+1 	5
+26/01/2024
+Naamsestraat
+H 249
+H 386
+WC
+	DOUCHE
+H 284
+H ob 277 (balk 16cm)
+	H op 304 (kepers 11cm)
+NAAMSESTRAAT 29-31
+Ingang kelder
+	handelspand
+(+1.67)
+(0.00)
+H 338
+WC
+KELDER
+H 258
+0,14	
+0,17
+1,19	
+BW ong. 310cm
+douche
+117
+H 280
+0,29
+173
+H 326
+INTERNET
+	verplaatsen
+H 240cm
+BW 93.5cm
+	Ro 97.4cm
+0,18
+HANDELSPAND
+HANDELSPAND
+H deur 225
+traphal 1
+traphal 3
+traphal 4
+traphal 2
+INGANG
+	KELDER
+WC
+	DOUCHE
+H 307
+opp 19.87 m²
+opp = 27,96m²
+NAAMSESTRAAT 31
+NAAMSESTRAAT 31
+NAAMSESTRAAT 31
+NAAMSESTRAAT 29
+31/0002
+BW 55cm
+	Ro 221cm
+NAAMSESTRAAT 29-31
+Ingang kelder
+	handelspand
+H deur 284
+STUDENTENKAMER
+GEMEENSCHAPPELIJKE RUIMTE
+opp = 14.79m²
+GEMEENSCHAPPELIJKE KEUKEN
+doorgang - kasseien
+opp = 38,05m²
+bestaande verharding
+binnenkoer - kasseien
+opp 20.17m²
+31/0003
+STUDENTENKAMER
+opp 10.05m²
+31/0005
+STUDENTENKAMER
+afvalcontainers
+TOEGANG
+KEUKEN
+dwarssnede
+nieuwe deur
+-0,12	
+-0,15
+0,90
+-0,03
+0,00	
+0,37
+0,32
+0,14
+-0,26
+0,18
+0,37
+0,21
+0,17
+-0,33
+op niv -1 afkasting in gyproc (balk?)
+bestaande
+verharding
+4,43m²
+32m²
+33,45m²
+37,09m²
+container	
+container	
+container	
+container
+totale groenzone
+47,8m²
+waterdoorlatende
+verharding
+9,84m²
+bestaand stallingsysteem voor 24 fietsen
+bestaand stallingsysteem voor 16 fietsen
+nieuw stallingsysteem voor 7 fietsen
+1249
+333
+272
+341
+913
+601
+35 
+271
+ 
+26 
+187
+ 
+19 
+421
+ 
+15 
+300
+19 
+216
+ 
+40 
+519
+ 
+55 
+191
+ 
+20 
+404
+1333
+1427
+717 
+30 
+265
+31 
+849 
+46
+64 180 64 	120 	64 180 
+105 
+262
+120 119 	41 	128 	40 153 
+97 
+154 73
+1070
+894
+566
+266
+83
+357
+245
+311
+581
+109
+1293
+26 
+312
+ 
+32 
+115
+ 
+13 
+479
+ 
+9 
+287
+ 
+16
+779
+ 
+45
+226
+ 
+48 
+126
+ 
+31 
+126
+ 
+62 
+93 
+56 
+125
+ 
+94 
+126
+ 
+184
+ 
+140
+ 
+186
+526
+ 
+110
+ 
+28 45
+128
+ 
+101
+ 
+47 
+121
+ 
+126
+ 
+126
+ 
+118
+ 
+126
+ 
+111
+ 
+126
+ 
+113
+ 
+118
+1363
+183 	91 	81 	82	
+451
+69 
+114
+ 
+656
+515
+ 
+10 
+110
+ 
+10 
+111
+33 
+90 
+96 
+406
+63 
+171
+ 
+18 
+426
+480
+ 
+9 
+319
+ 
+16 
+847
+230 	17 	163 	25 410
+390
+156	
+141
+13 	74 
+504
+237
+293
+29
+1013
+898 	14 	128
+281
+49
+130
+9
+273
+32
+243
+9
+129
+60 	80 	80 	180 	10
+410
+	58
+180
+374
+180
+114
+906
+108 	115 	36
+259
+1169
+1092
+590
+260
+375
+318
+128 	10 	90
+groenzone wadi
+9,92m²
+31/0006
+STUDIO
+31/0008
+STUDIO
+31/0007
+STUDIO
+gevel 3	
+gevel 1
+gevel 6
+gevel 2
+gevel 4
+gevel 5
+WC
+douche
+26,41 m²
+20,56 m²
+20,14 m²
+10,18 m²
+20,17 m²
+21,75 m²
+14,71 m²
+28,12 m²
+1,54 m
+0,87 m
+1,65 m
+Dit plan is een bijlage bij het advies van de dienst wonen dat
+werd uitgebracht in functie van de woonkwaliteit binnen deze
+aanvraag tot omgevingsvergunning.
+Het betreft dus geen vergund plan.
+Elektronisch ondertekend document, blz. 53 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 53 of 54 --
+
+Handtekening(en)
+Elektronisch ondertekend document, blz. 54 van 54. Verifieerbaar via code.esignflow.be met code 3318-2678-4008-3316
+
+-- 54 of 54 --
+

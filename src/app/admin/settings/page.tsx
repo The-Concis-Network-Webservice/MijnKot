@@ -5,7 +5,7 @@ import { AdminGuard } from "../_components/admin-guard";
 import { AdminShell } from "../_components/admin-shell";
 import { PageHeader } from "../_components/page-header";
 import { useToast } from "../_components/toast";
-import type { SiteSettings } from "@/types";
+import type { SiteSettings, RentType } from "@/types";
 import { siteConfig } from "@/shared/lib/config";
 
 const emptySettings: SiteSettings = {
@@ -119,6 +119,53 @@ export default function AdminSettingsPage() {
     } else {
       await loadSettings();
       push("Settings updated.");
+    }
+  };
+
+  const addRentType = async () => {
+    setRentTypesLoading(true);
+    const res = await fetch("/api/cms/rent-types", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newRentType)
+    });
+    if (res.ok) {
+      setNewRentType({ name: "", slug: "", order_index: 0 });
+      await loadRentTypes();
+      push("Category added.");
+    } else {
+      const data = await res.json();
+      push(data.error ?? "Failed to add category.", "error");
+      setRentTypesLoading(false);
+    }
+  };
+
+  const updateRentType = async (rt: RentType) => {
+    const res = await fetch("/api/cms/rent-types", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(rt)
+    });
+    if (!res.ok) {
+      const data = await res.json();
+      push(data.error ?? "Failed to update category.", "error");
+    }
+  };
+
+  const deleteRentType = async (id: string) => {
+    setRentTypesLoading(true);
+    const res = await fetch("/api/cms/rent-types", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id })
+    });
+    if (res.ok) {
+      await loadRentTypes();
+      push("Category deleted.");
+    } else {
+      const data = await res.json();
+      push(data.error ?? "Failed to delete category.", "error");
+      setRentTypesLoading(false);
     }
   };
 
