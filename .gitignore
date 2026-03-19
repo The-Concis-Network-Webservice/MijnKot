@@ -7,4 +7,4 @@ out
 db/*.sqlite
 db/*.sqlite3
 db/*.db
-
+.dev.vars
