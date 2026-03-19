@@ -11,6 +11,7 @@ import { canEditContent } from "@/shared/lib/cms/permissions";
 import { useAdmin } from "../../AdminProvider";
 import type { Kot, Vestiging } from "@/types";
 import { RichTextEditor } from "../../_components/rich-text-editor";
+import { FloorPlanManager } from "../../_components/floor-plan-manager";
 
 export default function AdminVestigingDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -354,6 +355,11 @@ export default function AdminVestigingDetailPage() {
               </form>
             </section>
           ) : null}
+
+          <section className="bg-white border border-gray-200 rounded-2xl p-6">
+            <h2 className="font-semibold text-lg mb-6">Plattegrond</h2>
+            <FloorPlanManager vestigingId={id} koten={koten} />
+          </section>
 
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
             <h2 className="font-semibold text-lg mb-4">Koten</h2>

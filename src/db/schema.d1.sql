@@ -187,3 +187,58 @@ end;
 
 create index if not exists idx_contracts_kot_id on contracts(kot_id);
 create index if not exists idx_contracts_token on contracts(token);
+
+-- Building floor plan tables
+create table if not exists building_floors (
+  id text primary key default (lower(hex(randomblob(16)))),
+  vestiging_id text not null references vestigingen(id) on delete cascade,
+  floor_name text not null,
+  level integer not null default 0,
+  order_index integer not null default 0,
+  created_at text not null default (datetime('now'))
+);
+
+create table if not exists building_rooms (
+  id text primary key default (lower(hex(randomblob(16)))),
+  floor_id text not null references building_floors(id) on delete cascade,
+  kot_id text references koten(id) on delete set null,
+  room_label text not null,
+  location text,
+  size_m2 real,
+  pos_x real not null default 0,
+  pos_y real not null default 0,
+  width real not null default 100,
+  height real not null default 65,
+  availability_status text not null default 'available',
+  created_at text not null default (datetime('now')),
+  updated_at text not null default (datetime('now'))
+);
+
+create trigger if not exists set_building_rooms_updated_at
+before update on building_rooms
+for each row
+begin
+  update building_rooms set updated_at = datetime('now') where id = old.id;
+end;
+
+create index if not exists idx_building_floors_vestiging on building_floors(vestiging_id);
+create index if not exists idx_building_rooms_floor on building_rooms(floor_id);
+create index if not exists idx_building_rooms_kot on building_rooms(kot_id);
+
+-- Rent types (huurcategorieën)
+create table if not exists rent_types (
+  id text primary key default (lower(hex(randomblob(16)))),
+  name text not null,
+  name_en text,
+  slug text not null unique,
+  order_index integer not null default 0,
+  created_at text not null default (datetime('now')),
+  updated_at text not null default (datetime('now'))
+);
+
+create trigger if not exists set_rent_types_updated_at
+before update on rent_types
+for each row
+begin
+  update rent_types set updated_at = datetime('now') where id = old.id;
+end;

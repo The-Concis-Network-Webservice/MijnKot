@@ -69,6 +69,11 @@ export type SiteSettings = {
   contact_address: string;
   company_name: string;
   company_legal_name: string;
+  notice_active?: boolean | number | null;
+  notice_text?: string | null;
+  popup_active?: boolean | number | null;
+  popup_title?: string | null;
+  popup_text?: string | null;
 };
 
 export type FaqItem = {
@@ -110,6 +115,32 @@ export type MediaAsset = {
   created_by?: string | null;
   created_at: string;
   updated_at?: string;
+};
+
+export type BuildingFloor = {
+  id: string;
+  vestiging_id: string;
+  floor_name: string;
+  level: number;
+  order_index: number;
+  created_at: string;
+  rooms?: BuildingRoom[];
+};
+
+export type BuildingRoom = {
+  id: string;
+  floor_id: string;
+  kot_id?: string | null;
+  room_label: string;
+  location?: string | null;
+  size_m2?: number | null;
+  pos_x: number;
+  pos_y: number;
+  width: number;
+  height: number;
+  availability_status: "available" | "reserved" | "rented" | "hidden";
+  created_at: string;
+  updated_at: string;
 };
 
 export type AvailabilityHistory = {

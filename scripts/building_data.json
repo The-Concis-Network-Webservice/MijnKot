@@ -1,0 +1,564 @@
+{
+  "address": "Naamsestraat 29, 3000 Leuven",
+  "metadata": {
+    "totalRooms": 48
+  },
+  "floors": [
+    {
+      "floorName": "Gelijkvloers",
+      "level": 0,
+      "totalRooms": 11,
+      "rooms": [
+        {
+          "id": "29/0001",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 50,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29/0002",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 170,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0001",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 50,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0002",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 170,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0002",
+          "location": "right_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 640,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0003",
+          "location": "right_wing",
+          "size_m2": 20.17,
+          "coordinates": {
+            "x": 760,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0004",
+          "location": "right_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 880,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0005",
+          "location": "right_wing",
+          "size_m2": 10.05,
+          "coordinates": {
+            "x": 520,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0006",
+          "location": "right_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 640,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0007",
+          "location": "right_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 760,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0008",
+          "location": "right_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 880,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        }
+      ]
+    },
+    {
+      "floorName": "1e Verdieping",
+      "level": 1,
+      "totalRooms": 16,
+      "rooms": [
+        {
+          "id": "29A/0101",
+          "location": "left_wing",
+          "size_m2": 14.61,
+          "coordinates": {
+            "x": 50,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0102",
+          "location": "left_wing",
+          "size_m2": 10.93,
+          "coordinates": {
+            "x": 170,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0103",
+          "location": "left_wing",
+          "size_m2": 15.2,
+          "coordinates": {
+            "x": 290,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0104",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 410,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0105",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 50,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0106",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 170,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0107",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 290,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0101",
+          "location": "right_wing",
+          "size_m2": 12,
+          "coordinates": {
+            "x": 520,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0102",
+          "location": "right_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 640,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0103",
+          "location": "right_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 760,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0104",
+          "location": "right_wing",
+          "size_m2": 15.51,
+          "coordinates": {
+            "x": 880,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0105",
+          "location": "right_wing",
+          "size_m2": 12,
+          "coordinates": {
+            "x": 520,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0106",
+          "location": "right_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 640,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0107",
+          "location": "right_wing",
+          "size_m2": 15.51,
+          "coordinates": {
+            "x": 760,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0108",
+          "location": "right_wing",
+          "size_m2": 12,
+          "coordinates": {
+            "x": 880,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0109",
+          "location": "right_wing",
+          "size_m2": 12,
+          "coordinates": {
+            "x": 520,
+            "y": 240
+          },
+          "width": 100,
+          "height": 65
+        }
+      ]
+    },
+    {
+      "floorName": "2e Verdieping",
+      "level": 2,
+      "totalRooms": 14,
+      "rooms": [
+        {
+          "id": "29A/0201",
+          "location": "left_wing",
+          "size_m2": 12.08,
+          "coordinates": {
+            "x": 50,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0202",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 170,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0203",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 290,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0204",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 410,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0205",
+          "location": "left_wing",
+          "size_m2": 10.16,
+          "coordinates": {
+            "x": 50,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0206",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 170,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0207",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 290,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0208",
+          "location": "left_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 410,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0201",
+          "location": "right_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 520,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0202",
+          "location": "right_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 640,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0203",
+          "location": "right_wing",
+          "size_m2": null,
+          "coordinates": {
+            "x": 760,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0204",
+          "location": "right_wing",
+          "size_m2": 15.51,
+          "coordinates": {
+            "x": 880,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0205",
+          "location": "right_wing",
+          "size_m2": 15.51,
+          "coordinates": {
+            "x": 520,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0206",
+          "location": "right_wing",
+          "size_m2": 15.51,
+          "coordinates": {
+            "x": 640,
+            "y": 160
+          },
+          "width": 100,
+          "height": 65
+        }
+      ]
+    },
+    {
+      "floorName": "Zolder",
+      "level": 3,
+      "totalRooms": 7,
+      "rooms": [
+        {
+          "id": "29A/0301",
+          "location": "left_wing",
+          "size_m2": 12.91,
+          "coordinates": {
+            "x": 50,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0302",
+          "location": "left_wing",
+          "size_m2": 12.91,
+          "coordinates": {
+            "x": 170,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0303",
+          "location": "left_wing",
+          "size_m2": 12.91,
+          "coordinates": {
+            "x": 290,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "29A/0304",
+          "location": "left_wing",
+          "size_m2": 12.91,
+          "coordinates": {
+            "x": 410,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0301",
+          "location": "right_wing",
+          "size_m2": 14.61,
+          "coordinates": {
+            "x": 520,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0302",
+          "location": "right_wing",
+          "size_m2": 14.79,
+          "coordinates": {
+            "x": 640,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        },
+        {
+          "id": "31/0303",
+          "location": "right_wing",
+          "size_m2": 12.15,
+          "coordinates": {
+            "x": 760,
+            "y": 80
+          },
+          "width": 100,
+          "height": 65
+        }
+      ]
+    }
+  ]
+}
