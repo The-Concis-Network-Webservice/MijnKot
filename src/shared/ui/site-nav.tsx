@@ -57,17 +57,17 @@ export function SiteNav({
                 <span className="text-[10px] opacity-70">▼</span>
               </Link>
               <div className="absolute top-full left-0 w-48 py-2 mt-1 bg-surface-card border border-border-light rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top translate-y-2 group-hover:translate-y-0">
-                {rentTypes.map((rt) => (
-                  <Link 
-                    key={rt.id} 
-                    href={`/koten?type=${rt.slug}`} 
-                    className="block px-4 py-2 text-sm text-primary-500 hover:bg-surface-subtle hover:text-primary-600"
-                  >
-                    {rt.name}
-                  </Link>
-                ))}
-                {rentTypes.length > 0 && <hr className="my-1 border-border-light" />}
-                <Link href="/koten" className="block px-4 py-2 text-sm font-medium text-primary-600 hover:bg-surface-subtle">
+                <Link href="/vestigingen?type=academiejaar" className="block px-4 py-2 text-sm text-primary-500 hover:bg-surface-subtle hover:text-primary-600">
+                  {t('navigation.rent_academic')}
+                </Link>
+                <Link href="/vestigingen?type=semester" className="block px-4 py-2 text-sm text-primary-500 hover:bg-surface-subtle hover:text-primary-600">
+                  {t('navigation.rent_semester')}
+                </Link>
+                <Link href="/vestigingen?type=erasmus" className="block px-4 py-2 text-sm text-primary-500 hover:bg-surface-subtle hover:text-primary-600">
+                  {t('navigation.rent_erasmus')}
+                </Link>
+                <hr className="my-1 border-border-light" />
+                <Link href="/vestigingen" className="block px-4 py-2 text-sm font-medium text-primary-600 hover:bg-surface-subtle">
                   {t('navigation.rent_view_all')}
                 </Link>
               </div>

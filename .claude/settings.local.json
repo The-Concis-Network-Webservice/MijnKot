@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:my-room.be)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/anthropics/skills/refs/heads/main/skills/frontend-design/SKILL.md\")",
+      "Bash(npm install -g uipro-cli)",
+      "Bash(uipro init --ai claude)",
+      "Bash(git --version)",
+      "Bash(py --version)",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/requirements.txt\")"
     ]
   }
 }

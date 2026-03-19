@@ -6,12 +6,13 @@ import { SiteNav } from "@/shared/ui/site-nav";
 import { I18nProvider } from "@/shared/ui/providers/i18n-provider";
 import { getVestigingen, getSiteSettings } from "@/shared/lib/queries";
 import { LeadCaptureModal } from "@/shared/ui/lead-capture-modal";
-import { NoticeBanner } from "@/shared/ui/notice-banner";
 import { JsonLd } from "@/shared/ui/json-ld";
 
 import { siteConfig } from "@/shared/lib/config";
 
-export const runtime = 'edge'; const outfit = Outfit({
+export const runtime = 'edge';
+
+const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-display",
   weight: ["400", "500", "600", "700"]
@@ -116,21 +117,10 @@ export default async function RootLayout({
         <JsonLd data={organizationJsonLd} />
         <I18nProvider>
           <div className="min-h-screen flex flex-col bg-surface-main">
-            <header className="sticky top-0 z-[100] w-full">
-              <NoticeBanner
-                active={settings.notice_active}
-                text={settings.notice_text}
-              />
-              <SiteNav
-                vestigingen={vestigingen}
-                settings={settings}
-              />
-            </header>
-            <main className="flex-1">
-              {children}
-            </main>
+            <SiteNav vestigingen={vestigingen} settings={settings} />
+            <main className="flex-1 pt-20">{children}</main>
             <SiteFooter settings={settings} />
-            <LeadCaptureModal settings={settings} />
+            <LeadCaptureModal />
           </div>
         </I18nProvider>
       </body>

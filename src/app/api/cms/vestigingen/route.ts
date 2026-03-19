@@ -87,16 +87,15 @@ export async function PATCH(request: Request) {
   if (!updated) {
     return NextResponse.json({ error: "Failed to update vestiging." }, { status: 400 });
   }
-  // Step 2: update image_url
+  // Step 2: update image_url separately — gracefully skips if column missing (local dev DB)
   if (image_url !== undefined) {
     try {
       await queryOne(
         "update vestigingen set image_url = $1 where id = $2 returning id",
         [image_url ?? null, id]
       );
-    } catch (e: any) {
-      console.warn("Could not update image_url column. Checking if it exists...", e.message);
-      // We still return 200 if other fields updated, but log it
+    } catch {
+      // Column may not exist in local dev DB — safe to ignore
     }
   }
   await logAudit({

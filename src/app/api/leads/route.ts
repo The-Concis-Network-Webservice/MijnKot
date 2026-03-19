@@ -6,48 +6,22 @@ export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
     try {
-        const { email, name, phone } = await req.json();
+        const { email, name } = await req.json();
 
         if (!email || !email.includes('@')) {
             return NextResponse.json({ error: "Invalid email" }, { status: 400 });
         }
 
-        if (phone && phone.trim().length > 0) {
-            const phoneRegex = /^[\d\s\-\+\(\)]{7,20}$/;
-            if (!phoneRegex.test(phone)) {
-                return NextResponse.json({ error: "Invalid phone number" }, { status: 400 });
-            }
-        }
-
-        // Check for existing lead
-        const existingLead = await queryOne(
-            "select id, name, phone from leads where email = $1",
-            [email]
-        );
-
-        if (existingLead) {
-            console.log(`Lead already exists for email: ${email}. Updating name/phone if provided.`);
-            
-            // Update name and/or phone if provided
-            if (name || phone) {
-                await queryOne(
-                    "update leads set name = coalesce($1, name), phone = coalesce($2, phone) where email = $3",
-                    [name || null, phone || null, email]
-                );
-            }
-            
-            return NextResponse.json({ success: true, message: "Lead updated" });
-        }
-
-        // Insert new lead
+        // Insert lead
         await queryOne(
-            "insert into leads (email, name, phone) values ($1, $2, $3) returning id",
-            [email, name || null, phone || null]
+            "insert into leads (email, name) values ($1, $2) returning id",
+            [email, name || null]
         );
 
-        // Send welcome email only for first-time signups
+        // Send email (fire and forget to avoid blocking, or await if critical)
+        // Since it's edge, await is safer to ensure completion before shutdown
         if (process.env.RESEND) {
-            console.log(`Sending welcome email to new lead: ${email}`);
+            console.log(`Sending welcome email to lead: ${email}`);
             const emailResult = await sendWelcomeEmail(email, name);
             if (!emailResult.success) {
                 console.error('Failed to send welcome email:', emailResult.error);
@@ -55,12 +29,12 @@ export async function POST(req: NextRequest) {
                 console.log('Welcome email sent successfully');
             }
         } else {
-            console.warn('RESEND API key missing, skipping welcome email for new lead');
+            console.warn('RESEND API key missing, skipping welcome email for lead');
         }
 
-        return NextResponse.json({ success: true, message: "Lead created" });
+        return NextResponse.json({ success: true });
     } catch (err: any) {
-        console.error("Error processing lead:", err);
+        console.error("Error saving lead:", err);
         return NextResponse.json({ error: "Internal Error" }, { status: 500 });
     }
 }

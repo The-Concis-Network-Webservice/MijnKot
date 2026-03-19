@@ -29,6 +29,45 @@ export function DetailHeader({ kot, vestiging }: DetailHeaderProps) {
     );
 }
 
+// Custom formatter to handle newlines and simple bullet points
+function formatDescription(text: string) {
+    if (!text) return null;
+    const lines = text.split('\n');
+    const elements: React.ReactNode[] = [];
+    let listItems: React.ReactNode[] = [];
+    let listCounter = 0;
+
+    const flushList = (index: number) => {
+        if (listItems.length > 0) {
+            elements.push(
+                <ul key={`ul-${index}`} className="list-disc pl-5 mb-4 space-y-1 text-text-main">
+                    {listItems}
+                </ul>
+            );
+            listItems = [];
+        }
+    };
+
+    lines.forEach((line, index) => {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
+            listItems.push(<li key={`li-${index}`}>{trimmed.substring(2)}</li>);
+        } else {
+            flushList(index);
+            if (trimmed !== '') {
+                // If it's a normal paragraph
+                elements.push(
+                    <p key={`p-${index}`} className="mb-4 text-text-main leading-relaxed">
+                        {line}
+                    </p>
+                );
+            }
+        }
+    });
+    flushList(lines.length);
+
+    return <>{elements}</>;
+}
 
 export function DetailAbout({ kot }: { kot: Kot }) {
     const { t, i18n } = useTranslation();
@@ -37,8 +76,8 @@ export function DetailAbout({ kot }: { kot: Kot }) {
     return (
         <section>
             <h2 className="text-2xl font-semibold font-display text-text-main mb-6">{t('detail.about_title')}</h2>
-            <div className="prose prose-lg max-w-none text-text-main prose-headings:text-text-main prose-p:text-text-main prose-strong:text-text-main prose-ul:list-disc prose-ol:list-decimal">
-                <ReactMarkdown>{description}</ReactMarkdown>
+            <div className="prose prose-lg max-w-none text-text-main">
+                {formatDescription(description)}
             </div>
         </section>
     );

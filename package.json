@@ -5,11 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --port 3001",
-    "dev:all": "concurrently \"npm run dev\" \"npm run dev:wrangler\"",
-    "dev:all:remote": "npm run db:pull && npm run dev:all",
     "dev:d1": "npm run pages:build && npm run pages:dev",
     "dev:wrangler": "npx wrangler pages dev --d1=DB=mijnkot --r2 BUCKET --compatibility-date=2024-06-20 --port 3000 --proxy 3001",
-    "dev:wrangler:remote": "npx wrangler pages dev --remote --d1=DB=mijnkot --r2 BUCKET --compatibility-date=2024-06-20 --port 3000 --proxy 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -18,7 +15,6 @@
     "pages:deploy": "npx wrangler pages deploy .vercel/output/static",
     "d1:local:migrate": "wrangler d1 execute mijnkot --local --file=src/db/schema.d1.sql",
     "d1:remote:migrate": "wrangler d1 execute mijnkot --remote --file=src/db/schema.d1.sql",
-    "db:pull": "node scripts/sync-db.js",
     "seed": "node scripts/seed-d1.js",
     "seed:remote": "node scripts/seed-d1.js --remote"
   },
@@ -46,7 +42,6 @@
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
     "autoprefixer": "10.4.20",
-    "concurrently": "^9.2.1",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5",
     "postcss": "8.4.47",

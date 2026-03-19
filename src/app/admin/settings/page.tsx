@@ -5,7 +5,7 @@ import { AdminGuard } from "../_components/admin-guard";
 import { AdminShell } from "../_components/admin-shell";
 import { PageHeader } from "../_components/page-header";
 import { useToast } from "../_components/toast";
-import type { SiteSettings, RentType } from "@/types";
+import type { SiteSettings } from "@/types";
 import { siteConfig } from "@/shared/lib/config";
 
 const emptySettings: SiteSettings = {
@@ -18,12 +18,7 @@ const emptySettings: SiteSettings = {
   contact_phone: siteConfig.company.contact.phone,
   contact_address: `${siteConfig.company.address.street}, ${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`,
   company_name: siteConfig.company.name,
-  company_legal_name: siteConfig.company.legalName,
-  notice_active: false,
-  notice_text: "",
-  popup_active: false,
-  popup_title: "",
-  popup_text: ""
+  company_legal_name: siteConfig.company.legalName
 };
 
 export default function AdminSettingsPage() {
@@ -100,82 +95,30 @@ export default function AdminSettingsPage() {
 // I'll actually use the full replacement approach as usual.
     setLoading(true);
     setError(null);
-    try {
-      const payload = {
-        hero_title: settings.hero_title,
-        hero_subtitle: settings.hero_subtitle,
-        hero_cta_label: settings.hero_cta_label,
-        hero_cta_href: settings.hero_cta_href,
-        contact_email: settings.contact_email,
-        contact_phone: settings.contact_phone,
-        contact_address: settings.contact_address,
-        company_name: settings.company_name,
-        company_legal_name: settings.company_legal_name,
-        notice_active: settings.notice_active,
-        notice_text: settings.notice_text,
-        popup_active: settings.popup_active,
-        popup_title: settings.popup_title,
-        popup_text: settings.popup_text
-      };
-      const res = await fetch("/api/cms/settings", {
-        method: settings.id ? "PATCH" : "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(settings.id ? { id: settings.id, ...payload } : payload)
-      });
-      
-      const response = await res.json().catch(() => ({ error: "Failed to parse server response" }));
-      
-      if (!res.ok) {
-        setError(response.error ?? "Failed to save settings.");
-      } else {
-        await loadSettings();
-        push("Settings updated.");
-      }
-    } catch (err: any) {
-      console.error("Save error:", err);
-      setError("A network error occurred. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const addRentType = async () => {
-    if (!newRentType.name || !newRentType.slug) return;
-    setRentTypesLoading(true);
-    const res = await fetch("/api/cms/rent-types", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newRentType)
+    const payload = {
+      hero_title: settings.hero_title,
+      hero_subtitle: settings.hero_subtitle,
+      hero_cta_label: settings.hero_cta_label,
+      hero_cta_href: settings.hero_cta_href,
+      contact_email: settings.contact_email,
+      contact_phone: settings.contact_phone,
+      contact_address: settings.contact_address,
+      company_name: settings.company_name,
+      company_legal_name: settings.company_legal_name
+    };
+    const res = await fetch("/api/cms/settings", {
+      method: settings.id ? "PATCH" : "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(settings.id ? { id: settings.id, ...payload } : payload)
     });
-    if (res.ok) {
-      setNewRentType({ name: "", slug: "", order_index: rentTypes.length + 1 });
-      await loadRentTypes();
-      push("Rent type added.");
-    }
-    setRentTypesLoading(false);
-  };
-
-  const deleteRentType = async (id: string) => {
-    if (!confirm("Are you sure? Rooms linked to this category will no longer be filtered by it.")) return;
-    setRentTypesLoading(true);
-    const res = await fetch(`/api/cms/rent-types?id=${id}`, { method: "DELETE" });
-    if (res.ok) {
-      await loadRentTypes();
-      push("Rent type deleted.");
-    }
-    setRentTypesLoading(false);
-  };
-
-  const updateRentType = async (rt: RentType) => {
-    const res = await fetch("/api/cms/rent-types", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(rt)
-    });
-    if (res.ok) {
-      push("Rent type updated.");
+    const response = await res.json();
+    if (!res.ok) {
+      setError(response.error ?? "Failed to save settings.");
+    } else {
+      await loadSettings();
+      push("Settings updated.");
     }
   };
 
@@ -188,15 +131,133 @@ export default function AdminSettingsPage() {
             description="Control homepage and contact content."
             crumbs={[{ label: "CMS", href: "/admin" }, { label: "Settings" }]}
           />
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold">Hero title</label>
+              <input
+                className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                value={settings.hero_title}
+                onChange={(event) =>
+                  setSettings({ ...settings, hero_title: event.target.value })
+                }
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold">Hero subtitle</label>
+              <textarea
+                className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                rows={3}
+                value={settings.hero_subtitle}
+                onChange={(event) =>
+                  setSettings({ ...settings, hero_subtitle: event.target.value })
+                }
+              />
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-semibold">CTA label</label>
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                  value={settings.hero_cta_label}
+                  onChange={(event) =>
+                    setSettings({
+                      ...settings,
+                      hero_cta_label: event.target.value
+                    })
+                  }
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-semibold">CTA href</label>
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                  value={settings.hero_cta_href}
+                  onChange={(event) =>
+                    setSettings({
+                      ...settings,
+                      hero_cta_href: event.target.value
+                    })
+                  }
+                />
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-semibold">Contact email</label>
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                  value={settings.contact_email}
+                  onChange={(event) =>
+                    setSettings({
+                      ...settings,
+                      contact_email: event.target.value
+                    })
+                  }
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-semibold">Contact phone</label>
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                  value={settings.contact_phone}
+                  onChange={(event) =>
+                    setSettings({
+                      ...settings,
+                      contact_phone: event.target.value
+                    })
+                  }
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold">Contact address</label>
+              <input
+                className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                value={settings.contact_address}
+                onChange={(event) =>
+                  setSettings({
+                    ...settings,
+                    contact_address: event.target.value
+                  })
+                }
+              />
+            </div>
 
-          <div className="flex border-b border-border-light mb-6">
+            <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+              <div className="space-y-2">
+                <label className="text-sm font-semibold">Company Name</label>
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                  value={settings.company_name}
+                  onChange={(event) =>
+                    setSettings({
+                      ...settings,
+                      company_name: event.target.value
+                    })
+                  }
+                  placeholder={siteConfig.company.name}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-semibold">Legal Company Name</label>
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                  value={settings.company_legal_name}
+                  onChange={(event) =>
+                    setSettings({
+                      ...settings,
+                      company_legal_name: event.target.value
+                    })
+                  }
+                  placeholder={siteConfig.company.legalName}
+                />
+              </div>
+            </div>
+            {error ? <p className="text-sm text-red-500">{error}</p> : null}
             <button
-              onClick={() => setActiveTab("general")}
-              className={`px-6 py-3 text-sm font-bold transition-all border-b-2 ${
-                activeTab === "general"
-                  ? "border-primary-500 text-primary-600"
-                  : "border-transparent text-text-muted hover:text-text-main hover:bg-surface-subtle"
-              }`}
+              className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-8 py-3 rounded-lg font-semibold shadow-md active:scale-95 mt-4"
+              disabled={loading}
+              onClick={saveSettings}
             >
               Algemeen
             </button>

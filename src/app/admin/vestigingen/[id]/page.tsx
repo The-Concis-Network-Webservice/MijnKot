@@ -206,19 +206,17 @@ export default function AdminVestigingDetailPage() {
                     }
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Description (Markdown)</label>
-                  <RichTextEditor
-                    value={vestiging.description}
-                    onChange={(val) =>
-                      setVestiging({
-                        ...vestiging,
-                        description: val
-                      })
-                    }
-                    placeholder="Describe this location..."
-                  />
-                </div>
+                <textarea
+                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                  rows={4}
+                  value={vestiging.description}
+                  onChange={(event) =>
+                    setVestiging({
+                      ...vestiging,
+                      description: event.target.value
+                    })
+                  }
+                />
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">Image</label>
                   <div className="flex gap-4 items-center">
@@ -251,7 +249,7 @@ export default function AdminVestigingDetailPage() {
                     />
                   </div>
                   {vestiging.image_url && (
-                    <div className="mt-2 w-full max-w-2xl aspect-video rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                    <div className="mt-2 w-full max-w-sm h-48 rounded-lg overflow-hidden border border-gray-100">
                       <img src={vestiging.image_url} className="w-full h-full object-cover" alt="Preview" />
                     </div>
                   )}

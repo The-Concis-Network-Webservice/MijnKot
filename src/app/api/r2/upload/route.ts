@@ -136,9 +136,7 @@ export async function POST(request: Request) {
       httpMetadata: { contentType: mime_type }
     });
 
-    // 5. Generate Public URL
-    // We use a local proxy route so images work in local dev (Wrangler) and production automatically
-    const publicUrl = `/api/r2/download/${key}`;
+    const publicUrl = `${process.env.R2_PUBLIC_BASE_URL || 'https://pub-844c31a0552a92bec753504a01b5f3bb.r2.dev'}/${key}`;
 
     return NextResponse.json({ 
       success: true, 

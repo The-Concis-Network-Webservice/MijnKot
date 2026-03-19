@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { RichTextEditor } from '../../_components/rich-text-editor';
 
 interface Template {
     id: string;
@@ -92,16 +91,17 @@ export default function TemplatesPage() {
                         </div>
                         <div>
                             <label className="block text-sm font-medium mb-1">
-                                Content (HTML & Markdown supported)
+                                Content (HTML supported)
                                 <span className="text-gray-500 text-xs ml-2">
                                     Placeholders: {'{{tenant_firstname}}'}, {'{{tenant_lastname}}'}, {'{{kot_address}}'}, {'{{price}}'}, etc.
                                 </span>
                             </label>
-                            <RichTextEditor
+                            <textarea
+                                required
+                                rows={10}
+                                className="w-full border p-2 rounded font-mono text-sm"
                                 value={formData.content}
-                                onChange={val => setFormData({ ...formData, content: val })}
-                                placeholder="Contract content..."
-                                minHeight="400px"
+                                onChange={e => setFormData({ ...formData, content: e.target.value })}
                             />
                         </div>
                         <div className="flex items-center gap-2">

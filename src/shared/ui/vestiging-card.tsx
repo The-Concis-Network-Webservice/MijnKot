@@ -22,7 +22,7 @@ export function VestigingCard({ vestiging }: { vestiging: Vestiging }) {
       className="block bg-surface-card border border-border-light rounded-2xl overflow-hidden hover:shadow-medium transition-shadow duration-300 group isolate"
     >
       {/* Image — fixed height, overflow-hidden contains the scale effect */}
-      <div className="relative aspect-video w-full bg-surface-subtle overflow-hidden">
+      <div className="relative h-48 w-full bg-surface-subtle overflow-hidden">
         {vestiging.image_url ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img

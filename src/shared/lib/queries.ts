@@ -1,5 +1,5 @@
 import { query, queryOne } from "./db";
-import type { Kot, KotPhoto, SiteSettings, Vestiging, FaqItem, RentType } from "@/types";
+import type { Kot, KotPhoto, SiteSettings, Vestiging, FaqItem } from "@/types";
 import { siteConfig } from "./config";
 
 export async function getSiteSettings(): Promise<SiteSettings> {
@@ -15,12 +15,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     contact_phone: siteConfig.company.contact.phone,
     contact_address: `${siteConfig.company.address.street}, ${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`,
     company_name: siteConfig.company.name,
-    company_legal_name: siteConfig.company.legalName,
-    notice_active: false,
-    notice_text: "",
-    popup_active: false,
-    popup_title: "Als eerste op de hoogte?",
-    popup_text: "Meld je aan voor onze lijst en ontvang direct een mailtje zodra er nieuwe koten vrijkomen."
+    company_legal_name: siteConfig.company.legalName
   };
 
   if (!settings) return defaults;
@@ -37,12 +32,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     contact_phone: settings.contact_phone ?? defaults.contact_phone,
     contact_address: settings.contact_address || defaults.contact_address,
     company_name: settings.company_name || defaults.company_name,
-    company_legal_name: settings.company_legal_name || defaults.company_legal_name,
-    notice_active: Boolean(settings.notice_active),
-    notice_text: settings.notice_text || defaults.notice_text,
-    popup_active: Boolean(settings.popup_active),
-    popup_title: settings.popup_title || defaults.popup_title,
-    popup_text: settings.popup_text || defaults.popup_text
+    company_legal_name: settings.company_legal_name || defaults.company_legal_name
   };
 }
 
