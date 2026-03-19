@@ -118,7 +118,7 @@ export default async function RootLayout({
         <I18nProvider>
           <div className="min-h-screen flex flex-col bg-surface-main">
             <SiteNav vestigingen={vestigingen} settings={settings} />
-            <main className="flex-1 pt-20">{children}</main>
+            <main className="flex-1">{children}</main>
             <SiteFooter settings={settings} />
             <LeadCaptureModal />
           </div>
