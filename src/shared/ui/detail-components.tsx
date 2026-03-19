@@ -29,7 +29,6 @@ export function DetailHeader({ kot, vestiging }: DetailHeaderProps) {
     );
 }
 
-<<<<<<< HEAD
 // Custom formatter to handle newlines and simple bullet points
 function formatDescription(text: string) {
     if (!text) return null;
@@ -69,8 +68,6 @@ function formatDescription(text: string) {
 
     return <>{elements}</>;
 }
-=======
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
 
 export function DetailAbout({ kot }: { kot: Kot }) {
     const { t, i18n } = useTranslation();
@@ -79,13 +76,8 @@ export function DetailAbout({ kot }: { kot: Kot }) {
     return (
         <section>
             <h2 className="text-2xl font-semibold font-display text-text-main mb-6">{t('detail.about_title')}</h2>
-<<<<<<< HEAD
             <div className="prose prose-lg max-w-none text-text-main">
                 {formatDescription(description)}
-=======
-            <div className="prose prose-lg max-w-none text-text-main prose-headings:text-text-main prose-p:text-text-main prose-strong:text-text-main prose-ul:list-disc prose-ol:list-decimal">
-                <ReactMarkdown>{description}</ReactMarkdown>
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
             </div>
         </section>
     );

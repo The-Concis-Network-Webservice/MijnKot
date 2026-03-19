@@ -57,7 +57,6 @@ export function generateContactEmailHtml({
             </div>
         </div>
     </div>
-<<<<<<< HEAD
     
     <div style="margin-top: 24px; padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
       <strong style="display: block; margin-bottom: 12px;">Bericht:</strong>
@@ -69,8 +68,6 @@ export function generateContactEmailHtml({
     <p style="font-size: 12px; color: #888; text-align: center;">
       Dit bericht is verzonden via het contactformulier op ${siteConfig.company.url.replace('https://', '')}.
     </p>
-=======
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
 </body>
 </html>
   `;

@@ -69,14 +69,6 @@ export type SiteSettings = {
   contact_address: string;
   company_name: string;
   company_legal_name: string;
-<<<<<<< HEAD
-=======
-  notice_active?: boolean;
-  notice_text?: string;
-  popup_active?: boolean;
-  popup_title?: string;
-  popup_text?: string;
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
 };
 
 export type FaqItem = {

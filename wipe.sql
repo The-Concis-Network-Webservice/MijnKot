@@ -1,0 +1,16 @@
+PRAGMA foreign_keys = OFF;
+DROP TABLE IF EXISTS audit_logs;
+DROP TABLE IF EXISTS availability_history;
+DROP TABLE IF EXISTS kot_photos;
+DROP TABLE IF EXISTS media_assets;
+DROP TABLE IF EXISTS user_vestigingen;
+DROP TABLE IF EXISTS contracts;
+DROP TABLE IF EXISTS contract_templates;
+DROP TABLE IF EXISTS leads;
+DROP TABLE IF EXISTS faq_items;
+DROP TABLE IF EXISTS site_settings;
+DROP TABLE IF EXISTS koten;
+DROP TABLE IF EXISTS vestigingen;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS test;
+PRAGMA foreign_keys = ON;

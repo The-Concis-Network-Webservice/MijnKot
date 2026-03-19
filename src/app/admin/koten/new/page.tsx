@@ -124,7 +124,6 @@ export default function AdminKotCreatePage() {
               }
               required
             />
-<<<<<<< HEAD
             <textarea
               className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main min-h-[150px]"
               placeholder="Description"
@@ -135,42 +134,6 @@ export default function AdminKotCreatePage() {
               }
               required
             />
-=======
-            <div className="space-y-1">
-              <label className="text-sm font-medium text-text-muted ml-1">Description</label>
-              <RichTextEditor
-                placeholder="Description"
-                value={form.description}
-                onChange={(value) => setForm({ ...form, description: value })}
-                minHeight="250px"
-              />
-            </div>
-
-            <div className="space-y-3">
-              <label className="text-sm font-semibold block italic text-text-muted">Categorieën (Te Huur filters)</label>
-              <div className="flex flex-wrap gap-4">
-                {rentTypes.map((rt) => (
-                  <label key={rt.id} className="flex items-center gap-2 cursor-pointer bg-surface-subtle px-3 py-1.5 rounded-lg border border-border-light hover:border-primary-300 transition-colors">
-                    <input
-                      type="checkbox"
-                      checked={form.rent_type_ids.includes(rt.id)}
-                      onChange={(e) => {
-                        const ids = form.rent_type_ids;
-                        if (e.target.checked) {
-                          setForm({ ...form, rent_type_ids: [...ids, rt.id] });
-                        } else {
-                          setForm({ ...form, rent_type_ids: ids.filter(id => id !== rt.id) });
-                        }
-                      }}
-                      className="rounded text-primary-500 focus:ring-primary-500"
-                    />
-                    <span className="text-sm font-medium">{rt.name}</span>
-                  </label>
-                ))}
-                {rentTypes.length === 0 && <p className="text-sm text-text-muted italic">No categories defined. Add them in settings.</p>}
-              </div>
-            </div>
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
             <div className="grid md:grid-cols-2 gap-4">
               <input
                 className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
@@ -213,13 +176,8 @@ export default function AdminKotCreatePage() {
               </select>
               <input
                 className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
-<<<<<<< HEAD
                 type="datetime-local"
                 value={form.scheduled_publish_at}
-=======
-                type="date"
-                value={form.scheduled_publish_at ? form.scheduled_publish_at.split('T')[0] : ''}
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
                 onChange={(event) =>
                   setForm({
                     ...form,
@@ -231,11 +189,7 @@ export default function AdminKotCreatePage() {
             {error ? <p className="text-sm text-red-500">{error}</p> : null}
             <button
               className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-6 py-2.5 rounded-lg font-medium shadow-sm w-full md:w-auto"
-<<<<<<< HEAD
               disabled={loading}
-=======
-              disabled={loading || !!createdKotId}
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
               type="submit"
             >
               {loading ? "Creating..." : "Create kot"}

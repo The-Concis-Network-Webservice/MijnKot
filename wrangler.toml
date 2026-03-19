@@ -6,16 +6,8 @@ pages_build_output_dir = ".vercel/output/static"
 [[d1_databases]]
 binding = "DB"
 database_name = "mijnkot"
-<<<<<<< HEAD
-database_id = "b9ac4fff-b149-406e-9d20-92865e77cd11" 
-
-[[r2_buckets]]
-binding = "BUCKET"
-bucket_name = "mijnkot-media"
-=======
 database_id = "b9ac4fff-b149-406e-9d20-92865e77cd11"
 
 [[r2_buckets]]
 binding = "BUCKET"
 bucket_name = "mijnkot"
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707

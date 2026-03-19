@@ -105,17 +105,10 @@ export function LeadCaptureModal({
                         <>
                             <div className="text-center mb-8">
                                 <h2 className="text-2xl font-display font-semibold text-text-main mb-2">
-<<<<<<< HEAD
                                     Als eerste op de hoogte?
                                 </h2>
                                 <p className="text-text-secondary leading-relaxed">
                                     Meld je aan voor onze lijst en ontvang direct een mailtje zodra er nieuwe koten vrijkomen.
-=======
-                                    {settings?.popup_title || "Als eerste op de hoogte?"}
-                                </h2>
-                                <p className="text-neutral-600 leading-relaxed">
-                                    {settings?.popup_text || "Meld je aan voor onze lijst en ontvang direct een mailtje zodra er nieuwe koten vrijkomen."}
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
                                 </p>
                             </div>
 

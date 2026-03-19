@@ -242,18 +242,6 @@ export default function AdminVestigingenPage() {
                       </div>
                     )}
                   </div>
-<<<<<<< HEAD
-=======
-                </div>
-                <div className="space-y-1">
-                  <label className="text-sm font-medium text-text-muted">Description</label>
-                  <RichTextEditor
-                    placeholder="Description"
-                    value={form.description}
-                    onChange={(value) => setForm({ ...form, description: value })}
-                    minHeight="200px"
-                  />
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
                 </div>
                 {error ? <p className="text-sm text-red-500">{error}</p> : null}
                 <button

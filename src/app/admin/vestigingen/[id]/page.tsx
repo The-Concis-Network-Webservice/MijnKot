@@ -206,7 +206,6 @@ export default function AdminVestigingDetailPage() {
                     }
                   />
                 </div>
-<<<<<<< HEAD
                 <textarea
                   className="border border-gray-200 rounded-lg px-3 py-2 w-full"
                   rows={4}
@@ -218,21 +217,6 @@ export default function AdminVestigingDetailPage() {
                     })
                   }
                 />
-=======
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Description (Markdown)</label>
-                  <RichTextEditor
-                    value={vestiging.description}
-                    onChange={(val) =>
-                      setVestiging({
-                        ...vestiging,
-                        description: val
-                      })
-                    }
-                    placeholder="Describe this location..."
-                  />
-                </div>
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">Image</label>
                   <div className="flex gap-4 items-center">
@@ -265,11 +249,7 @@ export default function AdminVestigingDetailPage() {
                     />
                   </div>
                   {vestiging.image_url && (
-<<<<<<< HEAD
                     <div className="mt-2 w-full max-w-sm h-48 rounded-lg overflow-hidden border border-gray-100">
-=======
-                    <div className="mt-2 w-full max-w-2xl aspect-video rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
->>>>>>> 62bca002805acc84314a797b4a0f682491dc3707
                       <img src={vestiging.image_url} className="w-full h-full object-cover" alt="Preview" />
                     </div>
                   )}
