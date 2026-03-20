@@ -16,25 +16,28 @@ export function SiteFooter({ settings }: { settings?: SiteSettings }) {
         <footer className="bg-primary-900 mt-24">
 
             {/* Booking CTA strip */}
-            {settings?.booking_url && (
-                <div className="border-b border-primary-700">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
-                        <div>
-                            <p className="font-display text-lg font-semibold text-secondary-100">Plan een bezichtiging</p>
-                            <p className="text-sm text-secondary-500 mt-0.5">Gratis &nbsp;·&nbsp; Vrijblijvend &nbsp;·&nbsp; Direct bevestiging</p>
+            {(() => {
+                const bookingUrl = settings?.booking_url || "/afspraken";
+                const isExternal = bookingUrl.startsWith('http');
+                return (
+                    <div className="border-b border-primary-700">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+                            <div>
+                                <p className="font-display text-lg font-semibold text-secondary-100">Plan een bezichtiging</p>
+                                <p className="text-sm text-secondary-500 mt-0.5">Gratis &nbsp;·&nbsp; Vrijblijvend &nbsp;·&nbsp; Direct bevestiging</p>
+                            </div>
+                            <a
+                                href={bookingUrl}
+                                {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-accent-500 text-white rounded-xl text-sm font-semibold hover:bg-accent-600 active:bg-accent-700 transition-colors cursor-pointer shrink-0"
+                            >
+                                <CalendarDaysIcon className="w-4 h-4 shrink-0" />
+                                Plan bezoek
+                            </a>
                         </div>
-                        <a
-                            href={settings.booking_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-accent-500 text-white rounded-xl text-sm font-semibold hover:bg-accent-600 active:bg-accent-700 transition-colors cursor-pointer shrink-0"
-                        >
-                            <CalendarDaysIcon className="w-4 h-4 shrink-0" />
-                            Plan bezoek
-                        </a>
                     </div>
-                </div>
-            )}
+                );
+            })()}
 
             {/* Main grid */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">

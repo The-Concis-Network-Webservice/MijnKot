@@ -17,7 +17,8 @@ export function HeroSection({ settings }: HeroSectionProps) {
     const subtitle = settings ? getLocalizedData(settings, 'hero_subtitle', i18n.language) : t('home.hero.subtitle');
     const ctaLabel = settings ? getLocalizedData(settings, 'hero_cta_label', i18n.language) : t('home.hero.cta');
     const ctaHref = settings?.hero_cta_href || "/vestigingen";
-    const bookingUrl = settings?.booking_url || null;
+    const bookingUrl = settings?.booking_url || "/afspraken";
+    const isExternalBooking = bookingUrl.startsWith('http');
 
     return (
         <section
@@ -90,17 +91,14 @@ export function HeroSection({ settings }: HeroSectionProps) {
 
                 {/* CTAs */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                    {bookingUrl ? (
-                        <a
-                            href={bookingUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent-500 text-white rounded-xl font-semibold text-sm hover:bg-accent-600 active:bg-accent-700 transition-colors shadow-soft cursor-pointer"
-                        >
-                            <CalendarDaysIcon className="w-4 h-4 shrink-0" />
-                            Plan een bezoek
-                        </a>
-                    ) : null}
+                    <a
+                        href={bookingUrl}
+                        {...(isExternalBooking ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent-500 text-white rounded-xl font-semibold text-sm hover:bg-accent-600 active:bg-accent-700 transition-colors shadow-soft cursor-pointer"
+                    >
+                        <CalendarDaysIcon className="w-4 h-4 shrink-0" />
+                        Plan een bezoek
+                    </a>
 
                     <Link
                         href={ctaHref}

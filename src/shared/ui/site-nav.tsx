@@ -24,7 +24,8 @@ export function SiteNav({
     const [mobileOpen, setMobileOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
-    const bookingUrl = settings?.booking_url || null;
+    const bookingUrl = settings?.booking_url || "/afspraken";
+    const isExternalBooking = bookingUrl.startsWith('http');
 
     useEffect(() => {
         fetch("/api/rent-types")
@@ -105,32 +106,26 @@ export function SiteNav({
                     <div className="hidden md:flex items-center gap-3">
                         <LanguageSwitcher />
                         <div className="w-px h-5 bg-border-light" />
-                        {bookingUrl && (
-                            <a
-                                href={bookingUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent-500 text-white rounded-xl text-sm font-semibold hover:bg-accent-600 active:bg-accent-700 transition-colors cursor-pointer whitespace-nowrap"
-                            >
-                                <CalendarDaysIcon className="w-4 h-4 shrink-0" />
-                                Plan bezoek
-                            </a>
-                        )}
+                        <a
+                            href={bookingUrl}
+                            {...(isExternalBooking ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent-500 text-white rounded-xl text-sm font-semibold hover:bg-accent-600 active:bg-accent-700 transition-colors cursor-pointer whitespace-nowrap"
+                        >
+                            <CalendarDaysIcon className="w-4 h-4 shrink-0" />
+                            Plan bezoek
+                        </a>
                     </div>
 
                     {/* Mobile: booking + hamburger */}
                     <div className="flex md:hidden items-center gap-2">
-                        {bookingUrl && (
-                            <a
-                                href={bookingUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent-500 text-white rounded-xl text-xs font-semibold hover:bg-accent-600 transition-colors cursor-pointer"
-                            >
-                                <CalendarDaysIcon className="w-3.5 h-3.5" />
-                                Plan bezoek
-                            </a>
-                        )}
+                        <a
+                            href={bookingUrl}
+                            {...(isExternalBooking ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                            className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent-500 text-white rounded-xl text-xs font-semibold hover:bg-accent-600 transition-colors cursor-pointer"
+                        >
+                            <CalendarDaysIcon className="w-3.5 h-3.5" />
+                            Plan bezoek
+                        </a>
                         <button
                             onClick={() => setMobileOpen(!mobileOpen)}
                             className="p-2 text-neutral-500 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors cursor-pointer"

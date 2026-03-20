@@ -100,6 +100,7 @@ export default function AdminSettingsPage() {
       hero_subtitle: settings.hero_subtitle,
       hero_cta_label: settings.hero_cta_label,
       hero_cta_href: settings.hero_cta_href,
+      booking_url: settings.booking_url,
       contact_email: settings.contact_email,
       contact_phone: settings.contact_phone,
       contact_address: settings.contact_address,
@@ -391,6 +392,19 @@ export default function AdminSettingsPage() {
                     />
                   </div>
                 </div>
+                <div className="space-y-2 pt-2 border-t border-gray-100">
+                  <label className="text-sm font-semibold">Booking URL <span className="text-xs font-normal text-gray-400">(simplybook / afspraken pagina)</span></label>
+                  <input
+                    className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                    placeholder="/afspraken of https://mijnkotbe.simplybook.it"
+                    value={settings.booking_url ?? ""}
+                    onChange={(event) =>
+                      setSettings({ ...settings, booking_url: event.target.value })
+                    }
+                  />
+                  <p className="text-xs text-gray-400">Gebruik <code className="bg-gray-100 px-1 rounded">/afspraken</code> voor de ingebedde pagina, of plak de volledige simplybook link.</p>
+                </div>
+
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-semibold">Contact email</label>

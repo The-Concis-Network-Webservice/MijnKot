@@ -3,7 +3,7 @@
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 
 export function BookingCtaBanner({ bookingUrl }: { bookingUrl?: string | null }) {
-    const href = bookingUrl || "/contact";
+    const href = bookingUrl || "/afspraken";
     const isExternal = !!bookingUrl;
 
     return (
@@ -15,10 +15,10 @@ export function BookingCtaBanner({ bookingUrl }: { bookingUrl?: string | null })
                         Gratis bezichtiging
                     </p>
                     <h2 className="font-display text-3xl md:text-4xl font-bold text-secondary-100 mb-5 leading-tight">
-                        Klaar om jouw nieuwe thuis<br className="hidden sm:block" /> te ontdekken?
+                        Plan nu, later is te laat
                     </h2>
                     <p className="text-secondary-400 text-base leading-relaxed mb-10 max-w-md mx-auto">
-                        Plan een vrijblijvende bezichtiging en ontdek zelf hoe het is om bij MijnKot te wonen. Kies een moment dat jou past.
+                        Goede koten gaan snel. Reserveer vandaag een gratis bezichtiging en wees er zeker van.
                     </p>
                     <a
                         href={href}

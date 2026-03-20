@@ -29,7 +29,7 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
             ? 'bg-state-warning/10 text-state-warning border-state-warning/20'
             : 'bg-state-error/10 text-state-error border-state-error/20';
 
-    const bookingHref = bookingUrl || "/contact";
+    const bookingHref = bookingUrl || "/afspraken";
     const isExternal = !!bookingUrl;
 
     const BookingButton = ({ fullWidth = true }: { fullWidth?: boolean }) => (
