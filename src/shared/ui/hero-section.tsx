@@ -21,7 +21,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
 
     return (
         <section
-            className="relative min-h-[86vh] flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 py-24"
+            className="relative min-h-[60vh] flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 py-16"
             style={{ background: 'linear-gradient(160deg, #f1ede8 0%, #e7e0d5 60%, #ede7e0 100%)' }}
         >
             {/* Blurred video background */}
