@@ -87,7 +87,7 @@ export async function getLatestKoten(limit = 6, typeSlug?: string) {
 }
 
 export async function getAllKoten(typeSlug?: string) {
-  let innerQuery = "select * from koten where status = 'published' and archived_at is null";
+  let innerQuery = "select * from koten where status = 'published' and archived_at is null and availability_status != 'hidden'";
   const params: any[] = [];
 
   if (typeSlug) {
@@ -95,8 +95,9 @@ export async function getAllKoten(typeSlug?: string) {
       select k.* from koten k
       join kot_rent_types krt on k.id = krt.kot_id
       join rent_types rt on krt.rent_type_id = rt.id
-      where k.status = 'published' 
+      where k.status = 'published'
       and k.archived_at is null
+      and k.availability_status != 'hidden'
       and rt.slug = $1
     `;
     params.push(typeSlug);

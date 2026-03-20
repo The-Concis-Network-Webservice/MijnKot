@@ -118,9 +118,24 @@ function splitBuilding29(rooms: RoomWithPrice[]) {
 
 export default async function PublicFloorPlanPage({
   params,
+  searchParams,
 }: {
   params: { id: string };
+  searchParams: { token?: string };
 }) {
+  const expectedToken = process.env.FLOOR_PLAN_TOKEN;
+  if (!expectedToken || searchParams.token !== expectedToken) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm px-10 py-12 text-center max-w-sm">
+          <div className="text-4xl mb-4">🔒</div>
+          <h1 className="text-xl font-bold text-slate-900 mb-2">Geen toegang</h1>
+          <p className="text-slate-500 text-sm">Deze pagina is enkel toegankelijk via een geldige link.</p>
+        </div>
+      </div>
+    );
+  }
+
   const vestiging = await queryOne<Vestiging>(
     "SELECT * FROM vestigingen WHERE id = $1",
     [params.id]

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { SectionHeader } from "./section-header";
 
 const activeBtn = 'bg-primary-600 text-white shadow-sm';
-const inactiveBtn = 'bg-white border border-border-light text-text-secondary hover:border-primary-400 hover:text-primary-600 hover:bg-white';
+const inactiveBtn = 'bg-white border border-gray-300 text-gray-700 hover:border-primary-400 hover:text-primary-600';
 const btn = `px-5 py-2 rounded-xl text-sm font-medium transition-all duration-150`;
 
 type OverviewHeaderProps = {

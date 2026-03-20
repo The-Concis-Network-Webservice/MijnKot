@@ -15,12 +15,22 @@ import { FloorPlanManager } from "../../_components/floor-plan-manager";
 
 function ShareFloorPlanLink({ vestigingId }: { vestigingId: string }) {
   const [copied, setCopied] = useState(false);
-  const url = typeof window !== "undefined"
-    ? `${window.location.origin}/vestigingen/${vestigingId}/grondplan`
-    : `/vestigingen/${vestigingId}/grondplan`;
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/cms/floor-plan-token")
+      .then((r) => r.json())
+      .then((data) => {
+        if (!data.token) return;
+        const base = window.location.origin;
+        setShareUrl(`${base}/vestigingen/${vestigingId}/grondplan?token=${data.token}`);
+      })
+      .catch(() => {});
+  }, [vestigingId]);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(url).then(() => {
+    if (!shareUrl) return;
+    navigator.clipboard.writeText(shareUrl).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
@@ -28,16 +38,19 @@ function ShareFloorPlanLink({ vestigingId }: { vestigingId: string }) {
 
   return (
     <div className="flex items-center gap-2">
-      <Link
-        href={`/vestigingen/${vestigingId}/grondplan`}
-        target="_blank"
-        className="text-sm text-primary hover:underline"
-      >
-        Publieke pagina
-      </Link>
+      {shareUrl && (
+        <Link
+          href={shareUrl}
+          target="_blank"
+          className="text-sm text-primary hover:underline"
+        >
+          Publieke pagina
+        </Link>
+      )}
       <button
         onClick={handleCopy}
-        className="text-xs bg-gray-100 hover:bg-gray-200 border border-gray-200 px-3 py-1.5 rounded-lg transition-colors"
+        disabled={!shareUrl}
+        className="text-xs bg-gray-100 hover:bg-gray-200 border border-gray-200 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
       >
         {copied ? "Gekopieerd!" : "Kopieer link"}
       </button>
