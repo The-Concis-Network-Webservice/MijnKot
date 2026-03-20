@@ -13,6 +13,38 @@ import type { Kot, Vestiging } from "@/types";
 import { RichTextEditor } from "../../_components/rich-text-editor";
 import { FloorPlanManager } from "../../_components/floor-plan-manager";
 
+function ShareFloorPlanLink({ vestigingId }: { vestigingId: string }) {
+  const [copied, setCopied] = useState(false);
+  const url = typeof window !== "undefined"
+    ? `${window.location.origin}/vestigingen/${vestigingId}/grondplan`
+    : `/vestigingen/${vestigingId}/grondplan`;
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  return (
+    <div className="flex items-center gap-2">
+      <Link
+        href={`/vestigingen/${vestigingId}/grondplan`}
+        target="_blank"
+        className="text-sm text-primary hover:underline"
+      >
+        Publieke pagina
+      </Link>
+      <button
+        onClick={handleCopy}
+        className="text-xs bg-gray-100 hover:bg-gray-200 border border-gray-200 px-3 py-1.5 rounded-lg transition-colors"
+      >
+        {copied ? "Gekopieerd!" : "Kopieer link"}
+      </button>
+    </div>
+  );
+}
+
 export default function AdminVestigingDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [vestiging, setVestiging] = useState<Vestiging | null>(null);
@@ -357,7 +389,10 @@ export default function AdminVestigingDetailPage() {
           ) : null}
 
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h2 className="font-semibold text-lg mb-6">Plattegrond</h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="font-semibold text-lg">Plattegrond</h2>
+              <ShareFloorPlanLink vestigingId={id} />
+            </div>
             <FloorPlanManager vestigingId={id} koten={koten} />
           </section>
 

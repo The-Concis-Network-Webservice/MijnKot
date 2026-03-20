@@ -258,3 +258,30 @@ export async function PATCH(request: Request) {
   return NextResponse.json({ data: updated });
 }
 
+export async function DELETE(request: Request) {
+  const { user, role } = await getUserFromRequest();
+  if (!user || !canEditContent(role)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  const url = new URL(request.url);
+  const id = url.searchParams.get("id");
+  if (!id) {
+    return NextResponse.json({ error: "Missing id." }, { status: 400 });
+  }
+  const existing = await queryOne("select id from koten where id = $1", [id]);
+  if (!existing) {
+    return NextResponse.json({ error: "Kot not found." }, { status: 404 });
+  }
+  await query("update building_rooms set kot_id = null where kot_id = $1", [id]);
+  await query("delete from koten where id = $1", [id]);
+  await logAudit({
+    actorId: user.id,
+    action: "delete",
+    entityType: "koten",
+    entityId: id,
+  });
+  revalidatePath('/');
+  revalidatePath('/koten');
+  return NextResponse.json({ success: true });
+}
+

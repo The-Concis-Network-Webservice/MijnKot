@@ -38,6 +38,18 @@ export default function AdminKotenPage() {
     return matchesSearch && matchesStatus;
   });
 
+  const deleteKot = async (id: string, title: string) => {
+    if (!confirm(`"${title}" definitief verwijderen? Dit kan niet ongedaan worden.`)) return;
+    const res = await fetch(`/api/cms/koten?id=${id}`, { method: "DELETE" });
+    if (res.ok) {
+      await loadKoten();
+      push("Kot verwijderd.");
+    } else {
+      const payload = await res.json();
+      push(payload.error ?? "Verwijderen mislukt.");
+    }
+  };
+
   const bulkAction = async (
     action: "publish" | "archive" | "availability",
     availability_status?: string
@@ -165,9 +177,17 @@ export default function AdminKotenPage() {
                     <td>{kot.availability_status}</td>
                     <td>€{kot.price}</td>
                     <td className="text-right">
-                      <Link className="text-primary hover:underline" href={`/admin/koten/${kot.id}`}>
-                        Manage
-                      </Link>
+                      <div className="flex items-center justify-end gap-3">
+                        <Link className="text-primary hover:underline" href={`/admin/koten/${kot.id}`}>
+                          Manage
+                        </Link>
+                        <button
+                          className="text-red-500 hover:text-red-700 text-sm"
+                          onClick={() => deleteKot(kot.id, kot.title)}
+                        >
+                          Verwijder
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

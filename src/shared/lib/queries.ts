@@ -102,7 +102,7 @@ export async function getAllKoten(typeSlug?: string) {
     params.push(typeSlug);
   }
 
-  innerQuery += " order by is_highlighted desc, created_at desc";
+  innerQuery += " order by is_highlighted desc, price desc, created_at desc";
   
   const koten = await query<Kot>(innerQuery, params);
   if (koten.length === 0) return [];
