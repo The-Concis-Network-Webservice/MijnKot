@@ -5,81 +5,98 @@ import Image from "next/image";
 import type { Kot, KotPhoto } from "@/types";
 import { useTranslation } from 'react-i18next';
 import { getLocalizedData } from "@/shared/lib/i18n-utils";
+import { MapPinIcon } from "@heroicons/react/24/outline";
 
-type KotWithPhoto = Kot & { kot_photos?: KotPhoto[] };
+type KotWithPhoto = Kot & { kot_photos?: KotPhoto[]; vestiging_city?: string };
 
 function getCoverPhoto(photos?: KotPhoto[]) {
-  if (!photos || photos.length === 0) return null;
-  return [...photos].sort((a, b) => a.order_index - b.order_index)[0]?.image_url;
+    if (!photos || photos.length === 0) return null;
+    return [...photos].sort((a, b) => a.order_index - b.order_index)[0]?.image_url;
 }
 
 export function KotCard({ kot }: { kot: KotWithPhoto }) {
-  const { t, i18n } = useTranslation();
-  const cover = getCoverPhoto(kot.kot_photos);
+    const { i18n } = useTranslation();
+    const cover = getCoverPhoto(kot.kot_photos);
 
-  const title = getLocalizedData(kot, 'title', i18n.language);
-  const description = getLocalizedData(kot, 'description', i18n.language);
+    const title = getLocalizedData(kot, 'title', i18n.language);
+    const description = getLocalizedData(kot, 'description', i18n.language);
 
-  // Map status to translation key
-  const statusLabel = t(`status.${kot.availability_status}` as any);
+    const isAvailable = kot.availability_status === 'available';
+    const isReserved = kot.availability_status === 'reserved';
 
-  const statusColors: Record<string, string> = {
-    'available': 'bg-state-success/10 text-state-success border-state-success/20',
-    'rented': 'bg-state-error/10 text-state-error border-state-error/20',
-    'reserved': 'bg-state-warning/10 text-state-warning border-state-warning/20',
-    'hidden': 'bg-surface-subtle text-text-muted border-border-light',
-  };
+    const statusLabel = isAvailable ? 'Beschikbaar' : isReserved ? 'Gereserveerd' : 'Verhuurd';
+    const statusClass = isAvailable
+        ? 'text-state-success border-state-success/30 bg-white'
+        : isReserved
+            ? 'text-state-warning border-state-warning/30 bg-white'
+            : 'text-state-error border-state-error/30 bg-white';
 
-  const statusClass = statusColors[kot.availability_status] || 'bg-surface-subtle text-text-muted border-border-light';
+    return (
+        <Link
+            href={`/koten/${kot.id}`}
+            className="group bg-surface-card border border-border-light rounded-2xl overflow-hidden flex flex-col cursor-pointer transition-all duration-300 hover:shadow-large hover:border-primary-200 hover:-translate-y-0.5"
+        >
+            {/* Photo */}
+            <div className="relative aspect-[4/3] overflow-hidden bg-secondary-100">
+                {cover ? (
+                    <Image
+                        alt={title}
+                        src={cover}
+                        fill
+                        className="object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-out"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center text-xs text-text-muted">
+                        Geen foto
+                    </div>
+                )}
 
-  return (
-    <Link
-      href={`/koten/${kot.id}`}
-      className={`group bg-surface-card border rounded-xl overflow-hidden hover:shadow-medium transition-all flex flex-col relative duration-300
-        ${kot.is_highlighted
-          ? 'border-accent-500 shadow-[0_0_30px_rgba(143,168,154,0.6)] ring-2 ring-accent-500/50 z-10 scale-[1.02] -translate-y-1'
-          : 'border-border-light'
-        }`}
-    >
-      <div className="relative aspect-video w-full bg-surface-subtle">
-        {cover ? (
-          <Image
-            alt={title}
-            src={cover}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-sm text-text-muted">
-            {t('common.no_data')}
-          </div>
-        )}
-        <span className={`absolute top-4 right-4 px-3 py-1.5 rounded-lg text-xs font-bold border shadow-sm bg-white ${kot.availability_status === 'available' ? 'text-state-success border-state-success/20' :
-          kot.availability_status === 'rented' ? 'text-state-error border-state-error/20' :
-            kot.availability_status === 'reserved' ? 'text-state-warning border-state-warning/20' :
-              'text-text-muted border-border-light'
-          }`}>
-          {statusLabel}
-        </span>
-      </div>
-      <div className="p-6 flex-1 flex flex-col">
-        <div className="flex justify-between items-start mb-4">
-          <h3 className="font-semibold text-lg text-text-main line-clamp-1 group-hover:text-primary-600 transition-colors">
-            {title}
-          </h3>
-          <span className="text-primary-600 font-semibold text-lg whitespace-nowrap ml-4">
-            €{kot.price}
-            <span className="text-xs text-text-muted font-normal ml-1">{t('detail.per_month')}</span>
-          </span>
-        </div>
-        <p className="text-sm text-secondary-700 line-clamp-2 leading-relaxed mb-4 flex-1">{description}</p>
+                {/* Bottom gradient */}
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
 
-        <div className="pt-4 border-t border-border-light">
-          <span className="text-sm font-medium text-primary-600 group-hover:underline">{t('common.read_more')} →</span>
-        </div>
-      </div>
-    </Link >
-  );
+                {/* Price — bottom left on photo */}
+                <div className="absolute bottom-3 left-3">
+                    <span className="inline-block bg-white/95 backdrop-blur-sm rounded-lg px-3 py-1.5 text-sm font-bold text-neutral-500 shadow-subtle">
+                        €{kot.price}<span className="text-xs font-normal text-text-muted">/mnd</span>
+                    </span>
+                </div>
+
+                {/* Status — top right */}
+                <span className={`absolute top-3 right-3 px-2.5 py-1 rounded-lg text-xs font-semibold border backdrop-blur-sm ${statusClass}`}>
+                    {statusLabel}
+                </span>
+
+                {/* Highlighted ribbon */}
+                {kot.is_highlighted && (
+                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-xs font-bold bg-accent-500 text-white">
+                        Uitgelicht
+                    </span>
+                )}
+            </div>
+
+            {/* Card body */}
+            <div className="p-5 flex flex-col flex-1">
+                <h3 className="font-semibold text-sm text-neutral-500 line-clamp-1 mb-2 group-hover:text-primary-600 transition-colors">
+                    {title}
+                </h3>
+
+                <p className="text-xs text-text-muted line-clamp-2 leading-relaxed flex-1">
+                    {description}
+                </p>
+
+                <div className="flex items-center justify-between mt-4 pt-4 border-t border-border-light">
+                    {kot.vestiging_city ? (
+                        <span className="flex items-center gap-1 text-xs text-text-muted">
+                            <MapPinIcon className="w-3 h-3 shrink-0" />
+                            {kot.vestiging_city}
+                        </span>
+                    ) : <span />}
+                    <span className="text-xs font-semibold text-primary-600 group-hover:text-primary-800 transition-colors">
+                        Bekijk →
+                    </span>
+                </div>
+            </div>
+        </Link>
+    );
 }
-

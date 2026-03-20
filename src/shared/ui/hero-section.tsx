@@ -2,73 +2,122 @@
 
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
-import { SiteSettings } from "@/types";
+import type { SiteSettings } from "@/types";
 import { getLocalizedData } from "@/shared/lib/i18n-utils";
+import { CalendarDaysIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 type HeroSectionProps = {
     settings: SiteSettings | null;
 };
 
-export function HeroSection({
-    settings,
-}: HeroSectionProps) {
+export function HeroSection({ settings }: HeroSectionProps) {
     const { t, i18n } = useTranslation();
 
-    // Localized fallbacks
     const title = settings ? getLocalizedData(settings, 'hero_title', i18n.language) : t('home.hero.title');
     const subtitle = settings ? getLocalizedData(settings, 'hero_subtitle', i18n.language) : t('home.hero.subtitle');
     const ctaLabel = settings ? getLocalizedData(settings, 'hero_cta_label', i18n.language) : t('home.hero.cta');
     const ctaHref = settings?.hero_cta_href || "/vestigingen";
+    const bookingUrl = settings?.booking_url || null;
 
     return (
-        <section className="relative bg-surface-subtle overflow-hidden">
-            {/* Subtle background pattern */}
-            {/* Video Background */}
-            <div className="absolute inset-0 w-full h-full">
+        <section
+            className="relative min-h-[86vh] flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 py-24"
+            style={{ background: 'linear-gradient(160deg, #f1ede8 0%, #e7e0d5 60%, #ede7e0 100%)' }}
+        >
+            {/* Blurred video background */}
+            <div className="absolute inset-0 overflow-hidden">
                 <video
                     autoPlay
                     muted
                     loop
                     playsInline
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover scale-110"
+                    style={{ filter: 'blur(14px) brightness(0.6) saturate(1.1)' }}
                 >
                     <source src="/videos/mijnkot-hero-video.mp4" type="video/mp4" />
                 </video>
-                <div className="absolute inset-0 bg-primary-950/75 backdrop-blur-[6px]"></div>
+                {/* Warm beige tint over video */}
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, rgba(241,237,232,0.72) 0%, rgba(231,224,213,0.65) 100%)' }} />
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 md:py-32 relative z-10">
-                <div className="max-w-3xl">
-                    <span className="inline-flex items-center rounded-lg bg-accent-500 text-secondary-500 text-xs font-medium px-4 py-2 mb-8">
-                        {t('home.hero.badge')}
-                    </span>
+            {/* Decorative background ring — large, subtle */}
+            <div
+                className="absolute pointer-events-none"
+                style={{
+                    width: '700px',
+                    height: '700px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(77,89,53,0.08)',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                }}
+            />
+            <div
+                className="absolute pointer-events-none"
+                style={{
+                    width: '500px',
+                    height: '500px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(77,89,53,0.06)',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                }}
+            />
 
-                    <h1 className="font-display text-5xl md:text-6xl font-semibold text-secondary-500 mb-6 tracking-tight leading-tight">
-                        {title}
-                    </h1>
+            {/* Content — centered */}
+            <div className="relative z-10 text-center max-w-3xl mx-auto">
 
-                    <p className="text-text-secondary text-lg md:text-xl mb-10 leading-relaxed max-w-2xl">
-                        {subtitle}
+                {/* Label */}
+                <div className="flex items-center justify-center gap-3 mb-8">
+                    <span className="h-px w-8 bg-accent-500" />
+                    <p className="text-xs font-bold tracking-[0.25em] uppercase text-accent-500">
+                        Studentenhuisvesting · Leuven
                     </p>
+                    <span className="h-px w-8 bg-accent-500" />
+                </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <Link
-                            href={ctaHref}
-                            className="inline-flex items-center justify-center px-8 py-4 bg-primary-500 text-white rounded-lg font-medium text-base hover:bg-primary-600 transition-colors shadow-soft"
-                        >
-                            {ctaLabel}
-                        </Link>
+                {/* Heading */}
+                <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-bold text-primary-700 leading-[1.05] tracking-tight mb-8">
+                    {title}
+                </h1>
 
-                        <Link
-                            href="/faq"
-                            className="inline-flex items-center justify-center px-8 py-4 bg-secondary-500 border border-border-DEFAULT text-primary-500 rounded-lg font-medium text-base hover:bg-surface-subtle transition-colors"
+                {/* Subtitle */}
+                <p className="text-neutral-500 text-base md:text-lg leading-relaxed mb-12 max-w-xl mx-auto">
+                    {subtitle}
+                </p>
+
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    {bookingUrl ? (
+                        <a
+                            href={bookingUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent-500 text-white rounded-xl font-semibold text-sm hover:bg-accent-600 active:bg-accent-700 transition-colors shadow-soft cursor-pointer"
                         >
-                            {t('home.hero.secondary_cta')}
-                        </Link>
-                    </div>
+                            <CalendarDaysIcon className="w-4 h-4 shrink-0" />
+                            Plan een bezoek
+                        </a>
+                    ) : null}
+
+                    <Link
+                        href={ctaHref}
+                        className={`inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm transition-colors cursor-pointer ${
+                            bookingUrl
+                                ? 'border border-primary-400 text-primary-700 hover:bg-primary-50'
+                                : 'bg-accent-500 text-white hover:bg-accent-600 shadow-soft'
+                        }`}
+                    >
+                        {ctaLabel}
+                        <ArrowRightIcon className="w-4 h-4 shrink-0" />
+                    </Link>
                 </div>
             </div>
+
+            {/* Bottom fade into page */}
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-surface-main to-transparent pointer-events-none" />
         </section>
     );
 }
-

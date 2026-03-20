@@ -5,6 +5,7 @@ import { HeroSection } from "@/shared/ui/hero-section";
 import { RentalOptions } from "@/shared/ui/rental-options";
 import { SectionHeader } from "@/shared/ui/section-header";
 import { HomeEmptyState } from "@/shared/ui/home-components";
+import { BookingCtaBanner } from "@/shared/ui/booking-cta-banner";
 
 export const runtime = 'edge';
 
@@ -33,6 +34,8 @@ export default async function HomePage() {
         </div>
         {latestKoten.length === 0 && <HomeEmptyState />}
       </section>
+
+      <BookingCtaBanner bookingUrl={settings?.booking_url} />
 
       <section className="py-20 bg-surface-subtle border-y border-border-light">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

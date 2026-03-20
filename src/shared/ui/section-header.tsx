@@ -13,14 +13,17 @@ export function SectionHeader({ title, description, centered }: SectionHeaderPro
 
     return (
         <div className={`mb-12 ${centered ? 'text-center max-w-2xl mx-auto' : ''}`}>
-            <h2 className="text-3xl font-display font-semibold text-primary-900 mb-4 leading-tight">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-600 leading-tight mb-4">
                 {t(title as any)}
             </h2>
             {description && (
-                <p className="text-secondary-700 text-lg leading-relaxed">
+                <p className="text-neutral-400 text-base leading-relaxed max-w-xl">
                     {t(description as any)}
                 </p>
             )}
+            <div className={`mt-5 h-px bg-border-light ${centered ? 'max-w-xs mx-auto' : 'max-w-xs'}`}>
+                <div className="h-px w-12 bg-accent-500" />
+            </div>
         </div>
     );
 }

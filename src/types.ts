@@ -74,6 +74,7 @@ export type SiteSettings = {
   popup_active?: boolean | number | null;
   popup_title?: string | null;
   popup_text?: string | null;
+  booking_url?: string | null;
 };
 
 export type FaqItem = {

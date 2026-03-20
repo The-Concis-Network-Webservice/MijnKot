@@ -11,6 +11,7 @@ export const revalidate = 0; // Revalidate immediately
 
 import { JsonLd } from "@/shared/ui/json-ld";
 import { siteConfig } from "@/shared/lib/config";
+import { getSiteSettings } from "@/shared/lib/queries";
 
 export default async function KotDetailPage({
   params
@@ -18,10 +19,10 @@ export default async function KotDetailPage({
   params: { id: string };
 }) {
   // Optimize: Single query to get kot + vestiging in one go
-  const kot = await queryOne<Kot>(
-    "select * from koten where id = $1",
-    [params.id]
-  );
+  const [kot, settings] = await Promise.all([
+    queryOne<Kot>("select * from koten where id = $1", [params.id]),
+    getSiteSettings(),
+  ]);
 
   if (!kot || kot.status !== "published" || kot.archived_at) {
     notFound();
@@ -95,7 +96,7 @@ export default async function KotDetailPage({
 
         {/* Right Column: Sticky Summary (Desktop) / Bottom Bar (Mobile) */}
         <div className="lg:col-span-1">
-          <StickySummary kot={kot} vestiging={vestiging} />
+          <StickySummary kot={kot} vestiging={vestiging} bookingUrl={settings?.booking_url} />
         </div>
       </div>
 

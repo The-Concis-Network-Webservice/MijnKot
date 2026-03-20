@@ -1,118 +1,140 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import type { Kot, Vestiging } from "@/types";
+import {
+    CalendarDaysIcon,
+    PhoneIcon,
+    EnvelopeIcon,
+    MapPinIcon,
+    ChevronDownIcon,
+} from "@heroicons/react/24/outline";
 
 interface StickySummaryProps {
     kot: Kot;
     vestiging: Vestiging | null;
+    bookingUrl?: string | null;
 }
 
-export function StickySummary({ kot, vestiging }: StickySummaryProps) {
-    const { t } = useTranslation();
+export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps) {
     const [showContact, setShowContact] = useState(false);
+
+    const isAvailable = kot.availability_status === 'available';
+    const isReserved = kot.availability_status === 'reserved';
+
+    const statusLabel = isAvailable ? 'Beschikbaar' : isReserved ? 'Gereserveerd' : 'Verhuurd';
+    const statusClass = isAvailable
+        ? 'bg-state-success/10 text-state-success border-state-success/20'
+        : isReserved
+            ? 'bg-state-warning/10 text-state-warning border-state-warning/20'
+            : 'bg-state-error/10 text-state-error border-state-error/20';
+
+    const bookingHref = bookingUrl || "/contact";
+    const isExternal = !!bookingUrl;
+
+    const BookingButton = ({ fullWidth = true }: { fullWidth?: boolean }) => (
+        <a
+            href={bookingHref}
+            {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            className={`${fullWidth ? 'w-full' : ''} flex items-center justify-center gap-2 px-6 py-3.5 bg-accent-500 text-white rounded-xl hover:bg-accent-600 active:bg-accent-700 transition-colors font-semibold text-sm shadow-soft cursor-pointer`}
+        >
+            <CalendarDaysIcon className="w-4 h-4 shrink-0" />
+            Plan bezoek
+        </a>
+    );
 
     return (
         <>
-            {/* Desktop Sticky Sidebar */}
+            {/* Desktop sticky sidebar */}
             <div className="hidden lg:block">
-                <div className="sticky top-6 bg-surface-card border border-border-light rounded-2xl shadow-soft p-6 space-y-6">
-                    {/* Price */}
-                    <div className="border-b border-border-light pb-4">
-                        <div className="flex items-baseline gap-2">
-                            <span className="text-4xl font-bold text-text-main">€{kot.price}</span>
-                            <span className="text-text-muted">/ maand</span>
+                <div className="sticky top-28 bg-surface-card border border-border-light rounded-2xl overflow-hidden shadow-soft">
+
+                    {/* Price header */}
+                    <div className="px-6 py-5 border-b border-border-light bg-secondary-50">
+                        <div className="flex items-baseline gap-1">
+                            <span className="text-3xl font-bold text-neutral-500">€{kot.price}</span>
+                            <span className="text-sm text-text-muted">/ maand</span>
                         </div>
-                        <p className="text-sm text-text-muted mt-1">Kosten inbegrepen</p>
+                        <p className="text-xs text-text-muted mt-1">Alle kosten inbegrepen</p>
                     </div>
 
-                    {/* Availability Status */}
-                    <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-text-main">Beschikbaarheid</span>
-                        <span className={`px-3 py-1.5 rounded-full text-sm font-medium border ${kot.availability_status === 'available'
-                            ? 'bg-state-success/10 text-state-success border-state-success/20'
-                            : kot.availability_status === 'reserved'
-                                ? 'bg-state-warning/10 text-state-warning border-state-warning/20'
-                                : 'bg-state-error/10 text-state-error border-state-error/20'
-                            }`}>
-                            {kot.availability_status === 'available' && 'Beschikbaar'}
-                            {kot.availability_status === 'reserved' && 'Gereserveerd'}
-                            {kot.availability_status === 'rented' && 'Verhuurd'}
-                        </span>
-                    </div>
+                    <div className="p-6 space-y-4">
+                        {/* Status */}
+                        <div className="flex items-center justify-between">
+                            <span className="text-xs font-medium text-text-muted uppercase tracking-wide">Status</span>
+                            <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${statusClass}`}>
+                                {statusLabel}
+                            </span>
+                        </div>
 
-                    {/* Location */}
-                    {vestiging && (
-                        <div className="flex items-start gap-3">
-                            <div>
-                                <p className="text-sm font-medium text-text-main">{vestiging.city}</p>
-                                <p className="text-sm text-text-muted">{vestiging.address}</p>
-                                <p className="text-xs text-text-light">{vestiging.postal_code}</p>
+                        {/* Urgency — available only */}
+                        {isAvailable && (
+                            <div className="rounded-xl border border-accent-500/20 bg-accent-500/5 px-4 py-3">
+                                <p className="text-xs font-semibold text-accent-600 mb-0.5">Snel erbij zijn</p>
+                                <p className="text-xs text-text-muted leading-relaxed">Bezoeken worden snel ingepland. Reserveer vandaag nog.</p>
                             </div>
-                        </div>
-                    )}
+                        )}
 
-                    {/* Quick Facts */}
-                    <div className="grid grid-cols-2 gap-3 pt-4 border-t border-border-light">
-                        <div className="text-center p-3 bg-surface-subtle rounded-xl border border-border-light">
-                            <p className="text-xs text-text-muted mb-1">Type</p>
-                            <p className="text-sm font-semibold text-text-main">Studio</p>
-                        </div>
-                        <div className="text-center p-3 bg-surface-subtle rounded-xl border border-border-light">
-                            <p className="text-xs text-text-muted mb-1">Gemeubeld</p>
-                            <p className="text-sm font-semibold text-text-main">Ja</p>
-                        </div>
-                    </div>
+                        {/* Location */}
+                        {vestiging && (
+                            <div className="flex items-start gap-2.5 py-1">
+                                <MapPinIcon className="w-4 h-4 text-primary-400 mt-0.5 shrink-0" />
+                                <div>
+                                    <p className="text-sm font-medium text-neutral-500">{vestiging.city}</p>
+                                    <p className="text-xs text-text-muted">{vestiging.address}{vestiging.postal_code ? `, ${vestiging.postal_code}` : ''}</p>
+                                </div>
+                            </div>
+                        )}
 
-                    {/* CTAs */}
-                    <div className="space-y-3 pt-4 border-t border-border-light">
-                        <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-xl hover:bg-primary-600 transition-colors font-semibold shadow-soft">
-                            Plan bezoek
-                        </button>
-                        <button
-                            onClick={() => setShowContact(!showContact)}
-                            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-surface-card text-text-main border-2 border-border-DEFAULT rounded-xl hover:border-border-medium hover:bg-surface-subtle transition-colors font-semibold"
-                        >
-                            Contact
-                        </button>
-                    </div>
+                        {/* Divider */}
+                        <div className="border-t border-border-light pt-4 space-y-3">
+                            <BookingButton />
+                            <p className="text-xs text-center text-text-muted">Gratis · Vrijblijvend · Direct bevestiging</p>
 
-                    {/* Contact Info (Collapsible) */}
-                    {showContact && (
-                        <div className="space-y-2 pt-2 border-t border-border-light">
-                            <a href="tel:+32123456789" className="flex items-center gap-2 text-sm text-primary-500 hover:text-primary-600">
-                                +32 123 456 789
-                            </a>
-                            <a href="mailto:info@example.com" className="flex items-center gap-2 text-sm text-primary-500 hover:text-primary-600">
-                                info@example.com
-                            </a>
+                            <button
+                                onClick={() => setShowContact(!showContact)}
+                                className="w-full flex items-center justify-center gap-2 px-5 py-3 border border-border-DEFAULT rounded-xl text-sm font-medium text-neutral-500 hover:border-primary-300 hover:text-primary-600 hover:bg-secondary-50 transition-colors cursor-pointer"
+                            >
+                                Contact opnemen
+                                <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform duration-200 ${showContact ? 'rotate-180' : ''}`} />
+                            </button>
                         </div>
-                    )}
 
-                    {/* Reference */}
-                    <div className="text-center pt-4 border-t border-border-light">
-                        <p className="text-xs text-text-muted">Ref: {kot.id.slice(0, 8)}</p>
+                        {/* Contact collapsible */}
+                        {showContact && (
+                            <div className="space-y-2.5 pt-1 border-t border-border-light">
+                                <a href="/contact" className="flex items-center gap-2 text-sm text-primary-500 hover:text-primary-700 transition-colors font-medium">
+                                    <EnvelopeIcon className="w-4 h-4 shrink-0" />
+                                    Stuur een bericht
+                                </a>
+                                <a href="tel:" className="flex items-center gap-2 text-sm text-primary-500 hover:text-primary-700 transition-colors font-medium">
+                                    <PhoneIcon className="w-4 h-4 shrink-0" />
+                                    Bel ons
+                                </a>
+                            </div>
+                        )}
+
+                        <p className="text-center text-xs text-text-muted pt-2 border-t border-border-light">
+                            Ref. {kot.id.slice(0, 8).toUpperCase()}
+                        </p>
                     </div>
                 </div>
             </div>
 
-            {/* Mobile Sticky Bottom Bar */}
-            <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-surface-card border-t-2 border-border-light shadow-2xl z-50 safe-area-inset-bottom">
-                <div className="px-4 py-3 flex items-center gap-3">
-                    <div className="flex-1">
-                        <p className="text-2xl font-bold text-text-main">€{kot.price}</p>
-                        <p className="text-xs text-text-muted">/ maand</p>
+            {/* Mobile sticky bottom bar */}
+            <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-surface-card border-t border-border-light">
+                <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
+                    <div className="flex-1 min-w-0">
+                        <p className="text-lg font-bold text-neutral-500">
+                            €{kot.price}<span className="text-xs font-normal text-text-muted ml-1">/mnd</span>
+                        </p>
+                        <p className="text-xs text-text-muted">Kosten inbegrepen</p>
                     </div>
-                    <button className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-xl hover:bg-primary-600 transition-colors font-semibold shadow-soft">
-                        Plan bezoek
-                    </button>
+                    <BookingButton fullWidth={false} />
                 </div>
             </div>
 
-            {/* Mobile: Add bottom padding to prevent content overlap */}
             <div className="lg:hidden h-20" />
         </>
     );
 }
-

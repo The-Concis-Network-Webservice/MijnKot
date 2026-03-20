@@ -32,7 +32,8 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     contact_phone: settings.contact_phone ?? defaults.contact_phone,
     contact_address: settings.contact_address || defaults.contact_address,
     company_name: settings.company_name || defaults.company_name,
-    company_legal_name: settings.company_legal_name || defaults.company_legal_name
+    company_legal_name: settings.company_legal_name || defaults.company_legal_name,
+    booking_url: settings.booking_url || defaults.booking_url
   };
 }
 
