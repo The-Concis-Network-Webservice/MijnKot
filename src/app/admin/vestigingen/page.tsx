@@ -10,6 +10,7 @@ import { useToast } from "../_components/toast";
 import { canManageVestigingen } from "@/shared/lib/cms/permissions";
 import { useAdmin } from "../AdminProvider";
 import { RichTextEditor } from "../_components/rich-text-editor";
+import { ImageUploadZone } from "../_components/image-upload-zone";
 import type { Vestiging } from "@/types";
 
 const emptyForm = {
@@ -25,7 +26,6 @@ export default function AdminVestigingenPage() {
   const [vestigingen, setVestigingen] = useState<Vestiging[]>([]);
   const [form, setForm] = useState(emptyForm);
   const [loading, setLoading] = useState(false);
-  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const { push } = useToast();
@@ -109,52 +109,31 @@ export default function AdminVestigingenPage() {
   };
 
   const handleFileUpload = async (file: File) => {
-    setUploading(true);
     setError(null);
     try {
-      // 1. Upload directly using our new binding-based API
       const res = await fetch("/api/r2/upload", {
         method: "POST",
-        headers: { 
+        headers: {
           "Content-Type": file.type || "application/octet-stream",
           "X-File-Name": encodeURIComponent(file.name),
-          "X-Mime-Type": file.type || "application/octet-stream"
+          "X-Mime-Type": file.type || "application/octet-stream",
         },
-        body: file
+        body: file,
       });
-      
       if (!res.ok) {
         const errData = await res.json();
-        throw new Error(errData.error || "Failed to upload image.");
+        throw new Error(errData.error || "Upload mislukt.");
       }
-      
       const { publicUrl, key, file_name, mime_type, size_bytes } = await res.json();
-
-      // 2. Register in media library for consistency
       await fetch("/api/cms/media", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          r2_key: key,
-          public_url: publicUrl,
-          file_name,
-          mime_type,
-          size_bytes
-        })
+        body: JSON.stringify({ r2_key: key, public_url: publicUrl, file_name, mime_type, size_bytes }),
       });
-
-      // 3. Set the URL in our form
-      setForm({ ...form, image_url: publicUrl });
-      push("Image uploaded successfully.");
+      setForm((prev) => ({ ...prev, image_url: publicUrl }));
+      push("Afbeelding geüpload.");
     } catch (err: any) {
-      const msg = err.message || "Upload failed.";
-      if (msg.includes("BINDING")) {
-        setError("Upload error: Cloudflare binding mismatch. Please restart 'npm run dev:wrangler' or use port 3000.");
-      } else {
-        setError(msg);
-      }
-    } finally {
-      setUploading(false);
+      setError(err.message || "Upload mislukt.");
     }
   };
 
@@ -208,39 +187,12 @@ export default function AdminVestigingenPage() {
                     }
                     required
                   />
-                  <div className="md:col-span-2 space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Image</label>
-                    <div className="flex gap-4 items-center">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        id="image-upload"
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) handleFileUpload(file);
-                        }}
-                      />
-                      <label 
-                        htmlFor="image-upload"
-                        className="cursor-pointer bg-gray-50 border border-gray-200 px-4 py-2 rounded-lg text-sm hover:bg-gray-100 transition-colors inline-block"
-                      >
-                        {uploading ? "Uploading..." : "Upload Image"}
-                      </label>
-                      <input
-                        className="border border-gray-200 rounded-lg px-3 py-2 flex-1 text-sm"
-                        placeholder="Or paste URL..."
-                        value={form.image_url}
-                        onChange={(event) =>
-                          setForm({ ...form, image_url: event.target.value })
-                        }
-                      />
-                    </div>
-                    {form.image_url && (
-                      <div className="mt-2 w-32 h-20 rounded-lg overflow-hidden border border-gray-100">
-                        <img src={form.image_url} className="w-full h-full object-cover" alt="Preview" />
-                      </div>
-                    )}
+                  <div className="md:col-span-2">
+                    <ImageUploadZone
+                      label="Omslagfoto"
+                      previewUrl={form.image_url}
+                      onUpload={handleFileUpload}
+                    />
                   </div>
                 </div>
                 {error ? <p className="text-sm text-red-500">{error}</p> : null}

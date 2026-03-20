@@ -12,6 +12,7 @@ import { useAdmin } from "../../AdminProvider";
 import type { Kot, Vestiging } from "@/types";
 import { RichTextEditor } from "../../_components/rich-text-editor";
 import { FloorPlanManager } from "../../_components/floor-plan-manager";
+import { ImageUploadZone } from "../../_components/image-upload-zone";
 
 function ShareFloorPlanLink({ vestigingId }: { vestigingId: string }) {
   const [copied, setCopied] = useState(false);
@@ -63,7 +64,6 @@ export default function AdminVestigingDetailPage() {
   const [vestiging, setVestiging] = useState<Vestiging | null>(null);
   const [koten, setKoten] = useState<Kot[]>([]);
   const [loading, setLoading] = useState(false);
-  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { push } = useToast();
   const { role } = useAdmin();
@@ -119,7 +119,6 @@ export default function AdminVestigingDetailPage() {
   };
 
   const handleFileUpload = async (file: File) => {
-    setUploading(true);
     setError(null);
     try {
       const res = await fetch("/api/r2/upload", {
@@ -157,8 +156,6 @@ export default function AdminVestigingDetailPage() {
       push("Image uploaded successfully.");
     } catch (err: any) {
       setError(err.message || "Upload failed.");
-    } finally {
-      setUploading(false);
     }
   };
 
@@ -263,43 +260,11 @@ export default function AdminVestigingDetailPage() {
                     })
                   }
                 />
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Image</label>
-                  <div className="flex gap-4 items-center">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      id="vestiging-image-upload"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) handleFileUpload(file);
-                      }}
-                    />
-                    <label 
-                      htmlFor="vestiging-image-upload"
-                      className="cursor-pointer bg-gray-50 border border-gray-200 px-4 py-2 rounded-lg text-sm hover:bg-gray-100 transition-colors inline-block"
-                    >
-                      {uploading ? "Uploading..." : "Upload Image"}
-                    </label>
-                    <input
-                      className="border border-gray-200 rounded-lg px-3 py-2 flex-1 text-sm"
-                      value={vestiging.image_url ?? ""}
-                      onChange={(event) =>
-                        setVestiging({
-                          ...vestiging,
-                          image_url: event.target.value
-                        })
-                      }
-                      placeholder="Or paste URL..."
-                    />
-                  </div>
-                  {vestiging.image_url && (
-                    <div className="mt-2 w-full max-w-sm h-48 rounded-lg overflow-hidden border border-gray-100">
-                      <img src={vestiging.image_url} className="w-full h-full object-cover" alt="Preview" />
-                    </div>
-                  )}
-                </div>
+                <ImageUploadZone
+                  label="Omslagfoto"
+                  previewUrl={vestiging.image_url}
+                  onUpload={handleFileUpload}
+                />
                 {error ? <p className="text-sm text-red-500">{error}</p> : null}
                 <button
                   className="bg-primary text-white px-4 py-2 rounded-lg font-semibold"
