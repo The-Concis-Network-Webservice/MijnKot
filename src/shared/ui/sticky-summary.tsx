@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { Kot, Vestiging } from "@/types";
+import { useTranslation } from 'react-i18next';
 import {
     CalendarDaysIcon,
     PhoneIcon,
@@ -17,12 +18,13 @@ interface StickySummaryProps {
 }
 
 export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps) {
+    const { t } = useTranslation();
     const [showContact, setShowContact] = useState(false);
 
     const isAvailable = kot.availability_status === 'available';
     const isReserved = kot.availability_status === 'reserved';
 
-    const statusLabel = isAvailable ? 'Beschikbaar' : isReserved ? 'Gereserveerd' : 'Verhuurd';
+    const statusLabel = isAvailable ? t('common.available') : isReserved ? t('common.reserved') : t('common.rented');
     const statusClass = isAvailable
         ? 'bg-state-success/10 text-state-success border-state-success/20'
         : isReserved
@@ -39,7 +41,7 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
             className={`${fullWidth ? 'w-full' : ''} flex items-center justify-center gap-2 px-6 py-3.5 bg-accent-500 text-white rounded-xl hover:bg-accent-600 active:bg-accent-700 transition-colors font-semibold text-sm shadow-soft cursor-pointer`}
         >
             <CalendarDaysIcon className="w-4 h-4 shrink-0" />
-            Plan bezoek
+            {t('booking.plan_visit')}
         </a>
     );
 
@@ -53,9 +55,9 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
                     <div className="px-6 py-5 border-b border-border-light bg-secondary-50">
                         <div className="flex items-baseline gap-1">
                             <span className="text-3xl font-bold text-neutral-500">€{kot.price}</span>
-                            <span className="text-sm text-text-muted">/ maand</span>
+                            <span className="text-sm text-text-muted">{t('sticky.per_month')}</span>
                         </div>
-                        <p className="text-xs text-text-muted mt-1">Alle kosten inbegrepen</p>
+                        <p className="text-xs text-text-muted mt-1">{t('sticky.all_included')}</p>
                     </div>
 
                     <div className="p-6 space-y-4">
@@ -70,8 +72,8 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
                         {/* Urgency — available only */}
                         {isAvailable && (
                             <div className="rounded-xl border border-accent-500/20 bg-accent-500/5 px-4 py-3">
-                                <p className="text-xs font-semibold text-accent-600 mb-0.5">Snel erbij zijn</p>
-                                <p className="text-xs text-text-muted leading-relaxed">Bezoeken worden snel ingepland. Reserveer vandaag nog.</p>
+                                <p className="text-xs font-semibold text-accent-600 mb-0.5">{t('sticky.act_fast')}</p>
+                                <p className="text-xs text-text-muted leading-relaxed">{t('sticky.act_fast_desc')}</p>
                             </div>
                         )}
 
@@ -89,13 +91,13 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
                         {/* Divider */}
                         <div className="border-t border-border-light pt-4 space-y-3">
                             <BookingButton />
-                            <p className="text-xs text-center text-text-muted">Gratis · Vrijblijvend · Direct bevestiging</p>
+                            <p className="text-xs text-center text-text-muted">{t('booking.free_no_obligations')}</p>
 
                             <button
                                 onClick={() => setShowContact(!showContact)}
                                 className="w-full flex items-center justify-center gap-2 px-5 py-3 border border-border-DEFAULT rounded-xl text-sm font-medium text-neutral-500 hover:border-primary-300 hover:text-primary-600 hover:bg-secondary-50 transition-colors cursor-pointer"
                             >
-                                Contact opnemen
+                                {t('sticky.contact_button')}
                                 <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform duration-200 ${showContact ? 'rotate-180' : ''}`} />
                             </button>
                         </div>
@@ -105,11 +107,11 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
                             <div className="space-y-2.5 pt-1 border-t border-border-light">
                                 <a href="/contact" className="flex items-center gap-2 text-sm text-primary-500 hover:text-primary-700 transition-colors font-medium">
                                     <EnvelopeIcon className="w-4 h-4 shrink-0" />
-                                    Stuur een bericht
+                                    {t('sticky.send_message')}
                                 </a>
                                 <a href="tel:" className="flex items-center gap-2 text-sm text-primary-500 hover:text-primary-700 transition-colors font-medium">
                                     <PhoneIcon className="w-4 h-4 shrink-0" />
-                                    Bel ons
+                                    {t('sticky.call_us')}
                                 </a>
                             </div>
                         )}
@@ -128,7 +130,7 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
                         <p className="text-lg font-bold text-neutral-500">
                             €{kot.price}<span className="text-xs font-normal text-text-muted ml-1">/mnd</span>
                         </p>
-                        <p className="text-xs text-text-muted">Kosten inbegrepen</p>
+                        <p className="text-xs text-text-muted">{t('sticky.included')}</p>
                     </div>
                     <BookingButton fullWidth={false} />
                 </div>

@@ -122,13 +122,13 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
 
                 {status === 'success' ? (
                     <div className="text-center py-12 bg-green-50 rounded-xl border border-green-100">
-                        <h4 className="text-xl font-semibold text-green-800 mb-2">Bericht verzonden!</h4>
-                        <p className="text-green-600">We hebben je bericht goed ontvangen en nemen zo snel mogelijk contact op.</p>
+                        <h4 className="text-xl font-semibold text-green-800 mb-2">{t('contact.success_title')}</h4>
+                        <p className="text-green-600">{t('contact.success_desc')}</p>
                         <button
                             onClick={() => setStatus('idle')}
                             className="mt-6 text-sm font-medium text-green-700 hover:underline"
                         >
-                            Nog een bericht sturen
+                            {t('contact.send_another')}
                         </button>
                     </div>
                 ) : (
@@ -187,7 +187,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
 
                         {status === 'error' && (
                             <div className="p-4 bg-red-50 text-red-600 rounded-lg text-sm border border-red-100 text-center">
-                                Er ging iets mis bij het versturen. Probeer het later opnieuw.
+                                {t('contact.error_sending')}
                             </div>
                         )}
 

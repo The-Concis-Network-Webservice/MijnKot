@@ -43,7 +43,7 @@ export function PhotoGallery({ photos }: { photos: KotPhoto[] }) {
         >
           <Image
             src={mainPhoto.image_url}
-            alt="Hoofdfoto van de kamer"
+            alt={t('detail.photo_main_alt')}
             className="object-cover"
             priority // Eager load LCP
             fill
@@ -53,7 +53,7 @@ export function PhotoGallery({ photos }: { photos: KotPhoto[] }) {
           {/* Hover Overlay */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
             <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 px-4 py-2 rounded-full font-medium shadow-sm">
-              Bekijk foto's
+              {t('detail.view_photos')}
             </div>
           </div>
         </button>
@@ -65,9 +65,7 @@ export function PhotoGallery({ photos }: { photos: KotPhoto[] }) {
             className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg hover:bg-white transition-colors border border-border-light"
           >
             <span className="font-medium text-text-main">
-              {remainingCount === 1
-                ? `+1 foto`
-                : `+${remainingCount} foto's`}
+              +{remainingCount} {t('detail.more_photos')}
             </span>
           </button>
         )}
@@ -84,7 +82,7 @@ export function PhotoGallery({ photos }: { photos: KotPhoto[] }) {
       {lightboxIndex !== null && (
         <Suspense fallback={
           <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center">
-            <div className="text-white">Laden...</div>
+            <div className="text-white">{t('common.loading')}</div>
           </div>
         }>
           <Lightbox

@@ -18,19 +18,19 @@ export function RentalOptions() {
             title: t('home.rental_options.erasmus_title'),
             description: t('home.rental_options.erasmus_desc'),
             href: "/contact",
-            label: "Meer info",
+            label: t('home.rental_options.cta'),
         },
         {
             title: t('home.rental_options.academic_title'),
             description: t('home.rental_options.academic_desc'),
             href: "/contact",
-            label: "Meer info",
+            label: t('home.rental_options.cta'),
         },
         {
             title: t('home.rental_options.prebooking_title'),
             description: t('home.rental_options.prebooking_desc'),
             href: "/contact",
-            label: "Meer info",
+            label: t('home.rental_options.cta'),
         },
     ];
 

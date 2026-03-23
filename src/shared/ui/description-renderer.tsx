@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { getLocalizedData } from "@/shared/lib/i18n-utils";
 
 function buildElements(chunks: string[]) {
   const elements: React.ReactNode[] = [];
@@ -52,9 +54,11 @@ function buildElements(chunks: string[]) {
   return elements;
 }
 
-export function DescriptionRenderer({ text }: { text: string }) {
+export function DescriptionRenderer({ text, textEn }: { text: string; textEn?: string | null }) {
+  const { t, i18n } = useTranslation();
   const [expanded, setExpanded] = useState(false);
-  const chunks = text.split(/\n\n+/).map(c => c.trim()).filter(Boolean);
+  const resolved = (i18n.language === 'en' && textEn) ? textEn : text;
+  const chunks = resolved.split(/\n\n+/).map(c => c.trim()).filter(Boolean);
   const hasMore = chunks.length > 2;
   const visible = expanded ? chunks : chunks.slice(0, 2);
 
@@ -66,7 +70,7 @@ export function DescriptionRenderer({ text }: { text: string }) {
           onClick={() => setExpanded(v => !v)}
           className="mt-4 text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors cursor-pointer"
         >
-          {expanded ? '↑ Minder tonen' : 'Lees meer ↓'}
+          {expanded ? t('common.read_less') : t('common.read_more')}
         </button>
       )}
     </div>

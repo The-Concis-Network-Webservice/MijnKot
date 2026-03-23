@@ -93,7 +93,7 @@ export function SiteNav({
                                     </Link>
                                 ))}
                                 {vestigingen.length === 0 && (
-                                    <span className="block px-4 py-2.5 text-sm text-text-muted italic">Geen locaties</span>
+                                    <span className="block px-4 py-2.5 text-sm text-text-muted italic">{t('navigation.no_locations')}</span>
                                 )}
                             </div>
                         </div>
@@ -112,7 +112,7 @@ export function SiteNav({
                             className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent-500 text-white rounded-xl text-sm font-semibold hover:bg-accent-600 active:bg-accent-700 transition-colors cursor-pointer whitespace-nowrap"
                         >
                             <CalendarDaysIcon className="w-4 h-4 shrink-0" />
-                            Plan bezoek
+                            {t('navigation.plan_visit')}
                         </a>
                     </div>
 
@@ -124,7 +124,7 @@ export function SiteNav({
                             className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent-500 text-white rounded-xl text-xs font-semibold hover:bg-accent-600 transition-colors cursor-pointer"
                         >
                             <CalendarDaysIcon className="w-3.5 h-3.5" />
-                            Plan bezoek
+                            {t('navigation.plan_visit')}
                         </a>
                         <button
                             onClick={() => setMobileOpen(!mobileOpen)}

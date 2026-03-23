@@ -46,13 +46,13 @@ export function LeadCaptureModal({
         if (phone && phone.trim().length > 0) {
             const phoneRegex = /^[\d\s\-\+\(\)]{7,20}$/;
             if (!phoneRegex.test(phone)) {
-                setError('Voer een geldig telefoonnummer in.');
+                setError(t('modal.error_phone'));
                 return;
             }
         }
 
         if (!consent) {
-            setError('Je moet akkoord gaan met de voorwaarden.');
+            setError(t('modal.error_consent'));
             return;
         }
 
@@ -73,11 +73,11 @@ export function LeadCaptureModal({
                     setIsOpen(false);
                 }, 2500);
             } else {
-                alert("Er ging iets mis. Probeer het later opnieuw.");
+                alert(t('modal.error_generic'));
             }
         } catch (err) {
             console.error(err);
-            alert("Er ging iets mis.");
+            alert(t('modal.error_generic'));
         } finally {
             setLoading(false);
         }
@@ -97,7 +97,7 @@ export function LeadCaptureModal({
                     onClick={handleClose}
                     className="absolute top-4 right-4 text-text-muted hover:text-text-main transition-colors px-2 py-1 text-sm font-medium bg-secondary-100 rounded-lg"
                 >
-                    Sluiten
+                    {t('modal.close')}
                 </button>
 
                 <div className="p-8">
@@ -105,10 +105,10 @@ export function LeadCaptureModal({
                         <>
                             <div className="text-center mb-8">
                                 <h2 className="text-2xl font-display font-semibold text-text-main mb-2">
-                                    Als eerste op de hoogte?
+                                    {t('modal.title')}
                                 </h2>
                                 <p className="text-text-secondary leading-relaxed">
-                                    Meld je aan voor onze lijst en ontvang direct een mailtje zodra er nieuwe koten vrijkomen.
+                                    {t('modal.desc')}
                                 </p>
                             </div>
 
@@ -116,7 +116,7 @@ export function LeadCaptureModal({
                                 <div>
                                     <input
                                         type="text"
-                                        placeholder="Jouw naam (optioneel)"
+                                        placeholder={t('modal.name_placeholder')}
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                         className="w-full px-4 py-3 rounded-xl border border-border-light focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-secondary-50/50 text-text-main placeholder:text-neutral-400"
@@ -125,7 +125,7 @@ export function LeadCaptureModal({
                                 <div>
                                     <input
                                         type="tel"
-                                        placeholder="Telefoonnummer (optioneel)"
+                                        placeholder={t('modal.phone_placeholder')}
                                         value={phone}
                                         onChange={(e) => {
                                             setPhone(e.target.value);
@@ -141,7 +141,7 @@ export function LeadCaptureModal({
                                     <input
                                         type="email"
                                         required
-                                        placeholder="Jouw emailadres"
+                                        placeholder={t('modal.email_placeholder')}
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="w-full px-4 py-3 rounded-xl border border-border-light focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-secondary-50/50 text-text-main placeholder:text-neutral-400"
@@ -160,7 +160,7 @@ export function LeadCaptureModal({
                                         className="mt-1 w-4 h-4 rounded border-border-light text-primary-600 focus:ring-primary-100 transition"
                                     />
                                     <label htmlFor="gdpr-consent" className="text-xs text-neutral-500 leading-tight">
-                                        Ik ga akkoord met de verwerking van mijn gegevens en wil graag updates ontvangen. Bekijk onze <a href="/privacy" className="text-primary-600 hover:underline">privacyverklaring</a> voor meer info.
+                                        {t('modal.consent')}
                                     </label>
                                 </div>
 
@@ -169,11 +169,11 @@ export function LeadCaptureModal({
                                     disabled={loading}
                                     className="w-full py-3.5 bg-primary-600 text-white rounded-xl font-medium shadow-soft hover:bg-primary-700 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
-                                    {loading ? 'Momentje...' : 'Hou mij op de hoogte →'}
+                                    {loading ? t('modal.loading') : t('modal.submit')}
                                 </button>
 
                                 <p className="text-xs text-center text-text-muted mt-4">
-                                    Geen spam, beloofd. Uitschrijven kan altijd.
+                                    {t('modal.no_spam')}
                                 </p>
                             </form>
                         </>
@@ -184,15 +184,15 @@ export function LeadCaptureModal({
                                     <CheckCircle className="w-12 h-12 text-green-500" />
                                 </div>
                             </div>
-                            <h3 className="text-2xl font-display font-semibold text-text-main mb-3">Aangemeld!</h3>
+                            <h3 className="text-2xl font-display font-semibold text-text-main mb-3">{t('modal.success_title')}</h3>
                             <p className="text-neutral-600 mb-6 max-w-[280px] mx-auto">
-                                Check je mailbox, we hebben je alvast een welkom gestuurd.
+                                {t('modal.success_desc')}
                             </p>
                             <button
                                 onClick={handleClose}
                                 className="text-sm font-medium text-text-muted hover:text-text-main transition-colors"
                             >
-                                Sluiten
+                                {t('modal.close')}
                             </button>
                         </div>
                     )}

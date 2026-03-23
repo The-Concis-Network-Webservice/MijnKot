@@ -74,7 +74,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
                 <div className="flex items-center justify-center gap-3 mb-8">
                     <span className="h-px w-8 bg-accent-500" />
                     <p className="text-xs font-bold tracking-[0.25em] uppercase text-accent-500">
-                        Studentenhuisvesting · Leuven
+                        {t('home.hero.badge')}
                     </p>
                     <span className="h-px w-8 bg-accent-500" />
                 </div>
@@ -97,7 +97,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
                         className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent-500 text-white rounded-xl font-semibold text-sm hover:bg-accent-600 active:bg-accent-700 transition-colors shadow-soft cursor-pointer"
                     >
                         <CalendarDaysIcon className="w-4 h-4 shrink-0" />
-                        Plan een bezoek
+                        {t('booking.cta')}
                     </a>
 
                     <Link

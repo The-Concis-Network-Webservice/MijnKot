@@ -15,7 +15,7 @@ function getCoverPhoto(photos?: KotPhoto[]) {
 }
 
 export function KotCard({ kot }: { kot: KotWithPhoto }) {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const cover = getCoverPhoto(kot.kot_photos);
 
     const title = getLocalizedData(kot, 'title', i18n.language);
@@ -24,7 +24,7 @@ export function KotCard({ kot }: { kot: KotWithPhoto }) {
     const isAvailable = kot.availability_status === 'available';
     const isReserved = kot.availability_status === 'reserved';
 
-    const statusLabel = isAvailable ? 'Beschikbaar' : isReserved ? 'Gereserveerd' : 'Verhuurd';
+    const statusLabel = isAvailable ? t('common.available') : isReserved ? t('common.reserved') : t('common.rented');
     const statusClass = isAvailable
         ? 'text-state-success border-state-success/30 bg-white'
         : isReserved
@@ -48,7 +48,7 @@ export function KotCard({ kot }: { kot: KotWithPhoto }) {
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-xs text-text-muted">
-                        Geen foto
+                        {t('common.no_photo')}
                     </div>
                 )}
 
@@ -58,7 +58,7 @@ export function KotCard({ kot }: { kot: KotWithPhoto }) {
                 {/* Price — bottom left on photo */}
                 <div className="absolute bottom-3 left-3">
                     <span className="inline-block bg-white/95 backdrop-blur-sm rounded-lg px-3 py-1.5 text-sm font-bold text-neutral-500 shadow-subtle">
-                        €{kot.price}<span className="text-xs font-normal text-text-muted">/mnd</span>
+                        €{kot.price}<span className="text-xs font-normal text-text-muted">{t('detail.per_month')}</span>
                     </span>
                 </div>
 
@@ -70,7 +70,7 @@ export function KotCard({ kot }: { kot: KotWithPhoto }) {
                 {/* Highlighted ribbon */}
                 {kot.is_highlighted && (
                     <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-xs font-bold bg-accent-500 text-white">
-                        Uitgelicht
+                        ★
                     </span>
                 )}
             </div>
@@ -93,7 +93,7 @@ export function KotCard({ kot }: { kot: KotWithPhoto }) {
                         </span>
                     ) : <span />}
                     <span className="text-xs font-semibold text-primary-600 group-hover:text-primary-800 transition-colors">
-                        Bekijk →
+                        {t('detail.view')}
                     </span>
                 </div>
             </div>

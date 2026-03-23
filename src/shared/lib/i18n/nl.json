@@ -9,7 +9,9 @@
         "rent_academic": "Academiejaar",
         "rent_semester": "Semester",
         "rent_erasmus": "Erasmus",
-        "rent_view_all": "Alles bekijken"
+        "rent_view_all": "Alles bekijken",
+        "plan_visit": "Plan bezoek",
+        "no_locations": "Geen locaties"
     },
     "home": {
         "hero": {
@@ -17,7 +19,7 @@
             "subtitle": "Ontdek kwalitatieve studentenhuisvesting in Belgische studentensteden. Veilig, comfortabel en op maat van de student.",
             "cta": "Bekijk Aanbod",
             "secondary_cta": "Hoe werkt het",
-            "badge": "Studentenhuisvesting België"
+            "badge": "Studentenhuisvesting · Leuven"
         },
         "sections": {
             "latest": "Nieuwste Aanbod",
@@ -29,9 +31,10 @@
             "erasmus_title": "Erasmus / Korte Duur",
             "erasmus_desc": "Flexibele contracten voor internationale studenten. 3 tot 6 maanden.",
             "academic_title": "Academiejaar",
-            "academic_desc": "Standaard contracten van 10-12 maanden voor de volledige studentervaring.",
+            "academic_desc": "Standaard contracten van 12 maanden voor de volledige studentervaring.",
             "prebooking_title": "2026-2027 Voorboeken",
-            "prebooking_desc": "Reserveer je kamer voor het volgende academiejaar op voorhand."
+            "prebooking_desc": "Reserveer je kamer voor het volgende academiejaar op voorhand.",
+            "cta": "Meer info"
         }
     },
     "overview": {
@@ -44,7 +47,8 @@
     },
     "vestigingen": {
         "title": "Vestigingen",
-        "description": "Ontdek al onze locaties en het kotaanbod."
+        "description": "Ontdek al onze locaties en het kotaanbod.",
+        "view_location": "Bekijk locatie"
     },
     "detail": {
         "ref_label": "Ref",
@@ -75,7 +79,11 @@
         "contract_signed_title": "Contract Ondertekend",
         "contract_signed_desc": "Een kopie is naar je e-mail verzonden.",
         "no_photos": "Nog geen foto's beschikbaar.",
-        "more_photos": "meer foto's"
+        "more_photos": "meer foto's",
+        "view_photos": "Bekijk foto's",
+        "loading_photos": "Laden...",
+        "photo_main_alt": "Hoofdfoto van de kamer",
+        "view": "Bekijk →"
     },
     "faq": {
         "title": "FAQ",
@@ -98,10 +106,50 @@
         "subject_technical": "Technisch Probleem",
         "message_label": "Bericht",
         "message_placeholder": "Hoe kunnen we helpen?",
-        "submit_button": "Bericht Versturen"
+        "submit_button": "Bericht Versturen",
+        "success_title": "Bericht verzonden!",
+        "success_desc": "We hebben je bericht goed ontvangen en nemen zo snel mogelijk contact op.",
+        "send_another": "Nog een bericht sturen",
+        "error_sending": "Er ging iets mis bij het versturen. Probeer het later opnieuw."
+    },
+    "booking": {
+        "badge": "Gratis bezichtiging",
+        "title": "Plan nu, later is te laat",
+        "desc": "Goede koten gaan snel. Reserveer vandaag een gratis bezichtiging en wees er zeker van.",
+        "cta": "Plan een gratis bezoek",
+        "fine_print": "Geen verplichtingen · Direct bevestiging · Gratis",
+        "plan_visit": "Plan bezoek",
+        "free_no_obligations": "Gratis · Vrijblijvend · Direct bevestiging"
+    },
+    "sticky": {
+        "per_month": "/ maand",
+        "all_included": "Alle kosten inbegrepen",
+        "included": "Kosten inbegrepen",
+        "act_fast": "Snel erbij zijn",
+        "act_fast_desc": "Bezoeken worden snel ingepland. Reserveer vandaag nog.",
+        "contact_button": "Contact opnemen",
+        "send_message": "Stuur een bericht",
+        "call_us": "Bel ons"
+    },
+    "modal": {
+        "title": "Als eerste op de hoogte?",
+        "desc": "Meld je aan voor onze lijst en ontvang direct een mailtje zodra er nieuwe koten vrijkomen.",
+        "name_placeholder": "Jouw naam (optioneel)",
+        "phone_placeholder": "Telefoonnummer (optioneel)",
+        "email_placeholder": "Jouw emailadres",
+        "consent": "Ik ga akkoord met de verwerking van mijn gegevens en wil graag updates ontvangen. Bekijk onze privacyverklaring voor meer info.",
+        "submit": "Hou mij op de hoogte →",
+        "loading": "Momentje...",
+        "no_spam": "Geen spam, beloofd. Uitschrijven kan altijd.",
+        "close": "Sluiten",
+        "success_title": "Aangemeld!",
+        "success_desc": "Check je mailbox, we hebben je alvast een welkom gestuurd.",
+        "error_phone": "Voer een geldig telefoonnummer in.",
+        "error_consent": "Je moet akkoord gaan met de voorwaarden.",
+        "error_generic": "Er ging iets mis. Probeer het later opnieuw."
     },
     "footer": {
-        "tagline": "Kwalitatieve studentenhuisvesting in leuven. Vertrouwd door studenten en gezinnen sinds 1991.",
+        "tagline": "Kwalitatieve studentenhuisvesting in Leuven. Vertrouwd door studenten en gezinnen sinds 1991.",
         "navigation_title": "Navigatie",
         "information_title": "Informatie",
         "contact_title": "Contact",
@@ -109,24 +157,31 @@
         "terms_of_service": "Algemene Voorwaarden",
         "cookie_settings": "Cookie-instellingen",
         "rights_reserved": "Alle rechten voorbehouden.",
-        "platform_label": ""
+        "platform_label": "",
+        "plan_visit": "Plan bezoek"
     },
     "common": {
         "available": "Beschikbaar",
         "unavailable": "Niet beschikbaar",
         "coming_soon": "Binnenkort",
         "rented": "Verhuurd",
+        "reserved": "Gereserveerd",
         "price_per_month": "€/maand",
-        "read_more": "Lees meer",
+        "read_more": "Lees meer ↓",
+        "read_less": "↑ Minder tonen",
         "arrow": "→",
         "no_data": "Momenteel geen gegevens beschikbaar.",
         "loading": "Laden...",
-        "error": "Er is een fout opgetreden."
+        "error": "Er is een fout opgetreden.",
+        "no_photo": "Geen foto",
+        "view": "Bekijk →",
+        "more_info": "Meer info"
     },
     "status": {
         "available": "Beschikbaar",
         "option": "Optie",
         "rented": "Verhuurd",
+        "reserved": "Gereserveerd",
         "pending": "In afwachting"
     }
 }

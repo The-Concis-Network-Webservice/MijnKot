@@ -9,7 +9,9 @@
         "rent_academic": "Academic Year",
         "rent_semester": "Semester",
         "rent_erasmus": "Erasmus",
-        "rent_view_all": "View all"
+        "rent_view_all": "View all",
+        "plan_visit": "Book a visit",
+        "no_locations": "No locations"
     },
     "home": {
         "hero": {
@@ -17,7 +19,7 @@
             "subtitle": "Discover quality student housing in top Belgian university cities. Safe, comfortable, and tailored to your needs.",
             "cta": "View Properties",
             "secondary_cta": "How it works",
-            "badge": "Student Housing Belgium"
+            "badge": "Student Housing · Leuven"
         },
         "sections": {
             "latest": "Latest Opportunities",
@@ -29,9 +31,10 @@
             "erasmus_title": "Erasmus / Short Stay",
             "erasmus_desc": "Flexible contracts for international students. 3 to 6 months.",
             "academic_title": "Academic Year",
-            "academic_desc": "Standard 10-12 month contracts for the full student experience.",
+            "academic_desc": "Standard 12-month contracts for the full student experience.",
             "prebooking_title": "2026-2027 Pre-booking",
-            "prebooking_desc": "Secure your room for the next academic year early."
+            "prebooking_desc": "Secure your room for the next academic year early.",
+            "cta": "More info"
         }
     },
     "overview": {
@@ -44,7 +47,8 @@
     },
     "vestigingen": {
         "title": "Locations",
-        "description": "Explore all our locations and the koten they offer."
+        "description": "Explore all our locations and the rooms they offer.",
+        "view_location": "View location"
     },
     "detail": {
         "ref_label": "Ref",
@@ -75,7 +79,11 @@
         "contract_signed_title": "Contract Signed",
         "contract_signed_desc": "A copy has been sent to your email.",
         "no_photos": "No photos available yet.",
-        "more_photos": "more photos"
+        "more_photos": "more photos",
+        "view_photos": "View photos",
+        "loading_photos": "Loading...",
+        "photo_main_alt": "Main photo of the room",
+        "view": "View →"
     },
     "faq": {
         "title": "FAQ",
@@ -98,7 +106,47 @@
         "subject_technical": "Technical Issue",
         "message_label": "Message",
         "message_placeholder": "How can we help?",
-        "submit_button": "Send Message"
+        "submit_button": "Send Message",
+        "success_title": "Message sent!",
+        "success_desc": "We have received your message and will get back to you as soon as possible.",
+        "send_another": "Send another message",
+        "error_sending": "Something went wrong. Please try again later."
+    },
+    "booking": {
+        "badge": "Free viewing",
+        "title": "Act now, later is too late",
+        "desc": "Good rooms go fast. Reserve your free viewing today and secure your spot.",
+        "cta": "Book a free visit",
+        "fine_print": "No obligations · Instant confirmation · Free",
+        "plan_visit": "Book a visit",
+        "free_no_obligations": "Free · No obligations · Instant confirmation"
+    },
+    "sticky": {
+        "per_month": "/ month",
+        "all_included": "All costs included",
+        "included": "Costs included",
+        "act_fast": "Act fast",
+        "act_fast_desc": "Viewings fill up quickly. Book your visit today.",
+        "contact_button": "Contact us",
+        "send_message": "Send a message",
+        "call_us": "Call us"
+    },
+    "modal": {
+        "title": "Be the first to know?",
+        "desc": "Sign up for our list and get an instant email as soon as new rooms become available.",
+        "name_placeholder": "Your name (optional)",
+        "phone_placeholder": "Phone number (optional)",
+        "email_placeholder": "Your email address",
+        "consent": "I agree to the processing of my data and would like to receive updates. See our privacy policy for more info.",
+        "submit": "Keep me updated →",
+        "loading": "Just a moment...",
+        "no_spam": "No spam, we promise. Unsubscribe anytime.",
+        "close": "Close",
+        "success_title": "Subscribed!",
+        "success_desc": "Check your inbox, we've sent you a welcome email.",
+        "error_phone": "Please enter a valid phone number.",
+        "error_consent": "You must agree to the terms.",
+        "error_generic": "Something went wrong. Please try again later."
     },
     "footer": {
         "tagline": "Quality student housing in Leuven. Trusted by students and families since 1991.",
@@ -109,24 +157,31 @@
         "terms_of_service": "Terms of Service",
         "cookie_settings": "Cookie Settings",
         "rights_reserved": "All rights reserved.",
-        "platform_label": ""
+        "platform_label": "",
+        "plan_visit": "Book a visit"
     },
     "common": {
         "available": "Available",
         "unavailable": "Unavailable",
         "coming_soon": "Coming Soon",
         "rented": "Rented",
+        "reserved": "Reserved",
         "price_per_month": "€/month",
-        "read_more": "Read more",
+        "read_more": "Read more ↓",
+        "read_less": "↑ Show less",
         "arrow": "→",
         "no_data": "No data available at the moment.",
         "loading": "Loading...",
-        "error": "An error occurred."
+        "error": "An error occurred.",
+        "no_photo": "No photo",
+        "view": "View →",
+        "more_info": "More info"
     },
     "status": {
         "available": "Available",
         "option": "Option",
         "rented": "Rented",
+        "reserved": "Reserved",
         "pending": "Pending"
     }
 }

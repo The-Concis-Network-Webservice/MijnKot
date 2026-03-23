@@ -51,7 +51,7 @@ export default async function VestigingDetailPage({
           {vestiging.address}, {vestiging.postal_code} {vestiging.city}
         </p>
         <div className="mt-6 max-w-2xl">
-          <DescriptionRenderer text={vestiging.description ?? ''} />
+          <DescriptionRenderer text={vestiging.description ?? ''} textEn={vestiging.description_en} />
         </div>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

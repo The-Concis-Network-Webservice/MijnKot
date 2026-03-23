@@ -8,7 +8,7 @@ import { getLocalizedData } from "@/shared/lib/i18n-utils";
 import { MapPinIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export function VestigingCard({ vestiging }: { vestiging: Vestiging }) {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [mounted, setMounted] = useState(false);
     useEffect(() => { setMounted(true); }, []);
 
@@ -31,7 +31,7 @@ export function VestigingCard({ vestiging }: { vestiging: Vestiging }) {
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-xs text-text-muted">
-                        Geen foto
+                        {t('common.no_photo')}
                     </div>
                 )}
                 {/* Bottom gradient */}
@@ -53,7 +53,7 @@ export function VestigingCard({ vestiging }: { vestiging: Vestiging }) {
                     </p>
                 )}
                 <div className="flex items-center gap-1 mt-4 pt-4 border-t border-border-light text-xs font-semibold text-primary-600 group-hover:text-primary-800 transition-colors">
-                    Bekijk locatie
+                    {t('vestigingen.view_location')}
                     <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />
                 </div>
             </div>
