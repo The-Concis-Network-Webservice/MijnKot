@@ -1,49 +1,79 @@
 import { MetadataRoute } from 'next';
-import { query } from "@/shared/lib/db";
-import { Kot } from "@/types";
+import { query } from '@/shared/lib/db';
+import type { Kot, Vestiging } from '@/types';
 
 export const runtime = 'edge';
 
+const BASE_URL = 'https://mijn-kot.be';
+
+/**
+ * Static pages whose content changes rarely.
+ * Use a real calendar date here — do NOT use new Date().
+ * Update this date manually when you make meaningful content changes to these pages.
+ */
+const STATIC_PAGES: MetadataRoute.Sitemap = [
+  {
+    url: BASE_URL,
+    lastModified: '2026-03-23',
+  },
+  {
+    url: `${BASE_URL}/koten`,
+    lastModified: '2026-03-23',
+  },
+  {
+    url: `${BASE_URL}/vestigingen`,
+    lastModified: '2026-03-23',
+  },
+  {
+    url: `${BASE_URL}/contact`,
+    lastModified: '2026-03-23',
+  },
+  {
+    url: `${BASE_URL}/faq`,
+    lastModified: '2026-03-23',
+  },
+  {
+    url: `${BASE_URL}/afspraken`,
+    lastModified: '2026-03-23',
+  },
+  {
+    url: `${BASE_URL}/privacybeleid`,
+    lastModified: '2026-03-23',
+  },
+  {
+    url: `${BASE_URL}/algemene-voorwaarden`,
+    lastModified: '2026-03-23',
+  },
+];
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    // Base URL
-    const baseUrl = 'https://mijn-kot.be'; // Replace with real domain
+  // --- Dynamic: published koten ---
+  // Use updated_at so Google sees freshness signals when listings change price,
+  // availability, or description — not just when they were first created.
+  const koten = await query<Pick<Kot, 'id' | 'updated_at'>>(
+    "SELECT id, updated_at FROM koten WHERE status = 'published' AND archived_at IS NULL"
+  );
 
-    // Get all active koten
-    const koten = await query<Kot>("select id, created_at from koten where status = 'published' and archived_at is null");
+  const kotEntries: MetadataRoute.Sitemap = koten.map((kot) => ({
+    url: `${BASE_URL}/koten/${kot.id}`,
+    lastModified: kot.updated_at ? new Date(kot.updated_at).toISOString().split('T')[0] : '2026-03-23',
+  }));
 
-    const kotEntries = koten.map((kot) => ({
-        url: `${baseUrl}/koten/${kot.id}`,
-        lastModified: new Date(kot.created_at || new Date()), // Or updated_at if available
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-    }));
+  // --- Dynamic: active vestigingen (location detail pages) ---
+  // Each vestiging page has unique authored content + live inventory grid.
+  // Only include non-archived vestigingen.
+  const vestigingen = await query<Pick<Vestiging, 'id' | 'updated_at'>>(
+    "SELECT id, updated_at FROM vestigingen WHERE archived_at IS NULL"
+  );
 
-    return [
-        {
-            url: baseUrl,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 1,
-        },
-        {
-            url: `${baseUrl}/vestigingen`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/contact`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.5,
-        },
-        {
-            url: `${baseUrl}/faq`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.5,
-        },
-        ...kotEntries,
-    ];
+  const vestigingEntries: MetadataRoute.Sitemap = vestigingen.map((v) => ({
+    url: `${BASE_URL}/vestigingen/${v.id}`,
+    lastModified: v.updated_at ? new Date(v.updated_at).toISOString().split('T')[0] : '2026-03-23',
+  }));
+
+  return [
+    ...STATIC_PAGES,
+    ...vestigingEntries,
+    ...kotEntries,
+  ];
 }
-
