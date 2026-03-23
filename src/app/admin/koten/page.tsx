@@ -111,7 +111,6 @@ export default function AdminKotenPage() {
             >
               <option value="">All statuses</option>
               <option value="draft">draft</option>
-              <option value="scheduled">scheduled</option>
               <option value="published">published</option>
               <option value="archived">archived</option>
             </select>

@@ -12,7 +12,7 @@ export type Vestiging = {
   updated_at: string;
 };
 
-export type KotStatus = "draft" | "scheduled" | "published" | "archived";
+export type KotStatus = "draft" | "published" | "archived";
 
 export type RentType = {
   id: string;
@@ -38,7 +38,6 @@ export type Kot = {
   availability_status: "available" | "reserved" | "rented" | "hidden";
   status: KotStatus;
   is_highlighted?: boolean | number;
-  scheduled_publish_at?: string | null;
   published_at?: string | null;
   archived_at?: string | null;
   created_at: string;

@@ -64,11 +64,8 @@ export async function POST(request: Request) {
     price,
     availability_status,
     status,
-    scheduled_publish_at,
     is_highlighted
   } = body;
-  const scheduledAt =
-    scheduled_publish_at ? new Date(scheduled_publish_at).toISOString() : null;
   if (!vestiging_id || !title || !description || price === undefined) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
@@ -90,7 +87,7 @@ export async function POST(request: Request) {
   }
 
   const inserted = await queryOne(
-    "insert into koten (vestiging_id, title, title_en, description, description_en, price, availability_status, status, scheduled_publish_at, is_highlighted) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) returning *",
+    "insert into koten (vestiging_id, title, title_en, description, description_en, price, availability_status, status, is_highlighted) values ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning *",
     [
       vestiging_id,
       title,
@@ -100,7 +97,6 @@ export async function POST(request: Request) {
       price,
       availability_status,
       status ?? "draft",
-      scheduledAt,
       is_highlighted ?? false
     ]
   );
@@ -165,30 +161,6 @@ export async function PATCH(request: Request) {
     revalidatePath('/koten');
     return NextResponse.json({ success: true });
   }
-  if (action === "schedule") {
-    const { scheduled_publish_at } = body;
-    if (!scheduled_publish_at) {
-      return NextResponse.json(
-        { error: "scheduled_publish_at is required." },
-        { status: 400 }
-      );
-    }
-    await query(
-      "update koten set status = 'scheduled', scheduled_publish_at = $1 where id = $2",
-      [new Date(scheduled_publish_at).toISOString(), id]
-    );
-    await logAudit({
-      actorId: user.id,
-      action: "schedule",
-      entityType: "koten",
-      entityId: id,
-      changes: { scheduled_publish_at }
-    });
-    revalidatePath('/');
-    revalidatePath(`/koten/${id}`);
-    revalidatePath('/koten');
-    return NextResponse.json({ success: true });
-  }
   const {
     title,
     title_en,
@@ -199,7 +171,6 @@ export async function PATCH(request: Request) {
     price,
     availability_status,
     status,
-    scheduled_publish_at,
     is_highlighted
   } = body;
 
@@ -218,7 +189,7 @@ export async function PATCH(request: Request) {
   }
 
   const updated = await queryOne(
-    "update koten set title = $1, title_en = $2, description = $3, description_en = $4, description_raw = $5, description_polished = $6, price = $7, availability_status = $8, status = $9, scheduled_publish_at = $10, is_highlighted = $11 where id = $12 returning *",
+    "update koten set title = $1, title_en = $2, description = $3, description_en = $4, description_raw = $5, description_polished = $6, price = $7, availability_status = $8, status = $9, is_highlighted = $10 where id = $11 returning *",
     [
       title,
       title_en ?? null,
@@ -229,7 +200,6 @@ export async function PATCH(request: Request) {
       price,
       availability_status,
       status,
-      scheduled_publish_at ? new Date(scheduled_publish_at).toISOString() : null,
       is_highlighted ?? false,
       id
     ]

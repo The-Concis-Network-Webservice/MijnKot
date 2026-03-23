@@ -38,15 +38,6 @@ export default function AdminKotDetailPage() {
   const [error, setError] = useState<string | null>(null);
   const { push } = useToast();
 
-  const formatDatetimeLocal = (value?: string | null) => {
-    if (!value) return "";
-    const date = new Date(value);
-    const pad = (n: number) => String(n).padStart(2, "0");
-    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
-      date.getDate()
-    )}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
-  };
-
   const loadKot = async () => {
     const res = await fetch(`/api/cms/koten?id=${id}`);
     const payload = await res.json();
@@ -110,7 +101,6 @@ export default function AdminKotDetailPage() {
         price: kot.price,
         availability_status: kot.availability_status,
         status: kot.status,
-        scheduled_publish_at: kot.scheduled_publish_at,
         is_highlighted: kot.is_highlighted
       })
     });
@@ -160,8 +150,7 @@ export default function AdminKotDetailPage() {
                         description_polished: kot.description_polished,
                         price: kot.price,
                         availability_status: kot.availability_status,
-                        status: kot.status, // keeps current status for now (e.g. draft)
-                        scheduled_publish_at: kot.scheduled_publish_at,
+                        status: kot.status,
                         is_highlighted: kot.is_highlighted
                       })
                     });
@@ -289,34 +278,20 @@ export default function AdminKotDetailPage() {
                     <option value="hidden">hidden</option>
                   </select>
                 </div>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <select
-                    className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white w-full"
-                    value={kot.status}
-                    onChange={(event) =>
-                      setKot({
-                        ...kot,
-                        status: event.target.value as Kot["status"]
-                      })
-                    }
-                  >
-                    <option value="draft">draft</option>
-                    <option value="scheduled">scheduled</option>
-                    <option value="published">published</option>
-                    <option value="archived">archived</option>
-                  </select>
-                  <input
-                    className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
-                    type="datetime-local"
-                    value={formatDatetimeLocal(kot.scheduled_publish_at)}
-                    onChange={(event) =>
-                      setKot({
-                        ...kot,
-                        scheduled_publish_at: event.target.value
-                      })
-                    }
-                  />
-                </div>
+                <select
+                  className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white w-full"
+                  value={kot.status}
+                  onChange={(event) =>
+                    setKot({
+                      ...kot,
+                      status: event.target.value as Kot["status"]
+                    })
+                  }
+                >
+                  <option value="draft">draft</option>
+                  <option value="published">published</option>
+                  <option value="archived">archived</option>
+                </select>
                 {error ? <p className="text-sm text-red-500">{error}</p> : null}
                 <button
                   className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-6 py-2.5 rounded-lg font-medium shadow-sm w-full md:w-auto"
