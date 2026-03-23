@@ -22,7 +22,7 @@ export default async function HomePage() {
 
       <RentalOptions />
 
-      <section className="py-20 px-6 lg:px-8 max-w-7xl mx-auto">
+      <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <SectionHeader
           title="home.sections.latest"
           description="home.sections.latest_desc"
@@ -37,8 +37,8 @@ export default async function HomePage() {
 
       <BookingCtaBanner bookingUrl={settings?.booking_url} />
 
-      <section className="py-20 bg-surface-subtle border-y border-border-light">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="py-12 md:py-20 bg-surface-subtle border-y border-border-light">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             title="home.sections.locations"
             description="home.sections.locations_desc"

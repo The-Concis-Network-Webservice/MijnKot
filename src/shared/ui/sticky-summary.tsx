@@ -131,8 +131,11 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
                         <p className="text-lg font-bold text-neutral-500">
                             €{kot.price}<span className="text-xs font-normal text-text-muted ml-1">{t('sticky.per_month')}</span>
                         </p>
-                        <p className="text-xs text-text-muted">{t('sticky.included')}</p>
+                        <span className={`text-xs font-semibold ${isAvailable ? 'text-state-success' : isReserved ? 'text-state-warning' : 'text-state-error'}`}>{statusLabel}</span>
                     </div>
+                    <a href="/contact" className="flex items-center justify-center gap-1.5 px-4 py-3 border border-border-DEFAULT rounded-xl text-sm font-medium text-neutral-500 hover:border-primary-300 transition-colors cursor-pointer whitespace-nowrap">
+                        <EnvelopeIcon className="w-4 h-4 shrink-0" />
+                    </a>
                     <BookingButton fullWidth={false} />
                 </div>
             </div>

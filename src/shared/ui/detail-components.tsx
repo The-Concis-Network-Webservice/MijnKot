@@ -23,7 +23,7 @@ export function DetailHeader({ kot, vestiging }: DetailHeaderProps) {
                 </span>
                 <span className="text-text-muted text-sm">{t('detail.ref_label')}: {kot.id.slice(0, 8)}</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-display font-semibold text-text-main mb-4 leading-tight">{title}</h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-semibold text-text-main mb-4 leading-tight">{title}</h1>
             {vestiging?.address}, {vestiging?.postal_code} {vestiging?.city}
         </div>
     );

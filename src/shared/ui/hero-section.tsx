@@ -80,12 +80,12 @@ export function HeroSection({ settings }: HeroSectionProps) {
                 </div>
 
                 {/* Heading */}
-                <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-bold text-primary-700 leading-[1.05] tracking-tight mb-8">
+                <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold text-primary-700 leading-[1.05] tracking-tight mb-6 md:mb-8">
                     {title}
                 </h1>
 
                 {/* Subtitle */}
-                <p className="text-neutral-500 text-base md:text-lg leading-relaxed mb-12 max-w-xl mx-auto">
+                <p className="text-neutral-500 text-base md:text-lg leading-relaxed mb-8 md:mb-12 max-w-xl mx-auto">
                     {subtitle}
                 </p>
 

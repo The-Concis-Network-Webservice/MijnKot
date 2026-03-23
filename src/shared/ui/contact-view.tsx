@@ -68,26 +68,26 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                 centered
             />
 
-            <div className="grid gap-6 md:grid-cols-3 mb-16">
+            <div className="grid gap-6 md:grid-cols-3 mb-10 md:mb-16">
                 {settings?.contact_email && (
-                    <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
+                    <div className="bg-surface-card border border-border-light rounded-xl p-5 md:p-8 text-center hover:shadow-soft transition-all">
                         <h3 className="font-semibold text-text-main mb-2">{t('contact.email_label')}</h3>
                         <p className="text-text-main text-sm">{settings.contact_email}</p>
                     </div>
                 )}
                 {settings?.contact_phone && (
-                    <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
+                    <div className="bg-surface-card border border-border-light rounded-xl p-5 md:p-8 text-center hover:shadow-soft transition-all">
                         <h3 className="font-semibold text-text-main mb-2">{t('contact.phone_label')}</h3>
                         <p className="text-text-main text-sm">{settings.contact_phone}</p>
                     </div>
                 )}
                 {settings?.contact_address && (
-                    <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
+                    <div className="bg-surface-card border border-border-light rounded-xl p-5 md:p-8 text-center hover:shadow-soft transition-all">
                         <h3 className="font-semibold text-text-main mb-2">{t('contact.office_label')}</h3>
                         <p className="text-text-main text-sm">{settings.contact_address}</p>
                     </div>
                 )}
-                <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
+                <div className="bg-surface-card border border-border-light rounded-xl p-5 md:p-8 text-center hover:shadow-soft transition-all">
                     <h3 className="font-semibold text-text-main mb-4">{t('contact.socials_label')}</h3>
                     <div className="flex justify-center gap-4">
                         <a
@@ -116,7 +116,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                 </div>
             </div>
 
-            <div className="bg-surface-card rounded-2xl p-8 md:p-12 border border-border-light shadow-soft">
+            <div className="bg-surface-card rounded-2xl p-5 sm:p-8 md:p-12 border border-border-light shadow-soft">
                 <h3 className="text-2xl font-semibold font-display text-text-main mb-6 text-center">{t('contact.form_title')}</h3>
 
                 {status === 'success' ? (

@@ -6,7 +6,7 @@ import { SectionHeader } from "./section-header";
 
 const activeBtn = 'bg-primary-600 text-white shadow-sm';
 const inactiveBtn = 'bg-white border border-gray-300 text-gray-700 hover:border-primary-400 hover:text-primary-600';
-const btn = `px-5 py-2 rounded-xl text-sm font-medium transition-all duration-150`;
+const btn = `px-4 py-2.5 min-h-[44px] rounded-xl text-sm font-medium transition-all duration-150 inline-flex items-center`;
 
 type OverviewHeaderProps = {
     filterButtons: React.ReactNode;
@@ -15,8 +15,8 @@ type OverviewHeaderProps = {
 export function OverviewHeader({ filterButtons }: OverviewHeaderProps) {
 
     return (
-        <div className="bg-surface-subtle py-16">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="bg-surface-subtle py-10 md:py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionHeader
                     title="overview.title"
                     description="overview.description"

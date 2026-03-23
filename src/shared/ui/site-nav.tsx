@@ -116,16 +116,8 @@ export function SiteNav({
                         </a>
                     </div>
 
-                    {/* Mobile: booking + hamburger */}
-                    <div className="flex md:hidden items-center gap-2">
-                        <a
-                            href={bookingUrl}
-                            {...(isExternalBooking ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent-500 text-white rounded-xl text-xs font-semibold hover:bg-accent-600 transition-colors cursor-pointer"
-                        >
-                            <CalendarDaysIcon className="w-3.5 h-3.5" />
-                            {t('navigation.plan_visit')}
-                        </a>
+                    {/* Mobile: hamburger only */}
+                    <div className="flex md:hidden items-center">
                         <button
                             onClick={() => setMobileOpen(!mobileOpen)}
                             className="p-2 text-neutral-500 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors cursor-pointer"
@@ -157,7 +149,18 @@ export function SiteNav({
                                 {label}
                             </Link>
                         ))}
-                        <div className="py-3">
+                        <div className="pt-3 pb-1">
+                            <a
+                                href={bookingUrl}
+                                {...(isExternalBooking ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                onClick={() => setMobileOpen(false)}
+                                className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-accent-500 text-white rounded-xl text-sm font-semibold hover:bg-accent-600 transition-colors cursor-pointer"
+                            >
+                                <CalendarDaysIcon className="w-4 h-4 shrink-0" />
+                                {t('navigation.plan_visit')}
+                            </a>
+                        </div>
+                        <div className="py-2">
                             <LanguageSwitcher />
                         </div>
                     </div>
