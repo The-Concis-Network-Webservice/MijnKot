@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { KotCard } from "@/shared/ui/kot-card";
+import { DescriptionRenderer } from "@/shared/ui/description-renderer";
 import { query, queryOne } from "@/shared/lib/db";
 import type { Kot, KotPhoto, Vestiging } from "@/types";
-
 
 export const runtime = 'edge';
 
@@ -50,9 +50,9 @@ export default async function VestigingDetailPage({
         <p className="text-text-muted mt-2">
           {vestiging.address}, {vestiging.postal_code} {vestiging.city}
         </p>
-        <p className="mt-4 text-text-main max-w-3xl">
-          {vestiging.description}
-        </p>
+        <div className="mt-6 max-w-2xl">
+          <DescriptionRenderer text={vestiging.description ?? ''} />
+        </div>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {koten.map((kot) => (
@@ -65,4 +65,3 @@ export default async function VestigingDetailPage({
     </div>
   );
 }
-
