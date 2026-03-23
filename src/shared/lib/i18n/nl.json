@@ -107,10 +107,12 @@
         "message_label": "Bericht",
         "message_placeholder": "Hoe kunnen we helpen?",
         "submit_button": "Bericht Versturen",
+        "submitting": "Verzenden...",
         "success_title": "Bericht verzonden!",
         "success_desc": "We hebben je bericht goed ontvangen en nemen zo snel mogelijk contact op.",
         "send_another": "Nog een bericht sturen",
-        "error_sending": "Er ging iets mis bij het versturen. Probeer het later opnieuw."
+        "error_sending": "Er ging iets mis bij het versturen. Probeer het later opnieuw.",
+        "socials_label": "Socials"
     },
     "booking": {
         "badge": "Gratis bezichtiging",

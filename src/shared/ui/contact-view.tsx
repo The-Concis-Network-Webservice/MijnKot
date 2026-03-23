@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { SectionHeader } from "./section-header";
 import type { SiteSettings } from "@/types";
-import { siteConfig } from "@/shared/lib/config";
 
 export function ContactView({ settings }: { settings: SiteSettings | null }) {
     const { t } = useTranslation();
@@ -89,7 +88,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                     </div>
                 )}
                 <div className="bg-surface-card border border-border-light rounded-xl p-8 text-center hover:shadow-soft transition-all">
-                    <h3 className="font-semibold text-text-main mb-4">Socials</h3>
+                    <h3 className="font-semibold text-text-main mb-4">{t('contact.socials_label')}</h3>
                     <div className="flex justify-center gap-4">
                         <a
                             href="https://www.instagram.com/mijnkot.be/"
@@ -196,7 +195,7 @@ export function ContactView({ settings }: { settings: SiteSettings | null }) {
                             disabled={loading}
                             className="w-full py-4 bg-primary-500 text-white rounded-lg font-medium shadow-soft hover:bg-primary-600 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                         >
-                            {loading ? 'Verzenden...' : t('contact.submit_button')}
+                            {loading ? t('contact.submitting') : t('contact.submit_button')}
                         </button>
                     </form>
                 )}

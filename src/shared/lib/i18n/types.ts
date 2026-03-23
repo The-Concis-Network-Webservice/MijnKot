@@ -10,6 +10,8 @@ export type Dictionary = {
         rent_semester: string;
         rent_erasmus: string;
         rent_view_all: string;
+        plan_visit: string;
+        no_locations: string;
     };
     home: {
         hero: {
@@ -32,6 +34,7 @@ export type Dictionary = {
             academic_desc: string;
             prebooking_title: string;
             prebooking_desc: string;
+            cta: string;
         };
     };
     overview: {
@@ -45,6 +48,7 @@ export type Dictionary = {
     vestigingen: {
         title: string;
         description: string;
+        view_location: string;
     };
     detail: {
         ref_label: string;
@@ -76,6 +80,10 @@ export type Dictionary = {
         contract_signed_desc: string;
         no_photos: string;
         more_photos: string;
+        view_photos: string;
+        loading_photos: string;
+        photo_main_alt: string;
+        view: string;
     };
     faq: {
         title: string;
@@ -99,6 +107,48 @@ export type Dictionary = {
         message_label: string;
         message_placeholder: string;
         submit_button: string;
+        submitting: string;
+        success_title: string;
+        success_desc: string;
+        send_another: string;
+        error_sending: string;
+        socials_label: string;
+    };
+    booking: {
+        badge: string;
+        title: string;
+        desc: string;
+        cta: string;
+        fine_print: string;
+        plan_visit: string;
+        free_no_obligations: string;
+    };
+    sticky: {
+        per_month: string;
+        all_included: string;
+        included: string;
+        act_fast: string;
+        act_fast_desc: string;
+        contact_button: string;
+        send_message: string;
+        call_us: string;
+    };
+    modal: {
+        title: string;
+        desc: string;
+        name_placeholder: string;
+        phone_placeholder: string;
+        email_placeholder: string;
+        consent: string;
+        submit: string;
+        loading: string;
+        no_spam: string;
+        close: string;
+        success_title: string;
+        success_desc: string;
+        error_phone: string;
+        error_consent: string;
+        error_generic: string;
     };
     footer: {
         tagline: string;
@@ -110,23 +160,30 @@ export type Dictionary = {
         cookie_settings: string;
         rights_reserved: string;
         platform_label: string;
+        plan_visit: string;
     };
     common: {
         available: string;
         unavailable: string;
         coming_soon: string;
         rented: string;
+        reserved: string;
         price_per_month: string;
         read_more: string;
+        read_less: string;
         arrow: string;
         no_data: string;
         loading: string;
         error: string;
+        no_photo: string;
+        view: string;
+        more_info: string;
     };
     status: {
         available: string;
         option: string;
         rented: string;
+        reserved: string;
         pending: string;
     };
 };

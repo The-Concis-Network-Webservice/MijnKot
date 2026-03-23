@@ -73,11 +73,11 @@ export function LeadCaptureModal({
                     setIsOpen(false);
                 }, 2500);
             } else {
-                alert(t('modal.error_generic'));
+                setError(t('modal.error_generic'));
             }
         } catch (err) {
             console.error(err);
-            alert(t('modal.error_generic'));
+            setError(t('modal.error_generic'));
         } finally {
             setLoading(false);
         }

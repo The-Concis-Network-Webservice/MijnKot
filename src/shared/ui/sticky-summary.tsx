@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import type { Kot, Vestiging } from "@/types";
 import { useTranslation } from 'react-i18next';
+import { siteConfig } from "@/shared/lib/config";
 import {
     CalendarDaysIcon,
     PhoneIcon,
@@ -109,7 +110,7 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
                                     <EnvelopeIcon className="w-4 h-4 shrink-0" />
                                     {t('sticky.send_message')}
                                 </a>
-                                <a href="tel:" className="flex items-center gap-2 text-sm text-primary-500 hover:text-primary-700 transition-colors font-medium">
+                                <a href={`tel:${siteConfig.company.contact.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 text-sm text-primary-500 hover:text-primary-700 transition-colors font-medium">
                                     <PhoneIcon className="w-4 h-4 shrink-0" />
                                     {t('sticky.call_us')}
                                 </a>
@@ -117,7 +118,7 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
                         )}
 
                         <p className="text-center text-xs text-text-muted pt-2 border-t border-border-light">
-                            Ref. {kot.id.slice(0, 8).toUpperCase()}
+                            {t('detail.ref_label')} {kot.id.slice(0, 8).toUpperCase()}
                         </p>
                     </div>
                 </div>
@@ -128,7 +129,7 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
                 <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
                     <div className="flex-1 min-w-0">
                         <p className="text-lg font-bold text-neutral-500">
-                            €{kot.price}<span className="text-xs font-normal text-text-muted ml-1">/mnd</span>
+                            €{kot.price}<span className="text-xs font-normal text-text-muted ml-1">{t('sticky.per_month')}</span>
                         </p>
                         <p className="text-xs text-text-muted">{t('sticky.included')}</p>
                     </div>

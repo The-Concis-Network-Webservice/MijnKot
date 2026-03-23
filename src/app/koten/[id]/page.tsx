@@ -51,17 +51,7 @@ export default async function KotDetailPage({
       "postalCode": vestiging?.postal_code,
       "addressCountry": "BE"
     },
-    "geo": { // If we had lat/long, we'd put it here.
-      "@type": "GeoCoordinates",
-      "latitude": 51.05, // Placeholder or remove if strictly unknown
-      "longitude": 3.73
-    },
     "numberOfRooms": 1,
-    "floorSize": {
-      "@type": "QuantitativeValue",
-      "value": 20, // Example, ideally dynamic
-      "unitCode": "MTK"
-    },
     "offers": {
       "@type": "Offer",
       "price": kot.price,

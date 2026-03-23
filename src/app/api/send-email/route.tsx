@@ -15,7 +15,7 @@ export async function POST(request: Request) {
         if (!name || !email || !message) {
             console.warn('Missing required fields:', { name, email, message: !!message });
             return NextResponse.json(
-                { error: 'Naam, email en bericht zijn verplicht.' },
+                { error: 'Name, email and message are required.' },
                 { status: 400 }
             );
         }
@@ -63,7 +63,7 @@ export async function POST(request: Request) {
     } catch (error) {
         console.error('Server error handling contact form:', error);
         return NextResponse.json(
-            { error: 'Er is een fout opgetreden bij het versturen van de email.' },
+            { error: 'An error occurred while sending the email.' },
             { status: 500 }
         );
     }
