@@ -129,8 +129,8 @@ export async function PATCH(request: Request) {
   if (!id) {
     return NextResponse.json({ error: "Missing id." }, { status: 400 });
   }
-  const current = await queryOne<{ availability_status: string }>(
-    "select availability_status from koten where id = $1",
+  const current = await queryOne<{ availability_status: string; vestiging_id: string }>(
+    "select availability_status, vestiging_id from koten where id = $1",
     [id]
   );
   if (action === "archive") {
@@ -244,6 +244,14 @@ export async function PATCH(request: Request) {
       newStatus: availability_status,
       changedBy: user.id
     });
+    // Sync availability to linked building_rooms so the grondplan stays in sync
+    await query(
+      "update building_rooms set availability_status = $1, updated_at = datetime('now') where kot_id = $2",
+      [availability_status, id]
+    );
+    if (current.vestiging_id) {
+      revalidatePath(`/vestigingen/${current.vestiging_id}/grondplan`);
+    }
   }
   await logAudit({
     actorId: user.id,
