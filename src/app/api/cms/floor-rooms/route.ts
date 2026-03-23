@@ -83,6 +83,17 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Room not found" }, { status: 404 });
   }
 
+  // When a new kot is being linked, inherit its current availability_status
+  let resolvedStatus = availability_status ?? existing.availability_status;
+  const newKotId = kot_id !== undefined ? kot_id : existing.kot_id;
+  if (kot_id && kot_id !== existing.kot_id) {
+    const kot = await queryOne<{ availability_status: string }>(
+      "select availability_status from koten where id = $1",
+      [kot_id]
+    );
+    if (kot) resolvedStatus = kot.availability_status as BuildingRoom["availability_status"];
+  }
+
   const updated = await queryOne<BuildingRoom>(
     `update building_rooms set
       room_label = $1,
@@ -104,18 +115,29 @@ export async function PATCH(request: Request) {
       height ?? existing.height,
       location !== undefined ? location : existing.location,
       size_m2 !== undefined ? size_m2 : existing.size_m2,
-      availability_status ?? existing.availability_status,
-      kot_id !== undefined ? kot_id : existing.kot_id,
+      resolvedStatus,
+      newKotId,
       id,
     ]
   );
+
+  // Sync status back to linked kot when changed from the floor plan
+  if (availability_status && availability_status !== existing.availability_status && existing.kot_id) {
+    await query(
+      "update koten set availability_status = $1, updated_at = datetime('now') where id = $2",
+      [availability_status, existing.kot_id]
+    );
+    revalidatePath("/");
+    revalidatePath("/koten");
+    revalidatePath(`/koten/${existing.kot_id}`);
+  }
 
   await logAudit({
     actorId: user.id,
     action: "update",
     entityType: "building_room",
     entityId: id,
-    changes: { room_label, pos_x, pos_y, availability_status, kot_id },
+    changes: { room_label, pos_x, pos_y, availability_status: resolvedStatus, kot_id: newKotId },
   });
 
   revalidatePath("/admin");

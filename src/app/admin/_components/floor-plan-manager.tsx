@@ -252,11 +252,6 @@ export function FloorPlanManager({ vestigingId, koten }: Props) {
         <div className={`space-y-4 ${selectedRoom ? "xl:col-span-2" : ""}`}>
           {[...floors].sort((a, b) => a.level - b.level).map((floor) => {
             const rooms = floor.rooms ?? [];
-            // Split into left wing (29A) and right wing (31)
-            const leftWing = rooms.filter((r) => r.room_label.startsWith("29"));
-            const rightWing = rooms.filter((r) => r.room_label.startsWith("31"));
-            const otherRooms = rooms.filter((r) => !r.room_label.startsWith("29") && !r.room_label.startsWith("31"));
-            const hasWings = leftWing.length > 0 && rightWing.length > 0;
 
             return (
               <div key={floor.id} className="border border-gray-200 rounded-xl overflow-hidden">
@@ -305,28 +300,8 @@ export function FloorPlanManager({ vestigingId, koten }: Props) {
                 <div className="p-3 bg-white">
                   {rooms.length === 0 ? (
                     <p className="text-xs text-gray-400 py-2 text-center">Geen kamers. Klik &quot;+ Kamer&quot; om toe te voegen.</p>
-                  ) : hasWings ? (
-                    <div className="flex gap-4">
-                      {/* Left wing */}
-                      <div className="flex-1">
-                        <p className="text-xs font-medium text-gray-400 mb-2 uppercase tracking-wide">Nr. 29</p>
-                        <RoomGrid rooms={leftWing} selected={selectedRoom?.id} onSelect={setSelectedRoom} onQuickToggle={quickToggle} />
-                      </div>
-                      {/* Divider */}
-                      <div className="w-px bg-gray-200 self-stretch mx-1" />
-                      {/* Right wing */}
-                      <div className="flex-1">
-                        <p className="text-xs font-medium text-gray-400 mb-2 uppercase tracking-wide">Nr. 31</p>
-                        <RoomGrid rooms={rightWing} selected={selectedRoom?.id} onSelect={setSelectedRoom} onQuickToggle={quickToggle} />
-                      </div>
-                    </div>
                   ) : (
                     <RoomGrid rooms={rooms} selected={selectedRoom?.id} onSelect={setSelectedRoom} onQuickToggle={quickToggle} />
-                  )}
-                  {otherRooms.length > 0 && (
-                    <div className="mt-2 pt-2 border-t border-gray-100">
-                      <RoomGrid rooms={otherRooms} selected={selectedRoom?.id} onSelect={setSelectedRoom} onQuickToggle={quickToggle} />
-                    </div>
                   )}
                 </div>
               </div>
@@ -377,17 +352,15 @@ export function FloorPlanManager({ vestigingId, koten }: Props) {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-2">
-                <div className="space-y-1">
-                  <label className="text-xs font-medium text-gray-500">Opp. (m²)</label>
-                  <input
-                    type="number" step="0.01"
-                    className="border border-gray-200 rounded-lg px-3 py-2 text-sm w-full"
-                    value={roomForm.size_m2}
-                    onChange={(e) => setRoomForm({ ...roomForm, size_m2: e.target.value })}
-                    placeholder="bv. 14.5"
-                  />
-                </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-gray-500">Opp. (m²)</label>
+                <input
+                  type="number" step="0.01"
+                  className="border border-gray-200 rounded-lg px-3 py-2 text-sm w-full"
+                  value={roomForm.size_m2}
+                  onChange={(e) => setRoomForm({ ...roomForm, size_m2: e.target.value })}
+                  placeholder="bv. 14.5"
+                />
               </div>
 
               <div className="space-y-1">
@@ -395,7 +368,15 @@ export function FloorPlanManager({ vestigingId, koten }: Props) {
                 <select
                   className="border border-gray-200 rounded-lg px-3 py-2 text-sm w-full"
                   value={roomForm.kot_id}
-                  onChange={(e) => setRoomForm({ ...roomForm, kot_id: e.target.value })}
+                  onChange={(e) => {
+                    const kotId = e.target.value;
+                    const kot = koten.find((k) => k.id === kotId);
+                    setRoomForm({
+                      ...roomForm,
+                      kot_id: kotId,
+                      ...(kot ? { availability_status: kot.availability_status } : {}),
+                    });
+                  }}
                 >
                   <option value="">— Niet gekoppeld —</option>
                   {koten.map((k) => <option key={k.id} value={k.id}>{k.title}</option>)}
