@@ -10,12 +10,15 @@ import { useAdmin } from "../AdminProvider";
 import { canEditContent } from "@/shared/lib/cms/permissions";
 import type { Kot } from "@/types";
 
+const PAGE_SIZE = 20;
+
 export default function AdminKotenPage() {
   const { activeVestigingId, role } = useAdmin();
   const [koten, setKoten] = useState<Kot[]>([]);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [selected, setSelected] = useState<string[]>([]);
+  const [page, setPage] = useState(1);
   const { push } = useToast();
 
   const loadKoten = async () => {
@@ -38,6 +41,9 @@ export default function AdminKotenPage() {
     return matchesSearch && matchesStatus;
   });
 
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
   const deleteKot = async (id: string, title: string) => {
     if (!confirm(`"${title}" definitief verwijderen? Dit kan niet ongedaan worden.`)) return;
     const res = await fetch(`/api/cms/koten?id=${id}`, { method: "DELETE" });
@@ -55,7 +61,11 @@ export default function AdminKotenPage() {
     availability_status?: string
   ) => {
     if (selected.length === 0) return;
-    if (action === "archive" && !confirm("Archive selected koten?")) return;
+    const n = selected.length;
+    if (action === "publish" && !confirm(`${n} kot(en) publiceren?`)) return;
+    if (action === "archive" && !confirm(`${n} kot(en) archiveren? Ze worden niet meer getoond.`)) return;
+    if (action === "availability" && availability_status === "hidden" && !confirm(`${n} kot(en) verbergen?`)) return;
+    if (action === "availability" && availability_status === "available" && !confirm(`${n} kot(en) als beschikbaar markeren?`)) return;
     await fetch("/api/cms/koten/bulk", {
       method: "POST",
       headers: {
@@ -92,12 +102,12 @@ export default function AdminKotenPage() {
               className="border border-gray-200 rounded-lg px-3 py-2 flex-1"
               placeholder="Search koten..."
               value={search}
-              onChange={(event) => setSearch(event.target.value)}
+              onChange={(event) => { setSearch(event.target.value); setPage(1); }}
             />
             <select
               className="border border-gray-200 rounded-lg px-3 py-2"
               value={statusFilter}
-              onChange={(event) => setStatusFilter(event.target.value)}
+              onChange={(event) => { setStatusFilter(event.target.value); setPage(1); }}
             >
               <option value="">All statuses</option>
               <option value="draft">draft</option>
@@ -157,7 +167,7 @@ export default function AdminKotenPage() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((kot) => (
+                {paginated.map((kot) => (
                   <tr key={kot.id} className="border-t border-gray-100">
                     <td className="py-2">
                       <input
@@ -191,7 +201,7 @@ export default function AdminKotenPage() {
                     </td>
                   </tr>
                 ))}
-                {filtered.length === 0 ? (
+                {paginated.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="py-4 text-center text-text-muted">
                       No koten found.
@@ -201,6 +211,27 @@ export default function AdminKotenPage() {
               </tbody>
             </table>
           </div>
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between pt-3 border-t border-gray-100 text-sm">
+              <span className="text-text-muted">{filtered.length} resultaten · pagina {page} van {totalPages}</span>
+              <div className="flex gap-2">
+                <button
+                  className="px-3 py-1 rounded-lg border border-gray-200 disabled:opacity-40"
+                  onClick={() => setPage((p) => p - 1)}
+                  disabled={page === 1}
+                >
+                  ← Vorige
+                </button>
+                <button
+                  className="px-3 py-1 rounded-lg border border-gray-200 disabled:opacity-40"
+                  onClick={() => setPage((p) => p + 1)}
+                  disabled={page === totalPages}
+                >
+                  Volgende →
+                </button>
+              </div>
+            </div>
+          )}
         </section>
       </AdminShell>
     </AdminGuard>

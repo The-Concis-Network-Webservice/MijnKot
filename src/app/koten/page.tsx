@@ -1,6 +1,6 @@
 import { getAllKoten, getVestigingen, getRentTypes } from "@/shared/lib/queries";
 import { KotCard } from "@/shared/ui/kot-card";
-import { OverviewHeader, OverviewEmptyState, LocationFilter, RentTypeFilter } from "@/shared/ui/overview-components";
+import { OverviewHeader, OverviewEmptyState, LocationFilter, RentTypeFilter, PriceFilter } from "@/shared/ui/overview-components";
 
 export const runtime = 'edge';
 export const dynamic = 'force-dynamic';
@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export default async function KotenPage({
     searchParams,
 }: {
-    searchParams: { vestiging?: string; type?: string };
+    searchParams: { vestiging?: string; type?: string; minPrice?: string; maxPrice?: string };
 }) {
     const [allKoten, vestigingen, rentTypes] = await Promise.all([
         getAllKoten(searchParams.type),
@@ -19,7 +19,15 @@ export default async function KotenPage({
     let filteredKoten = allKoten;
 
     if (searchParams.vestiging) {
-        filteredKoten = allKoten.filter(k => k.vestiging_id === searchParams.vestiging);
+        filteredKoten = filteredKoten.filter(k => k.vestiging_id === searchParams.vestiging);
+    }
+    if (searchParams.minPrice) {
+        const min = parseFloat(searchParams.minPrice);
+        if (!isNaN(min)) filteredKoten = filteredKoten.filter(k => k.price >= min);
+    }
+    if (searchParams.maxPrice) {
+        const max = parseFloat(searchParams.maxPrice);
+        if (!isNaN(max)) filteredKoten = filteredKoten.filter(k => k.price <= max);
     }
 
     return (
@@ -36,6 +44,10 @@ export default async function KotenPage({
                             rentTypes={rentTypes}
                             currentType={searchParams.type}
                             currentVestiging={searchParams.vestiging}
+                        />
+                        <PriceFilter
+                            currentMin={searchParams.minPrice}
+                            currentMax={searchParams.maxPrice}
                         />
                     </>
                 }

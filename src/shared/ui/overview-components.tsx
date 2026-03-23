@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslation } from 'react-i18next';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { SectionHeader } from "./section-header";
 
 const activeBtn = 'bg-primary-600 text-white shadow-sm';
@@ -64,6 +65,79 @@ export function RentTypeFilter({ rentTypes, currentType, currentVestiging }: Ren
                     {rt.name}
                 </a>
             ))}
+        </div>
+    );
+}
+
+const PRICE_OPTIONS = [300, 400, 500, 600, 700, 800, 900];
+
+type PriceFilterProps = {
+    currentMin?: string;
+    currentMax?: string;
+};
+
+export function PriceFilter({ currentMin, currentMax }: PriceFilterProps) {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
+    const minVal = currentMin ? parseInt(currentMin) : null;
+    const maxVal = currentMax ? parseInt(currentMax) : null;
+    const invalid = minVal !== null && maxVal !== null && minVal >= maxVal;
+
+    const update = (minPrice: string, maxPrice: string) => {
+        const min = minPrice ? parseInt(minPrice) : null;
+        const max = maxPrice ? parseInt(maxPrice) : null;
+        // Skip navigation if min >= max (both set)
+        if (min !== null && max !== null && min >= max) return;
+        const params = new URLSearchParams(searchParams.toString());
+        if (minPrice) params.set("minPrice", minPrice); else params.delete("minPrice");
+        if (maxPrice) params.set("maxPrice", maxPrice); else params.delete("maxPrice");
+        router.push(`/koten?${params.toString()}`);
+    };
+
+    const selectClass = `${btn} appearance-none pr-8 bg-[url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E")] bg-no-repeat bg-[right_10px_center]`;
+
+    return (
+        <div className="flex flex-wrap items-center gap-2 mt-3">
+            <select
+                value={currentMin ?? ""}
+                onChange={(e) => update(e.target.value, currentMax ?? "")}
+                className={`${selectClass} ${invalid ? "border-red-400 text-red-600 bg-red-50" : inactiveBtn}`}
+            >
+                <option value="">Min. prijs</option>
+                {PRICE_OPTIONS.map(p => (
+                    // Hide min options that are >= current max
+                    <option key={p} value={p} disabled={maxVal !== null && p >= maxVal}>
+                        € {p}
+                    </option>
+                ))}
+            </select>
+            <select
+                value={currentMax ?? ""}
+                onChange={(e) => update(currentMin ?? "", e.target.value)}
+                className={`${selectClass} ${invalid ? "border-red-400 text-red-600 bg-red-50" : inactiveBtn}`}
+            >
+                <option value="">Max. prijs</option>
+                {PRICE_OPTIONS.map(p => (
+                    // Hide max options that are <= current min
+                    <option key={p} value={p} disabled={minVal !== null && p <= minVal}>
+                        € {p}
+                    </option>
+                ))}
+            </select>
+            {invalid && (
+                <span className="text-xs text-red-500 font-medium">Min. moet lager zijn dan max.</span>
+            )}
+            {(currentMin || currentMax) && !invalid && (
+                <button onClick={() => update("", "")} className={`${btn} ${inactiveBtn}`}>
+                    ✕
+                </button>
+            )}
+            {invalid && (
+                <button onClick={() => update("", "")} className={`${btn} border border-red-200 text-red-500 hover:bg-red-50`}>
+                    ✕ Wis
+                </button>
+            )}
         </div>
     );
 }

@@ -12,6 +12,22 @@ import type { AvailabilityHistory, Kot, KotPhoto, RentType, Vestiging } from "@/
 
 type KotWithPhotos = Kot & { kot_photos?: KotPhoto[]; vestigingen?: Vestiging };
 
+const STATUS_BADGE: Record<string, { bg: string; text: string; label: string }> = {
+  available: { bg: "bg-green-100", text: "text-green-800", label: "Beschikbaar" },
+  reserved:  { bg: "bg-yellow-100", text: "text-yellow-800", label: "Gereserveerd" },
+  rented:    { bg: "bg-red-100", text: "text-red-800", label: "Verhuurd" },
+  hidden:    { bg: "bg-gray-100", text: "text-gray-500", label: "Verborgen" },
+};
+
+function StatusBadge({ status }: { status: string }) {
+  const cfg = STATUS_BADGE[status] ?? { bg: "bg-gray-100", text: "text-gray-600", label: status };
+  return (
+    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${cfg.bg} ${cfg.text}`}>
+      {cfg.label}
+    </span>
+  );
+}
+
 export default function AdminKotDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [kot, setKot] = useState<KotWithPhotos | null>(null);
@@ -246,6 +262,8 @@ export default function AdminKotDetailPage() {
                   <input
                     className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
                     type="number"
+                    min="1"
+                    step="1"
                     value={kot.price}
                     onChange={(event) =>
                       setKot({
@@ -253,7 +271,7 @@ export default function AdminKotDetailPage() {
                         price: Number(event.target.value)
                       })
                     }
-                    placeholder="Price"
+                    placeholder="Prijs"
                   />
                   <select
                     className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white w-full"
@@ -346,22 +364,25 @@ export default function AdminKotDetailPage() {
           </section>
 
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h2 className="font-semibold text-lg mb-4">
-              Availability history
-            </h2>
-            <div className="space-y-2 text-sm text-text-muted">
-              {history.map((entry) => (
-                <div key={entry.id} className="flex justify-between">
-                  <span>
-                    {entry.old_status} → {entry.new_status}
-                  </span>
-                  <span>{new Date(entry.changed_at).toLocaleString()}</span>
-                </div>
-              ))}
-              {history.length === 0 ? (
-                <p>No availability changes yet.</p>
-              ) : null}
-            </div>
+            <h2 className="font-semibold text-lg mb-4">Availability history</h2>
+            {history.length === 0 ? (
+              <p className="text-sm text-text-muted">Nog geen statuswijzigingen.</p>
+            ) : (
+              <div className="space-y-2">
+                {history.map((entry) => (
+                  <div key={entry.id} className="flex items-center justify-between gap-4 text-sm py-1.5 border-b border-gray-50 last:border-0">
+                    <div className="flex items-center gap-2">
+                      <StatusBadge status={entry.old_status} />
+                      <span className="text-gray-400">→</span>
+                      <StatusBadge status={entry.new_status} />
+                    </div>
+                    <span className="text-xs text-text-muted whitespace-nowrap">
+                      {new Date(entry.changed_at).toLocaleString("nl-BE", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
           </section>
 
           <section className="bg-white border border-gray-200 rounded-2xl p-6">

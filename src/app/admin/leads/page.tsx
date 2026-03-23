@@ -12,9 +12,12 @@ type Lead = {
     created_at: string;
 };
 
+const PAGE_SIZE = 25;
+
 export default function LeadsPage() {
     const [leads, setLeads] = useState<Lead[]>([]);
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         async function fetchLeads() {
@@ -58,7 +61,7 @@ export default function LeadsPage() {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-100">
-                                        {leads.map((lead) => (
+                                        {leads.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE).map((lead) => (
                                             <tr key={lead.id} className="hover:bg-gray-50/50 transition-colors">
                                                 <td className="px-6 py-4 font-medium text-text-main">{lead.email}</td>
                                                 <td className="px-6 py-4 text-gray-600">{lead.name || '-'}</td>
@@ -76,6 +79,15 @@ export default function LeadsPage() {
                                         ))}
                                     </tbody>
                                 </table>
+                                {leads.length > PAGE_SIZE && (
+                                    <div className="flex items-center justify-between px-6 py-3 border-t border-gray-100 text-sm">
+                                        <span className="text-gray-500">{leads.length} leads · pagina {page} van {Math.ceil(leads.length / PAGE_SIZE)}</span>
+                                        <div className="flex gap-2">
+                                            <button className="px-3 py-1 rounded-lg border border-gray-200 disabled:opacity-40" onClick={() => setPage(p => p - 1)} disabled={page === 1}>← Vorige</button>
+                                            <button className="px-3 py-1 rounded-lg border border-gray-200 disabled:opacity-40" onClick={() => setPage(p => p + 1)} disabled={page === Math.ceil(leads.length / PAGE_SIZE)}>Volgende →</button>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>

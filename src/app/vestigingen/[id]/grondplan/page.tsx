@@ -123,8 +123,25 @@ export default async function PublicFloorPlanPage({
   params: { id: string };
   searchParams: { token?: string };
 }) {
-  const expectedToken = process.env.FLOOR_PLAN_TOKEN;
-  if (!expectedToken || searchParams.token !== expectedToken) {
+  let tokenValid = false;
+  if (searchParams.token) {
+    // Check DB tokens first (with expiry)
+    try {
+      const row = await queryOne(
+        "select id from floor_plan_tokens where token = $1 and vestiging_id = $2 and expires_at > datetime('now')",
+        [searchParams.token, params.id]
+      );
+      tokenValid = !!row;
+    } catch {
+      // Table doesn't exist yet — fall back to env var token
+    }
+    // Fallback: legacy env var token (no expiry)
+    if (!tokenValid && process.env.FLOOR_PLAN_TOKEN) {
+      tokenValid = searchParams.token === process.env.FLOOR_PLAN_TOKEN;
+    }
+  }
+
+  if (!tokenValid) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm px-10 py-12 text-center max-w-sm">

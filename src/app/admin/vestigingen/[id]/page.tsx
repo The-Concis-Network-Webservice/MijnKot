@@ -19,7 +19,7 @@ function ShareFloorPlanLink({ vestigingId }: { vestigingId: string }) {
   const [shareUrl, setShareUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/api/cms/floor-plan-token")
+    fetch(`/api/cms/floor-plan-token?vestiging_id=${vestigingId}`)
       .then((r) => r.json())
       .then((data) => {
         if (!data.token) return;

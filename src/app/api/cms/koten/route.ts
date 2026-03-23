@@ -72,7 +72,7 @@ export async function POST(request: Request) {
   if (!vestiging_id || !title || !description || price === undefined) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
-  if (Number.isNaN(Number(price))) {
+  if (Number.isNaN(Number(price)) || Number(price) < 1) {
     return NextResponse.json({ error: "Invalid price." }, { status: 400 });
   }
 
