@@ -16,13 +16,6 @@ const STATUS_CONFIG = {
   hidden:    { bg: "bg-gray-100", border: "border-gray-300", text: "text-gray-400", dot: "bg-gray-300", label: "Verborgen" },
 } as const;
 
-const LOCATIONS = [
-  { value: "left_wing", label: "Linker vleugel" },
-  { value: "right_wing", label: "Rechter vleugel" },
-  { value: "center", label: "Centrum" },
-  { value: "street", label: "Straatzijde" },
-  { value: "courtyard", label: "Binnenkant" },
-];
 
 export function FloorPlanManager({ vestigingId, koten }: Props) {
   const { push } = useToast();
@@ -32,7 +25,6 @@ export function FloorPlanManager({ vestigingId, koten }: Props) {
   const [floorForm, setFloorForm] = useState({ floor_name: "", level: "1" });
   const [roomForm, setRoomForm] = useState({
     room_label: "",
-    location: "",
     size_m2: "",
     availability_status: "available" as BuildingRoom["availability_status"],
     kot_id: "",
@@ -54,7 +46,6 @@ export function FloorPlanManager({ vestigingId, koten }: Props) {
     if (selectedRoom) {
       setRoomForm({
         room_label: selectedRoom.room_label,
-        location: selectedRoom.location ?? "",
         size_m2: selectedRoom.size_m2?.toString() ?? "",
         availability_status: selectedRoom.availability_status,
         kot_id: selectedRoom.kot_id ?? "",
@@ -145,7 +136,6 @@ export function FloorPlanManager({ vestigingId, koten }: Props) {
       body: JSON.stringify({
         id: selectedRoom.id,
         room_label: roomForm.room_label,
-        location: roomForm.location || null,
         size_m2: roomForm.size_m2 ? parseFloat(roomForm.size_m2) : null,
         availability_status: roomForm.availability_status,
         kot_id: roomForm.kot_id || null,
@@ -154,7 +144,7 @@ export function FloorPlanManager({ vestigingId, koten }: Props) {
     if (res.ok) {
       await load();
       // Keep selection with updated data
-      setSelectedRoom((prev) => prev ? { ...prev, ...roomForm, size_m2: roomForm.size_m2 ? parseFloat(roomForm.size_m2) : null, kot_id: roomForm.kot_id || null, location: roomForm.location || null } : null);
+      setSelectedRoom((prev) => prev ? { ...prev, ...roomForm, size_m2: roomForm.size_m2 ? parseFloat(roomForm.size_m2) : null, kot_id: roomForm.kot_id || null } : null);
       push("Opgeslagen.");
     }
     setSaving(false);
@@ -397,17 +387,6 @@ export function FloorPlanManager({ vestigingId, koten }: Props) {
                     onChange={(e) => setRoomForm({ ...roomForm, size_m2: e.target.value })}
                     placeholder="bv. 14.5"
                   />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-xs font-medium text-gray-500">Locatie</label>
-                  <select
-                    className="border border-gray-200 rounded-lg px-2 py-2 text-sm w-full"
-                    value={roomForm.location}
-                    onChange={(e) => setRoomForm({ ...roomForm, location: e.target.value })}
-                  >
-                    <option value="">—</option>
-                    {LOCATIONS.map((l) => <option key={l.value} value={l.value}>{l.label}</option>)}
-                  </select>
                 </div>
               </div>
 
