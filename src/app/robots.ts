@@ -2,11 +2,19 @@ import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
     return {
-        rules: {
-            userAgent: '*',
-            allow: '/',
-            disallow: '/admin/',
-        },
-        sitemap: 'https://mijn-kot.be/sitemap.xml', // Replace with real domain
+        rules: [
+            {
+                // Explicit consent for AI search crawlers
+                userAgent: ['GPTBot', 'OAI-SearchBot', 'ClaudeBot', 'PerplexityBot', 'GoogleOther'],
+                allow: '/',
+                disallow: ['/admin/', '/sign/', '/vestigingen/*/grondplan'],
+            },
+            {
+                userAgent: '*',
+                allow: '/',
+                disallow: ['/admin/', '/sign/', '/vestigingen/*/grondplan'],
+            },
+        ],
+        sitemap: 'https://mijn-kot.be/sitemap.xml',
     };
 }

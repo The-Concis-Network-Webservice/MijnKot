@@ -1,9 +1,16 @@
 import { getAllKoten, getVestigingen, getRentTypes } from "@/shared/lib/queries";
 import { KotCard } from "@/shared/ui/kot-card";
 import { OverviewHeader, OverviewEmptyState, LocationFilter, RentTypeFilter, PriceFilter } from "@/shared/ui/overview-components";
+import type { Metadata } from "next";
 
 export const runtime = 'edge';
 export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  title: 'Studentenkoten te huur in Leuven',
+  description: 'Bekijk alle beschikbare studentenkoten en studio\'s te huur in Leuven. Filter op locatie, huurtype en prijs. Direct contact met eigenaar, geen bemiddelingskosten.',
+  alternates: { canonical: 'https://mijn-kot.be/koten' },
+};
 
 export default async function KotenPage({
     searchParams,

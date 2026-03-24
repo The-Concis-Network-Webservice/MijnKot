@@ -1,7 +1,13 @@
 
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
 export const runtime = 'edge';
+
+export const metadata: Metadata = {
+    title: 'Pagina niet gevonden',
+    robots: { index: false, follow: false },
+};
 
 export default function NotFound() {
     return (

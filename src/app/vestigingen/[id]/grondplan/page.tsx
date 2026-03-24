@@ -4,6 +4,10 @@ import type { BuildingFloor, BuildingRoom, Vestiging } from "@/types";
 
 export const runtime = "edge";
 
+export const metadata = {
+  robots: { index: false, follow: false },
+};
+
 type RoomWithPrice = BuildingRoom & { price: number | null };
 
 const STATUS = {

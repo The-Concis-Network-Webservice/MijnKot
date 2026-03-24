@@ -1,16 +1,20 @@
 export const siteConfig = {
   company: {
     name: 'Mijn-Kot',
-    legalName: 'Mijn-Kot CommV', // Assuming legal name, can be updated later
+    legalName: 'Mijn-Kot CommV', // TODO: Verify against KBO registration at kbo.economie.fgov.be
     address: {
-      street: 'Grote Markt 1',
+      street: '', // TODO: Add real street address, or leave empty if no physical office
       city: 'Leuven',
       postalCode: '3000',
       country: 'België',
     },
     contact: {
       email: 'info@mijn-kot.be',
-      phone: '+32 123 45 67 89',
+      phone: '', // TODO: Add real phone in E.164 format, e.g. '+3216123456'
+    },
+    social: {
+      instagram: 'https://www.instagram.com/mijnkot.be/',
+      facebook: 'https://www.facebook.com/mijnkot/',
     },
     domain: 'mijn-kot.be',
     url: 'https://mijn-kot.be',

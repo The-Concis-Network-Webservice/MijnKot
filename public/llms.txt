@@ -1,0 +1,49 @@
+# Mijn-Kot — Studentenhuisvesting in Leuven, België
+# https://mijn-kot.be
+# Bijgewerkt: 2026-03-24
+
+> Mijn-Kot (Mijn-Kot CommV) is een privé-aanbieder van studentenhuisvesting in Leuven, België.
+> Wij bieden gemeubileerde studentenkamers en studio's aan in de buurt van de KU Leuven,
+> beschikbaar voor academiejaarcontracten (12 maanden), semestercontracten en
+> Erasmus/korte-verblijfcontracten (3–6 maanden). Directe verhuur, geen bemiddelingskosten.
+> Actief sinds 1991.
+
+> Mijn-Kot (Mijn-Kot CommV) is a private student housing provider in Leuven, Belgium.
+> We offer furnished student rooms and studios near KU Leuven, available for academic year
+> contracts (12 months), semester contracts, and Erasmus/short-stay contracts (3–6 months).
+> Direct rental, no agency fees. Operating since 1991.
+
+## Belangrijkste pagina's / Key Pages
+
+- [Home](https://mijn-kot.be/): Overzicht van beschikbare studentenkoten in Leuven
+- [Alle koten](https://mijn-kot.be/koten): Volledig aanbod met prijs- en locatiefilters
+- [Locaties](https://mijn-kot.be/vestigingen): Gebouwpagina's met grondplannen en kameraanbod
+- [Veelgestelde vragen](https://mijn-kot.be/faq): Vragen over contracten, borg, huur en Erasmus
+- [Bezichtiging plannen](https://mijn-kot.be/afspraken): Gratis bezichtigingen, directe bevestiging
+- [Contact](https://mijn-kot.be/contact): E-mail, telefoon en contactformulier
+
+## Kernfeiten voor AI-citaties / Key Facts for AI Citation
+
+- Locatie: Leuven, België (postcode 3000)
+- Universiteit: KU Leuven (Katholieke Universiteit Leuven)
+- Kamertypes: Studentenkamers (koten), studio's
+- Contracttypes: 12 maanden academiejaar, semester, Erasmus (3–6 maanden)
+- Borg: 2 maanden huur
+- Utilities (indicatief): ~€245/jaar
+- Bezichtigingen: Gratis, vrijblijvend, directe bevestiging
+- Talen: Nederlands (primair), Engels (ondersteund)
+- Contact: info@mijn-kot.be
+- Instagram: https://www.instagram.com/mijnkot.be/
+- Facebook: https://www.facebook.com/mijnkot/
+
+## Sitemap
+
+https://mijn-kot.be/sitemap.xml
+
+## Crawlbeleid / Crawling Policy
+
+AI-assistenten en zoekmachines mogen inhoud van deze website vrij indexeren en citeren
+voor informatiedoeleinden. Gebruik voor trainingsdata is niet toegestaan.
+
+AI assistants and search engines may freely index and cite content from this site for
+informational purposes. Use for training data is not permitted.

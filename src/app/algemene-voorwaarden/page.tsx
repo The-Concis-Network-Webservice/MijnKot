@@ -19,7 +19,7 @@ export default function TermsAndConditionsPage() {
       <h1 className="text-4xl md:text-5xl font-display text-primary-500 mb-8 font-semibold">Algemene Voorwaarden</h1>
       
       <div className="bg-surface-card rounded-2xl p-8 md:p-12 shadow-soft border border-border-light space-y-6 lg:ml-2">
-        <p className="text-lg text-text-muted">Laatst bijgewerkt: {new Date().toLocaleDateString('nl-BE')}</p>
+        <p className="text-lg text-text-muted">Laatst bijgewerkt: 24 maart 2026</p>
         
         <section className="space-y-4">
           <h2 className="text-2xl font-display text-primary-600 font-medium">1. Toepassingsgebied</h2>

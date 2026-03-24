@@ -7,7 +7,7 @@ import type { Kot, KotPhoto, Vestiging } from "@/types";
 
 // Enable static generation for better performance
 export const runtime = 'edge';
-export const revalidate = 0; // Revalidate immediately
+export const revalidate = 60; // Revalidate every 60s for listing freshness
 
 import { JsonLd } from "@/shared/ui/json-ld";
 import { siteConfig } from "@/shared/lib/config";
@@ -38,9 +38,13 @@ export default async function KotDetailPage({
     [kot.id]
   );
 
+  const kotUrl = `${siteConfig.company.url}/koten/${kot.id}`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Apartment",
+    "@id": `${kotUrl}#apartment`,
+    "url": kotUrl,
     "name": kot.title,
     "description": kot.description,
     "image": photos?.map(p => p.image_url) || [],
@@ -52,17 +56,36 @@ export default async function KotDetailPage({
       "addressCountry": "BE"
     },
     "numberOfRooms": 1,
+    "offeredBy": { "@id": `${siteConfig.company.url}/#organization` },
     "offers": {
       "@type": "Offer",
       "price": kot.price,
       "priceCurrency": "EUR",
-      "availability": kot.availability_status === 'available' ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+      "availability": kot.availability_status === 'available' ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": kot.price,
+        "priceCurrency": "EUR",
+        "unitCode": "MON",
+        "billingIncrement": 1,
+      }
     }
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.company.url },
+      { "@type": "ListItem", "position": 2, "name": "Koten", "item": `${siteConfig.company.url}/koten` },
+      { "@type": "ListItem", "position": 3, "name": kot.title, "item": kotUrl },
+    ]
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
       <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       {/* Header - Not sticky on mobile to save space */}
       <div className="mb-6 lg:mb-10">
         <DetailHeader kot={kot} vestiging={vestiging} />
@@ -121,6 +144,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   return {
     title,
     description,
+    alternates: { canonical: `${siteConfig.company.url}/koten/${params.id}` },
     openGraph: {
       title,
       description,

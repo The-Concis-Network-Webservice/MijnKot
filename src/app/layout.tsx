@@ -72,10 +72,10 @@ export default async function RootLayout({
         "legalName": siteConfig.company.legalName,
         "url": siteConfig.company.url,
         "logo": `${siteConfig.company.url}/favicon.png`,
-        "description": `${siteConfig.company.name} biedt kwalitatieve studentenkoten en studio's in Leuven. Direct contact met eigenaar, geen bemiddelingskosten.`,
+        "description": `${siteConfig.company.name} biedt kwalitatieve studentenkoten en studio's in Leuven. Actief sinds 1991. Direct contact met eigenaar, geen bemiddelingskosten. Beschikbaar voor academiejaar, semester en Erasmus-verblijven.`,
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": siteConfig.company.address.street,
+          ...(siteConfig.company.address.street ? { "streetAddress": siteConfig.company.address.street } : {}),
           "addressLocality": siteConfig.company.address.city,
           "postalCode": siteConfig.company.address.postalCode,
           "addressCountry": "BE"
@@ -84,14 +84,17 @@ export default async function RootLayout({
           "@type": "ContactPoint",
           "contactType": "customer service",
           "email": siteConfig.company.contact.email,
-          "telephone": siteConfig.company.contact.phone,
+          ...(siteConfig.company.contact.phone ? { "telephone": siteConfig.company.contact.phone } : {}),
           "availableLanguage": ["Dutch", "English"]
         },
         "areaServed": {
           "@type": "City",
           "name": "Leuven"
         },
-        "sameAs": [siteConfig.company.url]
+        "sameAs": [
+          siteConfig.company.social.instagram,
+          siteConfig.company.social.facebook,
+        ]
       },
       {
         "@type": "WebSite",

@@ -2,25 +2,13 @@
 
 import { I18nextProvider } from 'react-i18next';
 import i18n from '@/shared/lib/i18n';
-import { useState, useEffect } from 'react';
 
+// Render children immediately — no mount guard.
+// The mount guard caused Googlebot to receive a blank spinner instead of page content.
+// i18next falls back to Dutch (default locale) on the server and switches client-side
+// once the browser language detector runs. A brief NL→EN flash for English users is
+// preferable to blocking all content from search engine indexing.
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    // Prevent hydration mismatch / flash of untranslated content
-    if (!mounted) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-surface-main">
-                {/* Optional: Simple loading spinner or just whitespace */}
-                <div className="w-8 h-8 rounded-full border-2 border-primary-500 border-t-transparent animate-spin"></div>
-            </div>
-        );
-    }
-
     return (
         <I18nextProvider i18n={i18n}>
             {children}

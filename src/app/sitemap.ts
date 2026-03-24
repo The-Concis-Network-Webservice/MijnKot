@@ -4,7 +4,7 @@ import type { Kot, Vestiging } from '@/types';
 
 export const runtime = 'edge';
 
-const BASE_URL = 'https://mijn-kot.be';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mijn-kot.be';
 
 /**
  * Static pages whose content changes rarely.
@@ -42,6 +42,10 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
   },
   {
     url: `${BASE_URL}/algemene-voorwaarden`,
+    lastModified: '2026-03-23',
+  },
+  {
+    url: `${BASE_URL}/cookie-instellingen`,
     lastModified: '2026-03-23',
   },
 ];
