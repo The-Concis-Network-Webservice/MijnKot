@@ -48,6 +48,10 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
     url: `${BASE_URL}/cookie-instellingen`,
     lastModified: '2026-03-23',
   },
+  {
+    url: `${BASE_URL}/over-ons`,
+    lastModified: '2026-03-30',
+  },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

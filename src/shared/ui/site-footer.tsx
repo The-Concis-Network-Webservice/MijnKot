@@ -65,6 +65,7 @@ export function SiteFooter({ settings }: { settings?: SiteSettings }) {
                                 { href: "/", label: t('navigation.home') },
                                 { href: "/koten", label: t('navigation.rent') },
                                 { href: "/vestigingen", label: t('navigation.locations') },
+                                { href: "/over-ons", label: t('navigation.about') },
                                 { href: "/faq", label: t('navigation.faq') },
                                 { href: "/contact", label: t('navigation.contact') },
                             ].map(({ href, label }) => (

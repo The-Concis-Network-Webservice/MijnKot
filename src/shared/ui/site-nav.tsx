@@ -98,6 +98,7 @@ export function SiteNav({
                             </div>
                         </div>
 
+                        <Link href="/over-ons" className={linkClass}>{t('navigation.about')}</Link>
                         <Link href="/faq" className={linkClass}>{t('navigation.faq')}</Link>
                         <Link href="/contact" className={linkClass}>{t('navigation.contact')}</Link>
                     </div>
@@ -137,6 +138,7 @@ export function SiteNav({
                             { href: "/", label: t('navigation.home') },
                             { href: "/koten", label: t('navigation.rent') },
                             { href: "/vestigingen", label: t('navigation.locations') },
+                            { href: "/over-ons", label: t('navigation.about') },
                             { href: "/faq", label: t('navigation.faq') },
                             { href: "/contact", label: t('navigation.contact') },
                         ].map(({ href, label }) => (
