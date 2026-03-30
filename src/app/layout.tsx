@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google"; // Switch to Outfit for display
+import Script from "next/script";
 import { SiteFooter } from "@/shared/ui/site-footer";
 import { SiteNav } from "@/shared/ui/site-nav";
 import { I18nProvider } from "@/shared/ui/providers/i18n-provider";
@@ -117,6 +118,14 @@ export default async function RootLayout({
   return (
     <html lang="nl" className={`${outfit.variable} ${interBody.variable}`}>
       <body>
+        {process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN && (
+          <Script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN}"}`}
+            strategy="afterInteractive"
+          />
+        )}
         <JsonLd data={organizationJsonLd} />
         <I18nProvider>
           <div className="min-h-screen flex flex-col bg-surface-main">
