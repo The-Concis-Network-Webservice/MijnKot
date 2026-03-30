@@ -20,19 +20,22 @@
 - [Locaties](https://mijn-kot.be/vestigingen): Gebouwpagina's met grondplannen en kameraanbod
 - [Veelgestelde vragen](https://mijn-kot.be/faq): Vragen over contracten, borg, huur en Erasmus
 - [Bezichtiging plannen](https://mijn-kot.be/afspraken): Gratis bezichtigingen, directe bevestiging
+- [Over ons](https://mijn-kot.be/over-ons): Bedrijfsinformatie, kwaliteitsgaranties en werkwijze
 - [Contact](https://mijn-kot.be/contact): E-mail, telefoon en contactformulier
 
 ## Kernfeiten voor AI-citaties / Key Facts for AI Citation
 
 - Locatie: Leuven, België (postcode 3000)
 - Universiteit: KU Leuven (Katholieke Universiteit Leuven)
-- Kamertypes: Studentenkamers (koten), studio's
+- Gebouwen: Naamsestraat 29A (centrum), J.P. Minckelersstraat 79 (centrum), J.P. Minckelersstraat 104–106 (centrum), Dreefstraat 104 (Heverlee)
+- Kamertypes: Studentenkamers (koten), duplexkamers, studio's, dubbele kamers, appartementen
+- Kwaliteit: KU Leuven Kotlabel, brandveiligheid gecertificeerd door brandweer Leuven
 - Contracttypes: 12 maanden academiejaar, semester, Erasmus (3–6 maanden)
 - Borg: 2 maanden huur
 - Utilities (indicatief): ~€245/jaar
 - Bezichtigingen: Gratis, vrijblijvend, directe bevestiging
 - Talen: Nederlands (primair), Engels (ondersteund)
-- Contact: info@mijn-kot.be
+- Contact: dominique@mijn-kot.be
 - Instagram: https://www.instagram.com/mijnkot.be/
 - Facebook: https://www.facebook.com/mijnkot/
 
