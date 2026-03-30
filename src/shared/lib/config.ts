@@ -1,7 +1,7 @@
 export const siteConfig = {
   company: {
     name: 'Mijn-Kot',
-    legalName: 'Mijn-Kot CommV', // TODO: Verify against KBO registration at kbo.economie.fgov.be
+    legalName: 'Mijn-Kot',
     address: {
       street: '', // TODO: Add real street address, or leave empty if no physical office
       city: 'Leuven',
