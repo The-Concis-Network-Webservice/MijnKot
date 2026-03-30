@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 
 export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
 
 import { getUserFromRequest } from "@/shared/lib/cms/server";
 import { canManageVestigingen } from "@/shared/lib/cms/permissions";

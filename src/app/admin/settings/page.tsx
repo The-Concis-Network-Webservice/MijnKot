@@ -21,6 +21,9 @@ const emptySettings: SiteSettings = {
   company_legal_name: siteConfig.company.legalName
 };
 
+export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
+
 export default function AdminSettingsPage() {
   const [settings, setSettings] = useState<SiteSettings>(emptySettings);
   const [rentTypes, setRentTypes] = useState<RentType[]>([]);
@@ -34,7 +37,7 @@ export default function AdminSettingsPage() {
   const { push } = useToast();
 
   const loadSettings = async () => {
-    const res = await fetch("/api/cms/settings");
+    const res = await fetch("/api/cms/settings", { cache: "no-store" });
     const payload = await res.json();
     if (payload.data) {
       setSettings(payload.data);
@@ -115,7 +118,8 @@ export default function AdminSettingsPage() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(settings.id ? { id: settings.id, ...payload } : payload)
+      body: JSON.stringify({ id: settings.id, ...payload }),
+      cache: "no-store"
     });
     const response = await res.json();
     if (!res.ok) {
