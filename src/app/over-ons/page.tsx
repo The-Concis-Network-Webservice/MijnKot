@@ -1,7 +1,9 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { JsonLd } from '@/shared/ui/json-ld';
 import { siteConfig } from '@/shared/lib/config';
+import { getVestigingen } from '@/shared/lib/queries';
 import {
   ShieldCheckIcon,
   HomeModernIcon,
@@ -96,14 +98,9 @@ const steps = [
   },
 ];
 
-const locations = [
-  { name: 'Naamsestraat 29a', area: 'Centrum', desc: 'Hartje Leuven, op wandelafstand van de Grote Markt en KU Leuven.' },
-  { name: 'J.P. Minckelersstraat 79', area: 'Centrum', desc: 'Rustige straat in het stadscentrum, dicht bij het openbaar vervoer.' },
-  { name: 'J.P. Minckelersstraat 104–106', area: 'Centrum', desc: 'Groter gebouw met diverse kamertypes voor elke student.' },
-  { name: 'Dreefstraat 104', area: 'Heverlee', desc: 'Groen en rustig Heverlee, ideaal voor studenten aan Arenbergcampus.' },
-];
 
-export default function OverOnsPage() {
+export default async function OverOnsPage() {
+  const vestigingen = await getVestigingen();
   return (
     <>
       <JsonLd data={aboutJsonLd} />
@@ -301,24 +298,49 @@ export default function OverOnsPage() {
           <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-900">
             Onze gebouwen in Leuven
           </h2>
-          <p className="mt-3 text-neutral-700 max-w-xl mx-auto">
+          <p className="mt-3 text-neutral-600 max-w-xl mx-auto">
             Vier gebouwen op toplocaties — centraal in de stad en rustig in Heverlee, altijd dicht bij KU Leuven.
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 gap-5 mb-8">
-          {locations.map(({ name, area, desc }) => (
-            <div key={name} className="flex gap-4 bg-surface-card border border-border-light rounded-2xl p-5 hover:border-primary-200 hover:shadow-soft transition-all">
-              <div className="shrink-0 w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center">
-                <MapPinIcon className="w-5 h-5 text-primary-600" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-semibold text-primary-900 text-sm">{name}</h3>
-                  <span className="text-xs text-accent-600 bg-accent-50 px-2 py-0.5 rounded-full">{area}</span>
+        <div className="grid sm:grid-cols-2 gap-4 mb-8">
+          {vestigingen.map((v) => (
+            <Link
+              key={v.id}
+              href={`/vestigingen/${v.id}`}
+              className="group relative h-64 rounded-2xl overflow-hidden block"
+            >
+              {/* Background image */}
+              {v.image_url ? (
+                <Image
+                  src={v.image_url}
+                  alt={v.name}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <div className="absolute inset-0 bg-primary-100" />
+              )}
+
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+
+              {/* Text overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <div className="flex items-end justify-between gap-3">
+                  <div>
+                    <h3 className="font-display font-bold text-white text-lg leading-tight">{v.name}</h3>
+                    <p className="text-white/70 text-sm flex items-center gap-1 mt-0.5">
+                      <MapPinIcon className="w-3.5 h-3.5 shrink-0" />
+                      {v.city}
+                    </p>
+                  </div>
+                  <span className="shrink-0 text-xs font-semibold text-white bg-white/20 backdrop-blur-sm border border-white/20 px-3 py-1.5 rounded-full group-hover:bg-accent-500 group-hover:border-accent-500 transition-colors">
+                    Bekijk →
+                  </span>
                 </div>
-                <p className="text-sm text-neutral-500 leading-relaxed">{desc}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="text-center">
