@@ -105,6 +105,7 @@ export default function AdminVestigingDetailPage() {
         city: vestiging.city,
         postal_code: vestiging.postal_code,
         description: vestiging.description,
+        description_en: vestiging.description_en,
         image_url: vestiging.image_url
       })
     });
@@ -249,17 +250,53 @@ export default function AdminVestigingDetailPage() {
                     }
                   />
                 </div>
-                <textarea
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  rows={4}
-                  value={vestiging.description}
-                  onChange={(event) =>
-                    setVestiging({
-                      ...vestiging,
-                      description: event.target.value
-                    })
-                  }
-                />
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-primary-800">Beschrijving (NL)</label>
+                    <textarea
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
+                      rows={4}
+                      value={vestiging.description}
+                      onChange={(event) =>
+                        setVestiging({
+                          ...vestiging,
+                          description: event.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <label className="text-sm font-semibold text-primary-800 italic">Description (EN)</label>
+                      <button 
+                        onClick={async () => {
+                          const res = await fetch('/api/cms/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: vestiging.description })
+                          });
+                          const { translated } = await res.json();
+                          if (translated) setVestiging({ ...vestiging, description_en: translated });
+                        }}
+                        className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
+                      >
+                        Suggest English
+                      </button>
+                    </div>
+                    <textarea
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+                      rows={4}
+                      value={vestiging.description_en ?? ""}
+                      onChange={(event) =>
+                        setVestiging({
+                          ...vestiging,
+                          description_en: event.target.value
+                        })
+                      }
+                      placeholder="English description"
+                    />
+                  </div>
+                </div>
                 <ImageUploadZone
                   label="Omslagfoto"
                   previewUrl={vestiging.image_url}

@@ -97,8 +97,11 @@ export default function AdminSettingsPage() {
     setError(null);
     const payload = {
       hero_title: settings.hero_title,
+      hero_title_en: settings.hero_title_en,
       hero_subtitle: settings.hero_subtitle,
+      hero_subtitle_en: settings.hero_subtitle_en,
       hero_cta_label: settings.hero_cta_label,
+      hero_cta_label_en: settings.hero_cta_label_en,
       hero_cta_href: settings.hero_cta_href,
       booking_url: settings.booking_url,
       contact_email: settings.contact_email,
@@ -343,45 +346,139 @@ export default function AdminSettingsPage() {
 
           {activeTab === "general" && (
             <div className="space-y-6">
-              <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4 shadow-sm">
-                <h3 className="text-lg font-bold text-primary-900 mb-2">Homepagina Content</h3>
-                <label className="text-sm font-semibold">Hero title</label>
-                <input
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  value={settings.hero_title}
-                  onChange={(event) =>
-                    setSettings({ ...settings, hero_title: event.target.value })
-                  }
-                />
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold">Hero subtitle</label>
-                  <textarea
-                    className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                    rows={3}
-                    value={settings.hero_subtitle}
-                    onChange={(event) =>
-                      setSettings({ ...settings, hero_subtitle: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-6 shadow-sm">
+                <h3 className="text-lg font-bold text-primary-900 border-b border-gray-100 pb-2">Homepagina Content</h3>
+                
+                <div className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold">CTA label</label>
+                    <label className="text-sm font-semibold text-primary-800">Hero titel (NL)</label>
                     <input
-                      className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                      value={settings.hero_cta_label}
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
+                      value={settings.hero_title}
                       onChange={(event) =>
-                        setSettings({
-                          ...settings,
-                          hero_cta_label: event.target.value
-                        })
+                        setSettings({ ...settings, hero_title: event.target.value })
                       }
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold">CTA href</label>
+                    <div className="flex items-center justify-between">
+                      <label className="text-sm font-semibold text-primary-800 italic">Hero title (EN)</label>
+                      <button 
+                        onClick={async () => {
+                          const res = await fetch('/api/cms/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: settings.hero_title })
+                          });
+                          const { translated } = await res.json();
+                          if (translated) setSettings({ ...settings, hero_title_en: translated });
+                        }}
+                        className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
+                      >
+                        Suggest English
+                      </button>
+                    </div>
                     <input
-                      className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
+                      value={settings.hero_title_en ?? ""}
+                      onChange={(event) =>
+                        setSettings({ ...settings, hero_title_en: event.target.value })
+                      }
+                      placeholder="Find your ideal home in Leuven"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-primary-800">Hero subtitel (NL)</label>
+                    <textarea
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
+                      rows={3}
+                      value={settings.hero_subtitle}
+                      onChange={(event) =>
+                        setSettings({ ...settings, hero_subtitle: event.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <label className="text-sm font-semibold text-primary-800 italic">Hero subtitle (EN)</label>
+                      <button 
+                        onClick={async () => {
+                          const res = await fetch('/api/cms/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: settings.hero_subtitle })
+                          });
+                          const { translated } = await res.json();
+                          if (translated) setSettings({ ...settings, hero_subtitle_en: translated });
+                        }}
+                        className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
+                      >
+                        Suggest English
+                      </button>
+                    </div>
+                    <textarea
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+                      rows={3}
+                      value={settings.hero_subtitle_en ?? ""}
+                      onChange={(event) =>
+                        setSettings({ ...settings, hero_subtitle_en: event.target.value })
+                      }
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6 pt-4 border-t border-gray-50">
+                   <div className="space-y-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-primary-800">Knop tekst (NL)</label>
+                      <input
+                        className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
+                        value={settings.hero_cta_label}
+                        onChange={(event) =>
+                          setSettings({
+                            ...settings,
+                            hero_cta_label: event.target.value
+                          })
+                        }
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <label className="text-sm font-semibold text-primary-800 italic">Button label (EN)</label>
+                        <button 
+                          onClick={async () => {
+                            const res = await fetch('/api/cms/translate', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ text: settings.hero_cta_label })
+                            });
+                            const { translated } = await res.json();
+                            if (translated) setSettings({ ...settings, hero_cta_label_en: translated });
+                          }}
+                          className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
+                        >
+                          Suggest English
+                        </button>
+                      </div>
+                      <input
+                        className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
+                        value={settings.hero_cta_label_en ?? ""}
+                        onChange={(event) =>
+                          setSettings({
+                            ...settings,
+                            hero_cta_label_en: event.target.value
+                          })
+                        }
+                      />
+                    </div>
+                   </div>
+                   <div className="space-y-2">
+                    <label className="text-sm font-semibold text-primary-800">CTA href</label>
+                    <input
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                       value={settings.hero_cta_href}
                       onChange={(event) =>
                         setSettings({
@@ -390,12 +487,14 @@ export default function AdminSettingsPage() {
                         })
                       }
                     />
+                    <p className="text-[10px] text-gray-400 italic">E.g. /vestigingen or https://...</p>
                   </div>
                 </div>
-                <div className="space-y-2 pt-2 border-t border-gray-100">
-                  <label className="text-sm font-semibold">Booking URL <span className="text-xs font-normal text-gray-400">(simplybook / afspraken pagina)</span></label>
+
+                <div className="space-y-2 pt-4 border-t border-gray-100">
+                  <label className="text-sm font-semibold text-primary-800">Booking URL <span className="text-xs font-normal text-gray-400">(simplybook / afspraken pagina)</span></label>
                   <input
-                    className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                    className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                     placeholder="/afspraken of https://mijnkotbe.simplybook.it"
                     value={settings.booking_url ?? ""}
                     onChange={(event) =>
@@ -407,9 +506,9 @@ export default function AdminSettingsPage() {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold">Contact email</label>
+                    <label className="text-sm font-semibold text-primary-800">Contact email</label>
                     <input
-                      className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                       value={settings.contact_email}
                       onChange={(event) =>
                         setSettings({
@@ -420,9 +519,9 @@ export default function AdminSettingsPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold">Contact phone</label>
+                    <label className="text-sm font-semibold text-primary-800">Contact telefoon</label>
                     <input
-                      className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                       value={settings.contact_phone}
                       onChange={(event) =>
                         setSettings({
@@ -434,9 +533,9 @@ export default function AdminSettingsPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold">Contact address</label>
+                  <label className="text-sm font-semibold text-primary-800">Contact adres</label>
                   <input
-                    className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                    className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                     value={settings.contact_address}
                     onChange={(event) =>
                       setSettings({
@@ -449,9 +548,9 @@ export default function AdminSettingsPage() {
 
                 <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold">Company Name</label>
+                    <label className="text-sm font-semibold text-primary-800">Bedrijfsnaam</label>
                     <input
-                      className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                       value={settings.company_name}
                       onChange={(event) =>
                         setSettings({
@@ -463,9 +562,9 @@ export default function AdminSettingsPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold">Legal Company Name</label>
+                    <label className="text-sm font-semibold text-primary-800">Juridische Naam</label>
                     <input
-                      className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                       value={settings.company_legal_name}
                       onChange={(event) =>
                         setSettings({
@@ -483,7 +582,7 @@ export default function AdminSettingsPage() {
                   disabled={loading}
                   onClick={saveSettings}
                 >
-                  {loading ? "Saving..." : "Save settings"}
+                  {loading ? "Opslaan..." : "Instellingen Opslaan"}
                 </button>
               </div>
             </div>
@@ -501,7 +600,7 @@ export default function AdminSettingsPage() {
                     <input 
                       type="checkbox" 
                       className="sr-only peer" 
-                      checked={settings.notice_active}
+                      checked={!!settings.notice_active}
                       onChange={(e) => setSettings({ ...settings, notice_active: e.target.checked })}
                     />
                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
@@ -515,7 +614,7 @@ export default function AdminSettingsPage() {
                       placeholder="Bijv: Opgelet: nog maar enkele kamers beschikbaar voor academiejaar 2024-2025!"
                       className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                       rows={2}
-                      value={settings.notice_text}
+                      value={settings.notice_text ?? ""}
                       onChange={(e) => setSettings({ ...settings, notice_text: e.target.value })}
                     />
                   </div>
@@ -532,7 +631,7 @@ export default function AdminSettingsPage() {
                     <input 
                       type="checkbox" 
                       className="sr-only peer" 
-                      checked={settings.popup_active}
+                      checked={!!settings.popup_active}
                       onChange={(e) => setSettings({ ...settings, popup_active: e.target.checked })}
                     />
                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
@@ -545,7 +644,7 @@ export default function AdminSettingsPage() {
                     <input
                       placeholder="Bijv: Als eerste op de hoogte?"
                       className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
-                      value={settings.popup_title}
+                      value={settings.popup_title ?? ""}
                       onChange={(e) => setSettings({ ...settings, popup_title: e.target.value })}
                     />
                   </div>
@@ -555,7 +654,7 @@ export default function AdminSettingsPage() {
                       placeholder="Bijv: Meld je aan voor onze lijst en ontvang direct een mailtje..."
                       className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                       rows={3}
-                      value={settings.popup_text}
+                      value={settings.popup_text ?? ""}
                       onChange={(e) => setSettings({ ...settings, popup_text: e.target.value })}
                     />
                   </div>

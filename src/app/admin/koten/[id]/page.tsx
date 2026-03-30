@@ -95,7 +95,9 @@ export default function AdminKotDetailPage() {
       body: JSON.stringify({
         id,
         title: kot.title,
+        title_en: kot.title_en,
         description: kot.description,
+        description_en: kot.description_en,
         description_raw: kot.description_raw,
         description_polished: kot.description_polished,
         price: kot.price,
@@ -145,7 +147,9 @@ export default function AdminKotDetailPage() {
                       body: JSON.stringify({
                         id,
                         title: kot.title,
+                        title_en: kot.title_en,
                         description: kot.description,
+                        description_en: kot.description_en,
                         description_raw: kot.description_raw,
                         description_polished: kot.description_polished,
                         price: kot.price,
@@ -180,13 +184,14 @@ export default function AdminKotDetailPage() {
                       body: JSON.stringify({
                         id,
                         title: kot.title,
+                        title_en: kot.title_en,
                         description: kot.description,
+                        description_en: kot.description_en,
                         description_raw: kot.description_raw,
                         description_polished: kot.description_polished,
                         price: kot.price,
                         availability_status: kot.availability_status,
                         status: kot.status,
-                        scheduled_publish_at: kot.scheduled_publish_at,
                         is_highlighted: kot.is_highlighted
                       })
                     });
@@ -219,33 +224,98 @@ export default function AdminKotDetailPage() {
                   </label>
                 </div>
 
-                <input
-                  className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main"
-                  value={kot.title}
-                  onChange={(event) =>
-                    setKot({ ...kot, title: event.target.value })
-                  }
-                  placeholder="Title"
-                />
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-primary-800">Titel (NL)</label>
+                    <input
+                      className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main"
+                      value={kot.title}
+                      onChange={(event) =>
+                        setKot({ ...kot, title: event.target.value })
+                      }
+                      placeholder="Title"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <label className="text-sm font-semibold text-primary-800 italic">Title (EN)</label>
+                      <button 
+                        onClick={async () => {
+                          const res = await fetch('/api/cms/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: kot.title })
+                          });
+                          const { translated } = await res.json();
+                          if (translated) setKot({ ...kot, title_en: translated });
+                        }}
+                        className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
+                      >
+                        Suggest English
+                      </button>
+                    </div>
+                    <input
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+                      value={kot.title_en ?? ""}
+                      onChange={(event) =>
+                        setKot({ ...kot, title_en: event.target.value })
+                      }
+                      placeholder="English title"
+                    />
+                  </div>
+                </div>
 
-                {/* AI Text Polisher for Description */}
-                <AITextPolisher
-                  rawText={kot.description_raw || kot.description || ''}
-                  polishedText={kot.description_polished || ''}
-                  onTextChange={(raw, polished) => {
-                    setKot({
-                      ...kot,
-                      description_raw: raw,
-                      description_polished: polished,
-                      description: polished || raw // Use polished if available, otherwise raw
-                    });
-                  }}
-                  language="nl-BE"
-                  kotMeta={{
-                    title: kot.title,
-                    city: kot.vestigingen?.city || 'Unknown'
-                  }}
-                />
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-primary-800">Beschrijving (NL)</label>
+                    {/* AI Text Polisher for Description */}
+                    <AITextPolisher
+                      rawText={kot.description_raw || kot.description || ''}
+                      polishedText={kot.description_polished || ''}
+                      onTextChange={(raw, polished) => {
+                        setKot({
+                          ...kot,
+                          description_raw: raw,
+                          description_polished: polished,
+                          description: polished || raw // Use polished if available, otherwise raw
+                        });
+                      }}
+                      language="nl-BE"
+                      kotMeta={{
+                        title: kot.title,
+                        city: kot.vestigingen?.city || 'Unknown'
+                      }}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <label className="text-sm font-semibold text-primary-800 italic">Description (EN)</label>
+                      <button 
+                        onClick={async () => {
+                          const res = await fetch('/api/cms/translate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text: kot.description })
+                          });
+                          const { translated } = await res.json();
+                          if (translated) setKot({ ...kot, description_en: translated });
+                        }}
+                        className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
+                      >
+                        Suggest English
+                      </button>
+                    </div>
+                    <textarea
+                      className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+                      rows={4}
+                      value={kot.description_en ?? ""}
+                      onChange={(event) =>
+                        setKot({ ...kot, description_en: event.target.value })
+                      }
+                      placeholder="English description"
+                    />
+                  </div>
+                </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <input

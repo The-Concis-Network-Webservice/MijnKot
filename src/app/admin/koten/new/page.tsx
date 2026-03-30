@@ -22,8 +22,9 @@ export default function AdminKotCreatePage() {
     price: "",
     availability_status: "available",
     status: "draft",
-    scheduled_publish_at: "",
-    rent_type_ids: [] as string[]
+    rent_type_ids: [] as string[],
+    title_en: "",
+    description_en: ""
   });
   const [rentTypes, setRentTypes] = useState<RentType[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -60,11 +61,12 @@ export default function AdminKotCreatePage() {
       body: JSON.stringify({
         vestiging_id: form.vestiging_id,
         title: form.title,
+        title_en: form.title_en,
         description: form.description,
+        description_en: form.description_en,
         price: Number(form.price),
         availability_status: form.availability_status,
         status: form.status,
-        scheduled_publish_at: form.scheduled_publish_at || null,
         rent_type_ids: form.rent_type_ids
       })
     });
@@ -115,36 +117,108 @@ export default function AdminKotCreatePage() {
                 </option>
               ))}
             </select>
-            <input
-              className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main"
-              placeholder="Title"
-              value={form.title}
-              onChange={(event) =>
-                setForm({ ...form, title: event.target.value })
-              }
-              required
-            />
-            <textarea
-              className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main min-h-[150px]"
-              placeholder="Description"
-              rows={4}
-              value={form.description}
-              onChange={(event) =>
-                setForm({ ...form, description: event.target.value })
-              }
-              required
-            />
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-primary-800">Titel (NL)</label>
+                <input
+                  className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main"
+                  placeholder="Kamer titel"
+                  value={form.title}
+                  onChange={(event) =>
+                    setForm({ ...form, title: event.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label className="text-sm font-semibold text-primary-800 italic">Title (EN)</label>
+                  <button 
+                    type="button"
+                    onClick={async () => {
+                      const res = await fetch('/api/cms/translate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ text: form.title })
+                      });
+                      const { translated } = await res.json();
+                      if (translated) setForm({ ...form, title_en: translated });
+                    }}
+                    className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
+                  >
+                    Suggest English
+                  </button>
+                </div>
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+                  value={form.title_en}
+                  onChange={(event) =>
+                    setForm({ ...form, title_en: event.target.value })
+                  }
+                  placeholder="English title"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-primary-800">Beschrijving (NL)</label>
+                <textarea
+                  className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main min-h-[100px]"
+                  placeholder="Beschrijf de kamer..."
+                  rows={3}
+                  value={form.description}
+                  onChange={(event) =>
+                    setForm({ ...form, description: event.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label className="text-sm font-semibold text-primary-800 italic">Description (EN)</label>
+                  <button 
+                    type="button"
+                    onClick={async () => {
+                      const res = await fetch('/api/cms/translate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ text: form.description })
+                      });
+                      const { translated } = await res.json();
+                      if (translated) setForm({ ...form, description_en: translated });
+                    }}
+                    className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
+                  >
+                    Suggest English
+                  </button>
+                </div>
+                <textarea
+                  className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+                  rows={3}
+                  value={form.description_en}
+                  onChange={(event) =>
+                    setForm({ ...form, description_en: event.target.value })
+                  }
+                  placeholder="English description"
+                />
+              </div>
+            </div>
+            
             <div className="grid md:grid-cols-2 gap-4">
-              <input
-                className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
-                type="number"
-                placeholder="Price"
-                value={form.price}
-                onChange={(event) =>
-                  setForm({ ...form, price: event.target.value })
-                }
-                required
-              />
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-primary-800">Huurprijs</label>
+                <input
+                  className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
+                  type="number"
+                  placeholder="Huurprijs"
+                  value={form.price}
+                  onChange={(event) =>
+                    setForm({ ...form, price: event.target.value })
+                  }
+                  required
+                />
+              </div>
               <select
                 className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white w-full"
                 value={form.availability_status}
@@ -174,17 +248,6 @@ export default function AdminKotCreatePage() {
                 <option value="published">published</option>
                 <option value="archived">archived</option>
               </select>
-              <input
-                className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main w-full"
-                type="datetime-local"
-                value={form.scheduled_publish_at}
-                onChange={(event) =>
-                  setForm({
-                    ...form,
-                    scheduled_publish_at: event.target.value
-                  })
-                }
-              />
             </div>
             {error ? <p className="text-sm text-red-500">{error}</p> : null}
             <button

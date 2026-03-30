@@ -39,13 +39,13 @@ export async function POST(request: Request) {
   }
   try {
     const body = await request.json();
-    const { name, address, city, postal_code, description, image_url } = body;
+    const { name, address, city, postal_code, description, description_en, image_url } = body;
     if (!name || !address || !city || !postal_code || !description) {
       return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
     }
     const inserted = await queryOne(
-      "insert into vestigingen (name, address, city, postal_code, description, image_url) values ($1, $2, $3, $4, $5, $6) returning *",
-      [name, address, city, postal_code, description, image_url ?? null]
+      "insert into vestigingen (name, address, city, postal_code, description, description_en, image_url) values ($1, $2, $3, $4, $5, $6, $7) returning *",
+      [name, address, city, postal_code, description, description_en ?? null, image_url ?? null]
     );
     if (!inserted) {
       return NextResponse.json({ error: "Failed to create vestiging." }, { status: 400 });
@@ -75,14 +75,14 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const body = await request.json();
-  const { id, name, address, city, postal_code, description, archived_at, image_url } = body;
+  const { id, name, address, city, postal_code, description, description_en, archived_at, image_url } = body;
   if (!id) {
     return NextResponse.json({ error: "Missing id." }, { status: 400 });
   }
   // Step 1: update core fields (always exist in all DB versions)
   const updated = await queryOne(
-    "update vestigingen set name = $1, address = $2, city = $3, postal_code = $4, description = $5, archived_at = $6 where id = $7 returning *",
-    [name, address, city, postal_code, description, archived_at ?? null, id]
+    "update vestigingen set name = $1, address = $2, city = $3, postal_code = $4, description = $5, description_en = $6, archived_at = $7 where id = $8 returning *",
+    [name, address, city, postal_code, description, description_en ?? null, archived_at ?? null, id]
   );
   if (!updated) {
     return NextResponse.json({ error: "Failed to update vestiging." }, { status: 400 });
