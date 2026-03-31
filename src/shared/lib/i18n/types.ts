@@ -12,6 +12,7 @@ export type Dictionary = {
         rent_view_all: string;
         plan_visit: string;
         no_locations: string;
+        about: string;
     };
     home: {
         hero: {
