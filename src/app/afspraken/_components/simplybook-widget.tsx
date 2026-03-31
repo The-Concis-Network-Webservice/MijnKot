@@ -33,9 +33,13 @@ export function SimplybookWidget() {
                     btn_color_1: '#ca4b1c',
                     sb_company_label_color: '#4d5935',
                     hide_img_mode: '1',
-                    show_sidebar: '1',
+                    show_sidebar: '0',
                     sb_busy: '#c7b3b3',
                     sb_available: '#4d5935',
+                    hide_name: '1',
+                    hide_description: '1',
+                    hide_header: '1',
+                    hide_header_user_login: '1',
                 },
                 timeline: 'modern',
                 datepicker: 'top_calendar',
@@ -48,6 +52,15 @@ export function SimplybookWidget() {
     }, []);
 
     return (
-        <div id={CONTAINER_ID} className="w-full" style={{ minHeight: '750px' }} />
+        <div className="w-full overflow-hidden" style={{ height: '850px' }}>
+            <div 
+                id={CONTAINER_ID} 
+                className="w-full" 
+                style={{ 
+                    marginTop: '-150px', // Cropping the header
+                    minHeight: '1000px' 
+                }} 
+            />
+        </div>
     );
 }

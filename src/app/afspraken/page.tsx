@@ -42,8 +42,8 @@ export default function AfsprakenPage() {
             </div>
 
             {/* Widget */}
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-                <div className="bg-surface-card rounded-2xl border border-border-light shadow-soft overflow-hidden p-4 md:p-6">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div className="bg-surface-card rounded-2xl border border-border-light shadow-soft overflow-hidden p-0 pb-8">
                     <SimplybookWidget />
                 </div>
 
