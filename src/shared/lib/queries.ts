@@ -1,5 +1,5 @@
 import { query, queryOne } from "./db";
-import type { Kot, KotPhoto, SiteSettings, Vestiging, FaqItem } from "@/types";
+import type { Kot, KotPhoto, SiteSettings, Vestiging, FaqItem, RentType } from "@/types";
 import { siteConfig } from "./config";
 
 export async function getSiteSettings(): Promise<SiteSettings> {
