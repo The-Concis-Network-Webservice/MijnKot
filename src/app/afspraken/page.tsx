@@ -1,12 +1,6 @@
-import { CalendarDaysIcon, ClockIcon, MapPinIcon } from "@heroicons/react/24/outline";
+'use client';
+
 import { SimplybookWidget } from "./_components/simplybook-widget";
-
-export const runtime = 'edge';
-
-export const metadata = {
-    title: 'Afspraak plannen',
-    description: 'Plan een gratis bezichtiging van een MijnKot studentenkamer in Leuven. Kies een moment dat jou past.',
-};
 
 export default function AfsprakenPage() {
     return (
@@ -26,15 +20,15 @@ export default function AfsprakenPage() {
                     </p>
                     <div className="flex flex-wrap items-center justify-center gap-5">
                         <span className="flex items-center gap-2 text-sm text-neutral-400">
-                            <ClockIcon className="w-4 h-4 text-primary-500 shrink-0" />
+                            {/* <ClockIcon className="w-4 h-4 text-primary-500 shrink-0" /> */}
                             30 minuten
                         </span>
                         <span className="flex items-center gap-2 text-sm text-neutral-400">
-                            <MapPinIcon className="w-4 h-4 text-primary-500 shrink-0" />
+                            {/* <MapPinIcon className="w-4 h-4 text-primary-500 shrink-0" /> */}
                             Meerdere locaties in Leuven
                         </span>
                         <span className="flex items-center gap-2 text-sm text-neutral-400">
-                            <CalendarDaysIcon className="w-4 h-4 text-primary-500 shrink-0" />
+                            {/* <CalendarDaysIcon className="w-4 h-4 text-primary-500 shrink-0" /> */}
                             Direct bevestiging
                         </span>
                     </div>
