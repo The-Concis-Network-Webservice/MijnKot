@@ -3,7 +3,6 @@ import { getRequestContext } from "@cloudflare/next-on-pages";
 import { jwtVerify } from "jose";
 import { rateLimit } from "@/shared/lib/cms/rate-limit";
 import { canEditContent } from "@/shared/lib/cms/permissions";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 export const runtime = 'edge';
 
@@ -90,12 +89,21 @@ export async function POST(request: Request) {
       );
     }
 
+    const BUCKET = ctx?.env?.BUCKET;
+
+    if (!BUCKET) {
+      return NextResponse.json(
+        { error: "R2 Bucket binding 'BUCKET' not found. Ensure --r2 BUCKET is in package.json." },
+        { status: 500, headers: CORS_HEADERS }
+      );
+    }
+
     const file_name = request.headers.get('x-file-name');
     const mime_type = request.headers.get('x-mime-type');
-
+    
     if (!file_name || !mime_type) {
       return NextResponse.json(
-        { error: "Missing required headers: X-File-Name, X-Mime-Type" },
+        { error: "Missing required headers: X-File-Name, X-Mime-Type" }, 
         { status: 400, headers: CORS_HEADERS }
       );
     }
@@ -106,14 +114,14 @@ export async function POST(request: Request) {
     } catch (e: any) {
       console.error("Blob read error:", e);
       return NextResponse.json(
-        { error: "Failed to read binary file body: " + e.message },
+        { error: "Failed to read binary file body: " + e.message }, 
         { status: 400, headers: CORS_HEADERS }
       );
     }
 
     if (!blob || blob.size === 0) {
       return NextResponse.json(
-        { error: "Empty request body received." },
+        { error: "Empty request body received." }, 
         { status: 400, headers: CORS_HEADERS }
       );
     }
@@ -123,50 +131,20 @@ export async function POST(request: Request) {
     const safeName = decodedFileName.replace(/[^a-zA-Z0-9.\-_]/g, "_");
     const key = `uploads/${crypto.randomUUID()}-${safeName}`;
 
-    const r2AccountId = process.env.R2_ACCOUNT_ID;
-    const r2AccessKeyId = process.env.R2_ACCESS_KEY_ID;
-    const r2SecretAccessKey = process.env.R2_SECRET_ACCESS_KEY;
-    const r2BucketName = process.env.R2_BUCKET;
-    const r2PublicBaseUrl = process.env.R2_PUBLIC_BASE_URL;
+    // Upload directly using Blob. Cloudflare naturally accepts Blob because it has a known .size, avoiding the FixedLengthStream error.
+    const uploadedObject = await BUCKET.put(key, blob, {
+      httpMetadata: { contentType: mime_type }
+    });
 
-    let publicUrl: string;
+    const publicUrl = `${process.env.R2_PUBLIC_BASE_URL || 'https://pub-844c31a0552a92bec753504a01b5f3bb.r2.dev'}/${key}`;
 
-    if (r2AccountId && r2AccessKeyId && r2SecretAccessKey && r2BucketName && r2PublicBaseUrl) {
-      // Use S3-compatible API to upload directly to the real Cloudflare R2 bucket
-      const s3 = new S3Client({
-        region: "auto",
-        endpoint: `https://${r2AccountId}.r2.cloudflarestorage.com`,
-        credentials: { accessKeyId: r2AccessKeyId, secretAccessKey: r2SecretAccessKey },
-      });
-      const arrayBuffer = await blob.arrayBuffer();
-      await s3.send(new PutObjectCommand({
-        Bucket: r2BucketName,
-        Key: key,
-        Body: new Uint8Array(arrayBuffer),
-        ContentType: mime_type,
-      }));
-      publicUrl = `${r2PublicBaseUrl}/${key}`;
-    } else {
-      // Fall back to the local Cloudflare binding (miniflare in dev)
-      const BUCKET = ctx?.env?.BUCKET;
-      if (!BUCKET) {
-        return NextResponse.json(
-          { error: "R2 not configured. Set R2_ACCOUNT_ID/R2_ACCESS_KEY_ID/R2_SECRET_ACCESS_KEY/R2_BUCKET/R2_PUBLIC_BASE_URL in .dev.vars, or ensure --r2 BUCKET is passed to wrangler." },
-          { status: 500, headers: CORS_HEADERS }
-        );
-      }
-      await BUCKET.put(key, blob, { httpMetadata: { contentType: mime_type } });
-      const baseUrl = r2PublicBaseUrl || `${new URL(request.url).origin}/api/r2`;
-      publicUrl = `${baseUrl}/${key}`;
-    }
-
-    return NextResponse.json({
-      success: true,
-      key,
+    return NextResponse.json({ 
+      success: true, 
+      key, 
       publicUrl,
       file_name: decodedFileName,
       mime_type,
-      size_bytes: blob.size
+      size_bytes: uploadedObject.size
     }, { headers: CORS_HEADERS });
   } catch (error: any) {
     console.error("Critical Upload Error:", error);

@@ -7,7 +7,6 @@
     "dev": "next dev --port 3001",
     "dev:d1": "npm run pages:build && npm run pages:dev",
     "dev:wrangler": "npx wrangler pages dev --d1=DB=mijnkot --r2 BUCKET --compatibility-date=2024-06-20 --port 3000 --proxy 3001",
-    "dev:remote": "npx wrangler pages dev --remote --compatibility-date=2024-06-20 --port 3000 --proxy 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
