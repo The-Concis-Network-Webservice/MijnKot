@@ -181,7 +181,10 @@
         "more_info": "Meer info",
         "logout": "Uitloggen",
         "new": "Nieuw",
-        "detail": "Detail"
+        "detail": "Detail",
+        "update_success": "Bijgewerkt.",
+        "delete_confirm": "Weet je het zeker?",
+        "delete_success": "Verwijderd."
     },
     "status": {
         "available": "Beschikbaar",
@@ -335,7 +338,12 @@
             "add": "Toevoegen",
             "name": "Naam",
             "category": "Categorie",
-            "change_password": "Wachtwoord Wijzigen"
+            "change_password": "Wachtwoord Wijzigen",
+            "time": "Tijdstip",
+            "action": "Actie",
+            "entity": "Entiteit",
+            "user": "Gebruiker",
+            "system": "systeem"
         },
         "view": {
             "locations": "Locaties",
@@ -386,6 +394,9 @@
             "title": "Vestigingen",
             "description": "Beheer de locaties in je portfolio.",
             "create": "Vestiging aanmaken",
+            "detail": "Vestiging detail",
+            "edit": "Vestiging bewerken",
+            "edit_desc": "Werk vestiging details bij en maak nieuwe koten aan.",
             "name": "Naam",
             "address": "Adres",
             "city": "Stad",
@@ -395,7 +406,12 @@
             "description_en": "Description (EN)",
             "existing": "Bestaande Vestigingen",
             "slug": "Slug",
-            "all_locations": "Alle vestigingen"
+            "all_locations": "Alle vestigingen",
+            "floor_plan": "Plattegrond",
+            "public_page": "Publieke pagina",
+            "copy_link": "Kopieer link",
+            "copied": "Gekopieerd!",
+            "loading": "Vestiging laden..."
         },
         "koten": {
             "title": "Koten",
@@ -404,11 +420,71 @@
             "detail": "Kot detail",
             "edit": "Kot bewerken",
             "edit_desc": "Bewerk kotgegevens, beschikbaarheid en media.",
-            "existing": "Bestaande Koten"
+            "existing": "Bestaande Koten",
+            "price": "Prijs",
+            "field_title": "Titel",
+            "desc_markdown": "Beschrijving (Markdown)",
+            "desc_placeholder": "Beschrijf deze kamer...",
+            "manage": "Beheren",
+            "no_koten": "Nog geen koten."
         },
         "faq": {
             "create": "FAQ item toevoegen",
-            "existing": "Bestaande items"
+            "existing": "Bestaande items",
+            "title_nl": "Vraag (NL)",
+            "title_en": "Question (EN)",
+            "content_nl": "Antwoord (NL)",
+            "content_en": "Answer (EN)"
+        },
+        "audit_logs": {
+            "title": "Systeemlogboeken",
+            "description": "Activiteitsgeschiedenis van het CMS (alleen lezen).",
+            "empty": "Nog geen logboeken."
+        },
+        "users": {
+            "title": "Gebruikers & rollen",
+            "description": "Wijs rollen en vestigingen toe.",
+            "restrict_msg": "Alleen Super Admins kunnen gebruikers beheren.",
+            "add_title": "Gebruiker Toevoegen",
+            "email_placeholder": "Email adres",
+            "password_placeholder": "Wachtwoord",
+            "name_placeholder": "Volledige naam",
+            "existing_title": "Bestaande Gebruikers",
+            "you": "Jij",
+            "no_name": "Geen naam ingevuld",
+            "assigned_vestigingen": "Toegewezen Vestigingen",
+            "no_users": "Geen gebruikers gevonden.",
+            "delete_self_error": "Je kunt jezelf niet verwijderen.",
+            "delete_confirm": "Gebruiker {{email}} verwijderen?"
+        },
+        "leads": {
+            "title": "Leads & Aanmeldingen",
+            "loading": "Laden...",
+            "no_leads": "Nog geen leads ontvangen.",
+            "email": "Email",
+            "name": "Naam",
+            "phone": "Telefoon",
+            "source": "Bron",
+            "actions": "Acties",
+            "delete_confirm": "Weet je zeker dat je deze lead wilt verwijderen?",
+            "delete_error": "Fout bij het verwijderen van de lead.",
+            "delete_network_error": "Netwerkfout bij het verwijderen.",
+            "pagination_info": "{{total}} leads · pagina {{page}} van {{pages}}",
+            "prev": "Vorige",
+            "next": "Volgende"
+        },
+        "media": {
+            "title": "Mediabibliotheek",
+            "description": "Alle geüploade afbeeldingen, herbruikbaar voor koten.",
+            "uploading": "Bezig met uploaden...",
+            "drag_drop_title": "Sleep afbeeldingen hierheen of klik om te uploaden",
+            "drag_drop_subtitle": "PNG, JPG, WebP - meerdere tegelijk mogelijk",
+            "no_media": "Nog geen media geüpload.",
+            "copy_url": "Kopieer URL",
+            "copied": "Gekopieerd",
+            "delete_ask": "Verwijderen?",
+            "yes": "Ja",
+            "no": "Nee"
         }
     }
 }

@@ -13,10 +13,12 @@ import type { Kot, Vestiging } from "@/types";
 import { RichTextEditor } from "../../_components/rich-text-editor";
 import { FloorPlanManager } from "../../_components/floor-plan-manager";
 import { ImageUploadZone } from "../../_components/image-upload-zone";
+import { useTranslation } from "react-i18next";
 
 function ShareFloorPlanLink({ vestigingId }: { vestigingId: string }) {
   const [copied, setCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetch(`/api/cms/floor-plan-token?vestiging_id=${vestigingId}`)
@@ -45,7 +47,7 @@ function ShareFloorPlanLink({ vestigingId }: { vestigingId: string }) {
           target="_blank"
           className="text-sm text-primary hover:underline"
         >
-          Publieke pagina
+          {t('admin.vestigingen.public_page', 'Publieke pagina')}
         </Link>
       )}
       <button
@@ -53,7 +55,7 @@ function ShareFloorPlanLink({ vestigingId }: { vestigingId: string }) {
         disabled={!shareUrl}
         className="text-xs bg-gray-100 hover:bg-gray-200 border border-gray-200 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
       >
-        {copied ? "Gekopieerd!" : "Kopieer link"}
+        {copied ? t('admin.vestigingen.copied', "Gekopieerd!") : t('admin.vestigingen.copy_link', "Kopieer link")}
       </button>
     </div>
   );
@@ -67,6 +69,7 @@ export default function AdminVestigingDetailPage() {
   const [error, setError] = useState<string | null>(null);
   const { push } = useToast();
   const { role } = useAdmin();
+  const { t } = useTranslation();
   const [kotForm, setKotForm] = useState({
     title: "",
     description: "",
@@ -111,10 +114,10 @@ export default function AdminVestigingDetailPage() {
     });
     const payload = await res.json();
     if (!res.ok) {
-      setError(payload.error ?? "Opslaan van vestiging mislukt.");
+      setError(payload.error ?? t('admin.vestigingen.save_error', "Opslaan van vestiging mislukt."));
     } else {
       await loadData();
-      push("Vestiging bijgewerkt.");
+      push(t('admin.common.update_success', "Vestiging bijgewerkt."));
     }
     setLoading(false);
   };
@@ -134,7 +137,7 @@ export default function AdminVestigingDetailPage() {
       
       if (!res.ok) {
         const errData = await res.json();
-        throw new Error(errData.error || "Upload afbeelding mislukt.");
+        throw new Error(errData.error || t('admin.common.upload_error', "Upload afbeelding mislukt."));
       }
       
       const { publicUrl, key, file_name, mime_type, size_bytes } = await res.json();
@@ -154,9 +157,9 @@ export default function AdminVestigingDetailPage() {
       if (vestiging) {
         setVestiging({ ...vestiging, image_url: publicUrl });
       }
-      push("Afbeelding succesvol geüpload.");
+      push(t('admin.common.upload_success', "Afbeelding succesvol geüpload."));
     } catch (err: any) {
-      setError(err.message || "Upload mislukt.");
+      setError(err.message || t('admin.common.upload_error', "Upload mislukt."));
     }
   };
 
@@ -181,7 +184,7 @@ export default function AdminVestigingDetailPage() {
     });
     const payload = await res.json();
     if (!res.ok) {
-      setError(payload.error ?? "Aanmaken van kot mislukt.");
+      setError(payload.error ?? t('admin.koten.create_error', "Aanmaken van kot mislukt."));
     } else {
       setKotForm({
         title: "",
@@ -192,7 +195,7 @@ export default function AdminVestigingDetailPage() {
         scheduled_publish_at: ""
       });
       await loadData();
-      push("Kot aangemaakt.");
+      push(t('admin.common.create_success', "Kot aangemaakt."));
     }
     setLoading(false);
   };
@@ -202,20 +205,21 @@ export default function AdminVestigingDetailPage() {
       <AdminShell>
         <div className="space-y-8 max-w-4xl">
           <PageHeader
-            title="Vestiging detail"
-            description="Werk vestiging details bij en maak nieuwe koten aan."
+            title={t('admin.vestigingen.detail', "Vestiging detail")}
+            description={t('admin.vestigingen.edit_desc', "Werk vestiging details bij en maak nieuwe koten aan.")}
             crumbs={[
               { label: "CMS", href: "/admin" },
-              { label: "Vestigingen", href: "/admin/vestigingen" },
-              { label: vestiging?.name ?? "Detail" }
+              { label: t('admin.view.locations', "Vestigingen"), href: "/admin/vestigingen" },
+              { label: vestiging?.name ?? t('admin.common.detail', "Detail") }
             ]}
           />
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h2 className="font-semibold text-lg mb-4">Vestiging bewerken</h2>
+            <h2 className="font-semibold text-lg mb-4">{t('admin.vestigingen.edit', "Vestiging bewerken")}</h2>
             {vestiging ? (
               <div className="space-y-4">
                 <input
                   className="border border-gray-200 rounded-lg px-3 py-2 w-full"
+                  placeholder={t('admin.vestigingen.name', 'Naam')}
                   value={vestiging.name}
                   onChange={(event) =>
                     setVestiging({ ...vestiging, name: event.target.value })
@@ -224,6 +228,7 @@ export default function AdminVestigingDetailPage() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
+                    placeholder={t('admin.vestigingen.address', 'Adres')}
                     value={vestiging.address}
                     onChange={(event) =>
                       setVestiging({
@@ -234,6 +239,7 @@ export default function AdminVestigingDetailPage() {
                   />
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
+                    placeholder={t('admin.vestigingen.city', 'Stad')}
                     value={vestiging.city}
                     onChange={(event) =>
                       setVestiging({ ...vestiging, city: event.target.value })
@@ -241,6 +247,7 @@ export default function AdminVestigingDetailPage() {
                   />
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
+                    placeholder={t('admin.vestigingen.postal_code', 'Postcode')}
                     value={vestiging.postal_code}
                     onChange={(event) =>
                       setVestiging({
@@ -252,7 +259,7 @@ export default function AdminVestigingDetailPage() {
                 </div>
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-primary-800">Beschrijving (NL)</label>
+                    <label className="text-sm font-semibold text-primary-800">{t('admin.vestigingen.description_nl', 'Beschrijving (NL)')}</label>
                     <textarea
                       className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                       rows={4}
@@ -267,7 +274,7 @@ export default function AdminVestigingDetailPage() {
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <label className="text-sm font-semibold text-primary-800 italic">Description (EN)</label>
+                      <label className="text-sm font-semibold text-primary-800 italic">{t('admin.vestigingen.description_en', 'Description (EN)')}</label>
                       <button 
                       onClick={async () => {
                         try {
@@ -279,17 +286,17 @@ export default function AdminVestigingDetailPage() {
                           const data = await res.json();
                           if (data.translated) {
                             setVestiging({ ...vestiging, description_en: data.translated });
-                            push("Beschrijving vertaald.");
+                            push(t('admin.common.translated_success', "Beschrijving vertaald."));
                           } else {
-                            push("Vertaling mislukt.", "error");
+                            push(t('admin.common.translate_error', "Vertaling mislukt."), "error");
                           }
                         } catch (err) {
-                          push("Netwerkfout bij vertalen.", "error");
+                          push(t('admin.common.translate_network_error', "Netwerkfout bij vertalen."), "error");
                         }
                       }}
                         className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
                       >
-                        Suggest English
+                        {t('admin.common.suggest_en', 'Suggest English')}
                       </button>
                     </div>
                     <textarea
@@ -302,7 +309,7 @@ export default function AdminVestigingDetailPage() {
                           description_en: event.target.value
                         })
                       }
-                      placeholder="Engelse beschrijving"
+                      placeholder={t('admin.vestigingen.en_placeholder', "Engelse beschrijving")}
                     />
                   </div>
                 </div>
@@ -317,21 +324,21 @@ export default function AdminVestigingDetailPage() {
                   onClick={updateVestiging}
                   disabled={loading}
                 >
-                  {loading ? "Opslaan..." : "Wijzigingen opslaan"}
+                  {loading ? t('admin.common.saving', "Opslaan...") : t('admin.admin.save_changes', "Wijzigingen opslaan")}
                 </button>
               </div>
             ) : (
-              <p className="text-sm text-text-muted">Vestiging laden...</p>
+              <p className="text-sm text-text-muted">{t('admin.vestigingen.loading', "Vestiging laden...")}</p>
             )}
           </section>
 
           {canEditContent(role) ? (
             <section className="bg-white border border-gray-200 rounded-2xl p-6">
-              <h2 className="font-semibold text-lg mb-4">Kot aanmaken</h2>
+              <h2 className="font-semibold text-lg mb-4">{t('admin.koten.create', "Kot aanmaken")}</h2>
               <form className="space-y-4" onSubmit={createKot}>
                 <input
                   className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  placeholder="Titel"
+                  placeholder={t('admin.koten.field_title', "Titel")}
                   value={kotForm.title}
                   onChange={(event) =>
                     setKotForm({ ...kotForm, title: event.target.value })
@@ -339,19 +346,19 @@ export default function AdminVestigingDetailPage() {
                   required
                 />
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Beschrijving (Markdown)</label>
+                  <label className="text-sm font-medium text-gray-700">{t('admin.koten.desc_markdown', "Beschrijving (Markdown)")}</label>
                   <RichTextEditor
                     value={kotForm.description}
                     onChange={(val) =>
                       setKotForm({ ...kotForm, description: val })
                     }
-                    placeholder="Beschrijf deze kamer..."
+                    placeholder={t('admin.koten.desc_placeholder', "Beschrijf deze kamer...")}
                   />
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Prijs"
+                    placeholder={t('admin.koten.price', "Prijs")}
                     type="number"
                     value={kotForm.price}
                     onChange={(event) =>
@@ -369,10 +376,10 @@ export default function AdminVestigingDetailPage() {
                       })
                     }
                   >
-                    <option value="available">beschikbaar</option>
-                    <option value="reserved">gereserveerd</option>
-                    <option value="rented">verhuurd</option>
-                    <option value="hidden">verborgen</option>
+                    <option value="available">{t('common.available', 'beschikbaar')}</option>
+                    <option value="reserved">{t('common.reserved', 'gereserveerd')}</option>
+                    <option value="rented">{t('common.rented', 'verhuurd')}</option>
+                    <option value="hidden">{t('status.hidden', 'verborgen')}</option>
                   </select>
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -383,10 +390,10 @@ export default function AdminVestigingDetailPage() {
                       setKotForm({ ...kotForm, status: event.target.value })
                     }
                   >
-                    <option value="draft">concept</option>
-                    <option value="scheduled">gepland</option>
-                    <option value="published">gepubliceerd</option>
-                    <option value="archived">gearchiveerd</option>
+                    <option value="draft">{t('status.draft', 'concept')}</option>
+                    <option value="scheduled">{t('status.scheduled', 'gepland')}</option>
+                    <option value="published">{t('status.published', 'gepubliceerd')}</option>
+                    <option value="archived">{t('status.archived', 'gearchiveerd')}</option>
                   </select>
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
@@ -406,7 +413,7 @@ export default function AdminVestigingDetailPage() {
                   disabled={loading}
                   type="submit"
                 >
-                  Kot aanmaken
+                  {t('admin.koten.create', "Kot aanmaken")}
                 </button>
               </form>
             </section>
@@ -414,14 +421,14 @@ export default function AdminVestigingDetailPage() {
 
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="font-semibold text-lg">Plattegrond</h2>
+              <h2 className="font-semibold text-lg">{t('admin.vestigingen.floor_plan', "Plattegrond")}</h2>
               <ShareFloorPlanLink vestigingId={id} />
             </div>
             <FloorPlanManager vestigingId={id} koten={koten} />
           </section>
 
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h2 className="font-semibold text-lg mb-4">Koten</h2>
+            <h2 className="font-semibold text-lg mb-4">{t('admin.view.koten', "Koten")}</h2>
             <div className="space-y-3">
               {koten.map((kot) => (
                 <div
@@ -438,12 +445,12 @@ export default function AdminVestigingDetailPage() {
                     className="text-primary hover:underline text-sm"
                     href={`/admin/koten/${kot.id}`}
                   >
-                    Beheren
+                    {t('admin.koten.manage', "Beheren")}
                   </Link>
                 </div>
               ))}
               {koten.length === 0 ? (
-                <p className="text-sm text-text-muted">Nog geen koten.</p>
+                <p className="text-sm text-text-muted">{t('admin.koten.no_koten', "Nog geen koten.")}</p>
               ) : null}
             </div>
           </section>

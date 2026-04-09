@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { AdminGuard } from "../_components/admin-guard";
 import { AdminShell } from "../_components/admin-shell";
 import { PageHeader } from "../_components/page-header";
+import { useTranslation } from "react-i18next";
 import type { AuditLog } from "@/types";
 
 export default function AdminAuditLogsPage() {
   const [logs, setLogs] = useState<AuditLog[]>([]);
+  const { t } = useTranslation();
 
   const loadLogs = async () => {
     const res = await fetch("/api/cms/audit-logs");
@@ -23,19 +25,19 @@ export default function AdminAuditLogsPage() {
     <AdminGuard>
       <AdminShell>
         <PageHeader
-          title="Systeemlogboeken"
-          description="Activiteitsgeschiedenis van het CMS (alleen lezen)."
-          crumbs={[{ label: "CMS", href: "/admin" }, { label: "Logboeken" }]}
+          title={t('admin.audit_logs.title', 'Systeemlogboeken')}
+          description={t('admin.audit_logs.description', 'Activiteitsgeschiedenis van het CMS (alleen lezen).')}
+          crumbs={[{ label: "CMS", href: "/admin" }, { label: t('admin.view.logs', 'Logboeken') }]}
         />
         <section className="bg-white border border-gray-200 rounded-2xl p-6">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="text-left text-text-muted">
                 <tr>
-                  <th className="py-2">Tijdstip</th>
-                  <th>Actie</th>
-                  <th>Entiteit</th>
-                  <th>Gebruiker</th>
+                  <th className="py-2">{t('admin.common.time', 'Tijdstip')}</th>
+                  <th>{t('admin.common.action', 'Actie')}</th>
+                  <th>{t('admin.common.entity', 'Entiteit')}</th>
+                  <th>{t('admin.common.user', 'Gebruiker')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -48,13 +50,13 @@ export default function AdminAuditLogsPage() {
                     <td>
                       {log.entity_type} / {log.entity_id}
                     </td>
-                    <td>{log.actor_id ?? "systeem"}</td>
+                    <td>{log.actor_id ?? t('admin.common.system', 'systeem')}</td>
                   </tr>
                 ))}
                 {logs.length === 0 ? (
                   <tr>
                     <td colSpan={4} className="py-4 text-center text-text-muted">
-                      Nog geen logboeken.
+                      {t('admin.audit_logs.empty', 'Nog geen logboeken.')}
                     </td>
                   </tr>
                 ) : null}

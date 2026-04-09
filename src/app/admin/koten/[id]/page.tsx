@@ -13,18 +13,19 @@ import type { AvailabilityHistory, Kot, KotPhoto, RentType, Vestiging } from "@/
 
 type KotWithPhotos = Kot & { kot_photos?: KotPhoto[]; vestigingen?: Vestiging };
 
-const STATUS_BADGE: Record<string, { bg: string; text: string; label: string }> = {
-  available: { bg: "bg-green-100", text: "text-green-800", label: "Beschikbaar" },
-  reserved:  { bg: "bg-yellow-100", text: "text-yellow-800", label: "Gereserveerd" },
-  rented:    { bg: "bg-red-100", text: "text-red-800", label: "Verhuurd" },
-  hidden:    { bg: "bg-gray-100", text: "text-gray-500", label: "Verborgen" },
+const STATUS_BADGE: Record<string, { bg: string; text: string; i18nKey: string; defaultLabel: string }> = {
+  available: { bg: "bg-green-100", text: "text-green-800", i18nKey: "common.available", defaultLabel: "Beschikbaar" },
+  reserved:  { bg: "bg-yellow-100", text: "text-yellow-800", i18nKey: "common.reserved", defaultLabel: "Gereserveerd" },
+  rented:    { bg: "bg-red-100", text: "text-red-800", i18nKey: "common.rented", defaultLabel: "Verhuurd" },
+  hidden:    { bg: "bg-gray-100", text: "text-gray-500", i18nKey: "status.hidden", defaultLabel: "Verborgen" },
 };
 
 function StatusBadge({ status }: { status: string }) {
-  const cfg = STATUS_BADGE[status] ?? { bg: "bg-gray-100", text: "text-gray-600", label: status };
+  const { t } = useTranslation();
+  const cfg = STATUS_BADGE[status] ?? { bg: "bg-gray-100", text: "text-gray-600", i18nKey: status, defaultLabel: status };
   return (
     <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${cfg.bg} ${cfg.text}`}>
-      {cfg.label}
+      {t(cfg.i18nKey, cfg.defaultLabel)}
     </span>
   );
 }
@@ -76,7 +77,7 @@ export default function AdminKotDetailPage() {
     if (res.ok) {
       setKotRentTypeIds(prev => checked ? [...prev, rentTypeId] : prev.filter(x => x !== rentTypeId));
     } else {
-      push("Failed to update rent type.", "error");
+      push(t('admin.common.update_error', "Failed to update rent type."), "error");
     }
   };
 
@@ -110,10 +111,10 @@ export default function AdminKotDetailPage() {
     });
     const payload = await res.json();
     if (!res.ok) {
-      setError(payload.error ?? "Opslaan van kot mislukt.");
+      setError(payload.error ?? t('admin.koten.save_error', "Opslaan van kot mislukt."));
     } else {
       await loadKot();
-      push("Kot bijgewerkt.");
+      push(t('admin.common.update_success', "Kot bijgewerkt."));
     }
     setLoading(false);
   };
@@ -167,17 +168,17 @@ export default function AdminKotDetailPage() {
                       body: JSON.stringify({ id, action: "publish" })
                     });
                     await loadKot();
-                    push("Kot gepubliceerd en opgeslagen.");
+                    push(t('admin.common.published_success', "Kot gepubliceerd en opgeslagen."));
                     setLoading(false);
                   }}
                 >
-                  Nu publiceren
+                  {t('admin.common.publish_now', 'Nu publiceren')}
                 </button>
                 <button
                   className="text-red-500"
                   onClick={async () => {
                     if (!kot) return;
-                    if (!confirm("Dit kot archiveren? Het zal niet meer publiek zichtbaar zijn.")) return;
+                    if (!confirm(t('admin.common.archive_confirm', "Dit kot archiveren? Het zal niet meer publiek zichtbaar zijn."))) return;
                     setLoading(true);
                     // 1. Save changes first
                     await fetch("/api/cms/koten", {
@@ -204,11 +205,11 @@ export default function AdminKotDetailPage() {
                       body: JSON.stringify({ id, action: "archive" })
                     });
                     await loadKot();
-                    push("Kot gearchiveerd en opgeslagen.");
+                    push(t('admin.common.archived_success', "Kot gearchiveerd en opgeslagen."));
                     setLoading(false);
                   }}
                 >
-                  Archiveer kot
+                  {t('admin.common.archive_kot', 'Archiveer kot')}
                 </button>
               </div>
             </div>
@@ -222,29 +223,29 @@ export default function AdminKotDetailPage() {
                       onChange={(e) => setKot({ ...kot, is_highlighted: e.target.checked })}
                       className="rounded text-yellow-500 focus:ring-yellow-500"
                     />
-                    <span className="text-sm font-medium text-yellow-800">Highlight (Bovenaan de lijst)</span>
+                    <span className="text-sm font-medium text-yellow-800">{t('admin.koten.highlight', 'Highlight (Bovenaan de lijst)')}</span>
                   </label>
                 </div>
 
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-primary-800">Titel (NL)</label>
+                    <label className="text-sm font-semibold text-primary-800">{t('admin.koten.field_title', 'Titel')} (NL)</label>
                     <input
                       className="border border-border-DEFAULT rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main"
                       value={kot.title}
                       onChange={(event) =>
                         setKot({ ...kot, title: event.target.value })
                       }
-                      placeholder="Title"
+                      placeholder={t('admin.koten.field_title', 'Titel')}
                     />
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <label className="text-sm font-semibold text-primary-800 italic">Title (EN)</label>
+                      <label className="text-sm font-semibold text-primary-800 italic">{t('admin.koten.field_title', 'Title')} (EN)</label>
                       <button 
                         onClick={async () => {
                           try {
-                            const res = await fetch('/api/cms/translate', {
+                            const res = await fetch('/api/admin/translate', {
                               method: 'POST',
                               headers: { 'Content-Type': 'application/json' },
                               body: JSON.stringify({ text: kot.title })
@@ -252,17 +253,17 @@ export default function AdminKotDetailPage() {
                             const data = await res.json();
                             if (data.translated) {
                               setKot({ ...kot, title_en: data.translated });
-                              push("Titel vertaald.");
+                              push(t('admin.common.translated_success', "Titel vertaald."));
                             } else {
-                              push("Vertaling mislukt.", "error");
+                              push(t('admin.common.translate_error', "Vertaling mislukt."), "error");
                             }
                           } catch (err) {
-                            push("Netwerkfout bij vertalen.", "error");
+                            push(t('admin.common.translate_network_error', "Netwerkfout bij vertalen."), "error");
                           }
                         }}
                         className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
                       >
-                        Suggest English
+                        {t('admin.common.suggest_en', 'Suggest English')}
                       </button>
                     </div>
                     <input
@@ -271,14 +272,14 @@ export default function AdminKotDetailPage() {
                       onChange={(event) =>
                         setKot({ ...kot, title_en: event.target.value })
                       }
-                      placeholder="English title"
+                      placeholder={t('admin.koten.en_title_placeholder', "English title")}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-primary-800">Beschrijving (NL)</label>
+                    <label className="text-sm font-semibold text-primary-800">{t('admin.koten.desc_markdown', 'Beschrijving (NL)')}</label>
                     {/* AI Text Polisher for Description */}
                     <AITextPolisher
                       rawText={kot.description_raw || kot.description || ''}
@@ -300,11 +301,11 @@ export default function AdminKotDetailPage() {
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <label className="text-sm font-semibold text-primary-800 italic">Description (EN)</label>
+                      <label className="text-sm font-semibold text-primary-800 italic">{t('admin.koten.desc_markdown', 'Description')} (EN)</label>
                       <button 
                         onClick={async () => {
                           try {
-                            const res = await fetch('/api/cms/translate', {
+                            const res = await fetch('/api/admin/translate', {
                               method: 'POST',
                               headers: { 'Content-Type': 'application/json' },
                               body: JSON.stringify({ text: kot.description })
@@ -312,17 +313,17 @@ export default function AdminKotDetailPage() {
                             const data = await res.json();
                             if (data.translated) {
                               setKot({ ...kot, description_en: data.translated });
-                              push("Beschrijving vertaald.");
+                              push(t('admin.common.translated_success', "Beschrijving vertaald."));
                             } else {
-                              push("Vertaling mislukt.", "error");
+                              push(t('admin.common.translate_error', "Vertaling mislukt."), "error");
                             }
                           } catch (err) {
-                            push("Netwerkfout bij vertalen.", "error");
+                            push(t('admin.common.translate_network_error', "Netwerkfout bij vertalen."), "error");
                           }
                         }}
                         className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
                       >
-                        Suggest English
+                        {t('admin.common.suggest_en', 'Suggest English')}
                       </button>
                     </div>
                     <textarea
@@ -332,7 +333,7 @@ export default function AdminKotDetailPage() {
                       onChange={(event) =>
                         setKot({ ...kot, description_en: event.target.value })
                       }
-                      placeholder="Engelse beschrijving"
+                      placeholder={t('admin.koten.desc_placeholder', "Engelse beschrijving")}
                     />
                   </div>
                 </div>
@@ -350,7 +351,7 @@ export default function AdminKotDetailPage() {
                         price: Number(event.target.value)
                       })
                     }
-                    placeholder="Prijs"
+                    placeholder={t('admin.koten.price', "Prijs")}
                   />
                   <select
                     className="border border-border-DEFAULT rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-text-main bg-white w-full"
@@ -362,10 +363,10 @@ export default function AdminKotDetailPage() {
                       })
                     }
                   >
-                    <option value="available">beschikbaar</option>
-                    <option value="reserved">gereserveerd</option>
-                    <option value="rented">verhuurd</option>
-                    <option value="hidden">verborgen</option>
+                    <option value="available">{t('common.available', 'beschikbaar')}</option>
+                    <option value="reserved">{t('common.reserved', 'gereserveerd')}</option>
+                    <option value="rented">{t('common.rented', 'verhuurd')}</option>
+                    <option value="hidden">{t('status.hidden', 'verborgen')}</option>
                   </select>
                 </div>
                 <select
@@ -378,9 +379,9 @@ export default function AdminKotDetailPage() {
                     })
                   }
                 >
-                  <option value="draft">concept</option>
-                  <option value="published">gepubliceerd</option>
-                  <option value="archived">gearchiveerd</option>
+                  <option value="draft">{t('status.draft', 'concept')}</option>
+                  <option value="published">{t('status.published', 'gepubliceerd')}</option>
+                  <option value="archived">{t('status.archived', 'gearchiveerd')}</option>
                 </select>
                 {error ? <p className="text-sm text-red-500">{error}</p> : null}
                 <button
@@ -391,15 +392,15 @@ export default function AdminKotDetailPage() {
                   {loading ? t('admin.common.saving', 'Opslaan...') : t('admin.common.save_changes', 'Wijzigingen opslaan')}
                 </button>
               </>
-            ) : (
-              <p className="text-sm text-text-muted">Kot laden...</p>
-            )}
+              ) : (
+                <p className="text-sm text-text-muted">{t('admin.koten.loading', "Kot laden...")}</p>
+              )}
           </section>
 
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h2 className="font-semibold text-lg mb-4">Huurtype</h2>
+            <h2 className="font-semibold text-lg mb-4">{t('admin.settings.tabs.categories', "Huurtype")}</h2>
             {allRentTypes.length === 0 ? (
-              <p className="text-sm text-text-muted">Geen huurtypen gevonden. Voeg ze toe via Settings → Categories.</p>
+              <p className="text-sm text-text-muted">{t('admin.koten.no_rent_types', "Geen huurtypen gevonden. Voeg ze toe via Settings → Categories.")}</p>
             ) : (
               <div className="flex flex-wrap gap-3">
                 {allRentTypes.map(rt => (
@@ -418,7 +419,7 @@ export default function AdminKotDetailPage() {
           </section>
 
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h2 className="font-semibold text-lg mb-4">Foto's</h2>
+            <h2 className="font-semibold text-lg mb-4">{t('admin.view.media', "Foto's")}</h2>
             {kot ? (
               <PhotoManager
                 kotId={kot.id}
@@ -429,9 +430,9 @@ export default function AdminKotDetailPage() {
           </section>
 
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h2 className="font-semibold text-lg mb-4">Beschikbaarheidshistoriek</h2>
+            <h2 className="font-semibold text-lg mb-4">{t('admin.koten.history_title', "Beschikbaarheidshistoriek")}</h2>
             {history.length === 0 ? (
-              <p className="text-sm text-text-muted">Nog geen statuswijzigingen.</p>
+              <p className="text-sm text-text-muted">{t('admin.koten.no_history', "Nog geen statuswijzigingen.")}</p>
             ) : (
               <div className="space-y-2">
                 {history.map((entry) => (
@@ -452,11 +453,11 @@ export default function AdminKotDetailPage() {
 
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-semibold text-lg">Contracten</h2>
+              <h2 className="font-semibold text-lg">{t('admin.common.contracts', "Contracten")}</h2>
               <button
                 onClick={async () => {
                   if (!kot) return;
-                  if (!confirm("Genereer nieuw contract voor dit kot?")) return;
+                  if (!confirm(t('admin.common.generate_contract_confirm', "Genereer nieuw contract voor dit kot?"))) return;
 
                   try {
                     const res = await fetch('/api/admin/contracts/generate', {
@@ -472,22 +473,22 @@ export default function AdminKotDetailPage() {
 
                     const data = await res.json();
                     if (res.ok) {
-                      prompt("Contract Link Aangemaakt! Stuur deze naar de huurder:", `${window.location.origin}/sign/${data.token}`);
+                      prompt(t('admin.common.contract_created', "Contract Link Aangemaakt! Stuur deze naar de huurder:"), `${window.location.origin}/sign/${data.token}`);
                     } else {
-                      alert(data.error || 'Fout bij aanmaken contract');
+                      alert(data.error || t('admin.common.contract_error', 'Fout bij aanmaken contract'));
                     }
                   } catch (e) {
                     console.error(e);
-                    alert('Fout bij aanmaken contract');
+                    alert(t('admin.common.contract_error', 'Fout bij aanmaken contract'));
                   }
                 }}
                 className="bg-blue-600 text-white text-sm px-3 py-2 rounded hover:bg-blue-700"
               >
-                Maak contract
+                {t('admin.common.make_contract', 'Maak contract')}
               </button>
             </div>
             <p className="text-sm text-text-muted">
-              Genereer en beheer huurcontracten voor dit kot.
+              {t('admin.common.contract_desc', "Genereer en beheer huurcontracten voor dit kot.")}
             </p>
           </section>
         </div>
