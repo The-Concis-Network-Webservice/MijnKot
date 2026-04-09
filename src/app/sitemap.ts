@@ -8,7 +8,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mijn-kot.be';
 
 /**
  * Static pages whose content changes rarely.
- * Use a real calendar date here — do NOT use new Date().
+ * Use a real calendar date here - do NOT use new Date().
  * Update this date manually when you make meaningful content changes to these pages.
  */
 const STATIC_PAGES: MetadataRoute.Sitemap = [
@@ -57,7 +57,7 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // --- Dynamic: published koten ---
   // Use updated_at so Google sees freshness signals when listings change price,
-  // availability, or description — not just when they were first created.
+  // availability, or description - not just when they were first created.
   const koten = await query<Pick<Kot, 'id' | 'updated_at'>>(
     "SELECT id, updated_at FROM koten WHERE status = 'published' AND archived_at IS NULL"
   );

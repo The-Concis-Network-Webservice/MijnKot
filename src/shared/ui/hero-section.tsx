@@ -41,7 +41,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, rgba(241,237,232,0.72) 0%, rgba(231,224,213,0.65) 100%)' }} />
             </div>
 
-            {/* Decorative background ring — large, subtle */}
+            {/* Decorative background ring - large, subtle */}
             <div
                 className="absolute pointer-events-none"
                 style={{
@@ -67,7 +67,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
                 }}
             />
 
-            {/* Content — centered */}
+            {/* Content - centered */}
             <div className="relative z-10 text-center max-w-3xl mx-auto">
 
                 {/* Label */}

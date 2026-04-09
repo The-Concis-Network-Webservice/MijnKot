@@ -267,7 +267,7 @@ export default function AdminKotCreatePage() {
                   className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-4 py-2 rounded-lg text-sm font-medium"
                   onClick={() => router.push(`/admin/koten/${createdKotId}`)}
                 >
-                  Done — go to kot
+                  Done - go to kot
                 </button>
               </div>
               <PhotoManager

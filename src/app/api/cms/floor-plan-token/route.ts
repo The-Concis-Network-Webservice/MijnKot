@@ -49,7 +49,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json({ token, expires_at: expiresAt });
   } catch {
-    // Table doesn't exist yet — fall back to env var token
+    // Table doesn't exist yet - fall back to env var token
     const token = process.env.FLOOR_PLAN_TOKEN;
     if (!token) {
       return NextResponse.json({ error: "Token not configured" }, { status: 500 });

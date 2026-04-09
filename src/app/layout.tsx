@@ -117,7 +117,7 @@ export default async function RootLayout({
 
   return (
     <html lang="nl" className={`${outfit.variable} ${interBody.variable}`}>
-      <body>
+      <body suppressHydrationWarning>
         {process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN && (
           <Script
             defer

@@ -15,7 +15,7 @@ export async function logAudit(params: {
     );
   } catch (error) {
     console.error("Failed to log audit:", error);
-    // Continue execution — auditing shouldn't block the main action if DB state is messy
+    // Continue execution - auditing shouldn't block the main action if DB state is messy
   }
 }
 

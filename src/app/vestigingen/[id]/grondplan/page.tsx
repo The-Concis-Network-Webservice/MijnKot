@@ -137,7 +137,7 @@ export default async function PublicFloorPlanPage({
       );
       tokenValid = !!row;
     } catch {
-      // Table doesn't exist yet — fall back to env var token
+      // Table doesn't exist yet - fall back to env var token
     }
     // Fallback: legacy env var token (no expiry)
     if (!tokenValid && process.env.FLOOR_PLAN_TOKEN) {
@@ -255,7 +255,7 @@ export default async function PublicFloorPlanPage({
           </div>
         </div>
 
-        {/* Floor plan — 3-column grid: A | B | C/D/E */}
+        {/* Floor plan - 3-column grid: A | B | C/D/E */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
           <div className="grid grid-cols-[auto_auto_auto] gap-x-6 items-start w-fit mx-auto">
 

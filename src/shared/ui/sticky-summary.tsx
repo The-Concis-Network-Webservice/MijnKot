@@ -70,7 +70,7 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
                             </span>
                         </div>
 
-                        {/* Urgency — available only */}
+                        {/* Urgency - available only */}
                         {isAvailable && (
                             <div className="rounded-xl border border-accent-500/20 bg-accent-500/5 px-4 py-3">
                                 <p className="text-xs font-semibold text-accent-600 mb-0.5">{t('sticky.act_fast')}</p>

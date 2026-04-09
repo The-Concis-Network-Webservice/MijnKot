@@ -55,14 +55,14 @@ export function KotCard({ kot }: { kot: KotWithPhoto }) {
                 {/* Bottom gradient */}
                 <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
 
-                {/* Price — bottom left on photo */}
+                {/* Price - bottom left on photo */}
                 <div className="absolute bottom-3 left-3">
                     <span className="inline-block bg-white/95 backdrop-blur-sm rounded-lg px-3 py-1.5 text-sm font-bold text-neutral-500 shadow-subtle">
                         €{kot.price}<span className="text-xs font-normal text-text-muted">{t('detail.per_month')}</span>
                     </span>
                 </div>
 
-                {/* Status — top right */}
+                {/* Status - top right */}
                 <span className={`absolute top-3 right-3 px-2.5 py-1 rounded-lg text-xs font-semibold border backdrop-blur-sm ${statusClass}`}>
                     {statusLabel}
                 </span>

@@ -378,7 +378,7 @@ export function FloorPlanManager({ vestigingId, koten }: Props) {
                     });
                   }}
                 >
-                  <option value="">— Niet gekoppeld —</option>
+                  <option value="">- Niet gekoppeld -</option>
                   {koten.map((k) => <option key={k.id} value={k.id}>{k.title}</option>)}
                 </select>
               </div>

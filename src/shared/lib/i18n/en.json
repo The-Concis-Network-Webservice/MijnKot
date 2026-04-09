@@ -17,7 +17,7 @@
     "home": {
         "hero": {
             "title": "Find your perfect student home",
-            "subtitle": "Discover quality student rooms and studios in Leuven — furnished, fire-safety certified, and rented directly from the owner.",
+            "subtitle": "Discover quality student rooms and studios in Leuven - furnished, fire-safety certified, and rented directly from the owner.",
             "cta": "View Properties",
             "secondary_cta": "How it works",
             "badge": "Student Housing · Leuven"
@@ -186,5 +186,128 @@
         "rented": "Rented",
         "reserved": "Reserved",
         "pending": "Pending"
+    },
+    "kotaanbod": {
+        "label": "Room Overview",
+        "title": "The right room for every student",
+        "description": "From compact study spaces to spacious studios with terraces. We have something for every student and every budget.",
+        "student_rooms": {
+            "title": "Student rooms",
+            "size": "12–31 m²",
+            "desc": "Individual rooms, with or without private bathroom or kitchenette."
+        },
+        "duplex": {
+            "title": "Duplex rooms",
+            "size": "25–40 m²",
+            "desc": "Multi-level rooms for those who want more space and privacy."
+        },
+        "studios": {
+            "title": "Studios",
+            "size": "30–50 m²",
+            "desc": "Fully independent studios with private kitchen and bathroom."
+        },
+        "studios_terrace": {
+            "title": "Studios with terrace",
+            "size": "35–50 m²",
+            "desc": "Spacious studio with an outdoor area, ideal for sunny days."
+        },
+        "double_rooms": {
+            "title": "Double rooms",
+            "size": "30–45 m²",
+            "desc": "For two students or couples who want to live together."
+        }
+    },
+    "over_ons": {
+        "hero": {
+            "badge": "Student Housing - Leuven",
+            "title": "Quality living,",
+            "title_highlight": "without the hassle.",
+            "desc": "Mijn-Kot offers furnished student rooms and studios in Leuven. With the official KU Leuven Kotlabel, certified fire safety and direct contact with the owner - transparent and honest.",
+            "btn_rooms": "View available rooms",
+            "btn_visit": "Book a free visit"
+        },
+        "stats": {
+            "buildings": "Buildings in Leuven",
+            "kotlabel": "Kotlabel certified",
+            "fire": "Fire-safety certified",
+            "fees": "Agency fees"
+        },
+        "story": {
+            "label": "Our Story",
+            "title": "Student housing with a human touch",
+            "p1": "Mijn-Kot rents quality student rooms and studios in Leuven. We manage four buildings in prime locations - in the bustling city center and quiet Heverlee.",
+            "p2": "What sets us apart? We are not an agency. You rent directly from the owner - fast, fair and without hidden costs. All our rooms are furnished, fire-safe certified and bear the official ",
+            "p2_strong": "KU Leuven Kotlabel.",
+            "p3": "We work closely with the KU Leuven Housing Service and provide professional maintenance via our own handyman. If there is an issue, we solve it."
+        },
+        "features": {
+            "f1_title": "KU Leuven Kotlabel",
+            "f1_desc": "Official quality label for comfort and safety",
+            "f2_title": "Fire safety",
+            "f2_desc": "Certified by the Leuven fire department",
+            "f3_title": "Furnished",
+            "f3_desc": "Rooms from 12-31 m2, studios up to 50 m2",
+            "f4_title": "In-house maintenance",
+            "f4_desc": "Fast follow-up on technical issues"
+        },
+        "values": {
+            "label": "Why Mijn-Kot",
+            "title": "Our promises to you",
+            "items": [
+                {
+                    "title": "Fully fire-safe",
+                    "desc": "Every room meets the safety regulations of the Leuven fire department. Your safety is our priority."
+                },
+                {
+                    "title": "KU Leuven Kotlabel",
+                    "desc": "Our rooms bear the official quality label of KU Leuven - a guarantee for comfort, safety and value."
+                },
+                {
+                    "title": "Direct owner contact",
+                    "desc": "No middlemen, no agency fees. You rent directly from us - fast, transparent and personal."
+                },
+                {
+                    "title": "In-house maintenance",
+                    "desc": "A dedicated handyman provides quick maintenance. Small problems are usually solved within a day."
+                }
+            ]
+        },
+        "steps": {
+            "label": "Step-by-step",
+            "title": "From searching to moving in 4 steps",
+            "btn": "Book a free viewing now",
+            "btn_sub": "Free - No obligations - Instant confirmation",
+            "items": [
+                {
+                    "title": "View our offer",
+                    "desc": "Browse through our rooms and studios in Leuven. Filter by type, location and price."
+                },
+                {
+                    "title": "Plan a free visit",
+                    "desc": "Book a viewing online - free, without obligations and instantly confirmed. You choose the time."
+                },
+                {
+                    "title": "Sign digitally",
+                    "desc": "Your rental agreement is drawn up and signed digitally. Fast, secure and legally binding."
+                },
+                {
+                    "title": "Move in!",
+                    "desc": "Receive your keys and start your student life in a high-quality, fully furnished room."
+                }
+            ]
+        },
+        "locations": {
+            "label": "Locations",
+            "title": "Our buildings in Leuven",
+            "desc": "Four buildings in prime locations - centrally located in the city and quiet in Heverlee, always close to KU Leuven.",
+            "btn_view": "View",
+            "btn_all": "View all locations and available rooms"
+        },
+        "contact": {
+            "title": "Questions? We are happy to help.",
+            "desc": "Send an email to Dominique or schedule a viewing immediately. We answer quickly and personally.",
+            "btn_contact": "Contact form",
+            "btn_visit": "Schedule a viewing"
+        }
     }
 }

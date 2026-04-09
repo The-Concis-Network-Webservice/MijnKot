@@ -87,7 +87,7 @@ export async function PATCH(request: Request) {
   if (!updated) {
     return NextResponse.json({ error: "Failed to update vestiging." }, { status: 400 });
   }
-  // Step 2: update image_url separately — gracefully skips if column missing (local dev DB)
+  // Step 2: update image_url separately - gracefully skips if column missing (local dev DB)
   if (image_url !== undefined) {
     try {
       await queryOne(
@@ -95,7 +95,7 @@ export async function PATCH(request: Request) {
         [image_url ?? null, id]
       );
     } catch {
-      // Column may not exist in local dev DB — safe to ignore
+      // Column may not exist in local dev DB - safe to ignore
     }
   }
   await logAudit({

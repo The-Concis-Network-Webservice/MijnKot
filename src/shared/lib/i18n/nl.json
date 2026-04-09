@@ -17,7 +17,7 @@
     "home": {
         "hero": {
             "title": "Vind jouw ideale studentenkot",
-            "subtitle": "Ontdek kwalitatieve studentenkoten en studio's in Leuven — gemeubeld, brandveilig gecertificeerd en rechtstreeks bij de eigenaar.",
+            "subtitle": "Ontdek kwalitatieve studentenkoten en studio's in Leuven - gemeubeld, brandveilig gecertificeerd en rechtstreeks bij de eigenaar.",
             "cta": "Bekijk Aanbod",
             "secondary_cta": "Hoe werkt het",
             "badge": "Studentenhuisvesting · Leuven"
@@ -186,5 +186,128 @@
         "rented": "Verhuurd",
         "reserved": "Gereserveerd",
         "pending": "In afwachting"
+    },
+    "kotaanbod": {
+        "label": "Kotaanbod",
+        "title": "Voor elke student de juiste kamer",
+        "description": "Van compacte studeerruimtes tot ruime studio's met terras. Wij hebben iets voor elke student en elk budget.",
+        "student_rooms": {
+            "title": "Studentenkamers",
+            "size": "12–31 m²",
+            "desc": "Individuele kamers, al dan niet met privébadkamer of kitchenette."
+        },
+        "duplex": {
+            "title": "Duplex kamers",
+            "size": "25–40 m²",
+            "desc": "Meerniveaukamers voor wie meer ruimte en privacy wil."
+        },
+        "studios": {
+            "title": "Studio's",
+            "size": "30–50 m²",
+            "desc": "Volledig zelfstandige studio's met eigen keuken en badkamer."
+        },
+        "studios_terrace": {
+            "title": "Studio's met terras",
+            "size": "35–50 m²",
+            "desc": "Ruime studio met buitenruimte, ideaal voor zonnige dagen."
+        },
+        "double_rooms": {
+            "title": "Dubbele kamers",
+            "size": "30–45 m²",
+            "desc": "Voor twee studenten of koppels die samen willen wonen."
+        }
+    },
+    "over_ons": {
+        "hero": {
+            "badge": "Studentenhuisvesting - Leuven",
+            "title": "Kwalitatief wonen,",
+            "title_highlight": "zonder gedoe.",
+            "desc": "Mijn-Kot biedt gemeubelde studentenkamers en studio's in Leuven. Met het officiële KU Leuven Kotlabel, gecertificeerde brandveiligheid en direct contact met de eigenaar - transparant en eerlijk.",
+            "btn_rooms": "Bekijk beschikbare kamers",
+            "btn_visit": "Gratis bezichtiging plannen"
+        },
+        "stats": {
+            "buildings": "Gebouwen in Leuven",
+            "kotlabel": "Kotlabel gecertificeerd",
+            "fire": "Brandveilig gecertificeerd",
+            "fees": "Bemiddelingskosten"
+        },
+        "story": {
+            "label": "Ons verhaal",
+            "title": "Studentenhuisvesting met een menselijk gezicht",
+            "p1": "Mijn-Kot verhuurt kwalitatieve studentenkamers en studio's in Leuven. We beheren vier gebouwen op toplocaties - in het bruisende stadscentrum en het rustige Heverlee.",
+            "p2": "Wat ons onderscheidt? Wij zijn geen bemiddelingskantoor. Je huurt rechtstreeks bij de eigenaar - snel, eerlijk en zonder verborgen kosten. Al onze kamers zijn gemeubeld, brandveilig gecertificeerd en dragen het officiële ",
+            "p2_strong": "KU Leuven Kotlabel.",
+            "p3": "We werken nauw samen met de Kotendienst van KU Leuven en zorgen voor professioneel onderhoud via een eigen klusjesman. Als er iets is, lossen we het op."
+        },
+        "features": {
+            "f1_title": "KU Leuven Kotlabel",
+            "f1_desc": "Officieel kwaliteitslabel voor comfort en veiligheid",
+            "f2_title": "Brandveiligheid",
+            "f2_desc": "Gecertificeerd door brandweer Leuven",
+            "f3_title": "Gemeubeld",
+            "f3_desc": "Kamers van 12-31 m2, studio's tot 50 m2",
+            "f4_title": "Eigen onderhoud",
+            "f4_desc": "Snelle opvolging bij technische problemen"
+        },
+        "values": {
+            "label": "Waarom Mijn-Kot",
+            "title": "Onze beloftes aan jou",
+            "items": [
+                {
+                    "title": "Volledig brandveilig",
+                    "desc": "Elke kamer voldoet aan de veiligheidsvoorschriften van de brandweer Leuven. Jouw veiligheid is onze prioriteit."
+                },
+                {
+                    "title": "KU Leuven Kotlabel",
+                    "desc": "Onze kamers dragen het officiële kwaliteitslabel van KU Leuven - een garantie voor comfort, veiligheid en prijs-kwaliteit."
+                },
+                {
+                    "title": "Direct contact met eigenaar",
+                    "desc": "Geen tussenpersonen, geen bemiddelingskosten. Je huurt rechtstreeks bij ons - snel, transparant en persoonlijk."
+                },
+                {
+                    "title": "Eigen onderhoudsdienst",
+                    "desc": "Een vaste klusjesman staat in voor snel onderhoud. Kleine problemen worden doorgaans binnen de dag opgelost."
+                }
+            ]
+        },
+        "steps": {
+            "label": "Stappenplan",
+            "title": "Van zoeken naar intrekken in 4 stappen",
+            "btn": "Plan nu een gratis bezichtiging",
+            "btn_sub": "Gratis - Vrijblijvend - Direct bevestiging",
+            "items": [
+                {
+                    "title": "Bekijk het aanbod",
+                    "desc": "Blader door onze kamers en studio's in Leuven. Filter op type, locatie en prijs."
+                },
+                {
+                    "title": "Plan een gratis bezichtiging",
+                    "desc": "Boek online een bezichtiging - gratis, vrijblijvend en direct bevestigd. Je kiest zelf het moment."
+                },
+                {
+                    "title": "Teken digitaal",
+                    "desc": "Je huurovereenkomst wordt digitaal opgesteld en ondertekend. Snel, veilig en juridisch geldig."
+                },
+                {
+                    "title": "Trek in!",
+                    "desc": "Ontvang je sleutels en begin je studentenleven in een kwalitatief, volledig gemeubeld kot."
+                }
+            ]
+        },
+        "locations": {
+            "label": "Locaties",
+            "title": "Onze gebouwen in Leuven",
+            "desc": "Vier gebouwen op toplocaties - centraal in de stad en rustig in Heverlee, altijd dicht bij KU Leuven.",
+            "btn_view": "Bekijk",
+            "btn_all": "Bekijk alle locaties en beschikbare kamers"
+        },
+        "contact": {
+            "title": "Vragen? We helpen je graag.",
+            "desc": "Stuur een e-mail naar Dominique of plan meteen een bezichtiging. We antwoorden snel en persoonlijk.",
+            "btn_contact": "Contactformulier",
+            "btn_visit": "Bezichtiging plannen"
+        }
     }
 }

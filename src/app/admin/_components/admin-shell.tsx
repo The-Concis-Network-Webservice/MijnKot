@@ -76,7 +76,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       <div className="flex-1 min-w-0">
         <header className="h-16 border-b border-gray-200 bg-white px-4 md:px-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* Hamburger — mobile only */}
+            {/* Hamburger - mobile only */}
             <button
               className="md:hidden p-1.5 rounded-lg hover:bg-gray-100 transition-colors"
               onClick={() => setMobileOpen(true)}

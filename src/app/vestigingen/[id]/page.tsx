@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
   if (!vestiging) return { title: 'Locatie niet gevonden', robots: { index: false } };
 
-  const title = `${vestiging.name} — Studentenkoten in ${vestiging.city}`;
+  const title = `${vestiging.name} - Studentenkoten in ${vestiging.city}`;
   const description = vestiging.description
     ? vestiging.description.slice(0, 155).trimEnd() + (vestiging.description.length > 155 ? '…' : '')
     : `Bekijk beschikbare studentenkoten in ${vestiging.name}, ${vestiging.city}. Grondplannen, foto's en directe huurinfo bij Mijn-Kot.`;

@@ -26,7 +26,7 @@ export async function GET(request: Request) {
   return NextResponse.json({ data: data.map(r => r.rent_type_id) });
 }
 
-// POST { kot_id, rent_type_id } — link
+// POST { kot_id, rent_type_id } - link
 export async function POST(request: Request) {
   const { user, role } = await getUserFromRequest();
   if (!user || !canEditContent(role)) {
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
   return NextResponse.json({ success: true });
 }
 
-// DELETE { kot_id, rent_type_id } — unlink
+// DELETE { kot_id, rent_type_id } - unlink
 export async function DELETE(request: Request) {
   const { user, role } = await getUserFromRequest();
   if (!user || !canEditContent(role)) {

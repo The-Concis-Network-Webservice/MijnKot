@@ -3,7 +3,7 @@
 import { I18nextProvider } from 'react-i18next';
 import i18n from '@/shared/lib/i18n';
 
-// Render children immediately — no mount guard.
+// Render children immediately - no mount guard.
 // The mount guard caused Googlebot to receive a blank spinner instead of page content.
 // i18next falls back to Dutch (default locale) on the server and switches client-side
 // once the browser language detector runs. A brief NL→EN flash for English users is
