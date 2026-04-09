@@ -14,6 +14,9 @@ import {
   MapPinIcon,
   EnvelopeIcon,
   StarIcon,
+  HomeIcon,
+  ArrowsUpDownIcon,
+  SunIcon,
 } from '@heroicons/react/24/outline';
 
 export const runtime = 'edge';
@@ -61,12 +64,12 @@ const values = [
   {
     icon: StarIcon,
     title: 'KU Leuven Kotlabel',
-    desc: 'Onze kamers dragen het officiële kwaliteitslabel van KU Leuven — een garantie voor comfort, veiligheid en prijs-kwaliteit.',
+    desc: 'Onze kamers dragen het officiële kwaliteitslabel van KU Leuven, een garantie voor comfort, veiligheid en prijs-kwaliteit.',
   },
   {
     icon: UserGroupIcon,
     title: 'Direct contact met eigenaar',
-    desc: 'Geen tussenpersonen, geen bemiddelingskosten. Je huurt rechtstreeks bij ons — snel, transparant en persoonlijk.',
+    desc: 'Geen tussenpersonen, geen bemiddelingskosten. Je huurt rechtstreeks bij ons. Snel, transparant en persoonlijk.',
   },
   {
     icon: WrenchScrewdriverIcon,
@@ -84,7 +87,7 @@ const steps = [
   {
     number: '02',
     title: 'Plan een gratis bezichtiging',
-    desc: 'Boek online een bezichtiging — gratis, vrijblijvend en direct bevestigd. Je kiest zelf het moment.',
+    desc: 'Boek online een bezichtiging: gratis, vrijblijvend en direct bevestigd. Je kiest zelf het moment.',
   },
   {
     number: '03',
@@ -118,7 +121,7 @@ export default async function OverOnsPage() {
           </h1>
           <p className="text-lg md:text-xl text-white/75 max-w-2xl leading-relaxed">
             Mijn-Kot biedt gemeubelde studentenkamers en studio's in Leuven. Met het officiële KU Leuven Kotlabel,
-            gecertificeerde brandveiligheid en direct contact met de eigenaar — transparant en eerlijk.
+            gecertificeerde brandveiligheid en direct contact met de eigenaar, transparant en eerlijk.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
@@ -168,11 +171,11 @@ export default async function OverOnsPage() {
             <div className="space-y-4 text-neutral-700 leading-relaxed">
               <p>
                 Mijn-Kot verhuurt kwalitatieve studentenkamers en studio's in Leuven. We beheren
-                vier gebouwen op toplocaties — in het bruisende stadscentrum en het rustige Heverlee.
+                vier gebouwen op toplocaties, zowel in het bruisende stadscentrum als in het rustige Heverlee.
               </p>
               <p>
                 Wat ons onderscheidt? Wij zijn geen bemiddelingskantoor. Je huurt rechtstreeks bij de
-                eigenaar — snel, eerlijk en zonder verborgen kosten. Al onze kamers zijn gemeubeld,
+                eigenaar. Snel, eerlijk en zonder verborgen kosten. Al onze kamers zijn gemeubeld,
                 brandveilig gecertificeerd en dragen het officiële <strong className="text-primary-800">KU Leuven Kotlabel</strong>.
               </p>
               <p>
@@ -230,33 +233,39 @@ export default async function OverOnsPage() {
       </section>
 
       {/* Aanbod */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-accent-600 mb-3 block">Kotaanbod</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-900">
-            Voor elke student de juiste kamer
-          </h2>
-          <p className="mt-3 text-neutral-700 max-w-xl mx-auto">
-            Van compacte studeerruimtes tot ruime studio's met terras — wij hebben iets voor elke student en elk budget.
-          </p>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {[
-            { title: 'Studentenkamers', size: '12–31 m²', desc: 'Individuele kamers, al dan niet met privébadkamer of kitchenette.' },
-            { title: 'Duplex kamers', size: '25–40 m²', desc: 'Meerniveaukamers voor wie meer ruimte en privacy wil.' },
-            { title: "Studio's", size: '30–50 m²', desc: "Volledig zelfstandige studio's met eigen keuken en badkamer." },
-            { title: "Studio's met terras", size: '35–50 m²', desc: 'Ruime studio met buitenruimte — ideaal voor zonnige dagen.' },
-            { title: 'Dubbele kamers', size: '30–45 m²', desc: 'Voor twee studenten of koppels die samen willen wonen.' },
-            { title: 'Appartementen', size: 'voor 2–3 pers.', desc: 'Volwaardige appartementen voor 2–3 personen samen.' },
-          ].map(({ title, size, desc }) => (
-            <div key={title} className="bg-surface-card border border-border-light rounded-2xl p-5 hover:border-primary-200 hover:shadow-soft transition-all">
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="font-semibold text-primary-900">{title}</h3>
-                <span className="text-xs font-medium text-accent-600 bg-accent-50 px-2 py-0.5 rounded-full whitespace-nowrap">{size}</span>
+      <section className="bg-[#f3ede6] py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold uppercase tracking-widest text-accent-600 mb-3 block">Kotaanbod</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-900">
+              Voor elke student de juiste kamer
+            </h2>
+            <p className="mt-3 text-neutral-500 max-w-xl mx-auto">
+              Van compacte studeerruimtes tot ruime studio&apos;s met terras. Wij hebben iets voor elke student en elk budget.
+            </p>
+          </div>
+          <div className="divide-y divide-[#dfd8cd]">
+            {[
+              { Icon: HomeModernIcon, title: 'Studentenkamers', size: '12–31 m²', desc: 'Individuele kamers, al dan niet met privébadkamer of kitchenette.' },
+              { Icon: ArrowsUpDownIcon, title: 'Duplex kamers', size: '25–40 m²', desc: 'Meerniveaukamers voor wie meer ruimte en privacy wil.' },
+              { Icon: HomeIcon, title: "Studio's", size: '30–50 m²', desc: "Volledig zelfstandige studio's met eigen keuken en badkamer." },
+              { Icon: SunIcon, title: "Studio's met terras", size: '35–50 m²', desc: 'Ruime studio met buitenruimte, ideaal voor zonnige dagen.' },
+              { Icon: UserGroupIcon, title: 'Dubbele kamers', size: '30–45 m²', desc: 'Voor twee studenten of koppels die samen willen wonen.' },
+            ].map(({ Icon, title, size, desc }) => (
+              <div key={title} className="flex items-center gap-5 py-5 group">
+                <div className="flex-shrink-0 w-11 h-11 bg-primary-500 rounded-xl flex items-center justify-center group-hover:bg-primary-600 transition-colors">
+                  <Icon className="w-5 h-5 text-white" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-primary-900">{title}</h3>
+                  <p className="text-sm text-neutral-500 mt-0.5 leading-relaxed">{desc}</p>
+                </div>
+                <div className="flex-shrink-0 pl-4 text-right">
+                  <span className="text-base font-bold text-primary-500 tabular-nums">{size}</span>
+                </div>
               </div>
-              <p className="text-sm text-neutral-500 leading-relaxed">{desc}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
@@ -299,7 +308,7 @@ export default async function OverOnsPage() {
             Onze gebouwen in Leuven
           </h2>
           <p className="mt-3 text-neutral-600 max-w-xl mx-auto">
-            Vier gebouwen op toplocaties — centraal in de stad en rustig in Heverlee, altijd dicht bij KU Leuven.
+            Vier gebouwen op toplocaties, centraal in de stad en rustig in Heverlee, altijd dicht bij KU Leuven.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 gap-4 mb-8">
