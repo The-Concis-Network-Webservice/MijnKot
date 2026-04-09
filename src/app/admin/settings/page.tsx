@@ -19,7 +19,8 @@ const emptySettings: SiteSettings = {
   contact_phone: siteConfig.company.contact.phone,
   contact_address: `${siteConfig.company.address.street}, ${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`,
   company_name: siteConfig.company.name,
-  company_legal_name: siteConfig.company.legalName
+  company_legal_name: siteConfig.company.legalName,
+  contact_domain: ""
 };
 
 export const runtime = 'edge';
@@ -118,7 +119,8 @@ export default function AdminSettingsPage() {
       notice_text: settings.notice_text,
       popup_active: settings.popup_active,
       popup_title: settings.popup_title,
-      popup_text: settings.popup_text
+      popup_text: settings.popup_text,
+      contact_domain: settings.contact_domain
     };
     const res = await fetch("/api/cms/settings", {
       method: settings.id ? "PATCH" : "POST",
@@ -432,6 +434,23 @@ export default function AdminSettingsPage() {
                     />
                   </div>
                 </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-primary-800">Website Domein (Canonical)</label>
+                  <input
+                    className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
+                    placeholder="mijn-kot.be"
+                    value={settings.contact_domain ?? ""}
+                    onChange={(event) =>
+                      setSettings({
+                        ...settings,
+                        contact_domain: event.target.value
+                      })
+                    }
+                  />
+                  <p className="text-[10px] text-gray-400 italic">Gebruikt voor SEO en Canonical links.</p>
+                </div>
+
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-primary-800">Contact adres</label>
                   <input
