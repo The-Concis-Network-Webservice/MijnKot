@@ -6,7 +6,7 @@ export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
     try {
-        const { email, name } = await req.json();
+        const { email, name, phone } = await req.json();
 
         if (!email || !email.includes('@')) {
             return NextResponse.json({ error: "Invalid email" }, { status: 400 });
@@ -14,8 +14,8 @@ export async function POST(req: NextRequest) {
 
         // Insert lead
         await queryOne(
-            "insert into leads (email, name) values ($1, $2) returning id",
-            [email, name || null]
+            "insert into leads (email, name, phone) values ($1, $2, $3) returning id",
+            [email, name || null, phone || null]
         );
 
         // Send email (fire and forget to avoid blocking, or await if critical)
