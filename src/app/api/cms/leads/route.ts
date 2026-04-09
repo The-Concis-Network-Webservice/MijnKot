@@ -21,3 +21,21 @@ export async function GET(req: NextRequest) {
     }
 }
 
+export async function DELETE(req: NextRequest) {
+    const user = await getSession();
+    if (!user || user.role !== 'super_admin') {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    try {
+        const { id } = await req.json();
+        if (!id) return NextResponse.json({ error: "Missing ID" }, { status: 400 });
+
+        await query("delete from leads where id = $1", [id]);
+        return NextResponse.json({ success: true });
+    } catch (err) {
+        console.error("Error deleting lead:", err);
+        return NextResponse.json({ error: "DB Error" }, { status: 500 });
+    }
+}
+

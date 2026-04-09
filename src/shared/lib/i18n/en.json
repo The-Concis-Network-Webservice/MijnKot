@@ -143,10 +143,10 @@
         "consent": "I agree to the processing of my data and would like to receive updates. See our privacy policy for more info.",
         "submit": "Keep me updated →",
         "loading": "Just a moment...",
-        "no_spam": "No spam, we promise. Unsubscribe anytime.",
+        "no_spam": "No spam. Unsubscribe anytime.",
         "close": "Close",
         "success_title": "Subscribed!",
-        "success_desc": "Check your inbox, we've sent you a welcome email.",
+        "success_desc": "We will keep you informed as soon as new rooms become available.",
         "error_phone": "Please enter a valid phone number.",
         "error_consent": "You must agree to the terms.",
         "error_generic": "Something went wrong. Please try again later."

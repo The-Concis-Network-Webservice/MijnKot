@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Facebook, Instagram, Mail, MapPin, CheckCircle } from 'lucide-react';
+import { Facebook, Instagram, Mail, MapPin, CheckCircle, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { siteConfig } from '@/shared/lib/config';
 import type { SiteSettings } from '@/types';
@@ -95,9 +95,10 @@ export function LeadCaptureModal({
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative animate-scale-in">
                 <button
                     onClick={handleClose}
-                    className="absolute top-4 right-4 text-text-muted hover:text-text-main transition-colors px-2 py-1 text-sm font-medium bg-secondary-100 rounded-lg"
+                    className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-800 transition-colors bg-neutral-100 hover:bg-neutral-200 p-2 rounded-full"
+                    aria-label={t('modal.close')}
                 >
-                    {t('modal.close')}
+                    <X className="w-5 h-5" />
                 </button>
 
                 <div className="p-8">
@@ -105,10 +106,10 @@ export function LeadCaptureModal({
                         <>
                             <div className="text-center mb-8">
                                 <h2 className="text-2xl font-display font-semibold text-text-main mb-2">
-                                    {t('modal.title')}
+                                    {settings?.popup_title || t('modal.title')}
                                 </h2>
-                                <p className="text-text-secondary leading-relaxed">
-                                    {t('modal.desc')}
+                                <p className="text-neutral-600 leading-relaxed">
+                                    {settings?.popup_text || t('modal.desc')}
                                 </p>
                             </div>
 
@@ -131,11 +132,8 @@ export function LeadCaptureModal({
                                             setPhone(e.target.value);
                                             if (error) setError(null);
                                         }}
-                                        className={`w-full px-4 py-3 rounded-xl border ${error ? 'border-red-500' : 'border-border-light'} focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-secondary-50/50 text-text-main placeholder:text-neutral-400`}
+                                        className={`w-full px-4 py-3 rounded-xl border ${error === t('modal.error_phone') ? 'border-red-500' : 'border-border-light'} focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition bg-secondary-50/50 text-text-main placeholder:text-neutral-400`}
                                     />
-                                    {error && (
-                                        <p className="mt-1 text-xs text-red-500 ml-1">{error}</p>
-                                    )}
                                 </div>
                                 <div>
                                     <input
@@ -164,6 +162,10 @@ export function LeadCaptureModal({
                                     </label>
                                 </div>
 
+                                {error && (
+                                    <p className="text-xs text-red-500 font-medium px-1 text-center">{error}</p>
+                                )}
+
                                 <button
                                     type="submit"
                                     disabled={loading}
@@ -172,7 +174,7 @@ export function LeadCaptureModal({
                                     {loading ? t('modal.loading') : t('modal.submit')}
                                 </button>
 
-                                <p className="text-xs text-center text-text-muted mt-4">
+                                <p className="text-xs text-center text-neutral-500 mt-5 mb-2 font-medium">
                                     {t('modal.no_spam')}
                                 </p>
                             </form>

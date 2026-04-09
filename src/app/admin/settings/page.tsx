@@ -111,7 +111,12 @@ export default function AdminSettingsPage() {
       contact_phone: settings.contact_phone,
       contact_address: settings.contact_address,
       company_name: settings.company_name,
-      company_legal_name: settings.company_legal_name
+      company_legal_name: settings.company_legal_name,
+      notice_active: settings.notice_active,
+      notice_text: settings.notice_text,
+      popup_active: settings.popup_active,
+      popup_title: settings.popup_title,
+      popup_text: settings.popup_text
     };
     const res = await fetch("/api/cms/settings", {
       method: settings.id ? "PATCH" : "POST",
@@ -128,6 +133,7 @@ export default function AdminSettingsPage() {
       await loadSettings();
       push("Settings updated.");
     }
+    setLoading(false);
   };
 
   const addRentType = async () => {

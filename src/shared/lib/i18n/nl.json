@@ -143,10 +143,10 @@
         "consent": "Ik ga akkoord met de verwerking van mijn gegevens en wil graag updates ontvangen. Bekijk onze privacyverklaring voor meer info.",
         "submit": "Hou mij op de hoogte →",
         "loading": "Momentje...",
-        "no_spam": "Geen spam, beloofd. Uitschrijven kan altijd.",
+        "no_spam": "Geen spam. Uitschrijven kan altijd.",
         "close": "Sluiten",
         "success_title": "Aangemeld!",
-        "success_desc": "Check je mailbox, we hebben je alvast een welkom gestuurd.",
+        "success_desc": "We houden je vanaf nu op de hoogte zodra er nieuwe koten vrijkomen.",
         "error_phone": "Voer een geldig telefoonnummer in.",
         "error_consent": "Je moet akkoord gaan met de voorwaarden.",
         "error_generic": "Er ging iets mis. Probeer het later opnieuw."

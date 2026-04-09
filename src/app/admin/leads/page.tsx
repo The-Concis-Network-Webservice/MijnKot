@@ -8,6 +8,7 @@ type Lead = {
     id: string;
     email: string;
     name: string | null;
+    phone: string | null;
     source: string;
     created_at: string;
 };
@@ -19,22 +20,44 @@ export default function LeadsPage() {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
 
-    useEffect(() => {
-        async function fetchLeads() {
-            try {
-                const res = await fetch("/api/cms/leads");
-                if (res.ok) {
-                    const data = await res.json();
-                    setLeads(data);
-                }
-            } catch (error) {
-                console.error("Failed to fetch leads", error);
-            } finally {
-                setLoading(false);
+    const fetchLeads = async () => {
+        try {
+            const res = await fetch("/api/cms/leads");
+            if (res.ok) {
+                const data = await res.json();
+                setLeads(data);
             }
+        } catch (error) {
+            console.error("Failed to fetch leads", error);
+        } finally {
+            setLoading(false);
         }
+    }
+
+    useEffect(() => {
         fetchLeads();
     }, []);
+
+    const handleDelete = async (id: string) => {
+        if (!confirm("Weet je zeker dat je deze lead wilt verwijderen?")) return;
+
+        try {
+            const res = await fetch("/api/cms/leads", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id })
+            });
+
+            if (res.ok) {
+                await fetchLeads();
+            } else {
+                alert("Fout bij het verwijderen van de lead.");
+            }
+        } catch (error) {
+            console.error("Delete failed", error);
+            alert("Netwerkfout bij het verwijderen.");
+        }
+    };
 
     return (
         <AdminGuard>
@@ -56,8 +79,9 @@ export default function LeadsPage() {
                                         <tr>
                                             <th className="px-6 py-4 font-medium text-gray-500">Email</th>
                                             <th className="px-6 py-4 font-medium text-gray-500">Naam</th>
+                                            <th className="px-6 py-4 font-medium text-gray-500">Telefoon</th>
                                             <th className="px-6 py-4 font-medium text-gray-500">Bron</th>
-                                            <th className="px-6 py-4 font-medium text-gray-500">Datum</th>
+                                            <th className="px-6 py-4 font-medium text-gray-500 text-right">Acties</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-100">
@@ -65,6 +89,7 @@ export default function LeadsPage() {
                                             <tr key={lead.id} className="hover:bg-gray-50/50 transition-colors">
                                                 <td className="px-6 py-4 font-medium text-text-main">{lead.email}</td>
                                                 <td className="px-6 py-4 text-gray-600">{lead.name || '-'}</td>
+                                                <td className="px-6 py-4 text-gray-600">{lead.phone || '-'}</td>
                                                 <td className="px-6 py-4 text-gray-500">
                                                     <span className="inline-flex items-center px-2 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-medium">
                                                         {lead.source}
@@ -74,6 +99,17 @@ export default function LeadsPage() {
                                                     {new Date(lead.created_at).toLocaleDateString('nl-BE', {
                                                         day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
                                                     })}
+                                                </td>
+                                                <td className="px-6 py-4 text-right">
+                                                    <button 
+                                                        onClick={() => handleDelete(lead.id)}
+                                                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                                                        title="Verwijder lead"
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                                                        </svg>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))}

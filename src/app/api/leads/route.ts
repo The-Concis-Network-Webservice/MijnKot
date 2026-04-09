@@ -1,35 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 import { queryOne } from "@/shared/lib/db";
-import { sendWelcomeEmail } from "@/shared/lib/email";
 
 export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
     try {
-        const { email, name } = await req.json();
+        const { email, name, phone } = await req.json();
 
         if (!email || !email.includes('@')) {
             return NextResponse.json({ error: "Invalid email" }, { status: 400 });
         }
 
-        // Insert lead
-        await queryOne(
-            "insert into leads (email, name) values ($1, $2) returning id",
-            [email, name || null]
-        );
+        // Check for existing lead
+        const existing = await queryOne("select id from leads where email = $1", [email]);
 
-        // Send email (fire and forget to avoid blocking, or await if critical)
-        // Since it's edge, await is safer to ensure completion before shutdown
-        if (process.env.RESEND) {
-            console.log(`Sending welcome email to lead: ${email}`);
-            const emailResult = await sendWelcomeEmail(email, name);
-            if (!emailResult.success) {
-                console.error('Failed to send welcome email:', emailResult.error);
-            } else {
-                console.log('Welcome email sent successfully');
-            }
+        if (existing) {
+            // Update existing lead (optional: only if name or phone provided)
+            await queryOne(
+                "update leads set name = coalesce($1, name), phone = coalesce($2, phone) where email = $3 returning id",
+                [name || null, phone || null, email]
+            );
         } else {
-            console.warn('RESEND API key missing, skipping welcome email for lead');
+            // Insert new lead
+            await queryOne(
+                "insert into leads (email, name, phone) values ($1, $2, $3) returning id",
+                [email, name || null, phone || null]
+            );
         }
 
         return NextResponse.json({ success: true });

@@ -132,7 +132,7 @@ export default async function RootLayout({
             <SiteNav vestigingen={vestigingen} settings={settings} />
             <main className="flex-1 pt-20">{children}</main>
             <SiteFooter settings={settings} />
-            <LeadCaptureModal />
+            <LeadCaptureModal settings={settings} />
           </div>
         </I18nProvider>
       </body>
