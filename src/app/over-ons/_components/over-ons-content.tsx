@@ -40,28 +40,28 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_30%_50%,white,transparent_60%)]" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-white/80 uppercase tracking-widest mb-6">
-            {t('over_ons.hero.badge')}
+            {t('over_ons.hero.badge' as any)}
           </span>
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            {t('over_ons.hero.title')}<br />
-            <span className="text-secondary-300">{t('over_ons.hero.title_highlight')}</span>
+            {t('over_ons.hero.title' as any)}<br />
+            <span className="text-secondary-300">{t('over_ons.hero.title_highlight' as any)}</span>
           </h1>
           <p className="text-lg md:text-xl text-white/75 max-w-2xl leading-relaxed">
-            {t('over_ons.hero.desc')}
+            {t('over_ons.hero.desc' as any)}
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/koten"
               className="inline-flex items-center gap-2 px-6 py-3.5 bg-accent-500 hover:bg-accent-600 text-white rounded-xl font-semibold transition-colors"
             >
-              {t('over_ons.hero.btn_rooms')}
+              {t('over_ons.hero.btn_rooms' as any)}
             </Link>
             <Link
               href="/afspraken"
               className="inline-flex items-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl font-semibold transition-colors"
             >
               <CalendarDaysIcon className="w-5 h-5" />
-              {t('over_ons.hero.btn_visit')}
+              {t('over_ons.hero.btn_visit' as any)}
             </Link>
           </div>
         </div>
@@ -71,10 +71,10 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 text-center">
             {[
-              { value: '4', label: t('over_ons.stats.buildings') },
-              { value: 'KU Leuven', label: t('over_ons.stats.kotlabel') },
-              { value: '100%', label: t('over_ons.stats.fire') },
-              { value: '€0', label: t('over_ons.stats.fees') },
+              { value: '4', label: t('over_ons.stats.buildings' as any) },
+              { value: 'KU Leuven', label: t('over_ons.stats.kotlabel' as any) },
+              { value: '100%', label: t('over_ons.stats.fire' as any) },
+              { value: '€0', label: t('over_ons.stats.fees' as any) },
             ].map(({ value, label }) => (
               <div key={label}>
                 <dt className="font-display text-3xl font-bold text-primary-700">{value}</dt>
@@ -89,39 +89,39 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <span className="text-xs font-bold uppercase tracking-widest text-accent-600 mb-3 block">
-              {t('over_ons.story.label')}
+              {t('over_ons.story.label' as any)}
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-900 mb-5 leading-tight">
-              {t('over_ons.story.title')}
+              {t('over_ons.story.title' as any)}
             </h2>
             <div className="space-y-4 text-neutral-700 leading-relaxed">
-              <p>{t('over_ons.story.p1')}</p>
+              <p>{t('over_ons.story.p1' as any)}</p>
               <p>
-                {t('over_ons.story.p2')} <strong className="text-primary-800">{t('over_ons.story.p2_strong')}</strong>
+                {t('over_ons.story.p2' as any)} <strong className="text-primary-800">{t('over_ons.story.p2_strong' as any)}</strong>
               </p>
-              <p>{t('over_ons.story.p3')}</p>
+              <p>{t('over_ons.story.p3' as any)}</p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-primary-50 rounded-2xl p-6 flex flex-col gap-2">
               <AcademicCapIcon className="w-8 h-8 text-primary-600" />
-              <p className="font-semibold text-primary-900 text-sm">{t('over_ons.features.f1_title')}</p>
-              <p className="text-xs text-neutral-500">{t('over_ons.features.f1_desc')}</p>
+              <p className="font-semibold text-primary-900 text-sm">{t('over_ons.features.f1_title' as any)}</p>
+              <p className="text-xs text-neutral-500">{t('over_ons.features.f1_desc' as any)}</p>
             </div>
             <div className="bg-accent-50 rounded-2xl p-6 flex flex-col gap-2">
               <ShieldCheckIcon className="w-8 h-8 text-accent-600" />
-              <p className="font-semibold text-primary-900 text-sm">{t('over_ons.features.f2_title')}</p>
-              <p className="text-xs text-neutral-500">{t('over_ons.features.f2_desc')}</p>
+              <p className="font-semibold text-primary-900 text-sm">{t('over_ons.features.f2_title' as any)}</p>
+              <p className="text-xs text-neutral-500">{t('over_ons.features.f2_desc' as any)}</p>
             </div>
             <div className="bg-secondary-50 rounded-2xl p-6 flex flex-col gap-2">
               <HomeModernIcon className="w-8 h-8 text-secondary-600" />
-              <p className="font-semibold text-primary-900 text-sm">{t('over_ons.features.f3_title')}</p>
-              <p className="text-xs text-neutral-500">{t('over_ons.features.f3_desc')}</p>
+              <p className="font-semibold text-primary-900 text-sm">{t('over_ons.features.f3_title' as any)}</p>
+              <p className="text-xs text-neutral-500">{t('over_ons.features.f3_desc' as any)}</p>
             </div>
             <div className="bg-primary-50 rounded-2xl p-6 flex flex-col gap-2">
               <WrenchScrewdriverIcon className="w-8 h-8 text-primary-600" />
-              <p className="font-semibold text-primary-900 text-sm">{t('over_ons.features.f4_title')}</p>
-              <p className="text-xs text-neutral-500">{t('over_ons.features.f4_desc')}</p>
+              <p className="font-semibold text-primary-900 text-sm">{t('over_ons.features.f4_title' as any)}</p>
+              <p className="text-xs text-neutral-500">{t('over_ons.features.f4_desc' as any)}</p>
             </div>
           </div>
         </div>
@@ -131,10 +131,10 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest text-accent-600 mb-3 block">
-              {t('over_ons.values.label')}
+              {t('over_ons.values.label' as any)}
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-900">
-              {t('over_ons.values.title')}
+              {t('over_ons.values.title' as any)}
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -157,10 +157,10 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center mb-14">
             <span className="text-xs font-bold uppercase tracking-widest text-secondary-400 mb-3 block">
-              {t('over_ons.steps.label')}
+              {t('over_ons.steps.label' as any)}
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-bold">
-              {t('over_ons.steps.title')}
+              {t('over_ons.steps.title' as any)}
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -178,9 +178,9 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-accent-500 hover:bg-accent-600 text-white rounded-xl font-semibold transition-colors"
             >
               <CalendarDaysIcon className="w-5 h-5" />
-              {t('over_ons.steps.btn')}
+              {t('over_ons.steps.btn' as any)}
             </Link>
-            <p className="mt-3 text-xs text-white/40">{t('over_ons.steps.btn_sub')}</p>
+            <p className="mt-3 text-xs text-white/40">{t('over_ons.steps.btn_sub' as any)}</p>
           </div>
         </div>
       </section>
@@ -188,13 +188,13 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-12">
           <span className="text-xs font-bold uppercase tracking-widest text-accent-600 mb-3 block">
-            {t('over_ons.locations.label')}
+            {t('over_ons.locations.label' as any)}
           </span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-900">
-            {t('over_ons.locations.title')}
+            {t('over_ons.locations.title' as any)}
           </h2>
           <p className="mt-3 text-neutral-600 max-w-xl mx-auto">
-            {t('over_ons.locations.desc')}
+            {t('over_ons.locations.desc' as any)}
           </p>
         </div>
         <div className="grid sm:grid-cols-2 gap-4 mb-8">
@@ -226,7 +226,7 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
                     </p>
                   </div>
                   <span className="shrink-0 text-xs font-semibold text-white bg-white/20 backdrop-blur-sm border border-white/20 px-3 py-1.5 rounded-full group-hover:bg-accent-500 group-hover:border-accent-500 transition-colors">
-                    {t('over_ons.locations.btn_view')}
+                    {t('over_ons.locations.btn_view' as any)}
                   </span>
                 </div>
               </div>
@@ -238,7 +238,7 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
             href="/vestigingen"
             className="inline-flex items-center gap-2 px-5 py-2.5 border border-border-mid text-primary-700 hover:bg-primary-50 rounded-xl text-sm font-medium transition-colors"
           >
-            {t('over_ons.locations.btn_all')}
+            {t('over_ons.locations.btn_all' as any)}
           </Link>
         </div>
       </section>
@@ -248,10 +248,10 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
           <div className="bg-surface-card border border-border-light rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center gap-8 justify-between">
             <div>
               <h2 className="font-display text-2xl md:text-3xl font-bold text-primary-900 mb-2">
-                {t('over_ons.contact.title')}
+                {t('over_ons.contact.title' as any)}
               </h2>
               <p className="text-neutral-700 max-w-lg">
-                {t('over_ons.contact.desc')}
+                {t('over_ons.contact.desc' as any)}
               </p>
               <a
                 href="mailto:dominique@mijn-kot.be"
@@ -266,14 +266,14 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-5 py-3 border border-border-mid text-primary-700 hover:bg-primary-50 rounded-xl text-sm font-semibold transition-colors"
               >
-                {t('over_ons.contact.btn_contact')}
+                {t('over_ons.contact.btn_contact' as any)}
               </Link>
               <Link
                 href="/afspraken"
                 className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-accent-500 hover:bg-accent-600 text-white rounded-xl text-sm font-semibold transition-colors"
               >
                 <CalendarDaysIcon className="w-4 h-4" />
-                {t('over_ons.contact.btn_visit')}
+                {t('over_ons.contact.btn_visit' as any)}
               </Link>
             </div>
           </div>
