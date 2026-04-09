@@ -178,7 +178,10 @@
         "error": "Er is een fout opgetreden.",
         "no_photo": "Geen foto",
         "view": "Bekijk →",
-        "more_info": "Meer info"
+        "more_info": "Meer info",
+        "logout": "Uitloggen",
+        "new": "Nieuw",
+        "detail": "Detail"
     },
     "status": {
         "available": "Beschikbaar",
@@ -308,6 +311,104 @@
             "desc": "Stuur een e-mail naar Dominique of plan meteen een bezichtiging. We antwoorden snel en persoonlijk.",
             "btn_contact": "Contactformulier",
             "btn_visit": "Bezichtiging plannen"
+        }
+    },
+    "admin": {
+        "common": {
+            "save": "Opslaan",
+            "saving": "Opslaan...",
+            "cancel": "Annuleren",
+            "delete": "Verwijderen",
+            "edit": "Bewerken",
+            "create": "Aanmaken",
+            "search": "Zoeken...",
+            "actions": "Acties",
+            "status": "Status",
+            "all_vestigingen": "Alle vestigingen",
+            "back": "Terug",
+            "suggest_en": "Suggest English",
+            "order": "Volgorde",
+            "all_locations": "Alle vestigingen",
+            "logged_in": "Ingelogd",
+            "open_menu": "Menu openen",
+            "save_changes": "Wijzigingen opslaan",
+            "add": "Toevoegen",
+            "name": "Naam",
+            "category": "Categorie",
+            "change_password": "Wachtwoord Wijzigen"
+        },
+        "view": {
+            "locations": "Locaties",
+            "koten": "Koten",
+            "media": "Mediabibliotheek",
+            "faq": "FAQ",
+            "leads": "Leads",
+            "settings": "Site Instellingen",
+            "logs": "Systeemlogboeken",
+            "users": "Gebruikers & Rollen"
+        },
+        "settings": {
+            "title": "Instellingen",
+            "description": "Beheer de algemene inhoud en configuratie van je website.",
+            "tabs": {
+                "general": "Algemeen",
+                "categories": "Categorieën",
+                "popups": "Popups & Meldingen",
+                "security": "Beveiliging"
+            },
+            "general": {
+                "homepage_content": "Homepagina Content",
+                "hero_title": "Hero titel",
+                "hero_subtitle": "Hero subtitel",
+                "cta_label": "Knop tekst",
+                "cta_href": "CTA href",
+                "booking_url": "Boekings-URL",
+                "contact_email": "Contact email",
+                "contact_phone": "Contact telefoon",
+                "contact_address": "Contact adres",
+                "company_name": "Bedrijfsnaam",
+                "company_legal_name": "Juridische Naam"
+            },
+            "popups": {
+                "notice_title": "Website Melding (Top Bar)",
+                "notice_desc": "Toon een belangrijke mededeling bovenaan elke pagina.",
+                "notice_text": "Bericht tekst",
+                "popup_title": "Nieuwsbrief Popup (Lead Capture)",
+                "popup_desc": "De popup die vraagt om emailadres voor nieuwe koten.",
+                "popup_headline": "Popup Titel",
+                "popup_text": "Popup Omschrijving"
+            },
+            "security": {
+                "desc": "Wijzig je wachtwoord om je account veilig te houden."
+            }
+        },
+        "vestigingen": {
+            "title": "Vestigingen",
+            "description": "Beheer de locaties in je portfolio.",
+            "create": "Vestiging aanmaken",
+            "name": "Naam",
+            "address": "Adres",
+            "city": "Stad",
+            "postal_code": "Postcode",
+            "cover_photo": "Omslagfoto",
+            "description_nl": "Omschrijving (NL)",
+            "description_en": "Description (EN)",
+            "existing": "Bestaande Vestigingen",
+            "slug": "Slug",
+            "all_locations": "Alle vestigingen"
+        },
+        "koten": {
+            "title": "Koten",
+            "description": "Beheer de kamers en studio's.",
+            "create": "Kot aanmaken",
+            "detail": "Kot detail",
+            "edit": "Kot bewerken",
+            "edit_desc": "Bewerk kotgegevens, beschikbaarheid en media.",
+            "existing": "Bestaande Koten"
+        },
+        "faq": {
+            "create": "FAQ item toevoegen",
+            "existing": "Bestaande items"
         }
     }
 }

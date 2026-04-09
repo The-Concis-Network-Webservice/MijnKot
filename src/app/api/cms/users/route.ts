@@ -6,6 +6,7 @@ import { getUserFromRequest } from "@/shared/lib/cms/server";
 import { canManageUsers } from "@/shared/lib/cms/permissions";
 import { query } from "@/shared/lib/db";
 import { logAudit } from "@/shared/lib/audit";
+import { hashPassword } from "@/shared/lib/auth";
 
 export async function GET(request: Request) {
   const { user, role } = await getUserFromRequest();
@@ -50,6 +51,71 @@ export async function PATCH(request: Request) {
     entityId: id,
     changes: { role: nextRole, vestigingIds }
   });
+  return NextResponse.json({ success: true });
+}
+
+export async function POST(request: Request) {
+  const { user, role } = await getUserFromRequest();
+  if (!user || !canManageUsers(role)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { email, password, full_name, role: nextRole } = await request.json();
+
+  if (!email || !password || !nextRole) {
+    return NextResponse.json({ error: "Email, password and role are required." }, { status: 400 });
+  }
+
+  // Check if user exists
+  const existing = await query("select id from users where email = $1", [email]);
+  if (existing.length > 0) {
+    return NextResponse.json({ error: "User already exists with this email." }, { status: 409 });
+  }
+
+  const hashedPassword = await hashPassword(password);
+  const id = crypto.randomUUID();
+
+  await query(
+    "insert into users (id, email, password_hash, full_name, role) values ($1, $2, $3, $4, $5)",
+    [id, email, hashedPassword, full_name, nextRole]
+  );
+
+  await logAudit({
+    actorId: user.id,
+    action: "create",
+    entityType: "users",
+    entityId: id,
+    changes: { email, role: nextRole, full_name }
+  });
+
+  return NextResponse.json({ id, success: true });
+}
+
+export async function DELETE(request: Request) {
+  const { user, role } = await getUserFromRequest();
+  if (!user || !canManageUsers(role)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await request.json();
+  if (!id) {
+    return NextResponse.json({ error: "ID is required." }, { status: 400 });
+  }
+
+  if (id === user.id) {
+    return NextResponse.json({ error: "You cannot delete yourself." }, { status: 400 });
+  }
+
+  await query("delete from user_vestigingen where user_id = $1", [id]);
+  await query("delete from users where id = $1", [id]);
+
+  await logAudit({
+    actorId: user.id,
+    action: "delete",
+    entityType: "users",
+    entityId: id
+  });
+
   return NextResponse.json({ success: true });
 }
 

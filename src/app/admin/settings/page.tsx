@@ -7,6 +7,7 @@ import { PageHeader } from "../_components/page-header";
 import { useToast } from "../_components/toast";
 import type { SiteSettings, RentType } from "@/types";
 import { siteConfig } from "@/shared/lib/config";
+import { useTranslation } from "react-i18next";
 
 const emptySettings: SiteSettings = {
   id: "",
@@ -35,6 +36,7 @@ export default function AdminSettingsPage() {
   const [passwordLoading, setPasswordLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { push } = useToast();
+  const { t } = useTranslation();
 
   const loadSettings = async () => {
     const res = await fetch("/api/cms/settings", { cache: "no-store" });
@@ -188,180 +190,41 @@ export default function AdminSettingsPage() {
       <AdminShell>
         <div className="max-w-3xl space-y-6">
           <PageHeader
-            title="Site settings"
-            description="Control homepage and contact content."
-            crumbs={[{ label: "CMS", href: "/admin" }, { label: "Settings" }]}
+            title={t('admin.settings.title', 'Instellingen')}
+            description={t('admin.settings.description', 'Beheer de algemene inhoud en configuratie van je website.')}
+            crumbs={[{ label: "CMS", href: "/admin" }, { label: t('admin.settings.title', 'Instellingen') }]}
           />
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
-            <div className="space-y-2">
-              <label className="text-sm font-semibold">Hero title</label>
-              <input
-                className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                value={settings.hero_title}
-                onChange={(event) =>
-                  setSettings({ ...settings, hero_title: event.target.value })
-                }
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-semibold">Hero subtitle</label>
-              <textarea
-                className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                rows={3}
-                value={settings.hero_subtitle}
-                onChange={(event) =>
-                  setSettings({ ...settings, hero_subtitle: event.target.value })
-                }
-              />
-            </div>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-semibold">CTA label</label>
-                <input
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  value={settings.hero_cta_label}
-                  onChange={(event) =>
-                    setSettings({
-                      ...settings,
-                      hero_cta_label: event.target.value
-                    })
-                  }
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-semibold">CTA href</label>
-                <input
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  value={settings.hero_cta_href}
-                  onChange={(event) =>
-                    setSettings({
-                      ...settings,
-                      hero_cta_href: event.target.value
-                    })
-                  }
-                />
-              </div>
-            </div>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-semibold">Contact email</label>
-                <input
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  value={settings.contact_email}
-                  onChange={(event) =>
-                    setSettings({
-                      ...settings,
-                      contact_email: event.target.value
-                    })
-                  }
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-semibold">Contact phone</label>
-                <input
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  value={settings.contact_phone}
-                  onChange={(event) =>
-                    setSettings({
-                      ...settings,
-                      contact_phone: event.target.value
-                    })
-                  }
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-semibold">Contact address</label>
-              <input
-                className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                value={settings.contact_address}
-                onChange={(event) =>
-                  setSettings({
-                    ...settings,
-                    contact_address: event.target.value
-                  })
-                }
-              />
-            </div>
 
-            <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
-              <div className="space-y-2">
-                <label className="text-sm font-semibold">Company Name</label>
-                <input
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  value={settings.company_name}
-                  onChange={(event) =>
-                    setSettings({
-                      ...settings,
-                      company_name: event.target.value
-                    })
-                  }
-                  placeholder={siteConfig.company.name}
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-semibold">Legal Company Name</label>
-                <input
-                  className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  value={settings.company_legal_name}
-                  onChange={(event) =>
-                    setSettings({
-                      ...settings,
-                      company_legal_name: event.target.value
-                    })
-                  }
-                  placeholder={siteConfig.company.legalName}
-                />
-              </div>
-            </div>
-            {error ? <p className="text-sm text-red-500">{error}</p> : null}
-            <button
-              className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-8 py-3 rounded-lg font-semibold shadow-md active:scale-95 mt-4"
-              disabled={loading}
-              onClick={saveSettings}
-            >
-              Algemeen
-            </button>
-            <button
-              onClick={() => setActiveTab("categories")}
-              className={`px-6 py-3 text-sm font-bold transition-all border-b-2 ${
-                activeTab === "categories"
-                  ? "border-primary-500 text-primary-600"
-                  : "border-transparent text-text-muted hover:text-text-main hover:bg-surface-subtle"
-              }`}
-            >
-              Categorieën
-            </button>
-            <button
-              onClick={() => setActiveTab("popups")}
-              className={`px-6 py-3 text-sm font-bold transition-all border-b-2 ${
-                activeTab === "popups"
-                  ? "border-primary-500 text-primary-600"
-                  : "border-transparent text-text-muted hover:text-text-main hover:bg-surface-subtle"
-              }`}
-            >
-              Popups & Meldingen
-            </button>
-            <button
-              onClick={() => setActiveTab("security")}
-              className={`px-6 py-3 text-sm font-bold transition-all border-b-2 ${
-                activeTab === "security"
-                  ? "border-primary-500 text-primary-600"
-                  : "border-transparent text-text-muted hover:text-text-main hover:bg-surface-subtle"
-              }`}
-            >
-              Beveiliging
-            </button>
+          <div className="flex flex-wrap gap-2 p-1 bg-gray-100/50 rounded-2xl w-fit">
+            {[
+              { id: "general", label: t('admin.settings.tabs.general', 'Algemeen') },
+              { id: "categories", label: t('admin.settings.tabs.categories', 'Categorieën') },
+              { id: "popups", label: t('admin.settings.tabs.popups', 'Popups & Meldingen') },
+              { id: "security", label: t('admin.settings.tabs.security', 'Beveiliging') }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`px-5 py-2.5 text-sm font-semibold rounded-xl transition-all ${
+                  activeTab === tab.id
+                    ? "bg-white text-primary shadow-sm"
+                    : "text-text-muted hover:text-text-main"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
+
 
           {activeTab === "general" && (
             <div className="space-y-6">
               <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-6 shadow-sm">
-                <h3 className="text-lg font-bold text-primary-900 border-b border-gray-100 pb-2">Homepagina Content</h3>
+                <h3 className="text-lg font-bold text-primary-900 border-b border-gray-100 pb-2">{t('admin.settings.general.homepage_content', 'Homepagina Content')}</h3>
                 
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-primary-800">Hero titel (NL)</label>
+                    <label className="text-sm font-semibold text-primary-800">{t('admin.settings.general.hero_title', 'Hero titel')} (NL)</label>
                     <input
                       className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                       value={settings.hero_title}
@@ -372,16 +235,25 @@ export default function AdminSettingsPage() {
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <label className="text-sm font-semibold text-primary-800 italic">Hero title (EN)</label>
+                      <label className="text-sm font-semibold text-primary-800 italic">Hero titel (EN)</label>
                       <button 
                         onClick={async () => {
-                          const res = await fetch('/api/cms/translate', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ text: settings.hero_title })
-                          });
-                          const { translated } = await res.json();
-                          if (translated) setSettings({ ...settings, hero_title_en: translated });
+                          try {
+                            const res = await fetch('/api/cms/translate', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ text: settings.hero_title })
+                            });
+                            const data = await res.json();
+                            if (data.translated) {
+                              setSettings({ ...settings, hero_title_en: data.translated });
+                              push("Titel vertaald.");
+                            } else {
+                              push("Vertaling mislukt.", "error");
+                            }
+                          } catch (err) {
+                            push("Netwerkfout bij vertalen.", "error");
+                          }
                         }}
                         className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
                       >
@@ -394,14 +266,14 @@ export default function AdminSettingsPage() {
                       onChange={(event) =>
                         setSettings({ ...settings, hero_title_en: event.target.value })
                       }
-                      placeholder="Find your ideal home in Leuven"
+                      placeholder="Bijv: Find your ideal home in Leuven"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-primary-800">Hero subtitel (NL)</label>
+                    <label className="text-sm font-semibold text-primary-800">{t('admin.settings.general.hero_subtitle', 'Hero subtitel')} (NL)</label>
                     <textarea
                       className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                       rows={3}
@@ -416,13 +288,22 @@ export default function AdminSettingsPage() {
                       <label className="text-sm font-semibold text-primary-800 italic">Hero subtitle (EN)</label>
                       <button 
                         onClick={async () => {
-                          const res = await fetch('/api/cms/translate', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ text: settings.hero_subtitle })
-                          });
-                          const { translated } = await res.json();
-                          if (translated) setSettings({ ...settings, hero_subtitle_en: translated });
+                          try {
+                            const res = await fetch('/api/cms/translate', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ text: settings.hero_subtitle })
+                            });
+                            const data = await res.json();
+                            if (data.translated) {
+                              setSettings({ ...settings, hero_subtitle_en: data.translated });
+                              push("Subtitel vertaald.");
+                            } else {
+                              push("Vertaling mislukt.", "error");
+                            }
+                          } catch (err) {
+                            push("Netwerkfout bij vertalen.", "error");
+                          }
                         }}
                         className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
                       >
@@ -443,7 +324,7 @@ export default function AdminSettingsPage() {
                 <div className="grid md:grid-cols-2 gap-6 pt-4 border-t border-gray-50">
                    <div className="space-y-4">
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-primary-800">Knop tekst (NL)</label>
+                      <label className="text-sm font-semibold text-primary-800">{t('admin.settings.general.cta_label', 'Knop tekst')} (NL)</label>
                       <input
                         className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                         value={settings.hero_cta_label}
@@ -460,13 +341,22 @@ export default function AdminSettingsPage() {
                         <label className="text-sm font-semibold text-primary-800 italic">Button label (EN)</label>
                         <button 
                           onClick={async () => {
-                            const res = await fetch('/api/cms/translate', {
-                              method: 'POST',
-                              headers: { 'Content-Type': 'application/json' },
-                              body: JSON.stringify({ text: settings.hero_cta_label })
-                            });
-                            const { translated } = await res.json();
-                            if (translated) setSettings({ ...settings, hero_cta_label_en: translated });
+                            try {
+                              const res = await fetch('/api/cms/translate', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ text: settings.hero_cta_label })
+                              });
+                              const data = await res.json();
+                              if (data.translated) {
+                                setSettings({ ...settings, hero_cta_label_en: data.translated });
+                                push("Knoptekst vertaald.");
+                              } else {
+                                push("Vertaling mislukt.", "error");
+                              }
+                            } catch (err) {
+                              push("Netwerkfout bij vertalen.", "error");
+                            }
                           }}
                           className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
                         >
@@ -486,7 +376,7 @@ export default function AdminSettingsPage() {
                     </div>
                    </div>
                    <div className="space-y-2">
-                    <label className="text-sm font-semibold text-primary-800">CTA href</label>
+                    <label className="text-sm font-semibold text-primary-800">{t('admin.settings.general.cta_href', 'CTA href')}</label>
                     <input
                       className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                       value={settings.hero_cta_href}
@@ -502,7 +392,7 @@ export default function AdminSettingsPage() {
                 </div>
 
                 <div className="space-y-2 pt-4 border-t border-gray-100">
-                  <label className="text-sm font-semibold text-primary-800">Booking URL <span className="text-xs font-normal text-gray-400">(simplybook / afspraken pagina)</span></label>
+                  <label className="text-sm font-semibold text-primary-800">{t('admin.settings.general.booking_url', 'Boekings-URL')} <span className="text-xs font-normal text-gray-400">(Simplybook / afspraken pagina)</span></label>
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
                     placeholder="/afspraken of https://mijnkotbe.simplybook.it"
@@ -592,7 +482,7 @@ export default function AdminSettingsPage() {
                   disabled={loading}
                   onClick={saveSettings}
                 >
-                  {loading ? "Opslaan..." : "Instellingen Opslaan"}
+                  {loading ? t('admin.common.saving', 'Opslaan...') : t('admin.common.save', 'Instellingen Opslaan')}
                 </button>
               </div>
             </div>
@@ -603,8 +493,8 @@ export default function AdminSettingsPage() {
               <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-6 shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-300">
                 <div className="flex items-center justify-between border-b border-gray-100 pb-4">
                   <div>
-                    <h3 className="text-lg font-bold text-primary-900">Website Melding (Top Bar)</h3>
-                    <p className="text-sm text-primary-600">Toon een belangrijke mededeling bovenaan elke pagina.</p>
+                    <h3 className="text-lg font-bold text-primary-900">{t('admin.settings.popups.notice_title', 'Website Melding (Top Bar)')}</h3>
+                    <p className="text-sm text-primary-600">{t('admin.settings.popups.notice_desc', 'Toon een belangrijke mededeling bovenaan elke pagina.')}</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input 
@@ -619,7 +509,7 @@ export default function AdminSettingsPage() {
                 
                 <div className={`space-y-4 transition-all duration-300 ${!settings.notice_active ? 'opacity-40 grayscale pointer-events-none' : ''}`}>
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-primary-800">Bericht tekst</label>
+                    <label className="text-sm font-semibold text-primary-800">{t('admin.settings.popups.notice_text', 'Bericht tekst')}</label>
                     <textarea
                       placeholder="Bijv: Opgelet: nog maar enkele kamers beschikbaar voor academiejaar 2024-2025!"
                       className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
@@ -634,8 +524,8 @@ export default function AdminSettingsPage() {
               <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-6 shadow-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="flex items-center justify-between border-b border-gray-100 pb-4">
                   <div>
-                    <h3 className="text-lg font-bold text-primary-900">Nieuwsbrief Popup (Lead Capture)</h3>
-                    <p className="text-sm text-primary-600">De popup die vraagt om emailadres voor nieuwe koten.</p>
+                    <h3 className="text-lg font-bold text-primary-900">{t('admin.settings.popups.popup_title', 'Nieuwsbrief Popup (Lead Capture)')}</h3>
+                    <p className="text-sm text-primary-600">{t('admin.settings.popups.popup_desc', 'De popup die vraagt om emailadres voor nieuwe koten.')}</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input 
@@ -650,7 +540,7 @@ export default function AdminSettingsPage() {
                 
                 <div className={`space-y-4 transition-all duration-300 ${!settings.popup_active ? 'opacity-40 grayscale pointer-events-none' : ''}`}>
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-primary-800">Popup Titel</label>
+                    <label className="text-sm font-semibold text-primary-800">{t('admin.settings.popups.popup_headline', 'Popup Titel')}</label>
                     <input
                       placeholder="Bijv: Als eerste op de hoogte?"
                       className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
@@ -659,7 +549,7 @@ export default function AdminSettingsPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-primary-800">Popup Omschrijving</label>
+                    <label className="text-sm font-semibold text-primary-800">{t('admin.settings.popups.popup_text', 'Popup Omschrijving')}</label>
                     <textarea
                       placeholder="Bijv: Meld je aan voor onze lijst en ontvang direct een mailtje..."
                       className="border border-gray-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-primary-500 outline-none"
@@ -677,15 +567,15 @@ export default function AdminSettingsPage() {
                 disabled={loading}
                 onClick={saveSettings}
               >
-                {loading ? "Saving..." : "Save popups"}
+                {loading ? "Opslaan..." : "Popups Opslaan"}
               </button>
             </div>
           )}
 
           {activeTab === "categories" && (
             <div className="bg-white border border-border-light rounded-2xl p-6 space-y-6 shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-300">
-              <h2 className="text-xl font-bold text-text-main">Rent Types (Filters)</h2>
-              <p className="text-sm text-text-muted">Manage the categories shown in the 'Te Huur' navigation menu.</p>
+              <h2 className="text-xl font-bold text-text-main">Huurtypes (Filters)</h2>
+              <p className="text-sm text-text-muted">Beheer de categorieën die worden getoond in het 'Te Huur' navigatiemenu.</p>
               
               <div className="space-y-4">
                 {rentTypes.map((rt) => (
@@ -703,7 +593,7 @@ export default function AdminSettingsPage() {
                       />
                     </div>
                     <div className="flex-1 space-y-2">
-                      <label className="text-xs font-bold uppercase text-text-muted">Slug (URL)</label>
+                      <label className="text-xs font-bold uppercase text-text-muted">{t('admin.vestigingen.slug', 'Slug (URL)')}</label>
                       <input
                         className="w-full border border-border-light rounded-lg px-3 py-2 text-sm"
                         value={rt.slug}
@@ -715,7 +605,7 @@ export default function AdminSettingsPage() {
                       />
                     </div>
                     <div className="w-20 space-y-2">
-                      <label className="text-xs font-bold uppercase text-text-muted">Order</label>
+                      <label className="text-xs font-bold uppercase text-text-muted">{t('admin.common.order', 'Order')}</label>
                       <input
                         type="number"
                         className="w-full border border-border-light rounded-lg px-3 py-2 text-sm"
@@ -731,7 +621,7 @@ export default function AdminSettingsPage() {
                       <button
                         onClick={() => deleteRentType(rt.id)}
                         className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                        title="Delete category"
+                        title="Verwijder categorie"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
@@ -742,17 +632,17 @@ export default function AdminSettingsPage() {
                 ))}
 
                 <div className="p-4 border-2 border-dashed border-border-light rounded-xl space-y-4 bg-white">
-                  <h3 className="text-sm font-bold uppercase text-text-muted">Add New Category</h3>
+                  <h3 className="text-sm font-bold uppercase text-text-muted">Nieuwe Categorie Toevoegen</h3>
                   <div className="flex flex-col md:flex-row gap-4">
                     <input
                       className="flex-1 border border-border-light rounded-lg px-3 py-2 text-sm"
-                      placeholder="Name (e.g. Zomercursus)"
+                      placeholder={t('admin.common.name', 'Naam')}
                       value={newRentType.name}
                       onChange={(e) => setNewRentType({ ...newRentType, name: e.target.value })}
                     />
                     <input
                       className="flex-1 border border-border-light rounded-lg px-3 py-2 text-sm"
-                      placeholder="Slug (e.g. zomercursus)"
+                      placeholder={t('admin.vestigingen.slug', 'Slug')}
                       value={newRentType.slug}
                       onChange={(e) => setNewRentType({ ...newRentType, slug: e.target.value })}
                     />
@@ -761,7 +651,7 @@ export default function AdminSettingsPage() {
                       onClick={addRentType}
                       className="bg-primary-500 hover:bg-primary-600 disabled:opacity-50 text-white px-6 py-2 rounded-lg text-sm font-bold transition-all"
                     >
-                      Add
+                      Toevoegen
                     </button>
                   </div>
                 </div>
@@ -772,10 +662,10 @@ export default function AdminSettingsPage() {
           {activeTab === "security" && (
             <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-6 shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-300">
               <h2 className="text-xl font-bold text-primary-900 border-b border-gray-100 pb-4">
-                Account Beveiliging
+                {t('admin.settings.tabs.security', 'Beveiliging')}
               </h2>
               <p className="text-sm text-primary-600">
-                Wijzig je wachtwoord om je account veilig te houden.
+                {t('admin.settings.security.desc', 'Wijzig je wachtwoord om je account veilig te houden.')}
               </p>
 
               <form onSubmit={changePassword} className="space-y-4 max-w-md">
@@ -803,7 +693,7 @@ export default function AdminSettingsPage() {
                   <p className="text-[10px] text-text-muted italic">Minimaal 8 tekens.</p>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 pt-4 border-t border-gray-50">
                   <label className="text-sm font-semibold text-primary-800">Bevestig Nieuw Wachtwoord</label>
                   <input
                     type="password"
@@ -813,13 +703,12 @@ export default function AdminSettingsPage() {
                     onChange={(e) => setPasswordData({ ...passwordData, confirm: e.target.value })}
                   />
                 </div>
-
                 <button
                   type="submit"
                   disabled={passwordLoading}
-                  className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-8 py-3 rounded-lg font-semibold shadow-md active:scale-95 disabled:opacity-50 mt-4"
+                  className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-8 py-3 rounded-lg font-semibold shadow-md active:scale-95 mt-4"
                 >
-                  {passwordLoading ? "Bezig met bijwerken..." : "Wachtwoord Bijwerken"}
+                  {passwordLoading ? t('admin.common.saving', 'Wachtwoord bijwerken...') : t('admin.common.change_password', 'Wachtwoord Wijzigen')}
                 </button>
               </form>
             </div>
@@ -828,7 +717,4 @@ export default function AdminSettingsPage() {
       </AdminShell>
     </AdminGuard>
   );
-
 }
-
-

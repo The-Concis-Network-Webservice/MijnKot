@@ -129,14 +129,16 @@ export default async function RootLayout({
         <JsonLd data={organizationJsonLd} />
         <I18nProvider>
           <div className="min-h-screen flex flex-col bg-surface-main">
-            <SiteNav vestigingen={vestigingen} settings={settings} />
-            <main className="flex-1 pt-20">{children}</main>
-            <SiteFooter settings={settings} />
-            <LeadCaptureModal settings={settings} />
+            <SiteLayoutWrapper vestigingen={vestigingen} settings={settings}>
+              {children}
+            </SiteLayoutWrapper>
           </div>
         </I18nProvider>
       </body>
     </html>
   );
 }
+
+// Client wrapper to handle conditional rendering based on pathname
+import { SiteLayoutWrapper } from "@/shared/ui/site-layout-wrapper";
 

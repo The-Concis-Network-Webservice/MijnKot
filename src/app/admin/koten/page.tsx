@@ -7,6 +7,7 @@ import { AdminShell } from "../_components/admin-shell";
 import { PageHeader } from "../_components/page-header";
 import { useToast } from "../_components/toast";
 import { useAdmin } from "../AdminProvider";
+import { useTranslation } from "react-i18next";
 import { canEditContent } from "@/shared/lib/cms/permissions";
 import type { Kot } from "@/types";
 
@@ -14,6 +15,8 @@ const PAGE_SIZE = 20;
 
 export default function AdminKotenPage() {
   const { activeVestigingId, role } = useAdmin();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language;
   const [koten, setKoten] = useState<Kot[]>([]);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
@@ -75,32 +78,32 @@ export default function AdminKotenPage() {
     });
     setSelected([]);
     await loadKoten();
-    push("Bulk action completed.");
+    push("Bulkactie voltooid.");
   };
 
   return (
     <AdminGuard>
       <AdminShell>
         <PageHeader
-          title="Koten"
-          description="Search, filter, and manage all koten."
-          crumbs={[{ label: "CMS", href: "/admin" }, { label: "Koten" }]}
+          title={t('admin.koten.title', 'Koten')}
+          description={t('admin.koten.description', 'Zoek, filter en beheer alle koten.')}
+          crumbs={[{ label: "CMS", href: "/admin" }, { label: t('admin.koten.title', 'Koten') }]}
           actions={
-            canEditContent(role) ? (
+            canEditContent(role) && (
               <Link
                 className="bg-primary text-white px-4 py-2 rounded-lg text-sm"
                 href="/admin/koten/new"
               >
-                New kot
+                {t('admin.koten.new', 'Nieuw kot')}
               </Link>
-            ) : null
+            )
           }
         />
         <section className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
           <div className="flex flex-col md:flex-row gap-3 md:items-center">
             <input
               className="border border-gray-200 rounded-lg px-3 py-2 flex-1"
-              placeholder="Search koten..."
+              placeholder="Zoek koten..."
               value={search}
               onChange={(event) => { setSearch(event.target.value); setPage(1); }}
             />
@@ -109,10 +112,10 @@ export default function AdminKotenPage() {
               value={statusFilter}
               onChange={(event) => { setStatusFilter(event.target.value); setPage(1); }}
             >
-              <option value="">All statuses</option>
-              <option value="draft">draft</option>
-              <option value="published">published</option>
-              <option value="archived">archived</option>
+              <option value="">Alle statussen</option>
+              <option value="draft">concept</option>
+              <option value="published">gepubliceerd</option>
+              <option value="archived">gearchiveerd</option>
             </select>
           </div>
           <div className="flex flex-wrap gap-2 text-sm">
@@ -120,25 +123,25 @@ export default function AdminKotenPage() {
               className="border border-gray-200 rounded-lg px-3 py-1"
               onClick={() => bulkAction("publish")}
             >
-              Publish selected
+              Publiceer geselecteerde
             </button>
             <button
               className="border border-gray-200 rounded-lg px-3 py-1"
               onClick={() => bulkAction("archive")}
             >
-              Archive selected
+              Archiveer geselecteerde
             </button>
             <button
               className="border border-gray-200 rounded-lg px-3 py-1"
               onClick={() => bulkAction("availability", "available")}
             >
-              Mark available
+              Markeer beschikbaar
             </button>
             <button
               className="border border-gray-200 rounded-lg px-3 py-1"
               onClick={() => bulkAction("availability", "hidden")}
             >
-              Hide
+              Verbergen
             </button>
           </div>
           <div className="overflow-x-auto">
@@ -158,12 +161,12 @@ export default function AdminKotenPage() {
                       }}
                     />
                   </th>
-                  <th className="py-2">Title</th>
-                  <th>Status</th>
-                  <th>Availability</th>
-                  <th>Price</th>
-                  <th></th>
-                </tr>
+                    <th className="py-2">{t('common.title', 'Titel')}</th>
+                    <th>Status</th>
+                    <th>{t('common.availability', 'Beschikbaarheid')}</th>
+                    <th>{t('common.price', 'Prijs')}</th>
+                    <th></th>
+                  </tr>
               </thead>
               <tbody>
                 {paginated.map((kot) => (
@@ -181,14 +184,21 @@ export default function AdminKotenPage() {
                         }}
                       />
                     </td>
-                    <td className="py-2">{kot.title}</td>
+                    <td className="py-2">
+                      {locale === 'en' && kot.title_en ? kot.title_en : kot.title}
+                      {locale === 'en' && !kot.title_en && (
+                        <span className="ml-2 text-[10px] bg-amber-50 text-amber-600 px-1.5 py-0.5 rounded border border-amber-100 flex-inline items-center gap-1">
+                           Geen EN vertaling
+                        </span>
+                      )}
+                    </td>
                     <td>{kot.status}</td>
                     <td>{kot.availability_status}</td>
                     <td>€{kot.price}</td>
                     <td className="text-right">
                       <div className="flex items-center justify-end gap-3">
                         <Link className="text-primary hover:underline" href={`/admin/koten/${kot.id}`}>
-                          Manage
+                          Beheren
                         </Link>
                         <button
                           className="text-red-500 hover:text-red-700 text-sm"
@@ -203,7 +213,7 @@ export default function AdminKotenPage() {
                 {paginated.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="py-4 text-center text-text-muted">
-                      No koten found.
+                      Geen koten gevonden.
                     </td>
                   </tr>
                 ) : null}

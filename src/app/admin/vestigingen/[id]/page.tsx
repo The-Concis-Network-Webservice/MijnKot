@@ -111,10 +111,10 @@ export default function AdminVestigingDetailPage() {
     });
     const payload = await res.json();
     if (!res.ok) {
-      setError(payload.error ?? "Failed to save vestiging.");
+      setError(payload.error ?? "Opslaan van vestiging mislukt.");
     } else {
       await loadData();
-      push("Vestiging updated.");
+      push("Vestiging bijgewerkt.");
     }
     setLoading(false);
   };
@@ -134,7 +134,7 @@ export default function AdminVestigingDetailPage() {
       
       if (!res.ok) {
         const errData = await res.json();
-        throw new Error(errData.error || "Failed to upload image.");
+        throw new Error(errData.error || "Upload afbeelding mislukt.");
       }
       
       const { publicUrl, key, file_name, mime_type, size_bytes } = await res.json();
@@ -154,9 +154,9 @@ export default function AdminVestigingDetailPage() {
       if (vestiging) {
         setVestiging({ ...vestiging, image_url: publicUrl });
       }
-      push("Image uploaded successfully.");
+      push("Afbeelding succesvol geüpload.");
     } catch (err: any) {
-      setError(err.message || "Upload failed.");
+      setError(err.message || "Upload mislukt.");
     }
   };
 
@@ -181,7 +181,7 @@ export default function AdminVestigingDetailPage() {
     });
     const payload = await res.json();
     if (!res.ok) {
-      setError(payload.error ?? "Failed to create kot.");
+      setError(payload.error ?? "Aanmaken van kot mislukt.");
     } else {
       setKotForm({
         title: "",
@@ -192,7 +192,7 @@ export default function AdminVestigingDetailPage() {
         scheduled_publish_at: ""
       });
       await loadData();
-      push("Kot created.");
+      push("Kot aangemaakt.");
     }
     setLoading(false);
   };
@@ -203,7 +203,7 @@ export default function AdminVestigingDetailPage() {
         <div className="space-y-8 max-w-4xl">
           <PageHeader
             title="Vestiging detail"
-            description="Update vestiging details and create koten."
+            description="Werk vestiging details bij en maak nieuwe koten aan."
             crumbs={[
               { label: "CMS", href: "/admin" },
               { label: "Vestigingen", href: "/admin/vestigingen" },
@@ -211,7 +211,7 @@ export default function AdminVestigingDetailPage() {
             ]}
           />
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h2 className="font-semibold text-lg mb-4">Edit vestiging</h2>
+            <h2 className="font-semibold text-lg mb-4">Vestiging bewerken</h2>
             {vestiging ? (
               <div className="space-y-4">
                 <input
@@ -269,15 +269,24 @@ export default function AdminVestigingDetailPage() {
                     <div className="flex items-center justify-between">
                       <label className="text-sm font-semibold text-primary-800 italic">Description (EN)</label>
                       <button 
-                        onClick={async () => {
+                      onClick={async () => {
+                        try {
                           const res = await fetch('/api/cms/translate', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ text: vestiging.description })
                           });
-                          const { translated } = await res.json();
-                          if (translated) setVestiging({ ...vestiging, description_en: translated });
-                        }}
+                          const data = await res.json();
+                          if (data.translated) {
+                            setVestiging({ ...vestiging, description_en: data.translated });
+                            push("Beschrijving vertaald.");
+                          } else {
+                            push("Vertaling mislukt.", "error");
+                          }
+                        } catch (err) {
+                          push("Netwerkfout bij vertalen.", "error");
+                        }
+                      }}
                         className="text-[10px] bg-primary-50 text-primary-600 px-2 py-1 rounded hover:bg-primary-100 transition-colors"
                       >
                         Suggest English
@@ -293,7 +302,7 @@ export default function AdminVestigingDetailPage() {
                           description_en: event.target.value
                         })
                       }
-                      placeholder="English description"
+                      placeholder="Engelse beschrijving"
                     />
                   </div>
                 </div>
@@ -303,26 +312,26 @@ export default function AdminVestigingDetailPage() {
                   onUpload={handleFileUpload}
                 />
                 {error ? <p className="text-sm text-red-500">{error}</p> : null}
-                <button
+                  <button
                   className="bg-primary text-white px-4 py-2 rounded-lg font-semibold"
                   onClick={updateVestiging}
                   disabled={loading}
                 >
-                  Save changes
+                  {loading ? "Opslaan..." : "Wijzigingen opslaan"}
                 </button>
               </div>
             ) : (
-              <p className="text-sm text-text-muted">Loading vestiging...</p>
+              <p className="text-sm text-text-muted">Vestiging laden...</p>
             )}
           </section>
 
           {canEditContent(role) ? (
             <section className="bg-white border border-gray-200 rounded-2xl p-6">
-              <h2 className="font-semibold text-lg mb-4">Create kot</h2>
+              <h2 className="font-semibold text-lg mb-4">Kot aanmaken</h2>
               <form className="space-y-4" onSubmit={createKot}>
                 <input
                   className="border border-gray-200 rounded-lg px-3 py-2 w-full"
-                  placeholder="Title"
+                  placeholder="Titel"
                   value={kotForm.title}
                   onChange={(event) =>
                     setKotForm({ ...kotForm, title: event.target.value })
@@ -330,19 +339,19 @@ export default function AdminVestigingDetailPage() {
                   required
                 />
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Description (Markdown)</label>
+                  <label className="text-sm font-medium text-gray-700">Beschrijving (Markdown)</label>
                   <RichTextEditor
                     value={kotForm.description}
                     onChange={(val) =>
                       setKotForm({ ...kotForm, description: val })
                     }
-                    placeholder="Describe this room..."
+                    placeholder="Beschrijf deze kamer..."
                   />
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Price"
+                    placeholder="Prijs"
                     type="number"
                     value={kotForm.price}
                     onChange={(event) =>
@@ -360,10 +369,10 @@ export default function AdminVestigingDetailPage() {
                       })
                     }
                   >
-                    <option value="available">available</option>
-                    <option value="reserved">reserved</option>
-                    <option value="rented">rented</option>
-                    <option value="hidden">hidden</option>
+                    <option value="available">beschikbaar</option>
+                    <option value="reserved">gereserveerd</option>
+                    <option value="rented">verhuurd</option>
+                    <option value="hidden">verborgen</option>
                   </select>
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -374,10 +383,10 @@ export default function AdminVestigingDetailPage() {
                       setKotForm({ ...kotForm, status: event.target.value })
                     }
                   >
-                    <option value="draft">draft</option>
-                    <option value="scheduled">scheduled</option>
-                    <option value="published">published</option>
-                    <option value="archived">archived</option>
+                    <option value="draft">concept</option>
+                    <option value="scheduled">gepland</option>
+                    <option value="published">gepubliceerd</option>
+                    <option value="archived">gearchiveerd</option>
                   </select>
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
@@ -397,7 +406,7 @@ export default function AdminVestigingDetailPage() {
                   disabled={loading}
                   type="submit"
                 >
-                  Create kot
+                  Kot aanmaken
                 </button>
               </form>
             </section>
@@ -429,12 +438,12 @@ export default function AdminVestigingDetailPage() {
                     className="text-primary hover:underline text-sm"
                     href={`/admin/koten/${kot.id}`}
                   >
-                    Manage
+                    Beheren
                   </Link>
                 </div>
               ))}
               {koten.length === 0 ? (
-                <p className="text-sm text-text-muted">No koten yet.</p>
+                <p className="text-sm text-text-muted">Nog geen koten.</p>
               ) : null}
             </div>
           </section>

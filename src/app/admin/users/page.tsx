@@ -14,8 +14,17 @@ export default function AdminUsersPage() {
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [vestigingen, setVestigingen] = useState<Vestiging[]>([]);
+  const [newUser, setNewUser] = useState({ email: "", password: "", full_name: "", role: "admin" as UserRole });
+  const [loading, setLoading] = useState(false);
   const { push } = useToast();
-  const { role } = useAdmin();
+  const { role, user: currentUser } = useAdmin();
+
+  const ROLE_LABELS: Record<UserRole, string> = {
+    super_admin: "Super Admin",
+    admin: "Beheerder (Admin)",
+    editor: "Redacteur (Editor)",
+    viewer: "Kijker (Viewer)"
+  };
 
   const loadData = async () => {
     const res = await fetch("/api/cms/users");
@@ -48,11 +57,50 @@ export default function AdminUsersPage() {
       payload = null;
     }
     if (!res.ok) {
-      push(payload?.error ?? "Failed to update user.", "error");
+      push(payload?.error ?? "Bijwerken van gebruiker mislukt.", "error");
       return;
     }
-    push("User updated.");
+    push("Gebruiker bijgewerkt.");
     await loadData();
+  };
+
+  const createUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    const res = await fetch("/api/cms/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newUser)
+    });
+    const payload = await res.json();
+    if (!res.ok) {
+      push(payload.error ?? "Aanmaken van gebruiker mislukt.", "error");
+    } else {
+      push("Gebruiker aangemaakt.");
+      setNewUser({ email: "", password: "", full_name: "", role: "admin" });
+      await loadData();
+    }
+    setLoading(false);
+  };
+
+  const deleteUser = async (id: string, email: string) => {
+    if (id === currentUser?.id) {
+       push("Je kunt jezelf niet verwijderen.", "error");
+       return;
+    }
+    if (!confirm(`Gebruiker ${email} verwijderen?`)) return;
+    const res = await fetch("/api/cms/users", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id })
+    });
+    if (res.ok) {
+      push("Gebruiker verwijderd.");
+      await loadData();
+    } else {
+      const payload = await res.json();
+      push(payload.error ?? "Verwijderen mislukt.", "error");
+    }
   };
 
   const getAssignments = (userId: string) =>
@@ -62,67 +110,144 @@ export default function AdminUsersPage() {
     <AdminGuard>
       <AdminShell>
         <PageHeader
-          title="Users & roles"
-          description="Assign roles and vestigingen."
-          crumbs={[{ label: "CMS", href: "/admin" }, { label: "Users" }]}
+          title="Gebruikers & rollen"
+          description="Wijs rollen en vestigingen toe."
+          crumbs={[{ label: "CMS", href: "/admin" }, { label: "Gebruikers" }]}
         />
         {role !== "super_admin" ? (
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
             <p className="text-sm text-text-muted">
-              Only Super Admins can manage users.
+              Alleen Super Admins kunnen gebruikers beheren.
             </p>
           </section>
         ) : (
-          <section className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
-          {profiles.map((profile) => {
-            const assigned = getAssignments(profile.id);
-            return (
-              <div key={profile.id} className="border border-gray-100 rounded-xl p-4 space-y-3">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                  <div>
-                    <p className="font-semibold">{profile.email ?? profile.id}</p>
-                    <p className="text-xs text-text-muted">{profile.full_name ?? "No name"}</p>
-                  </div>
-                  <select
-                    className="border border-gray-200 rounded-lg px-3 py-2 text-sm"
-                    value={profile.role}
-                    onChange={(event) =>
-                      updateUser(profile.id, event.target.value as UserRole, assigned)
-                    }
+          <div className="space-y-8">
+            <section className="bg-white border border-gray-200 rounded-2xl p-6">
+              <h2 className="font-semibold text-lg mb-4">Gebruiker Toevoegen</h2>
+              <form onSubmit={createUser} className="grid md:grid-cols-2 gap-4">
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 text-sm"
+                  placeholder="Email adres"
+                  type="email"
+                  required
+                  value={newUser.email}
+                  onChange={e => setNewUser({ ...newUser, email: e.target.value })}
+                />
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 text-sm"
+                  placeholder="Wachtwoord"
+                  type="password"
+                  required
+                  value={newUser.password}
+                  onChange={e => setNewUser({ ...newUser, password: e.target.value })}
+                />
+                <input
+                  className="border border-gray-200 rounded-lg px-3 py-2 text-sm"
+                  placeholder="Volledige naam"
+                  value={newUser.full_name}
+                  onChange={e => setNewUser({ ...newUser, full_name: e.target.value })}
+                />
+                <select
+                  className="border border-gray-200 rounded-lg px-3 py-2 text-sm"
+                  value={newUser.role}
+                  onChange={e => setNewUser({ ...newUser, role: e.target.value as UserRole })}
+                >
+                  {Object.entries(ROLE_LABELS).map(([key, label]) => (
+                    <option key={key} value={key}>{label}</option>
+                  ))}
+                </select>
+                <div className="md:col-span-2">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-600 transition-colors"
                   >
-                    <option value="super_admin">super_admin</option>
-                    <option value="admin">admin</option>
-                    <option value="editor">editor</option>
-                    <option value="viewer">viewer</option>
-                  </select>
+                    {loading ? "Aanmaken..." : "Gebruiker Aanmaken"}
+                  </button>
                 </div>
-                <div className="flex flex-wrap gap-3 text-sm">
-                  {vestigingen.map((vestiging) => {
-                    const checked = assigned.includes(vestiging.id);
-                    return (
-                      <label key={vestiging.id} className="flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          checked={checked}
-                          onChange={() => {
-                            const next = checked
-                              ? assigned.filter((id) => id !== vestiging.id)
-                              : [...assigned, vestiging.id];
-                            updateUser(profile.id, profile.role, next);
-                          }}
-                        />
-                        {vestiging.name}
-                      </label>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-          {profiles.length === 0 ? (
-            <p className="text-sm text-text-muted">No users found.</p>
-          ) : null}
-          </section>
+              </form>
+            </section>
+
+            <section className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
+              <h2 className="font-semibold text-lg mb-4">Bestaande Gebruikers</h2>
+              {profiles.map((profile) => {
+                const assigned = getAssignments(profile.id);
+                return (
+                  <div key={profile.id} className="border border-gray-100 rounded-xl p-4 space-y-3 hover:border-primary-100 transition-colors shadow-sm bg-gray-50/30">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-full bg-primary-50 flex items-center justify-center text-primary-600 font-bold text-sm">
+                          {profile.email?.[0].toUpperCase()}
+                        </div>
+                        <div>
+                          <p className="font-semibold flex items-center gap-2">
+                            {profile.email}
+                            {profile.id === currentUser?.id && (
+                              <span className="text-[10px] bg-primary-100 text-primary-600 px-1.5 py-0.5 rounded uppercase font-bold tracking-wider">Jij</span>
+                            )}
+                          </p>
+                          <p className="text-xs text-text-muted">{profile.full_name || "Geen naam ingevuld"}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <select
+                          className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary-500 outline-none bg-white"
+                          value={profile.role}
+                          onChange={(event) =>
+                            updateUser(profile.id, event.target.value as UserRole, assigned)
+                          }
+                        >
+                          {Object.entries(ROLE_LABELS).map(([key, label]) => (
+                            <option key={key} value={key}>{label}</option>
+                          ))}
+                        </select>
+                        <button
+                          onClick={() => deleteUser(profile.id, profile.email || profile.id)}
+                          disabled={profile.id === currentUser?.id}
+                          className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all disabled:opacity-0"
+                          title="Gebruiker verwijderen"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div className="pt-3 border-t border-gray-100">
+                      <p className="text-[10px] font-bold uppercase text-gray-400 mb-2 tracking-wider">Toegewezen Vestigingen</p>
+                      <div className="flex flex-wrap gap-4 text-sm mt-1">
+                        {vestigingen.map((vestiging) => {
+                          const checked = assigned.includes(vestiging.id);
+                          return (
+                            <label key={vestiging.id} className="flex items-center gap-2 cursor-pointer group">
+                              <input
+                                type="checkbox"
+                                className="rounded text-primary-500 focus:ring-primary-400 h-4 w-4"
+                                checked={checked}
+                                onChange={() => {
+                                  const next = checked
+                                    ? assigned.filter((id) => id !== vestiging.id)
+                                    : [...assigned, vestiging.id];
+                                  updateUser(profile.id, profile.role, next);
+                                }}
+                              />
+                              <span className={`transition-colors ${checked ? 'text-primary-700 font-medium' : 'text-gray-500 group-hover:text-gray-700'}`}>
+                                {vestiging.name}
+                              </span>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+              {profiles.length === 0 ? (
+                <p className="text-sm text-text-muted italic">Geen gebruikers gevonden.</p>
+              ) : null}
+            </section>
+          </div>
         )}
       </AdminShell>
     </AdminGuard>

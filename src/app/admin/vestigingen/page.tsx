@@ -30,7 +30,8 @@ export default function AdminVestigingenPage() {
   const [search, setSearch] = useState("");
   const { push } = useToast();
   const { role } = useAdmin();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language;
 
   const loadVestigingen = async () => {
     try {
@@ -42,7 +43,7 @@ export default function AdminVestigingenPage() {
       setVestigingen(payload.data ?? []);
     } catch (err) {
       console.error("Failed to load vestigingen:", err);
-      push("Failed to load vestigingen. Check if you are on the correct port (3000).");
+      push("Laden van vestigingen mislukt. Controleer de verbinding.");
     }
   };
 
@@ -72,21 +73,21 @@ export default function AdminVestigingenPage() {
       }
 
       if (!res.ok) {
-        setError(payload.error ?? "Failed to create vestiging.");
+        setError(payload.error ?? "Aanmaken van vestiging mislukt.");
       } else {
         setForm(emptyForm);
         await loadVestigingen();
-        push("Vestiging created.");
+        push("Vestiging aangemaakt.");
       }
     } catch (err: any) {
-      setError(err.message || "An unexpected error occurred.");
+      setError(err.message || "Er is een onverwachte fout opgetreden.");
     } finally {
       setLoading(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete this vestiging? This cannot be undone.")) return;
+    if (!confirm("Deze vestiging verwijderen? Dit kan niet ongedaan worden gemaakt.")) return;
     try {
       const res = await fetch("/api/cms/vestigingen", {
         method: "DELETE",
@@ -97,14 +98,14 @@ export default function AdminVestigingenPage() {
       });
       
       if (!res.ok) {
-        const payload = await res.json().catch(() => ({ error: "Server error" }));
-        push(payload.error ?? "Failed to delete vestiging.");
+        const payload = await res.json().catch(() => ({ error: "Server fout" }));
+        push(payload.error ?? "Verwijderen van vestiging mislukt.");
       } else {
         await loadVestigingen();
-        push("Vestiging deleted.");
+        push("Vestiging verwijderd.");
       }
     } catch (err) {
-      push("Failed to delete vestiging. Check your connection.");
+      push("Verwijderen van vestiging mislukt. Controleer de verbinding.");
     }
   };
 
@@ -142,18 +143,18 @@ export default function AdminVestigingenPage() {
       <AdminShell>
         <div className="max-w-4xl space-y-8">
           <PageHeader
-            title="Vestigingen"
-            description="Manage locations across your portfolio."
-            crumbs={[{ label: "CMS", href: "/admin" }, { label: "Vestigingen" }]}
+            title={t('admin.vestigingen.title', 'Vestigingen')}
+            description={t('admin.vestigingen.description', 'Beheer de locaties in je portfolio.')}
+            crumbs={[{ label: "CMS", href: "/admin" }, { label: t('admin.vestigingen.title', 'Vestigingen') }]}
           />
           {canManageVestigingen(role) ? (
             <section className="bg-white border border-gray-200 rounded-2xl p-6">
-              <h2 className="font-semibold text-lg mb-4">Create vestiging</h2>
+              <h2 className="font-semibold text-lg mb-4">{t('admin.vestigingen.create', 'Vestiging aanmaken')}</h2>
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Name"
+                    placeholder={t('admin.vestigingen.name', 'Naam')}
                     value={form.name}
                     onChange={(event) =>
                       setForm({ ...form, name: event.target.value })
@@ -162,7 +163,7 @@ export default function AdminVestigingenPage() {
                   />
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Address"
+                    placeholder={t('admin.vestigingen.address', 'Adres')}
                     value={form.address}
                     onChange={(event) =>
                       setForm({ ...form, address: event.target.value })
@@ -171,7 +172,7 @@ export default function AdminVestigingenPage() {
                   />
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="City"
+                    placeholder={t('admin.vestigingen.city', 'Stad')}
                     value={form.city}
                     onChange={(event) =>
                       setForm({ ...form, city: event.target.value })
@@ -180,7 +181,7 @@ export default function AdminVestigingenPage() {
                   />
                   <input
                     className="border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Postal code"
+                    placeholder={t('admin.vestigingen.postal_code', 'Postcode')}
                     value={form.postal_code}
                     onChange={(event) =>
                       setForm({ ...form, postal_code: event.target.value })
@@ -189,7 +190,7 @@ export default function AdminVestigingenPage() {
                   />
                   <div className="md:col-span-2">
                     <ImageUploadZone
-                      label="Omslagfoto"
+                      label={t('admin.vestigingen.cover_photo', 'Omslagfoto')}
                       previewUrl={form.image_url}
                       onUpload={handleFileUpload}
                     />
@@ -201,17 +202,17 @@ export default function AdminVestigingenPage() {
                   disabled={loading}
                   type="submit"
                 >
-                  {loading ? "Saving..." : "Create"}
+                  {loading ? t('admin.common.saving', 'Opslaan...') : t('admin.common.create', 'Aanmaken')}
                 </button>
               </form>
             </section>
           ) : null}
 
           <section className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h2 className="font-semibold text-lg mb-4">Existing vestigingen</h2>
+            <h2 className="font-semibold text-lg mb-4">{t('admin.vestigingen.existing', 'Bestaande vestigingen')}</h2>
             <input
               className="border border-gray-200 rounded-lg px-3 py-2 w-full mb-4"
-              placeholder="Search vestigingen..."
+              placeholder={t('admin.common.search', 'Zoek vestigingen...')}
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
@@ -236,14 +237,19 @@ export default function AdminVestigingenPage() {
                       </div>
                     ) : (
                       <div className="w-16 h-16 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center text-xs text-text-muted flex-shrink-0">
-                        No image
+                        Geen afbeelding
                       </div>
                     )}
                     <div>
-                      <p className="font-semibold">{vestiging.name}</p>
-                      <p className="text-sm text-text-muted">
-                        {vestiging.city}
-                      </p>
+                      <p className="font-semibold text-primary-900">{vestiging.name}</p>
+                      <div className="flex items-center gap-2 text-sm text-text-muted">
+                        <span>{vestiging.city}</span>
+                        {locale === 'en' && !vestiging.description_en && (
+                          <span className="text-[10px] bg-amber-50 text-amber-600 px-1.5 py-0.5 rounded border border-amber-100 italic">
+                            Geen EN beschrijving
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
@@ -251,14 +257,14 @@ export default function AdminVestigingenPage() {
                       className="text-primary hover:underline"
                       href={`/admin/vestigingen/${vestiging.id}`}
                     >
-                      Edit
+                      Bewerken
                     </Link>
                     {canManageVestigingen(role) ? (
                       <button
                         className="text-red-500"
                         onClick={() => handleDelete(vestiging.id)}
                       >
-                        Delete
+                        Verwijderen
                       </button>
                     ) : null}
                   </div>
@@ -266,7 +272,7 @@ export default function AdminVestigingenPage() {
               ))}
               {vestigingen.length === 0 ? (
                 <p className="text-sm text-text-muted">
-                  No vestigingen yet.
+                  Nog geen vestigingen.
                 </p>
               ) : null}
             </div>

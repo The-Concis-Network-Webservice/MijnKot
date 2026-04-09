@@ -23,19 +23,19 @@ export default function AdminAuditLogsPage() {
     <AdminGuard>
       <AdminShell>
         <PageHeader
-          title="Audit logs"
-          description="Read-only activity history across the CMS."
-          crumbs={[{ label: "CMS", href: "/admin" }, { label: "Audit logs" }]}
+          title="Systeemlogboeken"
+          description="Activiteitsgeschiedenis van het CMS (alleen lezen)."
+          crumbs={[{ label: "CMS", href: "/admin" }, { label: "Logboeken" }]}
         />
         <section className="bg-white border border-gray-200 rounded-2xl p-6">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="text-left text-text-muted">
                 <tr>
-                  <th className="py-2">Time</th>
-                  <th>Action</th>
-                  <th>Entity</th>
-                  <th>Actor</th>
+                  <th className="py-2">Tijdstip</th>
+                  <th>Actie</th>
+                  <th>Entiteit</th>
+                  <th>Gebruiker</th>
                 </tr>
               </thead>
               <tbody>
@@ -48,13 +48,13 @@ export default function AdminAuditLogsPage() {
                     <td>
                       {log.entity_type} / {log.entity_id}
                     </td>
-                    <td>{log.actor_id ?? "system"}</td>
+                    <td>{log.actor_id ?? "systeem"}</td>
                   </tr>
                 ))}
                 {logs.length === 0 ? (
                   <tr>
                     <td colSpan={4} className="py-4 text-center text-text-muted">
-                      No audit logs yet.
+                      Nog geen logboeken.
                     </td>
                   </tr>
                 ) : null}

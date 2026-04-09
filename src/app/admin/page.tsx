@@ -29,7 +29,7 @@ export default function AdminLoginPage() {
     });
     const payload = await res.json();
     if (!res.ok) {
-      setError(payload.error ?? "Failed to sign in.");
+      setError(payload.error ?? "Inloggen mislukt.");
     } else {
       window.location.href = "/admin/vestigingen";
     }
@@ -43,15 +43,15 @@ export default function AdminLoginPage() {
         className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg w-full max-w-md"
       >
         <h1 className="font-display text-2xl font-bold text-text-main mb-4">
-          Admin Login
+          Admin Inloggen
         </h1>
         <p className="text-sm text-text-muted mb-6">
-          Sign in with your Supabase admin account.
+          Log in met je admin-account.
         </p>
         <div className="space-y-4">
           <div>
             <label className="text-sm font-semibold text-text-main block mb-1">
-              Email
+              E-mail
             </label>
             <input
               className="w-full border border-gray-200 rounded-lg px-3 py-2"
@@ -63,7 +63,7 @@ export default function AdminLoginPage() {
           </div>
           <div>
             <label className="text-sm font-semibold text-text-main block mb-1">
-              Password
+              Wachtwoord
             </label>
             <input
               className="w-full border border-gray-200 rounded-lg px-3 py-2"
@@ -79,7 +79,7 @@ export default function AdminLoginPage() {
             disabled={loading}
             type="submit"
           >
-            {loading ? "Signing in..." : "Sign in"}
+            {loading ? "Inloggen..." : "Inloggen"}
           </button>
         </div>
       </form>

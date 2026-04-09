@@ -9,6 +9,7 @@ import { PhotoManager } from "../../_components/photo-manager";
 import { useToast } from "../../_components/toast";
 import { useAdmin } from "../../AdminProvider";
 import { RichTextEditor } from "../../_components/rich-text-editor";
+import { useTranslation } from "react-i18next";
 import type { Vestiging, RentType, KotPhoto } from "@/types";
 
 export default function AdminKotCreatePage() {
@@ -32,6 +33,7 @@ export default function AdminKotCreatePage() {
   const [createdKotId, setCreatedKotId] = useState<string | null>(null);
   const [photos, setPhotos] = useState<KotPhoto[]>([]);
   const { push } = useToast();
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetch("/api/cms/vestigingen")
@@ -72,9 +74,9 @@ export default function AdminKotCreatePage() {
     });
     const payload = await res.json();
     if (!res.ok) {
-      setError(payload.error ?? "Failed to create kot.");
+      setError(payload.error ?? "Aanmaken van kot mislukt.");
     } else if (payload.data?.id) {
-      push("Kot created. Add photos below.");
+      push("Kot aangemaakt. Voeg hieronder foto's toe.");
       setCreatedKotId(payload.data.id);
     }
     setLoading(false);
@@ -91,11 +93,11 @@ export default function AdminKotCreatePage() {
       <AdminShell>
         <div className="max-w-3xl space-y-6">
           <PageHeader
-            title="Create kot"
+            title={t('admin.koten.create', 'Kot aanmaken')}
             crumbs={[
               { label: "CMS", href: "/admin" },
-              { label: "Koten", href: "/admin/koten" },
-              { label: "New" }
+              { label: t('admin.view.koten', 'Koten'), href: "/admin/koten" },
+              { label: t('common.new', 'Nieuw') }
             ]}
           />
           <form
@@ -110,7 +112,7 @@ export default function AdminKotCreatePage() {
               }
               required
             >
-              <option value="">Select vestiging</option>
+              <option value="">Selecteer vestiging</option>
               {vestigingen.map((vestiging) => (
                 <option key={vestiging.id} value={vestiging.id}>
                   {vestiging.name}
@@ -155,7 +157,7 @@ export default function AdminKotCreatePage() {
                   onChange={(event) =>
                     setForm({ ...form, title_en: event.target.value })
                   }
-                  placeholder="English title"
+                  placeholder="Engelse titel"
                 />
               </div>
             </div>
@@ -200,7 +202,7 @@ export default function AdminKotCreatePage() {
                   onChange={(event) =>
                     setForm({ ...form, description_en: event.target.value })
                   }
-                  placeholder="English description"
+                  placeholder="Engelse beschrijving"
                 />
               </div>
             </div>
@@ -229,10 +231,10 @@ export default function AdminKotCreatePage() {
                   })
                 }
               >
-                <option value="available">available</option>
-                <option value="reserved">reserved</option>
-                <option value="rented">rented</option>
-                <option value="hidden">hidden</option>
+                <option value="available">beschikbaar</option>
+                <option value="reserved">gereserveerd</option>
+                <option value="rented">verhuurd</option>
+                <option value="hidden">verborgen</option>
               </select>
             </div>
             <div className="grid md:grid-cols-2 gap-4">
@@ -243,10 +245,10 @@ export default function AdminKotCreatePage() {
                   setForm({ ...form, status: event.target.value })
                 }
               >
-                <option value="draft">draft</option>
-                <option value="scheduled">scheduled</option>
-                <option value="published">published</option>
-                <option value="archived">archived</option>
+                <option value="draft">concept</option>
+                <option value="scheduled">gepland</option>
+                <option value="published">gepubliceerd</option>
+                <option value="archived">gearchiveerd</option>
               </select>
             </div>
             {error ? <p className="text-sm text-red-500">{error}</p> : null}
@@ -255,19 +257,19 @@ export default function AdminKotCreatePage() {
               disabled={loading}
               type="submit"
             >
-              {loading ? "Creating..." : "Create kot"}
+              {loading ? t('admin.common.saving', 'Aanmaken...') : t('admin.koten.create', 'Kot aanmaken')}
             </button>
           </form>
 
           {createdKotId && (
             <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="font-semibold text-lg">Photos</h2>
+                <h2 className="font-semibold text-lg">Foto's</h2>
                 <button
                   className="bg-primary-500 hover:bg-primary-600 transition-colors text-white px-4 py-2 rounded-lg text-sm font-medium"
                   onClick={() => router.push(`/admin/koten/${createdKotId}`)}
                 >
-                  Done - go to kot
+                  Klaar - naar kot
                 </button>
               </div>
               <PhotoManager
