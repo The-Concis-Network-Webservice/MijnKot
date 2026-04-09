@@ -264,9 +264,11 @@ export type Dictionary = {
             label: string;
             title: string;
             items: {
-                title: string;
-                desc: string;
-            }[];
+                "0": { title: string; desc: string };
+                "1": { title: string; desc: string };
+                "2": { title: string; desc: string };
+                "3": { title: string; desc: string };
+            };
         };
         steps: {
             label: string;
@@ -274,9 +276,11 @@ export type Dictionary = {
             btn: string;
             btn_sub: string;
             items: {
-                title: string;
-                desc: string;
-            }[];
+                "0": { title: string; desc: string };
+                "1": { title: string; desc: string };
+                "2": { title: string; desc: string };
+                "3": { title: string; desc: string };
+            };
         };
         locations: {
             label: string;

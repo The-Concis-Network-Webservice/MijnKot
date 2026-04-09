@@ -21,17 +21,17 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
   const { t } = useTranslation();
 
   const values = [
-    { icon: ShieldCheckIcon, title: t('over_ons.values.items.0.title'), desc: t('over_ons.values.items.0.desc') },
-    { icon: StarIcon, title: t('over_ons.values.items.1.title'), desc: t('over_ons.values.items.1.desc') },
-    { icon: UserGroupIcon, title: t('over_ons.values.items.2.title'), desc: t('over_ons.values.items.2.desc') },
-    { icon: WrenchScrewdriverIcon, title: t('over_ons.values.items.3.title'), desc: t('over_ons.values.items.3.desc') },
+    { icon: ShieldCheckIcon, title: t('over_ons.values.items.0.title' as any), desc: t('over_ons.values.items.0.desc' as any) },
+    { icon: StarIcon, title: t('over_ons.values.items.1.title' as any), desc: t('over_ons.values.items.1.desc' as any) },
+    { icon: UserGroupIcon, title: t('over_ons.values.items.2.title' as any), desc: t('over_ons.values.items.2.desc' as any) },
+    { icon: WrenchScrewdriverIcon, title: t('over_ons.values.items.3.title' as any), desc: t('over_ons.values.items.3.desc' as any) },
   ];
 
   const steps = [
-    { number: '01', title: t('over_ons.steps.items.0.title'), desc: t('over_ons.steps.items.0.desc') },
-    { number: '02', title: t('over_ons.steps.items.1.title'), desc: t('over_ons.steps.items.1.desc') },
-    { number: '03', title: t('over_ons.steps.items.2.title'), desc: t('over_ons.steps.items.2.desc') },
-    { number: '04', title: t('over_ons.steps.items.3.title'), desc: t('over_ons.steps.items.3.desc') },
+    { number: '01', title: t('over_ons.steps.items.0.title' as any), desc: t('over_ons.steps.items.0.desc' as any) },
+    { number: '02', title: t('over_ons.steps.items.1.title' as any), desc: t('over_ons.steps.items.1.desc' as any) },
+    { number: '03', title: t('over_ons.steps.items.2.title' as any), desc: t('over_ons.steps.items.2.desc' as any) },
+    { number: '04', title: t('over_ons.steps.items.3.title' as any), desc: t('over_ons.steps.items.3.desc' as any) },
   ];
 
   return (
