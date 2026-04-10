@@ -13,11 +13,13 @@ import { CalendarDaysIcon, Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroic
 export function SiteNav({
     vestigingen = [],
     settings,
-    className = ""
+    className = "",
+    topOffset = 0
 }: {
     vestigingen?: Vestiging[];
     settings?: SiteSettings;
     className?: string;
+    topOffset?: number;
 }) {
     const { t } = useTranslation();
     const [rentTypes, setRentTypes] = useState<RentType[]>([]);
@@ -43,7 +45,7 @@ export function SiteNav({
     const linkClass = "text-sm font-medium text-neutral-500 hover:text-primary-600 transition-colors duration-150 px-3 py-2 rounded-lg hover:bg-primary-50 cursor-pointer";
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 bg-surface-card transition-shadow duration-300 ${scrolled ? 'shadow-soft border-b border-border-light' : 'border-b border-transparent'} ${className}`}>
+        <nav style={{ top: topOffset }} className={`fixed left-0 right-0 z-50 bg-surface-card transition-shadow duration-300 ${scrolled ? 'shadow-soft border-b border-border-light' : 'border-b border-transparent'} ${className}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
 
