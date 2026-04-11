@@ -119,11 +119,16 @@ export function SiteFooter({ settings }: { settings?: SiteSettings }) {
                                     </a>
                                 </li>
                             )}
-                            {settings?.contact_address && (
+                            {settings?.contact_address && settings.contact_address.replace(/[, \s]/g, '').length > 0 && (
                                 <li className="flex items-start gap-2.5 text-sm text-secondary-600">
                                     <MapPinIcon className="w-4 h-4 mt-0.5 shrink-0" />
                                     <span>
-                                        {settings.contact_address.split(',')[0]}<br />
+                                        {settings.contact_address.split(',')[0].trim() && (
+                                            <>
+                                                {settings.contact_address.split(',')[0].trim()}
+                                                <br />
+                                            </>
+                                        )}
                                         {settings.contact_address.split(',')[1]?.trim()}
                                     </span>
                                 </li>
