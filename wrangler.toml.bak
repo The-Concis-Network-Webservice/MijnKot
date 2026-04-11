@@ -7,7 +7,6 @@ pages_build_output_dir = ".vercel/output/static"
 binding = "DB"
 database_name = "mijnkot"
 database_id = "b9ac4fff-b149-406e-9d20-92865e77cd11"
-remote = true
 
 [[r2_buckets]]
 binding = "BUCKET"
