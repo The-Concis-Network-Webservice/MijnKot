@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const domain = settings?.contact_domain || 'mijn-kot.be';
   return {
     title: 'Over Ons',
-    description: 'Leer meer over Mijn-Kot: kwalitatieve studentenhuisvesting in Leuven. Direct huren van de eigenaar, brandveilig gecertificeerd, en voorzien van het KU Leuven Kotlabel.',
+    description: 'Leer meer over Mijn-Kot: kwalitatieve studentenverblijven en koten in Leuven. Direct huren van de eigenaar, brandveilig gecertificeerd, en voorzien van het KU Leuven Kotlabel.',
     alternates: {
       canonical: `https://${domain}/over-ons`
     }
@@ -26,7 +26,7 @@ export default async function OverOnsPage() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "name": "Over Mijn-Kot",
-    "description": "Mijn-Kot biedt kwalitatieve studentenhuisvesting in Leuven, direct van de eigenaar.",
+    "description": "Mijn-Kot biedt kwalitatieve studentenverblijven en koten in Leuven, direct van de eigenaar.",
     "url": `https://${domain}/over-ons`,
     "publisher": {
       "@type": "Organization",

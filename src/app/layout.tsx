@@ -29,10 +29,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.company.url),
   title: {
     template: `%s | ${siteConfig.company.name}`,
-    default: `${siteConfig.company.name} | Studentenkoten in Leuven`,
+    default: `${siteConfig.company.name} | Studentenverblijven in Leuven`,
   },
-  description: `Op zoek naar een studentenkot in Leuven? ${siteConfig.company.name} biedt hoogwaardige studentenkamers en studio's in het centrum en Heverlee. Direct contact met eigenaar, eerlijke prijs.`,
-  keywords: ['studentenkot', 'kot huren Leuven', 'studentenkamer Leuven', 'studio huren Leuven', 'kot Leuven centrum', 'studentenhuisvesting Leuven', 'Erasmus kamer Leuven'],
+  description: `Op zoek naar een studentenverblijf of kot in Leuven? ${siteConfig.company.name} biedt hoogwaardige kamers en studio's in het centrum en Heverlee. Direct contact met eigenaar, eerlijke prijs.`,
+  keywords: ['studentenverblijf', 'studentenkot', 'kot huren Leuven', 'studentenkamer Leuven', 'studio huren Leuven', 'kot Leuven centrum', 'studentenhuisvesting Leuven', 'Erasmus kamer Leuven'],
   openGraph: {
     type: 'website',
     locale: 'nl_BE',
@@ -73,7 +73,7 @@ export default async function RootLayout({
         "legalName": siteConfig.company.legalName,
         "url": siteConfig.company.url,
         "logo": `${siteConfig.company.url}/favicon.png`,
-        "description": `${siteConfig.company.name} biedt kwalitatieve studentenkoten en studio's in Leuven. Actief sinds 1991. Direct contact met eigenaar, geen bemiddelingskosten. Beschikbaar voor academiejaar, semester en Erasmus-verblijven.`,
+        "description": `${siteConfig.company.name} biedt kwalitatieve studentenverblijven en koten in Leuven. Actief sinds 1991. Direct contact met eigenaar, geen bemiddelingskosten. Beschikbaar voor academiejaar, semester en Erasmus-verblijven.`,
         "address": {
           "@type": "PostalAddress",
           ...(siteConfig.company.address.street ? { "streetAddress": siteConfig.company.address.street } : {}),

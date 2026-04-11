@@ -50,7 +50,6 @@ export async function POST(request: Request) {
     !hero_cta_label ||
     !hero_cta_href ||
     !contact_email ||
-    !contact_address ||
     !company_name ||
     !company_legal_name
   ) {

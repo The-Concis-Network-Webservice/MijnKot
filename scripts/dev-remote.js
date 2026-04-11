@@ -8,7 +8,7 @@ const originalContent = fs.readFileSync(configPath, 'utf8');
 
 // Ensure remote = true and R2 is present
 const remoteContent = `name = "mijnkot"
-compatibility_date = "2024-09-23"
+compatibility_date = "2024-11-18"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
 
@@ -41,7 +41,7 @@ if (!fs.existsSync(workerFile)) {
     fs.writeFileSync(workerFile, 'export default { fetch: (r) => fetch(r) };');
 }
 
-const child = spawn('npx', ['wrangler', 'pages', 'dev', '.vercel/output/static', '--port', '3000', '--proxy', '3001'], {
+const child = spawn('npx', ['wrangler', 'pages', 'dev', '.vercel/output/static', '--d1=DB=mijnkot', '--r2=BUCKET=mijnkot', '--port', '3000', '--proxy', '3001'], {
     stdio: 'inherit',
     shell: true
 });

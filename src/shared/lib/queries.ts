@@ -13,7 +13,9 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     hero_cta_href: "/vestigingen",
     contact_email: siteConfig.company.contact.email,
     contact_phone: siteConfig.company.contact.phone,
-    contact_address: `${siteConfig.company.address.street}, ${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`,
+    contact_address: siteConfig.company.address.street 
+      ? `${siteConfig.company.address.street}, ${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`
+      : `${siteConfig.company.address.postalCode} ${siteConfig.company.address.city}`,
     company_name: siteConfig.company.name,
     company_legal_name: siteConfig.company.legalName
   };
@@ -30,7 +32,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     hero_cta_href: settings.hero_cta_href || defaults.hero_cta_href,
     contact_email: settings.contact_email || defaults.contact_email,
     contact_phone: settings.contact_phone ?? defaults.contact_phone,
-    contact_address: settings.contact_address || defaults.contact_address,
+    contact_address: settings.contact_address ?? defaults.contact_address,
     company_name: settings.company_name || defaults.company_name,
     company_legal_name: settings.company_legal_name || defaults.company_legal_name,
     booking_url: settings.booking_url || defaults.booking_url,

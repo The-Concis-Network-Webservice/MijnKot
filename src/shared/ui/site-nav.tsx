@@ -63,7 +63,7 @@ export function SiteNav({
                     <div className="hidden md:flex items-center gap-1">
                         <Link href="/" className={linkClass}>{t('navigation.home')}</Link>
 
-                        {/* Koten dropdown */}
+                        {/* Verblijven dropdown */}
                         <div className="relative group">
                             <Link href="/koten" className={`${linkClass} flex items-center gap-1`}>
                                 {t('navigation.rent')}

@@ -16,8 +16,8 @@
     },
     "home": {
         "hero": {
-            "title": "Vind jouw ideale studentenkot",
-            "subtitle": "Ontdek kwalitatieve studentenkoten en studio's in Leuven - gemeubeld, brandveilig gecertificeerd en rechtstreeks bij de eigenaar.",
+            "title": "Vind jouw ideale studentenverblijf",
+            "subtitle": "Ontdek kwalitatieve studentenverblijven, studio's en koten in Leuven - gemeubeld, brandveilig gecertificeerd en rechtstreeks bij de eigenaar.",
             "cta": "Bekijk Aanbod",
             "secondary_cta": "Hoe werkt het",
             "badge": "Studentenhuisvesting · Leuven"
@@ -48,7 +48,7 @@
     },
     "vestigingen": {
         "title": "Vestigingen",
-        "description": "Ontdek al onze locaties en het kotaanbod.",
+        "description": "Ontdek al onze locaties en het aanbod aan studentenverblijven.",
         "view_location": "Bekijk locatie"
     },
     "detail": {
@@ -93,7 +93,7 @@
     },
     "contact": {
         "title": "Contact",
-        "description": "We helpen je graag bij het vinden van jouw ideale studentenkot.",
+        "description": "We helpen je graag bij het vinden van jouw ideale studentenverblijf.",
         "email_label": "E-mail",
         "phone_label": "Telefoon",
         "office_label": "Kantoor",
@@ -118,7 +118,7 @@
     "booking": {
         "badge": "Gratis bezichtiging",
         "title": "Plan vrijblijvend een bezoek",
-        "desc": "Goede koten gaan snel. Reserveer vandaag een gratis bezichtiging en wees er zeker van.",
+        "desc": "Goede verblijven en koten gaan snel. Reserveer vandaag een gratis bezichtiging en wees er zeker van.",
         "cta": "Plan een gratis bezoek",
         "fine_print": "Geen verplichtingen · Direct bevestiging · Gratis",
         "plan_visit": "Plan bezoek",
@@ -136,7 +136,7 @@
     },
     "modal": {
         "title": "Als eerste op de hoogte?",
-        "desc": "Meld je aan voor onze lijst en ontvang direct een mailtje zodra er nieuwe koten vrijkomen.",
+        "desc": "Meld je aan voor onze lijst en ontvang direct een mailtje zodra er nieuwe studentenverblijven vrijkomen.",
         "name_placeholder": "Jouw naam (optioneel)",
         "phone_placeholder": "Telefoonnummer (optioneel)",
         "email_placeholder": "Jouw emailadres",
@@ -146,7 +146,7 @@
         "no_spam": "Geen spam. Uitschrijven kan altijd.",
         "close": "Sluiten",
         "success_title": "Aangemeld!",
-        "success_desc": "We houden je vanaf nu op de hoogte zodra er nieuwe koten vrijkomen.",
+        "success_desc": "We houden je vanaf nu op de hoogte zodra er nieuwe studentenverblijven vrijkomen.",
         "error_phone": "Voer een geldig telefoonnummer in.",
         "error_consent": "Je moet akkoord gaan met de voorwaarden.",
         "error_generic": "Er ging iets mis. Probeer het later opnieuw."
@@ -194,7 +194,7 @@
         "pending": "In afwachting"
     },
     "kotaanbod": {
-        "label": "Kotaanbod",
+        "label": "Aanbod verblijven",
         "title": "Voor elke student de juiste kamer",
         "description": "Van compacte studeerruimtes tot ruime studio's met terras. Wij hebben iets voor elke student en elk budget.",
         "student_rooms": {
@@ -228,7 +228,7 @@
             "badge": "Studentenhuisvesting - Leuven",
             "title": "Kwalitatief wonen,",
             "title_highlight": "zonder gedoe.",
-            "desc": "Mijn-Kot biedt gemeubelde studentenkamers en studio's in Leuven. Met het officiële KU Leuven Kotlabel, gecertificeerde brandveiligheid en direct contact met de eigenaar - transparant en eerlijk.",
+            "desc": "Mijn-Kot biedt gemeubelde studentenverblijven, kamers en koten in Leuven. Met het officiële KU Leuven Kotlabel, gecertificeerde brandveiligheid en direct contact met de eigenaar - transparant en eerlijk.",
             "btn_rooms": "Bekijk beschikbare kamers",
             "btn_visit": "Gratis bezichtiging plannen"
         },
@@ -298,7 +298,7 @@
                 },
                 {
                     "title": "Trek in!",
-                    "desc": "Ontvang je sleutels en begin je studentenleven in een kwalitatief, volledig gemeubeld kot."
+                    "desc": "Ontvang je sleutels en begin je studentenleven in een kwalitatief, volledig gemeubeld studentenverblijf."
                 }
             ]
         },
@@ -347,7 +347,7 @@
         },
         "view": {
             "locations": "Locaties",
-            "koten": "Koten",
+            "koten": "Verblijven",
             "media": "Mediabibliotheek",
             "faq": "FAQ",
             "leads": "Leads",
@@ -414,19 +414,19 @@
             "loading": "Vestiging laden..."
         },
         "koten": {
-            "title": "Koten",
+            "title": "Verblijven",
             "description": "Beheer de kamers en studio's.",
-            "create": "Kot aanmaken",
-            "detail": "Kot detail",
-            "edit": "Kot bewerken",
-            "edit_desc": "Bewerk kotgegevens, beschikbaarheid en media.",
-            "existing": "Bestaande Koten",
+            "create": "Verblijf aanmaken",
+            "detail": "Verblijf detail",
+            "edit": "Verblijf bewerken",
+            "edit_desc": "Bewerk gegevens, beschikbaarheid en media.",
+            "existing": "Bestaande Verblijven",
             "price": "Prijs",
             "field_title": "Titel",
             "desc_markdown": "Beschrijving (Markdown)",
             "desc_placeholder": "Beschrijf deze kamer...",
             "manage": "Beheren",
-            "no_koten": "Nog geen koten."
+            "no_koten": "Nog geen verblijven."
         },
         "faq": {
             "create": "FAQ item toevoegen",
