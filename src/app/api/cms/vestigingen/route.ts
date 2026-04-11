@@ -24,7 +24,21 @@ export async function GET(request: Request) {
     );
     return NextResponse.json({ data: item, role });
   }
-  const data = await query("select * from vestigingen where archived_at is null");
+  const data = await query(`
+    select * from vestigingen 
+    where archived_at is null 
+    order by 
+      case 
+        when name like '%Naamsestraat 29A%' then 1
+        when name like '%J.P. Minckelersstraat 79%' then 2
+        when name like '%Dreefstraat 104%' then 3
+        when name like '%Dreefstraat 106%' then 4
+        when name like '%J.P. Minckelersstraat 104%' then 5
+        when name like '%J.P. Minckelersstraat 106%' then 6
+        else 99 
+      end asc, 
+      name asc
+  `);
   return NextResponse.json({ data, role });
 }
 

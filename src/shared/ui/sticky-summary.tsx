@@ -110,10 +110,6 @@ export function StickySummary({ kot, vestiging, bookingUrl }: StickySummaryProps
                                     <EnvelopeIcon className="w-4 h-4 shrink-0" />
                                     {t('sticky.send_message')}
                                 </a>
-                                <a href={`tel:${siteConfig.company.contact.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 text-sm text-primary-500 hover:text-primary-700 transition-colors font-medium">
-                                    <PhoneIcon className="w-4 h-4 shrink-0" />
-                                    {t('sticky.call_us')}
-                                </a>
                             </div>
                         )}
 

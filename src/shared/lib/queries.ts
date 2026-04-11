@@ -45,7 +45,21 @@ export async function getFaqItems() {
 }
 
 export async function getVestigingen() {
-  return query<Vestiging>("select * from vestigingen where archived_at is null");
+  return query<Vestiging>(`
+    select * from vestigingen 
+    where archived_at is null 
+    order by 
+      case 
+        when name like '%Naamsestraat 29A%' then 1
+        when name like '%J.P. Minckelersstraat 79%' then 2
+        when name like '%Dreefstraat 104%' then 3
+        when name like '%Dreefstraat 106%' then 4
+        when name like '%J.P. Minckelersstraat 104%' then 5
+        when name like '%J.P. Minckelersstraat 106%' then 6
+        else 99 
+      end asc, 
+      name asc
+  `);
 }
 
 export async function getLatestKoten(limit = 6, typeSlug?: string) {
