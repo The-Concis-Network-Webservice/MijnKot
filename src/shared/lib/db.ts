@@ -32,8 +32,16 @@ export async function query<T>(
 ) {
   const db = getDB();
   const stmt = db.prepare(normalizeSql(text)).bind(...params);
-  const { results } = await stmt.all();
-  return results as T[];
+  
+  try {
+    const { results } = await stmt.all();
+    return results as T[];
+  } catch (err: any) {
+    console.error(`[DB Error]: Failed to execute query. Error: ${err.message || err}`);
+    console.error(`[DB Query]: ${text}`);
+    console.error(`[DB Params]:`, params);
+    throw err;
+  }
 }
 
 export async function queryOne<T>(
@@ -42,6 +50,14 @@ export async function queryOne<T>(
 ) {
   const db = getDB();
   const stmt = db.prepare(normalizeSql(text)).bind(...params);
-  const result = await stmt.first();
-  return (result ?? null) as T | null;
+  
+  try {
+    const result = await stmt.first();
+    return (result ?? null) as T | null;
+  } catch (err: any) {
+    console.error(`[DB Error]: Failed to execute queryOne. Error: ${err.message || err}`);
+    console.error(`[DB Query]: ${text}`);
+    console.error(`[DB Params]:`, params);
+    throw err;
+  }
 }

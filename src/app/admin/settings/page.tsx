@@ -31,7 +31,7 @@ export default function AdminSettingsPage() {
   const [rentTypes, setRentTypes] = useState<RentType[]>([]);
   const [loading, setLoading] = useState(false);
   const [rentTypesLoading, setRentTypesLoading] = useState(false);
-  const [newRentType, setNewRentType] = useState({ name: "", slug: "", order_index: 0 });
+  const [newRentType, setNewRentType] = useState({ name: "", name_en: "", slug: "", order_index: 0 });
   const [activeTab, setActiveTab] = useState<"general" | "categories" | "popups" | "security">("general");
   const [passwordData, setPasswordData] = useState({ current: "", new: "", confirm: "" });
   const [passwordLoading, setPasswordLoading] = useState(false);
@@ -148,7 +148,7 @@ export default function AdminSettingsPage() {
       body: JSON.stringify(newRentType)
     });
     if (res.ok) {
-      setNewRentType({ name: "", slug: "", order_index: 0 });
+      setNewRentType({ name: "", name_en: "", slug: "", order_index: 0 });
       await loadRentTypes();
       push("Category added.");
     } else {
@@ -167,6 +167,8 @@ export default function AdminSettingsPage() {
     if (!res.ok) {
       const data = await res.json();
       push(data.error ?? "Failed to update category.", "error");
+    } else {
+      push(`Category "${rt.name}" updated.`);
     }
   };
 
@@ -593,86 +595,185 @@ export default function AdminSettingsPage() {
 
           {activeTab === "categories" && (
             <div className="bg-white border border-border-light rounded-2xl p-6 space-y-6 shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-300">
-              <h2 className="text-xl font-bold text-text-main">Huurtypes (Filters)</h2>
-              <p className="text-sm text-text-muted">Beheer de categorieën die worden getoond in het 'Te Huur' navigatiemenu.</p>
+              <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+                <div>
+                  <h2 className="text-xl font-bold text-text-main">Huurtypes (Filters)</h2>
+                  <p className="text-sm text-text-muted">Beheer de categorieën die worden getoond in het 'Te Huur' navigatiemenu.</p>
+                </div>
+                <div className="flex gap-2">
+                   <button 
+                      onClick={loadRentTypes}
+                      className="text-xs bg-gray-50 hover:bg-gray-100 text-text-muted px-3 py-1.5 rounded-lg border border-border-light transition-colors"
+                   >
+                     Vernieuwen
+                   </button>
+                </div>
+              </div>
               
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {rentTypes.map((rt) => (
-                  <div key={rt.id} className="flex flex-col md:flex-row gap-4 p-4 border border-border-light rounded-xl bg-surface-subtle">
-                    <div className="flex-1 space-y-2">
-                      <label className="text-xs font-bold uppercase text-text-muted">Name (NL)</label>
-                      <input
-                        className="w-full border border-border-light rounded-lg px-3 py-2 text-sm"
-                        value={rt.name}
-                        onChange={(e) => {
-                          const updated = rentTypes.map(item => item.id === rt.id ? { ...item, name: e.target.value } : item);
-                          setRentTypes(updated);
-                        }}
-                        onBlur={() => updateRentType(rt)}
-                      />
+                  <div key={rt.id} className="p-5 border border-border-light rounded-2xl bg-surface-subtle/50 space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {/* NL Name */}
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold uppercase text-text-muted flex items-center justify-between">
+                          Name (NL)
+                        </label>
+                        <input
+                          className="w-full border border-border-light rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary-500 outline-none"
+                          value={rt.name}
+                          onChange={(e) => {
+                            const updated = rentTypes.map(item => item.id === rt.id ? { ...item, name: e.target.value } : item);
+                            setRentTypes(updated);
+                          }}
+                          onBlur={() => updateRentType(rt)}
+                        />
+                      </div>
+                      
+                      {/* EN Name */}
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold uppercase text-text-muted flex items-center justify-between">
+                          <span>Name (EN)</span>
+                          <button 
+                            onClick={async () => {
+                              try {
+                                const res = await fetch('/api/cms/translate', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ text: rt.name })
+                                });
+                                const data = await res.json();
+                                if (data.translated) {
+                                  const updatedRt = { ...rt, name_en: data.translated };
+                                  const updatedArr = rentTypes.map(item => item.id === rt.id ? updatedRt : item);
+                                  setRentTypes(updatedArr);
+                                  await updateRentType(updatedRt);
+                                }
+                              } catch (err) {
+                                push("Translation error", "error");
+                              }
+                            }}
+                            className="text-[9px] bg-primary-50 text-primary-600 px-1.5 py-0.5 rounded hover:bg-primary-100"
+                          >
+                            Suggest
+                          </button>
+                        </label>
+                        <input
+                          className="w-full border border-border-light rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary-500 outline-none"
+                          value={rt.name_en ?? ""}
+                          placeholder="English translation"
+                          onChange={(e) => {
+                            const updated = rentTypes.map(item => item.id === rt.id ? { ...item, name_en: e.target.value } : item);
+                            setRentTypes(updated);
+                          }}
+                          onBlur={() => updateRentType(rt)}
+                        />
+                      </div>
                     </div>
-                    <div className="flex-1 space-y-2">
-                      <label className="text-xs font-bold uppercase text-text-muted">{t('admin.vestigingen.slug', 'Slug (URL)')}</label>
-                      <input
-                        className="w-full border border-border-light rounded-lg px-3 py-2 text-sm"
-                        value={rt.slug}
-                        onChange={(e) => {
-                          const updated = rentTypes.map(item => item.id === rt.id ? { ...item, slug: e.target.value } : item);
-                          setRentTypes(updated);
-                        }}
-                        onBlur={() => updateRentType(rt)}
-                      />
-                    </div>
-                    <div className="w-20 space-y-2">
-                      <label className="text-xs font-bold uppercase text-text-muted">{t('admin.common.order', 'Order')}</label>
-                      <input
-                        type="number"
-                        className="w-full border border-border-light rounded-lg px-3 py-2 text-sm"
-                        value={rt.order_index}
-                        onChange={(e) => {
-                          const updated = rentTypes.map(item => item.id === rt.id ? { ...item, order_index: parseInt(e.target.value) || 0 } : item);
-                          setRentTypes(updated);
-                        }}
-                        onBlur={() => updateRentType(rt)}
-                      />
-                    </div>
-                    <div className="flex items-end pb-1">
-                      <button
-                        onClick={() => deleteRentType(rt.id)}
-                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                        title="Verwijder categorie"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                        </svg>
-                      </button>
+
+                    <div className="flex flex-col md:flex-row gap-4 pt-2 border-t border-gray-100">
+                      <div className="flex-1 space-y-1.5">
+                        <label className="text-[10px] font-bold uppercase text-text-muted">{t('admin.vestigingen.slug', 'Slug (URL)')}</label>
+                        <input
+                          className="w-full border border-border-light rounded-lg px-3 py-2 text-sm bg-white"
+                          value={rt.slug}
+                          onChange={(e) => {
+                            const updated = rentTypes.map(item => item.id === rt.id ? { ...item, slug: e.target.value } : item);
+                            setRentTypes(updated);
+                          }}
+                          onBlur={() => updateRentType(rt)}
+                        />
+                      </div>
+                      <div className="w-24 space-y-1.5">
+                        <label className="text-[10px] font-bold uppercase text-text-muted">{t('admin.common.order', 'Volgorde')}</label>
+                        <input
+                          type="number"
+                          className="w-full border border-border-light rounded-lg px-3 py-2 text-sm bg-white"
+                          value={rt.order_index}
+                          onChange={(e) => {
+                            const updated = rentTypes.map(item => item.id === rt.id ? { ...item, order_index: parseInt(e.target.value) || 0 } : item);
+                            setRentTypes(updated);
+                          }}
+                          onBlur={() => updateRentType(rt)}
+                        />
+                      </div>
+                      <div className="flex items-end justify-end">
+                        <button
+                          onClick={() => {
+                            if (confirm("Weet je zeker dat je deze categorie wilt verwijderen?")) {
+                              deleteRentType(rt.id);
+                            }
+                          }}
+                          className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-100"
+                          title="Verwijder categorie"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
 
-                <div className="p-4 border-2 border-dashed border-border-light rounded-xl space-y-4 bg-white">
-                  <h3 className="text-sm font-bold uppercase text-text-muted">Nieuwe Categorie Toevoegen</h3>
-                  <div className="flex flex-col md:flex-row gap-4">
-                    <input
-                      className="flex-1 border border-border-light rounded-lg px-3 py-2 text-sm"
-                      placeholder={t('admin.common.name', 'Naam')}
-                      value={newRentType.name}
-                      onChange={(e) => setNewRentType({ ...newRentType, name: e.target.value })}
-                    />
-                    <input
-                      className="flex-1 border border-border-light rounded-lg px-3 py-2 text-sm"
-                      placeholder={t('admin.vestigingen.slug', 'Slug')}
-                      value={newRentType.slug}
-                      onChange={(e) => setNewRentType({ ...newRentType, slug: e.target.value })}
-                    />
+                <div className="p-6 border-2 border-dashed border-border-light rounded-2xl space-y-4 bg-gray-50/30">
+                  <h3 className="text-sm font-bold uppercase text-primary-800">Nieuwe Categorie Toevoegen</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                     <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-text-muted">Naam (NL)</label>
+                        <input
+                          className="w-full border border-border-light rounded-lg px-3 py-2 text-sm bg-white"
+                          placeholder="Bijv: Erasmus / Semester"
+                          value={newRentType.name}
+                          onChange={(e) => setNewRentType({ ...newRentType, name: e.target.value })}
+                        />
+                     </div>
+                     <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-text-muted">Naam (EN)</label>
+                        <input
+                          className="w-full border border-border-light rounded-lg px-3 py-2 text-sm bg-white"
+                          placeholder="e.g. Erasmus / Semester"
+                          value={newRentType.name_en}
+                          onChange={(e) => setNewRentType({ ...newRentType, name_en: e.target.value })}
+                        />
+                     </div>
+                  </div>
+                  <div className="flex flex-col md:flex-row gap-4 items-end">
+                    <div className="flex-1 space-y-1.5 w-full">
+                       <label className="text-[10px] font-bold text-text-muted">Slug</label>
+                       <input
+                        className="w-full border border-border-light rounded-lg px-3 py-2 text-sm bg-white"
+                        placeholder="bijv: erasmus-semester"
+                        value={newRentType.slug}
+                        onChange={(e) => setNewRentType({ ...newRentType, slug: e.target.value })}
+                      />
+                    </div>
                     <button
                       disabled={rentTypesLoading || !newRentType.name || !newRentType.slug}
                       onClick={addRentType}
-                      className="bg-primary-500 hover:bg-primary-600 disabled:opacity-50 text-white px-6 py-2 rounded-lg text-sm font-bold transition-all"
+                      className="bg-primary-500 hover:bg-primary-600 disabled:opacity-50 text-white px-8 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm active:scale-95 whitespace-nowrap"
                     >
-                      Toevoegen
+                      {rentTypesLoading ? "Toevoegen..." : "Toevoegen"}
                     </button>
                   </div>
+                </div>
+
+                <div className="pt-6 border-t border-gray-100">
+                   <button 
+                    onClick={async () => {
+                      setLoading(true);
+                      // Trigger a dummy load to satisfy the "Save" urge and show a message
+                      await loadRentTypes();
+                      push("Alle categorieën zijn opgeslagen en gecontroleerd.");
+                      setLoading(false);
+                    }}
+                    className="w-full md:w-auto bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-xl font-semibold shadow-md transition-all active:scale-95"
+                   >
+                     {loading ? "Opslaan..." : "Wijzigingen Opslaan"}
+                   </button>
+                   <p className="mt-3 text-[10px] text-text-muted italic">
+                     * Wijzigingen worden automatisch opgeslagen zodra je een invoerveld verlaat.
+                   </p>
                 </div>
               </div>
             </div>

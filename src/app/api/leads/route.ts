@@ -5,7 +5,7 @@ export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
     try {
-        const { email, name, phone } = await req.json();
+        const { email, name, phone, source } = await req.json();
 
         if (!email || !email.includes('@')) {
             return NextResponse.json({ error: "Invalid email" }, { status: 400 });
@@ -17,14 +17,14 @@ export async function POST(req: NextRequest) {
         if (existing) {
             // Update existing lead (optional: only if name or phone provided)
             await queryOne(
-                "update leads set name = coalesce($1, name), phone = coalesce($2, phone) where email = $3 returning id",
-                [name || null, phone || null, email]
+                "update leads set name = coalesce($1, name), phone = coalesce($2, phone), source = coalesce($3, source) where email = $4 returning id",
+                [name || null, phone || null, source || null, email]
             );
         } else {
             // Insert new lead
             await queryOne(
-                "insert into leads (email, name, phone) values ($1, $2, $3) returning id",
-                [email, name || null, phone || null]
+                "insert into leads (email, name, phone, source) values ($1, $2, $3, $4) returning id",
+                [email, name || null, phone || null, source || 'modal']
             );
         }
 

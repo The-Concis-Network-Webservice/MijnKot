@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 import { useTranslation } from "react-i18next";
 
@@ -21,14 +22,13 @@ export function BookingCtaBanner({ bookingUrl }: { bookingUrl?: string | null })
                     <p className="text-secondary-400 text-base leading-relaxed mb-10 max-w-md mx-auto">
                         {t('booking.desc')}
                     </p>
-                    <a
-                        href={href}
-                        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    <Link
+                        href="/koten"
                         className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-accent-500 text-white rounded-xl font-semibold text-sm hover:bg-accent-600 active:bg-accent-700 transition-colors cursor-pointer"
                     >
                         <CalendarDaysIcon className="w-4 h-4 shrink-0" />
                         {t('booking.cta')}
-                    </a>
+                    </Link>
                     <p className="mt-5 text-xs text-secondary-600">
                         {t('booking.fine_print')}
                     </p>

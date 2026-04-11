@@ -34,15 +34,24 @@ export function RentalOptions() {
         },
     ];
 
+    const handleOptionClick = (source: string) => {
+        window.dispatchEvent(new CustomEvent('open-lead-modal', { 
+            detail: { source } 
+        }));
+    };
+
     return (
         <section className="py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
                 {options.map((option, i) => {
                     const { Icon, accent, iconBg, iconColor, border } = OPTIONS_META[i];
+                    // Mapping index to source key
+                    const sourceKeys = ['erasmus_short_term', 'academic_year', 'prebooking_next_year'];
+                    
                     return (
-                        <Link
+                        <div
                             key={option.title}
-                            href={option.href}
+                            onClick={() => handleOptionClick(sourceKeys[i])}
                             className={`group relative flex flex-col gap-5 rounded-2xl border border-border-light bg-surface-card p-8 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer overflow-hidden ${border}`}
                         >
                             {/* subtle gradient bg on hover */}
@@ -70,7 +79,7 @@ export function RentalOptions() {
                                     <ArrowRightIcon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                                 </div>
                             </div>
-                        </Link>
+                        </div>
                     );
                 })}
             </div>

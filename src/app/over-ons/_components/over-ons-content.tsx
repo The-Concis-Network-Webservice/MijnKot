@@ -57,7 +57,7 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
               {t('over_ons.hero.btn_rooms' as any)}
             </Link>
             <Link
-              href="/afspraken"
+              href="/koten"
               className="inline-flex items-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl font-semibold transition-colors"
             >
               <CalendarDaysIcon className="w-5 h-5" />
@@ -174,7 +174,7 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
           </div>
           <div className="mt-12 text-center">
             <Link
-              href="/afspraken"
+              href="/koten"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-accent-500 hover:bg-accent-600 text-white rounded-xl font-semibold transition-colors"
             >
               <CalendarDaysIcon className="w-5 h-5" />
@@ -269,7 +269,7 @@ export function OverOnsContent({ vestigingen }: { vestigingen: Vestiging[] }) {
                 {t('over_ons.contact.btn_contact' as any)}
               </Link>
               <Link
-                href="/afspraken"
+                href="/koten"
                 className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-accent-500 hover:bg-accent-600 text-white rounded-xl text-sm font-semibold transition-colors"
               >
                 <CalendarDaysIcon className="w-4 h-4" />

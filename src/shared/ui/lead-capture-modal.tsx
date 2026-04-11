@@ -22,6 +22,18 @@ export function LeadCaptureModal({
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [consent, setConsent] = useState(false);
+    const [source, setSource] = useState('modal');
+
+    useEffect(() => {
+        const handleOpen = (e: any) => {
+            const detail = e.detail || {};
+            if (detail.source) setSource(detail.source);
+            setIsOpen(true);
+        };
+
+        window.addEventListener('open-lead-modal', handleOpen);
+        return () => window.removeEventListener('open-lead-modal', handleOpen);
+    }, []);
 
     useEffect(() => {
         // Check if user has already seen the modal or submitted
@@ -62,7 +74,7 @@ export function LeadCaptureModal({
             const res = await fetch('/api/leads', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, name, phone }),
+                body: JSON.stringify({ email, name, phone, source }),
             });
 
             if (res.ok) {

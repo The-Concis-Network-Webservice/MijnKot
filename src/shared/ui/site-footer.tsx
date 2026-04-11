@@ -26,14 +26,13 @@ export function SiteFooter({ settings }: { settings?: SiteSettings }) {
                                 <p className="font-display text-lg font-semibold text-secondary-100">{t('booking.badge')}</p>
                                 <p className="text-sm text-secondary-500 mt-0.5">{t('booking.free_no_obligations')}</p>
                             </div>
-                            <a
-                                href={bookingUrl}
-                                {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                            <Link
+                                href="/koten"
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-accent-500 text-white rounded-xl text-sm font-semibold hover:bg-accent-600 active:bg-accent-700 transition-colors cursor-pointer shrink-0"
                             >
                                 <CalendarDaysIcon className="w-4 h-4 shrink-0" />
                                 {t('footer.plan_visit')}
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 );

@@ -109,14 +109,13 @@ export function SiteNav({
                     <div className="hidden md:flex items-center gap-3">
                         <LanguageSwitcher />
                         <div className="w-px h-5 bg-border-light" />
-                        <a
-                            href={bookingUrl}
-                            {...(isExternalBooking ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        <Link
+                            href="/koten"
                             className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent-500 text-white rounded-xl text-sm font-semibold hover:bg-accent-600 active:bg-accent-700 transition-colors cursor-pointer whitespace-nowrap"
                         >
                             <CalendarDaysIcon className="w-4 h-4 shrink-0" />
                             {t('navigation.plan_visit')}
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Mobile: hamburger only */}
@@ -154,15 +153,14 @@ export function SiteNav({
                             </Link>
                         ))}
                         <div className="pt-3 pb-1">
-                            <a
-                                href={bookingUrl}
-                                {...(isExternalBooking ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                            <Link
+                                href="/koten"
                                 onClick={() => setMobileOpen(false)}
                                 className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-accent-500 text-white rounded-xl text-sm font-semibold hover:bg-accent-600 transition-colors cursor-pointer"
                             >
                                 <CalendarDaysIcon className="w-4 h-4 shrink-0" />
                                 {t('navigation.plan_visit')}
-                            </a>
+                            </Link>
                         </div>
                         <div className="py-2">
                             <LanguageSwitcher />
