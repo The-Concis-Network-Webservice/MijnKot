@@ -296,6 +296,15 @@ export type Dictionary = {
             btn_visit: string;
         };
     };
+    cookies: {
+        banner_label: string;
+        title: string;
+        description: string;
+        learn_more: string;
+        accept_all: string;
+        necessary_only: string;
+        close: string;
+    };
     admin: {
         common: {
             save: string;

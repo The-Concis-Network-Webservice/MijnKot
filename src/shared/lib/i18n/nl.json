@@ -316,6 +316,15 @@
             "btn_visit": "Bezichtiging plannen"
         }
     },
+    "cookies": {
+        "banner_label": "Cookie-toestemming",
+        "title": "We gebruiken cookies",
+        "description": "We gebruiken cookies om je ervaring te verbeteren en de website goed te laten werken.",
+        "learn_more": "Meer info",
+        "accept_all": "Alles accepteren",
+        "necessary_only": "Alleen noodzakelijke",
+        "close": "Sluiten"
+    },
     "admin": {
         "common": {
             "save": "Opslaan",

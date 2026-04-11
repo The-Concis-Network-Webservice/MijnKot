@@ -316,6 +316,15 @@
             "btn_visit": "Plan viewing"
         }
     },
+    "cookies": {
+        "banner_label": "Cookie consent",
+        "title": "We use cookies",
+        "description": "We use cookies to improve your experience and keep the website running smoothly.",
+        "learn_more": "Learn more",
+        "accept_all": "Accept all",
+        "necessary_only": "Necessary only",
+        "close": "Close"
+    },
     "admin": {
         "common": {
             "save": "Save",

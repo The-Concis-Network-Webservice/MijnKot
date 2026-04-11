@@ -6,6 +6,7 @@ import { SiteNav } from './site-nav';
 import { SiteFooter } from './site-footer';
 import { LeadCaptureModal } from './lead-capture-modal';
 import { NoticeBar } from './notice-bar';
+import { CookieBanner } from './cookie-banner';
 import type { SiteSettings, Vestiging } from '@/types';
 
 const NOTICE_H = 40; // px — hoogte van de notice bar
@@ -47,6 +48,7 @@ export function SiteLayoutWrapper({
       </main>
       <SiteFooter settings={settings} />
       <LeadCaptureModal settings={settings} />
+      <CookieBanner />
     </>
   );
 }
