@@ -18,18 +18,21 @@ import { useTranslation } from "react-i18next";
 function ShareFloorPlanLink({ vestigingId }: { vestigingId: string }) {
   const [copied, setCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
 
-  useEffect(() => {
+  const loadToken = () => {
     fetch(`/api/cms/floor-plan-token?vestiging_id=${vestigingId}`)
       .then((r) => r.json())
       .then((data) => {
-        if (!data.token) return;
+        if (!data.token) { setShareUrl(null); return; }
         const base = window.location.origin;
         setShareUrl(`${base}/vestigingen/${vestigingId}/grondplan?token=${data.token}`);
       })
       .catch(() => {});
-  }, [vestigingId]);
+  };
+
+  useEffect(() => { loadToken(); }, [vestigingId]);
 
   const handleCopy = () => {
     if (!shareUrl) return;
@@ -39,24 +42,68 @@ function ShareFloorPlanLink({ vestigingId }: { vestigingId: string }) {
     });
   };
 
+  const handleRegenerate = async () => {
+    if (!confirm(t('admin.vestigingen.regenerate_confirm', 'De oude link wordt onmiddellijk ongeldig. Doorgaan?'))) return;
+    setLoading(true);
+    await fetch(`/api/cms/floor-plan-token`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ vestiging_id: vestigingId }),
+    });
+    loadToken();
+    setLoading(false);
+  };
+
+  const handleDeactivate = async () => {
+    if (!confirm(t('admin.vestigingen.deactivate_confirm', 'De publieke link wordt gedeactiveerd. Doorgaan?'))) return;
+    setLoading(true);
+    await fetch(`/api/cms/floor-plan-token?vestiging_id=${vestigingId}`, { method: 'DELETE' });
+    setShareUrl(null);
+    setLoading(false);
+  };
+
   return (
-    <div className="flex items-center gap-2">
-      {shareUrl && (
-        <Link
-          href={shareUrl}
-          target="_blank"
-          className="text-sm text-primary hover:underline"
+    <div className="flex items-center gap-2 flex-wrap">
+      {shareUrl ? (
+        <>
+          <Link
+            href={shareUrl}
+            target="_blank"
+            className="text-sm text-primary hover:underline"
+          >
+            {t('admin.vestigingen.public_page', 'Publieke pagina')}
+          </Link>
+          <button
+            onClick={handleCopy}
+            disabled={loading}
+            className="text-xs bg-gray-100 hover:bg-gray-200 border border-gray-200 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
+          >
+            {copied ? t('admin.vestigingen.copied', "Gekopieerd!") : t('admin.vestigingen.copy_link', "Kopieer link")}
+          </button>
+          <button
+            onClick={handleRegenerate}
+            disabled={loading}
+            className="text-xs bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-700 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
+          >
+            {t('admin.vestigingen.regenerate_link', "Nieuwe link")}
+          </button>
+          <button
+            onClick={handleDeactivate}
+            disabled={loading}
+            className="text-xs bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
+          >
+            {t('admin.vestigingen.deactivate_link', "Deactiveer")}
+          </button>
+        </>
+      ) : (
+        <button
+          onClick={handleRegenerate}
+          disabled={loading}
+          className="text-xs bg-gray-100 hover:bg-gray-200 border border-gray-200 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
         >
-          {t('admin.vestigingen.public_page', 'Publieke pagina')}
-        </Link>
+          {t('admin.vestigingen.generate_link', "Genereer link")}
+        </button>
       )}
-      <button
-        onClick={handleCopy}
-        disabled={!shareUrl}
-        className="text-xs bg-gray-100 hover:bg-gray-200 border border-gray-200 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
-      >
-        {copied ? t('admin.vestigingen.copied', "Gekopieerd!") : t('admin.vestigingen.copy_link', "Kopieer link")}
-      </button>
     </div>
   );
 }

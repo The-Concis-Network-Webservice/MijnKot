@@ -58,7 +58,28 @@ export async function GET(request: Request) {
   }
 }
 
-// Regenerate token (invalidates old ones by letting them expire naturally)
+// Deactivate all tokens (no new token created)
+export async function DELETE(request: Request) {
+  const { user } = await getUserFromRequest();
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const url = new URL(request.url);
+  const vestigingId = url.searchParams.get("vestiging_id");
+  if (!vestigingId) {
+    return NextResponse.json({ error: "vestiging_id is required" }, { status: 400 });
+  }
+
+  await query(
+    "update floor_plan_tokens set expires_at = datetime('now') where vestiging_id = $1",
+    [vestigingId]
+  );
+
+  return NextResponse.json({ ok: true });
+}
+
+// Regenerate token (invalidates old ones immediately)
 export async function POST(request: Request) {
   const { user } = await getUserFromRequest();
   if (!user) {
