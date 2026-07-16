@@ -1,6 +1,6 @@
 # KotWebsite (Mijn Kot)
 
-A premium student housing platform for finding rooms in Ghent, Antwerp, and Leuven.
+A student housing platform for finding rooms in Leuven and Heverlee.
 
 ## 🚀 Technologies
 
